@@ -1,6 +1,6 @@
 ﻿namespace TFG_Client
 {
-    partial class Form1
+    partial class MainFormProgram
     {
         /// <summary>
         /// Variable del diseñador necesaria.

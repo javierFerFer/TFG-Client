@@ -8,12 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TFG_Client
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace TFG_Client{
+    public partial class MainFormProgram : Form{
+        public MainFormProgram(){
             InitializeComponent();
         }
     }
