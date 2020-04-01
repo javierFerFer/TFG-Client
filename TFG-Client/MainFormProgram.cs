@@ -17,14 +17,17 @@ namespace TFG_Client {
     /// <summary>
     /// 
     /// Formulario de inicio de sesión
+    /// 
     /// FALTA:
     /// - Añadir ventana de soporte(Contacto)
     /// - Añadir ventana de Acerca de...
     /// - Al cargar la ventana, debe mirar si la posición de la misma está almacenada en el registro de windows y cargarla en caso de ser así
+    /// - Al cargar la ventana, debe mirar registro de windows para cargar usuario, contraseña y foto en caso de que haya
     /// - Al cerrar el programa, se debe guardar la posición de la ventana, el usuario, la contraseña y la foto del mismo en el registro de windows
     /// - Al hacer click en el botón de logín, debe comprobar que el usuario tiene red
     /// - Al hacer click en el boton de la foto, debe permitir cargar otra foto, y esta automáticamente se guardará en el registro de windows
-    /// 
+    /// - Comentar WndProc en Español
+    /// - 
     /// Login form
     /// </summary>
     public partial class MainFormProgram : Form {
@@ -103,14 +106,17 @@ namespace TFG_Client {
         }
 
         private void minimizeLabel_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
         private void pictureBox9_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
         private void layoutMinimize_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
