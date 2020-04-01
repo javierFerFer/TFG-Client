@@ -54,7 +54,7 @@
             this.exitLabel = new System.Windows.Forms.Label();
             this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
             this.userImage = new TFG_Client.MyOwnCircleComponent();
-            this.cirularButton1 = new TFG_Client.CirularButton();
+            this.loginButton = new TFG_Client.CirularButton();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -86,7 +86,7 @@
             // userPasswdImage
             // 
             this.userPasswdImage.Image = ((System.Drawing.Image)(resources.GetObject("userPasswdImage.Image")));
-            this.userPasswdImage.Location = new System.Drawing.Point(383, 196);
+            this.userPasswdImage.Location = new System.Drawing.Point(383, 235);
             this.userPasswdImage.Name = "userPasswdImage";
             this.userPasswdImage.Size = new System.Drawing.Size(203, 148);
             this.userPasswdImage.TabIndex = 2;
@@ -95,7 +95,7 @@
             // loginImage
             // 
             this.loginImage.Image = ((System.Drawing.Image)(resources.GetObject("loginImage.Image")));
-            this.loginImage.Location = new System.Drawing.Point(390, 368);
+            this.loginImage.Location = new System.Drawing.Point(390, 407);
             this.loginImage.Name = "loginImage";
             this.loginImage.Size = new System.Drawing.Size(193, 77);
             this.loginImage.TabIndex = 3;
@@ -105,16 +105,20 @@
             // 
             this.textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUser.Location = new System.Drawing.Point(425, 219);
+            this.textBoxUser.ForeColor = System.Drawing.Color.DarkGray;
+            this.textBoxUser.Location = new System.Drawing.Point(425, 258);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(137, 22);
             this.textBoxUser.TabIndex = 4;
+            this.textBoxUser.Text = "Usuario";
+            this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
+            this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);
             // 
             // userIcon
             // 
             this.userIcon.BackColor = System.Drawing.Color.White;
             this.userIcon.Image = ((System.Drawing.Image)(resources.GetObject("userIcon.Image")));
-            this.userIcon.Location = new System.Drawing.Point(406, 218);
+            this.userIcon.Location = new System.Drawing.Point(406, 257);
             this.userIcon.Name = "userIcon";
             this.userIcon.Size = new System.Drawing.Size(19, 22);
             this.userIcon.TabIndex = 5;
@@ -124,7 +128,7 @@
             // 
             this.passwdIcon.BackColor = System.Drawing.Color.White;
             this.passwdIcon.Image = ((System.Drawing.Image)(resources.GetObject("passwdIcon.Image")));
-            this.passwdIcon.Location = new System.Drawing.Point(406, 298);
+            this.passwdIcon.Location = new System.Drawing.Point(406, 337);
             this.passwdIcon.Name = "passwdIcon";
             this.passwdIcon.Size = new System.Drawing.Size(19, 22);
             this.passwdIcon.TabIndex = 7;
@@ -134,11 +138,14 @@
             // 
             this.textBoxPasswd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPasswd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPasswd.Location = new System.Drawing.Point(425, 296);
+            this.textBoxPasswd.ForeColor = System.Drawing.Color.DarkGray;
+            this.textBoxPasswd.Location = new System.Drawing.Point(425, 335);
             this.textBoxPasswd.Name = "textBoxPasswd";
             this.textBoxPasswd.Size = new System.Drawing.Size(137, 22);
             this.textBoxPasswd.TabIndex = 6;
-            this.textBoxPasswd.UseSystemPasswordChar = true;
+            this.textBoxPasswd.Text = "Contraseña";
+            this.textBoxPasswd.Enter += new System.EventHandler(this.textBoxPasswd_Enter);
+            this.textBoxPasswd.Leave += new System.EventHandler(this.textBoxPasswd_Leave);
             // 
             // titleLabel
             // 
@@ -146,7 +153,7 @@
             this.titleLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(15, 164);
+            this.titleLabel.Location = new System.Drawing.Point(15, 155);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(218, 73);
             this.titleLabel.TabIndex = 9;
@@ -158,7 +165,7 @@
             this.subtitleLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subtitleLabel.ForeColor = System.Drawing.Color.White;
-            this.subtitleLabel.Location = new System.Drawing.Point(3, 274);
+            this.subtitleLabel.Location = new System.Drawing.Point(3, 282);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(293, 93);
             this.subtitleLabel.TabIndex = 10;
@@ -331,34 +338,36 @@
             // userImage
             // 
             this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
-            this.userImage.Location = new System.Drawing.Point(430, 73);
+            this.userImage.Location = new System.Drawing.Point(430, 112);
             this.userImage.Name = "userImage";
             this.userImage.Size = new System.Drawing.Size(122, 113);
             this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userImage.TabIndex = 1;
             this.userImage.TabStop = false;
             // 
-            // cirularButton1
+            // loginButton
             // 
-            this.cirularButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.cirularButton1.FlatAppearance.BorderSize = 0;
-            this.cirularButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cirularButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cirularButton1.ForeColor = System.Drawing.Color.Transparent;
-            this.cirularButton1.Location = new System.Drawing.Point(418, 387);
-            this.cirularButton1.Name = "cirularButton1";
-            this.cirularButton1.Size = new System.Drawing.Size(135, 37);
-            this.cirularButton1.TabIndex = 14;
-            this.cirularButton1.Text = "Iniciar sesión";
-            this.cirularButton1.UseVisualStyleBackColor = false;
+            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loginButton.FlatAppearance.BorderSize = 0;
+            this.loginButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loginButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.ForeColor = System.Drawing.Color.Transparent;
+            this.loginButton.Location = new System.Drawing.Point(418, 426);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(135, 37);
+            this.loginButton.TabIndex = 14;
+            this.loginButton.Text = "Iniciar sesión";
+            this.loginButton.UseVisualStyleBackColor = false;
             // 
             // MainFormProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(776, 509);
-            this.Controls.Add(this.cirularButton1);
+            this.ClientSize = new System.Drawing.Size(776, 564);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.layoutBar);
             this.Controls.Add(this.layoutOptions);
             this.Controls.Add(this.subtitleLabel);
@@ -373,6 +382,7 @@
             this.Controls.Add(this.orangeBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(776, 564);
             this.Name = "MainFormProgram";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MainFormProgram_Load);
@@ -429,7 +439,7 @@
         private System.Windows.Forms.FlowLayoutPanel layoutMinimize;
         private System.Windows.Forms.FlowLayoutPanel layoutExit;
         private System.Windows.Forms.FlowLayoutPanel layoutBar;
-        private CirularButton cirularButton1;
+        private CirularButton loginButton;
     }
 }
 
