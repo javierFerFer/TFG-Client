@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormProgram));
             this.orangeBox = new System.Windows.Forms.PictureBox();
-            this.userImage = new TFG_Client.MyOwnCircleComponent();
             this.userPasswdImage = new System.Windows.Forms.PictureBox();
             this.loginImage = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
@@ -42,26 +41,35 @@
             this.subtitleLabel = new System.Windows.Forms.Label();
             this.optionsIcon = new System.Windows.Forms.PictureBox();
             this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutSupport = new System.Windows.Forms.FlowLayoutPanel();
             this.supportIcon = new System.Windows.Forms.PictureBox();
             this.supportLabel = new System.Windows.Forms.Label();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.layoutAbout = new System.Windows.Forms.FlowLayoutPanel();
+            this.aboutIcon = new System.Windows.Forms.PictureBox();
             this.aboutLabel = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.layoutMinimize = new System.Windows.Forms.FlowLayoutPanel();
+            this.minimizeIcon = new System.Windows.Forms.PictureBox();
             this.minimizeLabel = new System.Windows.Forms.Label();
+            this.layoutExit = new System.Windows.Forms.FlowLayoutPanel();
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
+            this.userImage = new TFG_Client.MyOwnCircleComponent();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwdIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionsIcon)).BeginInit();
             this.layoutOptions.SuspendLayout();
+            this.layoutSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.layoutAbout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.aboutIcon)).BeginInit();
+            this.layoutMinimize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeIcon)).BeginInit();
+            this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
             this.SuspendLayout();
             // 
             // orangeBox
@@ -72,16 +80,6 @@
             this.orangeBox.Size = new System.Drawing.Size(377, 640);
             this.orangeBox.TabIndex = 0;
             this.orangeBox.TabStop = false;
-            // 
-            // userImage
-            // 
-            this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
-            this.userImage.Location = new System.Drawing.Point(430, 51);
-            this.userImage.Name = "userImage";
-            this.userImage.Size = new System.Drawing.Size(122, 117);
-            this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.userImage.TabIndex = 1;
-            this.userImage.TabStop = false;
             // 
             // userPasswdImage
             // 
@@ -187,22 +185,29 @@
             this.optionsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.optionsIcon.TabIndex = 11;
             this.optionsIcon.TabStop = false;
+            this.optionsIcon.Click += new System.EventHandler(this.optionsIcon_Click);
             // 
             // layoutOptions
             // 
             this.layoutOptions.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.layoutOptions.Controls.Add(this.supportIcon);
-            this.layoutOptions.Controls.Add(this.supportLabel);
-            this.layoutOptions.Controls.Add(this.pictureBox8);
-            this.layoutOptions.Controls.Add(this.aboutLabel);
-            this.layoutOptions.Controls.Add(this.pictureBox9);
-            this.layoutOptions.Controls.Add(this.minimizeLabel);
-            this.layoutOptions.Controls.Add(this.exitImage);
-            this.layoutOptions.Controls.Add(this.exitLabel);
-            this.layoutOptions.Location = new System.Drawing.Point(613, 45);
+            this.layoutOptions.Controls.Add(this.layoutSupport);
+            this.layoutOptions.Controls.Add(this.layoutAbout);
+            this.layoutOptions.Controls.Add(this.layoutMinimize);
+            this.layoutOptions.Controls.Add(this.layoutExit);
+            this.layoutOptions.Location = new System.Drawing.Point(605, 45);
             this.layoutOptions.Name = "layoutOptions";
-            this.layoutOptions.Size = new System.Drawing.Size(164, 162);
+            this.layoutOptions.Size = new System.Drawing.Size(172, 198);
             this.layoutOptions.TabIndex = 12;
+            // 
+            // layoutSupport
+            // 
+            this.layoutSupport.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.layoutSupport.Controls.Add(this.supportIcon);
+            this.layoutSupport.Controls.Add(this.supportLabel);
+            this.layoutSupport.Location = new System.Drawing.Point(3, 3);
+            this.layoutSupport.Name = "layoutSupport";
+            this.layoutSupport.Size = new System.Drawing.Size(169, 45);
+            this.layoutSupport.TabIndex = 13;
             // 
             // supportIcon
             // 
@@ -224,65 +229,111 @@
             this.supportLabel.TabIndex = 1;
             this.supportLabel.Text = "Soporte";
             // 
-            // pictureBox8
+            // layoutAbout
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(3, 47);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(40, 38);
-            this.pictureBox8.TabIndex = 2;
-            this.pictureBox8.TabStop = false;
+            this.layoutAbout.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.layoutAbout.Controls.Add(this.aboutIcon);
+            this.layoutAbout.Controls.Add(this.aboutLabel);
+            this.layoutAbout.Location = new System.Drawing.Point(3, 54);
+            this.layoutAbout.Name = "layoutAbout";
+            this.layoutAbout.Size = new System.Drawing.Size(169, 49);
+            this.layoutAbout.TabIndex = 13;
+            // 
+            // aboutIcon
+            // 
+            this.aboutIcon.Image = ((System.Drawing.Image)(resources.GetObject("aboutIcon.Image")));
+            this.aboutIcon.Location = new System.Drawing.Point(3, 3);
+            this.aboutIcon.Name = "aboutIcon";
+            this.aboutIcon.Size = new System.Drawing.Size(40, 38);
+            this.aboutIcon.TabIndex = 2;
+            this.aboutIcon.TabStop = false;
             // 
             // aboutLabel
             // 
             this.aboutLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.aboutLabel.AutoSize = true;
             this.aboutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aboutLabel.Location = new System.Drawing.Point(49, 54);
+            this.aboutLabel.Location = new System.Drawing.Point(49, 10);
             this.aboutLabel.Name = "aboutLabel";
             this.aboutLabel.Size = new System.Drawing.Size(112, 24);
             this.aboutLabel.TabIndex = 3;
             this.aboutLabel.Text = "Acerca de...";
             // 
-            // pictureBox9
+            // layoutMinimize
             // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(3, 91);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(40, 28);
-            this.pictureBox9.TabIndex = 4;
-            this.pictureBox9.TabStop = false;
+            this.layoutMinimize.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.layoutMinimize.Controls.Add(this.minimizeIcon);
+            this.layoutMinimize.Controls.Add(this.minimizeLabel);
+            this.layoutMinimize.Location = new System.Drawing.Point(3, 109);
+            this.layoutMinimize.Name = "layoutMinimize";
+            this.layoutMinimize.Size = new System.Drawing.Size(169, 42);
+            this.layoutMinimize.TabIndex = 14;
+            this.layoutMinimize.Click += new System.EventHandler(this.layoutMinimize_Click);
+            // 
+            // minimizeIcon
+            // 
+            this.minimizeIcon.Image = ((System.Drawing.Image)(resources.GetObject("minimizeIcon.Image")));
+            this.minimizeIcon.Location = new System.Drawing.Point(3, 3);
+            this.minimizeIcon.Name = "minimizeIcon";
+            this.minimizeIcon.Size = new System.Drawing.Size(40, 28);
+            this.minimizeIcon.TabIndex = 4;
+            this.minimizeIcon.TabStop = false;
+            this.minimizeIcon.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // minimizeLabel
             // 
             this.minimizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.minimizeLabel.AutoSize = true;
             this.minimizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minimizeLabel.Location = new System.Drawing.Point(49, 93);
+            this.minimizeLabel.Location = new System.Drawing.Point(49, 5);
             this.minimizeLabel.Name = "minimizeLabel";
             this.minimizeLabel.Size = new System.Drawing.Size(90, 24);
             this.minimizeLabel.TabIndex = 5;
             this.minimizeLabel.Text = "Minimizar";
+            this.minimizeLabel.Click += new System.EventHandler(this.minimizeLabel_Click);
+            // 
+            // layoutExit
+            // 
+            this.layoutExit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.layoutExit.Controls.Add(this.exitImage);
+            this.layoutExit.Controls.Add(this.exitLabel);
+            this.layoutExit.Location = new System.Drawing.Point(3, 157);
+            this.layoutExit.Name = "layoutExit";
+            this.layoutExit.Size = new System.Drawing.Size(169, 34);
+            this.layoutExit.TabIndex = 15;
+            this.layoutExit.Click += new System.EventHandler(this.layoutExit_Click);
             // 
             // exitImage
             // 
             this.exitImage.Image = ((System.Drawing.Image)(resources.GetObject("exitImage.Image")));
-            this.exitImage.Location = new System.Drawing.Point(3, 125);
+            this.exitImage.Location = new System.Drawing.Point(3, 3);
             this.exitImage.Name = "exitImage";
             this.exitImage.Size = new System.Drawing.Size(40, 28);
             this.exitImage.TabIndex = 6;
             this.exitImage.TabStop = false;
+            this.exitImage.Click += new System.EventHandler(this.exitImage_Click);
             // 
             // exitLabel
             // 
             this.exitLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.exitLabel.AutoSize = true;
             this.exitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitLabel.Location = new System.Drawing.Point(49, 127);
+            this.exitLabel.Location = new System.Drawing.Point(49, 5);
             this.exitLabel.Name = "exitLabel";
             this.exitLabel.Size = new System.Drawing.Size(46, 24);
             this.exitLabel.TabIndex = 7;
             this.exitLabel.Text = "Salir";
+            this.exitLabel.Click += new System.EventHandler(this.exitLabel_Click_1);
+            // 
+            // userImage
+            // 
+            this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
+            this.userImage.Location = new System.Drawing.Point(430, 51);
+            this.userImage.Name = "userImage";
+            this.userImage.Size = new System.Drawing.Size(122, 113);
+            this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.userImage.TabIndex = 1;
+            this.userImage.TabStop = false;
             // 
             // MainFormProgram
             // 
@@ -304,21 +355,30 @@
             this.Controls.Add(this.userImage);
             this.Controls.Add(this.orangeBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFormProgram";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.MainFormProgram_Load);
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwdIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionsIcon)).EndInit();
             this.layoutOptions.ResumeLayout(false);
-            this.layoutOptions.PerformLayout();
+            this.layoutSupport.ResumeLayout(false);
+            this.layoutSupport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            this.layoutAbout.ResumeLayout(false);
+            this.layoutAbout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.aboutIcon)).EndInit();
+            this.layoutMinimize.ResumeLayout(false);
+            this.layoutMinimize.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeIcon)).EndInit();
+            this.layoutExit.ResumeLayout(false);
+            this.layoutExit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,12 +401,16 @@
         private System.Windows.Forms.FlowLayoutPanel layoutOptions;
         private System.Windows.Forms.PictureBox supportIcon;
         private System.Windows.Forms.Label supportLabel;
-        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox aboutIcon;
         private System.Windows.Forms.Label aboutLabel;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox minimizeIcon;
         private System.Windows.Forms.Label minimizeLabel;
         private System.Windows.Forms.PictureBox exitImage;
         private System.Windows.Forms.Label exitLabel;
+        private System.Windows.Forms.FlowLayoutPanel layoutSupport;
+        private System.Windows.Forms.FlowLayoutPanel layoutAbout;
+        private System.Windows.Forms.FlowLayoutPanel layoutMinimize;
+        private System.Windows.Forms.FlowLayoutPanel layoutExit;
     }
 }
 
