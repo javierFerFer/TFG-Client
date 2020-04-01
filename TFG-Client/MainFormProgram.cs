@@ -13,25 +13,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TFG_Client{
+namespace TFG_Client {
     /// <summary>
     /// 
     /// Formulario de inicio de sesión
     /// 
     /// Login form
     /// </summary>
-    public partial class MainFormProgram : Form{
+    public partial class MainFormProgram : Form {
+        private bool clickMouse = false;
+        private Point startPoint = new Point(0, 0);
         /// <summary>
         /// 
         /// Constructor de la clase
         /// 
         /// Constructor of the class
         /// </summary>
-        public MainFormProgram(){
+        public MainFormProgram() {
             InitializeComponent();
         }
 
-        
+
+
+
         private void MainFormProgram_Load(object sender, EventArgs e) {
             layoutOptions.Visible = false;
         }
@@ -41,6 +45,7 @@ namespace TFG_Client{
                 layoutOptions.Visible = false;
             } else {
                 layoutOptions.Visible = true;
+                layoutOptions.Focus();
             }
         }
 
@@ -70,6 +75,26 @@ namespace TFG_Client{
 
         private void layoutMinimize_Click(object sender, EventArgs e) {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void flowLayoutPanel1_MouseDown(object sender, MouseEventArgs e) {
+            clickMouse = true;
+            startPoint = new Point(e.X, e.Y);
+        }
+
+        private void flowLayoutPanel1_MouseMove(object sender, MouseEventArgs e) {
+            if (clickMouse) {
+                Point newLocation = PointToScreen(e.Location);
+                Location = new Point(newLocation.X - startPoint.X, newLocation.Y - startPoint.Y);
+            }
+        }
+
+        private void flowLayoutPanel1_MouseUp(object sender, MouseEventArgs e) {
+            clickMouse = false;
+        }
+
+        private void layoutOptions_Leave(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
         }
     }
 }

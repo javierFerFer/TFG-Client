@@ -36,7 +36,6 @@
             this.userIcon = new System.Windows.Forms.PictureBox();
             this.passwdIcon = new System.Windows.Forms.PictureBox();
             this.textBoxPasswd = new System.Windows.Forms.TextBox();
-            this.loginButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
             this.optionsIcon = new System.Windows.Forms.PictureBox();
@@ -53,7 +52,9 @@
             this.layoutExit = new System.Windows.Forms.FlowLayoutPanel();
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
+            this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
             this.userImage = new TFG_Client.MyOwnCircleComponent();
+            this.cirularButton1 = new TFG_Client.CirularButton();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -69,22 +70,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimizeIcon)).BeginInit();
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
+            this.layoutBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
             this.SuspendLayout();
             // 
             // orangeBox
             // 
             this.orangeBox.Image = ((System.Drawing.Image)(resources.GetObject("orangeBox.Image")));
-            this.orangeBox.Location = new System.Drawing.Point(-17, -36);
+            this.orangeBox.Location = new System.Drawing.Point(-15, 40);
             this.orangeBox.Name = "orangeBox";
-            this.orangeBox.Size = new System.Drawing.Size(377, 640);
+            this.orangeBox.Size = new System.Drawing.Size(327, 684);
             this.orangeBox.TabIndex = 0;
             this.orangeBox.TabStop = false;
             // 
             // userPasswdImage
             // 
             this.userPasswdImage.Image = ((System.Drawing.Image)(resources.GetObject("userPasswdImage.Image")));
-            this.userPasswdImage.Location = new System.Drawing.Point(383, 174);
+            this.userPasswdImage.Location = new System.Drawing.Point(383, 196);
             this.userPasswdImage.Name = "userPasswdImage";
             this.userPasswdImage.Size = new System.Drawing.Size(203, 148);
             this.userPasswdImage.TabIndex = 2;
@@ -93,7 +95,7 @@
             // loginImage
             // 
             this.loginImage.Image = ((System.Drawing.Image)(resources.GetObject("loginImage.Image")));
-            this.loginImage.Location = new System.Drawing.Point(393, 355);
+            this.loginImage.Location = new System.Drawing.Point(390, 368);
             this.loginImage.Name = "loginImage";
             this.loginImage.Size = new System.Drawing.Size(193, 77);
             this.loginImage.TabIndex = 3;
@@ -103,7 +105,7 @@
             // 
             this.textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUser.Location = new System.Drawing.Point(425, 197);
+            this.textBoxUser.Location = new System.Drawing.Point(425, 219);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(137, 22);
             this.textBoxUser.TabIndex = 4;
@@ -112,7 +114,7 @@
             // 
             this.userIcon.BackColor = System.Drawing.Color.White;
             this.userIcon.Image = ((System.Drawing.Image)(resources.GetObject("userIcon.Image")));
-            this.userIcon.Location = new System.Drawing.Point(406, 196);
+            this.userIcon.Location = new System.Drawing.Point(406, 218);
             this.userIcon.Name = "userIcon";
             this.userIcon.Size = new System.Drawing.Size(19, 22);
             this.userIcon.TabIndex = 5;
@@ -122,7 +124,7 @@
             // 
             this.passwdIcon.BackColor = System.Drawing.Color.White;
             this.passwdIcon.Image = ((System.Drawing.Image)(resources.GetObject("passwdIcon.Image")));
-            this.passwdIcon.Location = new System.Drawing.Point(406, 276);
+            this.passwdIcon.Location = new System.Drawing.Point(406, 298);
             this.passwdIcon.Name = "passwdIcon";
             this.passwdIcon.Size = new System.Drawing.Size(19, 22);
             this.passwdIcon.TabIndex = 7;
@@ -132,25 +134,11 @@
             // 
             this.textBoxPasswd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPasswd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPasswd.Location = new System.Drawing.Point(425, 274);
+            this.textBoxPasswd.Location = new System.Drawing.Point(425, 296);
             this.textBoxPasswd.Name = "textBoxPasswd";
             this.textBoxPasswd.Size = new System.Drawing.Size(137, 22);
             this.textBoxPasswd.TabIndex = 6;
             this.textBoxPasswd.UseSystemPasswordChar = true;
-            // 
-            // loginButton
-            // 
-            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.loginButton.FlatAppearance.BorderSize = 0;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(425, 378);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(127, 31);
-            this.loginButton.TabIndex = 8;
-            this.loginButton.Text = "Iniciar sesión";
-            this.loginButton.UseVisualStyleBackColor = false;
             // 
             // titleLabel
             // 
@@ -158,7 +146,7 @@
             this.titleLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(12, 95);
+            this.titleLabel.Location = new System.Drawing.Point(15, 164);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(218, 73);
             this.titleLabel.TabIndex = 9;
@@ -170,7 +158,7 @@
             this.subtitleLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subtitleLabel.ForeColor = System.Drawing.Color.White;
-            this.subtitleLabel.Location = new System.Drawing.Point(0, 205);
+            this.subtitleLabel.Location = new System.Drawing.Point(3, 274);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(293, 93);
             this.subtitleLabel.TabIndex = 10;
@@ -179,7 +167,7 @@
             // optionsIcon
             // 
             this.optionsIcon.Image = ((System.Drawing.Image)(resources.GetObject("optionsIcon.Image")));
-            this.optionsIcon.Location = new System.Drawing.Point(736, 0);
+            this.optionsIcon.Location = new System.Drawing.Point(732, 3);
             this.optionsIcon.Name = "optionsIcon";
             this.optionsIcon.Size = new System.Drawing.Size(41, 39);
             this.optionsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -194,10 +182,11 @@
             this.layoutOptions.Controls.Add(this.layoutAbout);
             this.layoutOptions.Controls.Add(this.layoutMinimize);
             this.layoutOptions.Controls.Add(this.layoutExit);
-            this.layoutOptions.Location = new System.Drawing.Point(605, 45);
+            this.layoutOptions.Location = new System.Drawing.Point(604, 48);
             this.layoutOptions.Name = "layoutOptions";
             this.layoutOptions.Size = new System.Drawing.Size(172, 198);
             this.layoutOptions.TabIndex = 12;
+            this.layoutOptions.Leave += new System.EventHandler(this.layoutOptions_Leave);
             // 
             // layoutSupport
             // 
@@ -325,27 +314,55 @@
             this.exitLabel.Text = "Salir";
             this.exitLabel.Click += new System.EventHandler(this.exitLabel_Click_1);
             // 
+            // layoutBar
+            // 
+            this.layoutBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layoutBar.Controls.Add(this.optionsIcon);
+            this.layoutBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layoutBar.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.layoutBar.Location = new System.Drawing.Point(0, 0);
+            this.layoutBar.Name = "layoutBar";
+            this.layoutBar.Size = new System.Drawing.Size(776, 48);
+            this.layoutBar.TabIndex = 13;
+            this.layoutBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseDown);
+            this.layoutBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseMove);
+            this.layoutBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseUp);
+            // 
             // userImage
             // 
             this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
-            this.userImage.Location = new System.Drawing.Point(430, 51);
+            this.userImage.Location = new System.Drawing.Point(430, 73);
             this.userImage.Name = "userImage";
             this.userImage.Size = new System.Drawing.Size(122, 113);
             this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userImage.TabIndex = 1;
             this.userImage.TabStop = false;
             // 
+            // cirularButton1
+            // 
+            this.cirularButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.cirularButton1.FlatAppearance.BorderSize = 0;
+            this.cirularButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cirularButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cirularButton1.ForeColor = System.Drawing.Color.Transparent;
+            this.cirularButton1.Location = new System.Drawing.Point(418, 387);
+            this.cirularButton1.Name = "cirularButton1";
+            this.cirularButton1.Size = new System.Drawing.Size(135, 37);
+            this.cirularButton1.TabIndex = 14;
+            this.cirularButton1.Text = "Iniciar sesión";
+            this.cirularButton1.UseVisualStyleBackColor = false;
+            // 
             // MainFormProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(776, 480);
+            this.ClientSize = new System.Drawing.Size(776, 509);
+            this.Controls.Add(this.cirularButton1);
+            this.Controls.Add(this.layoutBar);
             this.Controls.Add(this.layoutOptions);
-            this.Controls.Add(this.optionsIcon);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.titleLabel);
-            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwdIcon);
             this.Controls.Add(this.textBoxPasswd);
             this.Controls.Add(this.userIcon);
@@ -378,6 +395,7 @@
             this.layoutExit.ResumeLayout(false);
             this.layoutExit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
+            this.layoutBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -394,7 +412,6 @@
         private System.Windows.Forms.PictureBox userIcon;
         private System.Windows.Forms.PictureBox passwdIcon;
         private System.Windows.Forms.TextBox textBoxPasswd;
-        private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label subtitleLabel;
         private System.Windows.Forms.PictureBox optionsIcon;
@@ -411,6 +428,8 @@
         private System.Windows.Forms.FlowLayoutPanel layoutAbout;
         private System.Windows.Forms.FlowLayoutPanel layoutMinimize;
         private System.Windows.Forms.FlowLayoutPanel layoutExit;
+        private System.Windows.Forms.FlowLayoutPanel layoutBar;
+        private CirularButton cirularButton1;
     }
 }
 
