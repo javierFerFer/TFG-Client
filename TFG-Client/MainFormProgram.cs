@@ -181,10 +181,25 @@ namespace TFG_Client {
             if (fileDialogObject.ShowDialog() == DialogResult.OK) {
                 try {
                     Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
+                    GetOrientation((Image)userSelectedImage).ToString();
                     userImage.Image = FixedSize(userSelectedImage, 320, 320, true);
                 } catch (Exception) {
-                    // Error al cargar la imagen
+                    // Error de carga de imagen
                 }
+            }
+        }
+
+        private static ImageOrientation GetOrientation(Image image) {
+            PropertyItem pi = SafeGetPropertyItem(image, 0x112);
+            return ImageOrientation.Vertical;
+        }
+
+        // A file without the desired EXIF property record will throw ArgumentException.
+        private static PropertyItem SafeGetPropertyItem(Image image, int propid) {
+            try {
+                return image.GetPropertyItem(propid);
+            } catch (ArgumentException) {
+                return null;
             }
         }
 
