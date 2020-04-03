@@ -55,6 +55,8 @@
             this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
             this.loginButton = new TFG_Client.CirularButton();
             this.userImage = new TFG_Client.MyOwnCircleComponent();
+            this.loadAllPanel = new System.Windows.Forms.Panel();
+            this.loadInternalPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
             this.layoutBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
+            this.loadAllPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // orangeBox
@@ -363,12 +366,30 @@
             this.userImage.TabStop = false;
             this.userImage.Click += new System.EventHandler(this.userImage_Click);
             // 
+            // loadAllPanel
+            // 
+            this.loadAllPanel.Controls.Add(this.loadInternalPanel);
+            this.loadAllPanel.Location = new System.Drawing.Point(319, 514);
+            this.loadAllPanel.Name = "loadAllPanel";
+            this.loadAllPanel.Size = new System.Drawing.Size(300, 17);
+            this.loadAllPanel.TabIndex = 15;
+            // 
+            // loadInternalPanel
+            // 
+            this.loadInternalPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loadInternalPanel.Location = new System.Drawing.Point(1, 1);
+            this.loadInternalPanel.Name = "loadInternalPanel";
+            this.loadInternalPanel.Size = new System.Drawing.Size(50, 16);
+            this.loadInternalPanel.TabIndex = 0;
+            this.loadInternalPanel.Visible = false;
+            // 
             // MainFormProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(776, 564);
+            this.Controls.Add(this.loadAllPanel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.layoutBar);
             this.Controls.Add(this.layoutOptions);
@@ -409,6 +430,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
             this.layoutBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
+            this.loadAllPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,6 +464,8 @@
         private System.Windows.Forms.FlowLayoutPanel layoutExit;
         private System.Windows.Forms.FlowLayoutPanel layoutBar;
         private CirularButton loginButton;
+        private System.Windows.Forms.Panel loadAllPanel;
+        private System.Windows.Forms.Panel loadInternalPanel;
     }
 }
 

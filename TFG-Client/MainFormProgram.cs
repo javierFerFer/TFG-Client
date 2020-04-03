@@ -269,16 +269,25 @@ namespace TFG_Client {
         }
 
         private void loginButton_Click(object sender, EventArgs e) {
+
+            ActiveControl = titleLabel;
+
             if (CheckForInternetConnection()) {
                 // Tiene internet
+                loadInternalPanel.Visible = true;
+                loadInternalPanel.Width += 50;
+
                 if (textBoxUser.Text.Trim().Length == 0 | textBoxPasswd.Text.Trim().Length == 0) {
                     // Error de valores inválidos
                 } else {
+                    loadInternalPanel.Width += 50;
                     JSonObject foo = new JSonObject();
                     foo.Title = "Connect";
                     foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
                     string jsonString = JsonConvert.SerializeObject(foo);
-                    ConnectionWithServer connect = new ConnectionWithServer();
+                    ConnectionWithServer connect = new ConnectionWithServer(loadInternalPanel);
+
+                    loadInternalPanel.Width += 50;
 
                     Thread tConnection = new Thread(new ThreadStart(connect.run));
                     tConnection.IsBackground = true;
@@ -288,6 +297,7 @@ namespace TFG_Client {
 
             } else {
                 // Carga ventana de error de conexión
+                loadInternalPanel.Visible = false;
             }
         }
     }
