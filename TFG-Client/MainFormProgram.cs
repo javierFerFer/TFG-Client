@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -174,6 +175,16 @@ namespace TFG_Client {
         }
 
 
+        private bool CheckForInternetConnection() {
+            try {
+                WebClient client = new WebClient();
+                client.OpenRead("http://google.com/generate_204");
+                return true;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         private void userImage_Click(object sender, EventArgs e) {
 
             if (layoutOptions.Visible) {
@@ -209,6 +220,7 @@ namespace TFG_Client {
         }
 
         private Image FixedSize(Image image, int Width, int Height, bool needToFill) {
+
             int sourceWidth = image.Width;
             int sourceHeight = image.Height;
             int sourceX = 0;
@@ -239,10 +251,8 @@ namespace TFG_Client {
             Bitmap bmPhoto = null;
             try {
                 bmPhoto = new Bitmap(destWidth + (int)Math.Round(2 * destX), destHeight + (int)Math.Round(2 * destY));
-            } catch (Exception ex) {
-                throw new ApplicationException(string.Format("destWidth:{0}, destX:{1}, destHeight:{2}, desxtY:{3}, Width:{4}, Height:{5}",
-                    destWidth, destX, destHeight, destY, Width, Height), ex);
-            }
+            } catch (Exception ex) {}
+
             using (Graphics grPhoto = Graphics.FromImage(bmPhoto)) {
                 grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 grPhoto.CompositingQuality = CompositingQuality.HighQuality;
@@ -253,6 +263,14 @@ namespace TFG_Client {
                 grPhoto.DrawImage(image, to, from, GraphicsUnit.Pixel);
 
                 return bmPhoto;
+            }
+        }
+
+        private void loginButton_Click(object sender, EventArgs e) {
+            if (CheckForInternetConnection()) {
+                // Tiene internet
+            } else {
+                // Carga ventana de error de conexión
             }
         }
     }

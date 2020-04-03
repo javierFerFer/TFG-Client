@@ -350,6 +350,7 @@
             this.loginButton.TabIndex = 14;
             this.loginButton.Text = "Iniciar sesión";
             this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // userImage
             // 
