@@ -30,7 +30,6 @@ namespace TFG_Client {
     /// - Añadir ventana de Acerca de...
     /// - Al cargar la ventana, debe mirar registro de windows para cargar usuario, contraseña y foto en caso de que haya
     /// - Al cerrar el programa, se debe guardar la posición de la ventana, el usuario, la contraseña y la foto del mismo en el registro de windows
-    /// - Al hacer click en el botón de logín, debe comprobar que el usuario tiene red
     /// - Al hacer click en el boton de la foto, debe permitir cargar otra foto, y esta automáticamente se guardará en el registro de windows
     /// - Comentar WndProc en Español
     /// - 
@@ -40,6 +39,7 @@ namespace TFG_Client {
         private bool clickMouse = false;
         private Point startPoint = new Point(0, 0);
         public static Thread tConnection;
+        public static ConnectionWithServer connect;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -350,7 +350,7 @@ namespace TFG_Client {
                     foo.Title = "Connect";
                     foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
                     string jsonString = JsonConvert.SerializeObject(foo);
-                    ConnectionWithServer connect = new ConnectionWithServer(loadInternalPanel);
+                    connect = new ConnectionWithServer(loadInternalPanel, jsonString);
 
                     loadInternalPanel.Width += 50;
 
