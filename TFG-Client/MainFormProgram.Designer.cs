@@ -53,8 +53,8 @@
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
-            this.userImage = new TFG_Client.MyOwnCircleComponent();
             this.loginButton = new TFG_Client.CirularButton();
+            this.userImage = new TFG_Client.MyOwnCircleComponent();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -335,16 +335,6 @@
             this.layoutBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseMove);
             this.layoutBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseUp);
             // 
-            // userImage
-            // 
-            this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
-            this.userImage.Location = new System.Drawing.Point(430, 112);
-            this.userImage.Name = "userImage";
-            this.userImage.Size = new System.Drawing.Size(122, 113);
-            this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.userImage.TabIndex = 1;
-            this.userImage.TabStop = false;
-            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -360,6 +350,17 @@
             this.loginButton.TabIndex = 14;
             this.loginButton.Text = "Iniciar sesión";
             this.loginButton.UseVisualStyleBackColor = false;
+            // 
+            // userImage
+            // 
+            this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
+            this.userImage.Location = new System.Drawing.Point(425, 102);
+            this.userImage.Name = "userImage";
+            this.userImage.Size = new System.Drawing.Size(128, 118);
+            this.userImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.userImage.TabIndex = 1;
+            this.userImage.TabStop = false;
+            this.userImage.Click += new System.EventHandler(this.userImage_Click);
             // 
             // MainFormProgram
             // 
