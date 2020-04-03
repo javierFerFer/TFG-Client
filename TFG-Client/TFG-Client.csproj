@@ -52,6 +52,7 @@
     <Compile Include="CirularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ConnectionWithServer.cs" />
     <Compile Include="JSonObject.cs" />
     <Compile Include="MainFormProgram.cs">
       <SubType>Form</SubType>

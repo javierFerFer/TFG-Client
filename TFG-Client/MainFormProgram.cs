@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -277,6 +278,12 @@ namespace TFG_Client {
                     foo.Title = "Connect";
                     foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
                     string jsonString = JsonConvert.SerializeObject(foo);
+                    ConnectionWithServer connect = new ConnectionWithServer();
+
+                    Thread tConnection = new Thread(new ThreadStart(connect.run));
+                    tConnection.IsBackground = true;
+                    tConnection.Start();
+
                 }
 
             } else {
