@@ -175,6 +175,11 @@ namespace TFG_Client {
 
 
         private void userImage_Click(object sender, EventArgs e) {
+
+            if (layoutOptions.Visible) {
+                layoutOptions.Visible = false;
+            }
+
             OpenFileDialog fileDialogObject = new OpenFileDialog();
             fileDialogObject.Filter = "Image Files(*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
 
