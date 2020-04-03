@@ -18,23 +18,33 @@ namespace TFG_Client {
         public void run() {
             try {
 
-                loadPanel.Invoke(new Action(() =>
-                {
-                    loadPanel.Width += 50;
-                }));
+                increaseLoadingBar();
 
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("178.62.40.25", 12345);
 
-                loadPanel.Invoke(new Action(() => {
-                    loadPanel.Width += 50;
-                }));
+                increaseLoadingBar();
+
+
 
             } catch (SocketException timeOutEx) {
-                loadPanel.Invoke(new Action(() => {
-                    loadPanel.Visible = false;
-                }));
+                // Reset all values
+                resetLoadingBar();
+                MainFormProgram.tConnection = null;
             }
+        }
+
+        private void increaseLoadingBar() {
+            loadPanel.Invoke(new Action(() => {
+                loadPanel.Width += 50;
+            }));
+        }
+
+        private void resetLoadingBar() {
+            loadPanel.Invoke(new Action(() => {
+                loadPanel.Visible = false;
+                loadPanel.Width = 50;
+            }));
         }
 
     }

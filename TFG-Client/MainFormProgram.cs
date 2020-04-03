@@ -3,6 +3,7 @@
 /// 
 /// All using of the class
 ///
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,6 @@ namespace TFG_Client {
     /// FALTA:
     /// - Añadir ventana de soporte(Contacto)
     /// - Añadir ventana de Acerca de...
-    /// - Al cargar la ventana, debe mirar si la posición de la misma está almacenada en el registro de windows y cargarla en caso de ser así
     /// - Al cargar la ventana, debe mirar registro de windows para cargar usuario, contraseña y foto en caso de que haya
     /// - Al cerrar el programa, se debe guardar la posición de la ventana, el usuario, la contraseña y la foto del mismo en el registro de windows
     /// - Al hacer click en el botón de logín, debe comprobar que el usuario tiene red
@@ -39,6 +39,7 @@ namespace TFG_Client {
     public partial class MainFormProgram : Form {
         private bool clickMouse = false;
         private Point startPoint = new Point(0, 0);
+        public static Thread tConnection;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -52,9 +53,66 @@ namespace TFG_Client {
              * 
              * This is for to remove focus of the user textBox.
              */
+            checkWindowsFormPositon();
             ActiveControl = titleLabel;
         }
 
+        private void checkWindowsFormPositon() {
+            bool checkPositionRegistryKey = OpenKey("positionX");
+
+            if (!checkPositionRegistryKey) {
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
+                keyPosition.SetValue("positionX", Left);
+
+                keyPosition.SetValue("positionY", Top);
+                keyPosition.Close();
+            } else {
+                RegistryKey keyPosition = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
+                string positionX = keyPosition.GetValue("positionX", true).ToString();
+                string positionY = keyPosition.GetValue("positionY", true).ToString();
+
+                Left = Int32.Parse(positionX);
+                Top = Int32.Parse(positionY);
+                StartPosition = FormStartPosition.Manual;
+                Location = new System.Drawing.Point(Left, Top);
+            }
+
+        }
+
+        private void saveWindowsFormPosition() {
+            if (WindowState != FormWindowState.Minimized) {
+                int positionX = Left;
+                int positionY = Top;
+
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
+                keyPosition.SetValue("positionX", positionX);
+
+                keyPosition.SetValue("positionY", positionY);
+                keyPosition.Close();
+            }
+        }
+
+        private bool OpenKey(string value) {
+            try {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
+                if (key == null) {
+                    throw new Exception();
+                } else {
+                    return true;
+                }
+            } catch (Exception ex) {
+                return false;
+            }
+
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e) {
+            base.OnFormClosed(e);
+            saveWindowsFormPosition();
+            Application.Exit();
+        }
 
         /*
         Constants in Windows API
@@ -96,18 +154,22 @@ namespace TFG_Client {
         }
 
         private void exitLabel_Click(object sender, EventArgs e) {
+            saveWindowsFormPosition();
             Application.Exit();
         }
 
         private void exitImage_Click(object sender, EventArgs e) {
+            saveWindowsFormPosition();
             Application.Exit();
         }
 
         private void exitLabel_Click_1(object sender, EventArgs e) {
+            saveWindowsFormPosition();
             Application.Exit();
         }
 
         private void layoutExit_Click(object sender, EventArgs e) {
+            saveWindowsFormPosition();
             Application.Exit();
         }
 
@@ -188,22 +250,25 @@ namespace TFG_Client {
         }
 
         private void userImage_Click(object sender, EventArgs e) {
-
-            if (layoutOptions.Visible) {
-                layoutOptions.Visible = false;
-            }
-
-            OpenFileDialog fileDialogObject = new OpenFileDialog();
-            fileDialogObject.Filter = "Image Files(*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
-
-            if (fileDialogObject.ShowDialog() == DialogResult.OK) {
-                try {
-                    Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
-                    GetOrientation((Image)userSelectedImage).ToString();
-                    userImage.Image = FixedSize(userSelectedImage, 320, 320, true);
-                } catch (Exception) {
-                    // Error de carga de imagen
+            if (tConnection == null) {
+                if (layoutOptions.Visible) {
+                    layoutOptions.Visible = false;
                 }
+
+                OpenFileDialog fileDialogObject = new OpenFileDialog();
+                fileDialogObject.Filter = "Image Files(*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
+
+                if (fileDialogObject.ShowDialog() == DialogResult.OK) {
+                    try {
+                        Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
+                        GetOrientation((Image)userSelectedImage).ToString();
+                        userImage.Image = FixedSize(userSelectedImage, 320, 320, true);
+                    } catch (Exception) {
+                        // Error de carga de imagen
+                    }
+                }
+            } else {
+                // Mensaje de error, no se puede cambiar la imagen durante el login
             }
         }
 
@@ -289,15 +354,15 @@ namespace TFG_Client {
 
                     loadInternalPanel.Width += 50;
 
-                    Thread tConnection = new Thread(new ThreadStart(connect.run));
+                    tConnection = new Thread(new ThreadStart(connect.run));
                     tConnection.IsBackground = true;
                     tConnection.Start();
-
                 }
 
             } else {
                 // Carga ventana de error de conexión
                 loadInternalPanel.Visible = false;
+                loadInternalPanel.Width = 50;
             }
         }
     }

@@ -53,10 +53,10 @@
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
-            this.loginButton = new TFG_Client.CirularButton();
-            this.userImage = new TFG_Client.MyOwnCircleComponent();
             this.loadAllPanel = new System.Windows.Forms.Panel();
             this.loadInternalPanel = new System.Windows.Forms.Panel();
+            this.loginButton = new TFG_Client.CirularButton();
+            this.userImage = new TFG_Client.MyOwnCircleComponent();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -73,8 +73,8 @@
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
             this.layoutBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
             this.loadAllPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userImage)).BeginInit();
             this.SuspendLayout();
             // 
             // orangeBox
@@ -98,7 +98,7 @@
             // loginImage
             // 
             this.loginImage.Image = ((System.Drawing.Image)(resources.GetObject("loginImage.Image")));
-            this.loginImage.Location = new System.Drawing.Point(390, 407);
+            this.loginImage.Location = new System.Drawing.Point(388, 392);
             this.loginImage.Name = "loginImage";
             this.loginImage.Size = new System.Drawing.Size(193, 77);
             this.loginImage.TabIndex = 3;
@@ -338,6 +338,23 @@
             this.layoutBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseMove);
             this.layoutBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseUp);
             // 
+            // loadAllPanel
+            // 
+            this.loadAllPanel.Controls.Add(this.loadInternalPanel);
+            this.loadAllPanel.Location = new System.Drawing.Point(322, 490);
+            this.loadAllPanel.Name = "loadAllPanel";
+            this.loadAllPanel.Size = new System.Drawing.Size(331, 17);
+            this.loadAllPanel.TabIndex = 15;
+            // 
+            // loadInternalPanel
+            // 
+            this.loadInternalPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loadInternalPanel.Location = new System.Drawing.Point(1, 0);
+            this.loadInternalPanel.Name = "loadInternalPanel";
+            this.loadInternalPanel.Size = new System.Drawing.Size(50, 16);
+            this.loadInternalPanel.TabIndex = 0;
+            this.loadInternalPanel.Visible = false;
+            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -347,7 +364,7 @@
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.ForeColor = System.Drawing.Color.Transparent;
-            this.loginButton.Location = new System.Drawing.Point(418, 426);
+            this.loginButton.Location = new System.Drawing.Point(416, 411);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(135, 37);
             this.loginButton.TabIndex = 14;
@@ -365,23 +382,6 @@
             this.userImage.TabIndex = 1;
             this.userImage.TabStop = false;
             this.userImage.Click += new System.EventHandler(this.userImage_Click);
-            // 
-            // loadAllPanel
-            // 
-            this.loadAllPanel.Controls.Add(this.loadInternalPanel);
-            this.loadAllPanel.Location = new System.Drawing.Point(319, 514);
-            this.loadAllPanel.Name = "loadAllPanel";
-            this.loadAllPanel.Size = new System.Drawing.Size(300, 17);
-            this.loadAllPanel.TabIndex = 15;
-            // 
-            // loadInternalPanel
-            // 
-            this.loadInternalPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.loadInternalPanel.Location = new System.Drawing.Point(1, 1);
-            this.loadInternalPanel.Name = "loadInternalPanel";
-            this.loadInternalPanel.Size = new System.Drawing.Size(50, 16);
-            this.loadInternalPanel.TabIndex = 0;
-            this.loadInternalPanel.Visible = false;
             // 
             // MainFormProgram
             // 
@@ -429,8 +429,8 @@
             this.layoutExit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
             this.layoutBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
             this.loadAllPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
