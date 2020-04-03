@@ -3,6 +3,7 @@
 /// 
 /// All using of the class
 ///
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -269,6 +270,15 @@ namespace TFG_Client {
         private void loginButton_Click(object sender, EventArgs e) {
             if (CheckForInternetConnection()) {
                 // Tiene internet
+                if (textBoxUser.Text.Trim().Length == 0 | textBoxPasswd.Text.Trim().Length == 0) {
+                    // Error de valores inválidos
+                } else {
+                    JSonObject foo = new JSonObject();
+                    foo.Title = "Connect";
+                    foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
+                    string jsonString = JsonConvert.SerializeObject(foo);
+                }
+
             } else {
                 // Carga ventana de error de conexión
             }
