@@ -109,12 +109,13 @@
             this.textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUser.ForeColor = System.Drawing.Color.DarkGray;
-            this.textBoxUser.Location = new System.Drawing.Point(425, 258);
+            this.textBoxUser.Location = new System.Drawing.Point(425, 256);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(137, 22);
             this.textBoxUser.TabIndex = 4;
             this.textBoxUser.Text = "Usuario";
             this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
+            this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);
             // 
             // userIcon

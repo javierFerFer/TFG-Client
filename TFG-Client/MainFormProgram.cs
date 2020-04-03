@@ -341,9 +341,11 @@ namespace TFG_Client {
                 // Tiene internet
                 loadInternalPanel.Visible = true;
                 loadInternalPanel.Width += 50;
-
-                if (textBoxUser.Text.Trim().Length == 0 | textBoxPasswd.Text.Trim().Length == 0) {
+                
+                if (textBoxUser.Text.Trim().Length == 0 || textBoxPasswd.Text.Trim().Length == 0 || (textBoxUser.Text.Trim() == "Usuario" || textBoxPasswd.Text.Trim() == "Contraseña")) {
                     // Error de valores inválidos
+                    loadInternalPanel.Visible = false;
+                    loadInternalPanel.Width = 50;
                 } else {
                     loadInternalPanel.Width += 50;
                     JSonObject foo = new JSonObject();
@@ -363,6 +365,12 @@ namespace TFG_Client {
                 // Carga ventana de error de conexión
                 loadInternalPanel.Visible = false;
                 loadInternalPanel.Width = 50;
+            }
+        }
+
+        private void textBoxUser_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == (char) 13) {
+                loginButton.PerformClick();
             }
         }
     }
