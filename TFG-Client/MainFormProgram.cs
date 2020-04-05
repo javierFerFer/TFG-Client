@@ -373,5 +373,56 @@ namespace TFG_Client {
                 loginButton.PerformClick();
             }
         }
+
+        private void layoutAbout_Click(object sender, EventArgs e) {
+            createAboutForm();
+        }
+
+        private void aboutLabel_Click(object sender, EventArgs e) {
+            createAboutForm();
+        }
+
+        private void aboutIcon_Click(object sender, EventArgs e) {
+            createAboutForm();
+        }
+
+        
+
+        private void layoutSupport_Click(object sender, EventArgs e) {
+            createSupportForm();
+        }
+
+        private void supportLabel_Click(object sender, EventArgs e) {
+            createSupportForm();
+        }
+
+        private void supportIcon_Click(object sender, EventArgs e) {
+            createSupportForm();
+        }
+
+        private void createSupportForm() {
+            ModelWindowsMessage supportForm = new ModelWindowsMessage();
+            supportForm.StartPosition = FormStartPosition.CenterParent;
+            supportForm.title.Text = "Soporte";
+            supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
+                                            "envie un correo a javierferfer99@gmail.com \n" +
+                                            "gracias por su colaboración";
+
+            Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
+            supportForm.messageLabel.Location = centerLocation;
+            supportForm.Image.Visible = false;
+            supportForm.ShowDialog();
+        }
+
+        private void createAboutForm() {
+            ModelWindowsMessage aboutForm = new ModelWindowsMessage();
+            aboutForm.StartPosition = FormStartPosition.CenterParent;
+            aboutForm.title.Text = "Acerca de...";
+            aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
+                                          "por Javier Fernández Fernández \n" +
+                                          "como trabajo de final de grado.";
+            aboutForm.ShowDialog();
+        }
+
     }
 }

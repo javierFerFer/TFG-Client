@@ -208,6 +208,7 @@
             this.layoutSupport.Name = "layoutSupport";
             this.layoutSupport.Size = new System.Drawing.Size(169, 45);
             this.layoutSupport.TabIndex = 13;
+            this.layoutSupport.Click += new System.EventHandler(this.layoutSupport_Click);
             // 
             // supportIcon
             // 
@@ -217,6 +218,7 @@
             this.supportIcon.Size = new System.Drawing.Size(40, 38);
             this.supportIcon.TabIndex = 0;
             this.supportIcon.TabStop = false;
+            this.supportIcon.Click += new System.EventHandler(this.supportIcon_Click);
             // 
             // supportLabel
             // 
@@ -228,6 +230,7 @@
             this.supportLabel.Size = new System.Drawing.Size(76, 24);
             this.supportLabel.TabIndex = 1;
             this.supportLabel.Text = "Soporte";
+            this.supportLabel.Click += new System.EventHandler(this.supportLabel_Click);
             // 
             // layoutAbout
             // 
@@ -238,6 +241,7 @@
             this.layoutAbout.Name = "layoutAbout";
             this.layoutAbout.Size = new System.Drawing.Size(169, 49);
             this.layoutAbout.TabIndex = 13;
+            this.layoutAbout.Click += new System.EventHandler(this.layoutAbout_Click);
             // 
             // aboutIcon
             // 
@@ -247,6 +251,7 @@
             this.aboutIcon.Size = new System.Drawing.Size(40, 38);
             this.aboutIcon.TabIndex = 2;
             this.aboutIcon.TabStop = false;
+            this.aboutIcon.Click += new System.EventHandler(this.aboutIcon_Click);
             // 
             // aboutLabel
             // 
@@ -258,6 +263,7 @@
             this.aboutLabel.Size = new System.Drawing.Size(112, 24);
             this.aboutLabel.TabIndex = 3;
             this.aboutLabel.Text = "Acerca de...";
+            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
             // 
             // layoutMinimize
             // 
