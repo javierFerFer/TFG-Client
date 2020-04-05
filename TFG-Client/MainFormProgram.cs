@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -64,20 +65,46 @@ namespace TFG_Client {
                 RegistryKey keyPosition;
                 keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
                 keyPosition.SetValue("positionX", Left);
-
                 keyPosition.SetValue("positionY", Top);
+
+                ImageConverter imgConv = new ImageConverter();
+                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(userImage.Image, typeof(byte []));
+                keyPosition.SetValue("userImage", imgArrayBytes);
+
+                keyPosition.SetValue("user", textBoxUser.Text);
+
                 keyPosition.Close();
             } else {
                 RegistryKey keyPosition = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
                 string positionX = keyPosition.GetValue("positionX", true).ToString();
                 string positionY = keyPosition.GetValue("positionY", true).ToString();
+                string userName = keyPosition.GetValue("user", true).ToString();
+
+                byte [] imageArrayBytes = (byte []) keyPosition.GetValue("userImage", true);
+                userImage.Image = byteArrayToImage(imageArrayBytes);
 
                 Left = Int32.Parse(positionX);
                 Top = Int32.Parse(positionY);
                 StartPosition = FormStartPosition.Manual;
-                Location = new System.Drawing.Point(Left, Top);
+                Location = new Point(Left, Top);
+
+                textBoxUser.Text = userName;
+                if (textBoxUser.Text == "Usuario") {
+                    textBoxUser.ForeColor = Color.DarkGray;
+                } else {
+                    textBoxUser.ForeColor = Color.Black;
+                }
+                
+
             }
 
+        }
+
+
+        public Image byteArrayToImage(byte [] byteArrayParam) {
+            using (var ms = new MemoryStream(byteArrayParam)) {
+                return Image.FromStream(ms);
+            }
         }
 
         private void saveWindowsFormPosition() {
@@ -88,8 +115,11 @@ namespace TFG_Client {
                 RegistryKey keyPosition;
                 keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
                 keyPosition.SetValue("positionX", positionX);
-
                 keyPosition.SetValue("positionY", positionY);
+                ImageConverter imgConv = new ImageConverter();
+                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(userImage.Image, typeof(byte[]));
+                keyPosition.SetValue("userImage", imgArrayBytes);
+                keyPosition.SetValue("user", textBoxUser.Text);
                 keyPosition.Close();
             }
         }
@@ -410,7 +440,7 @@ namespace TFG_Client {
 
             Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
             supportForm.messageLabel.Location = centerLocation;
-            supportForm.Image.Visible = false;
+            supportForm.ImageSchool.Visible = false;
             supportForm.ShowDialog();
         }
 
@@ -423,6 +453,5 @@ namespace TFG_Client {
                                           "como trabajo de final de grado.";
             aboutForm.ShowDialog();
         }
-
     }
 }

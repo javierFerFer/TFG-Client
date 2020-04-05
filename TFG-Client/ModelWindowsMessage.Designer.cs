@@ -23,26 +23,26 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModelWindowsMessage));
-            this.Image = new System.Windows.Forms.PictureBox();
+            this.ImageSchool = new System.Windows.Forms.PictureBox();
             this.messageLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.panelDown = new System.Windows.Forms.Panel();
             this.panelUp = new System.Windows.Forms.Panel();
             this.title = new System.Windows.Forms.Label();
             this.flowLayoutTitle = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.Image)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageSchool)).BeginInit();
             this.flowLayoutTitle.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Image
+            // ImageSchool
             // 
-            this.Image.Image = ((System.Drawing.Image)(resources.GetObject("Image.Image")));
-            this.Image.Location = new System.Drawing.Point(384, 51);
-            this.Image.Name = "Image";
-            this.Image.Size = new System.Drawing.Size(197, 116);
-            this.Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Image.TabIndex = 11;
-            this.Image.TabStop = false;
+            this.ImageSchool.Image = ((System.Drawing.Image)(resources.GetObject("ImageSchool.Image")));
+            this.ImageSchool.Location = new System.Drawing.Point(384, 51);
+            this.ImageSchool.Name = "ImageSchool";
+            this.ImageSchool.Size = new System.Drawing.Size(197, 116);
+            this.ImageSchool.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImageSchool.TabIndex = 11;
+            this.ImageSchool.TabStop = false;
             // 
             // messageLabel
             // 
@@ -113,7 +113,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 233);
             this.Controls.Add(this.flowLayoutTitle);
-            this.Controls.Add(this.Image);
+            this.Controls.Add(this.ImageSchool);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.panelDown);
@@ -128,7 +128,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ModelWindowsMessage";
-            ((System.ComponentModel.ISupportInitialize)(this.Image)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageSchool)).EndInit();
             this.flowLayoutTitle.ResumeLayout(false);
             this.flowLayoutTitle.PerformLayout();
             this.ResumeLayout(false);
@@ -138,7 +138,7 @@
 
         #endregion
 
-        public System.Windows.Forms.PictureBox Image;
+        public System.Windows.Forms.PictureBox ImageSchool;
         public System.Windows.Forms.Label messageLabel;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Panel panelDown;
