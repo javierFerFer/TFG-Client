@@ -149,6 +149,7 @@
             this.textBoxPasswd.TabIndex = 6;
             this.textBoxPasswd.Text = "Contraseña";
             this.textBoxPasswd.Enter += new System.EventHandler(this.textBoxPasswd_Enter);
+            this.textBoxPasswd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPasswd_KeyPress);
             this.textBoxPasswd.Leave += new System.EventHandler(this.textBoxPasswd_Leave);
             // 
             // titleLabel

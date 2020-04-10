@@ -1,4 +1,21 @@
-﻿using System;
+﻿//============================================================================
+// Name        : ModelWindowsMessage.cs
+// Author      : Javier Fernández Fernández
+// Version     : 0.1
+// Copyright   : Your copyright notice
+// Description : This class is a model of windows that have:
+//               - Tittle
+//               - Message
+//               - Image
+//               - Close button
+//============================================================================
+
+/**
+ * Todos los using de la clase
+ * 
+ * All using here
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,17 +26,25 @@ using System.Windows.Forms;
 
 namespace TFG_Client {
     partial class ModelWindowsMessage : Form {
+        /// <summary>
+        /// Constructor de la clase modelo de mensajes
+        /// 
+        /// Constructor of the model message class
+        /// </summary>
         public ModelWindowsMessage() {
             InitializeComponent();
             panelUp.Height -= 9;
             panelDown.Height -= 9;
         }
 
+        /// <summary>
+        /// Evento de cierre del boton 'cerrar' de la ventana
+        /// 
+        /// Evento of close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void closeButton_Click(object sender, EventArgs e) {
-            Dispose();
-        }
-
-        private void exitButton_Click(object sender, EventArgs e) {
             Dispose();
         }
     }
