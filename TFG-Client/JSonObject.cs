@@ -28,9 +28,8 @@ namespace TFG_Client {
     /// </summary>
     public class JSonObject {
 
-        private string title;
         private string[] content;
-
+        private string title;
         /// <summary>
         /// Constructor vacío
         /// 
@@ -39,7 +38,7 @@ namespace TFG_Client {
         public JSonObject() {
         }
 
-        public string Title { get => title; set => title = value; }
         public string[] Content { get => content; set => content = value; }
+        public string Title { get => title; set => title = value; }
     }
 }

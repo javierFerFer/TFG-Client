@@ -36,7 +36,6 @@ namespace TFG_Client {
     /// Formulario de inicio de sesión
     /// 
     /// FALTA:
-    /// - Comentar WndProc en Español
     /// - Clase para la encriptación de la comunicación
     /// - Al hacer click en el botón login, petición al servidor para obtener clave pública y encriptar con ella
     /// - Agregar los #region
@@ -258,6 +257,12 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, Activated event</param>
         private void MainFormProgram_Load(object sender, EventArgs e) {
             layoutOptions.Visible = false;
+            if (!CheckForInternetConnection()) {
+                // Mensaje de error por no tener conexión a internet
+                MessageBox.Show("No tienes internet");
+                Application.Exit();
+                // Cierre de la App
+            }
         }
 
         /// <summary>
@@ -697,9 +702,12 @@ namespace TFG_Client {
                      */
                     loadInternalPanel.Width += 50;
                     JSonObject foo = new JSonObject();
-                    foo.Title = "Connect";
+
                     foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
+                    foo.Title = "Connect";
+
                     string jsonString = JsonConvert.SerializeObject(foo);
+                    MessageBox.Show(jsonString);
                     connect = new ConnectionWithServer(loadInternalPanel, jsonString);
 
                     loadInternalPanel.Width += 50;
