@@ -57,6 +57,7 @@
             this.loadInternalPanel = new System.Windows.Forms.Panel();
             this.loginButton = new TFG_Client.CirularButton();
             this.userImage = new TFG_Client.MyOwnCircleComponent();
+            this.sendData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -391,12 +392,23 @@
             this.userImage.TabStop = false;
             this.userImage.Click += new System.EventHandler(this.userImage_Click);
             // 
+            // sendData
+            // 
+            this.sendData.Location = new System.Drawing.Point(625, 334);
+            this.sendData.Name = "sendData";
+            this.sendData.Size = new System.Drawing.Size(121, 23);
+            this.sendData.TabIndex = 16;
+            this.sendData.Text = "Enviar datos prueba";
+            this.sendData.UseVisualStyleBackColor = true;
+            this.sendData.Click += new System.EventHandler(this.sendData_Click);
+            // 
             // MainFormProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(776, 564);
+            this.Controls.Add(this.sendData);
             this.Controls.Add(this.loadAllPanel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.layoutBar);
@@ -474,6 +486,7 @@
         private CirularButton loginButton;
         private System.Windows.Forms.Panel loadAllPanel;
         private System.Windows.Forms.Panel loadInternalPanel;
+        private System.Windows.Forms.Button sendData;
     }
 }
 

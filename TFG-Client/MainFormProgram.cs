@@ -195,6 +195,20 @@ namespace TFG_Client {
         protected override void OnFormClosed(FormClosedEventArgs e) {
             base.OnFormClosed(e);
             saveWindowsFormPosition();
+            try {
+                if (connect != null) {
+                    JSonObject foo = new JSonObject();
+                    foo.Title = "Connect";
+                    foo.Content = new string[] { "javi", textBoxPasswd.Text.Trim() };
+                    string jsonString = JsonConvert.SerializeObject(foo);
+                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
+                    connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                    // Envio de datos mediante flush
+                    connect.ServerStream.Flush();
+                }
+                
+            } catch (Exception ex) {
+            }
             Application.Exit();
         }
 
@@ -849,6 +863,17 @@ namespace TFG_Client {
             aboutForm.ShowDialog();
         }
 
-        
+        private void sendData_Click(object sender, EventArgs e) {
+                if (connect != null) {
+                    JSonObject foo = new JSonObject();
+                    foo.Title = "Connect";
+                    foo.Content = new string[] { "vengo desde el boton", textBoxPasswd.Text.Trim() };
+                    string jsonString = JsonConvert.SerializeObject(foo);
+                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
+                    connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                    // Envio de datos mediante flush
+                    connect.ServerStream.Flush();
+                }
+        }
     }
 }

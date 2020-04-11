@@ -73,15 +73,11 @@ namespace TFG_Client {
                 serverStream.Flush();
 
                 // Recibo de datos
-                while (true) {
-                    Thread.Sleep(1000);
-                    //MessageBox.Show("pasa");
                     //MessageBox.Show(clientSocket.Connected.ToString());
-                    byte[] buffer = new byte[1024];
-                    int recv = clientSocket.Client.Receive(buffer);
-                    string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
-                    Console.WriteLine(mensajeServidor);
-                }
+                    //byte[] buffer = new byte[1024];
+                    //int recv = clientSocket.Client.Receive(buffer);
+                    //string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
+                    //Console.WriteLine(mensajeServidor);
 
 
 
