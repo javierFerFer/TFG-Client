@@ -718,8 +718,6 @@ namespace TFG_Client {
                     string jsonStringKey = JsonConvert.SerializeObject(getPasswd);
                     string jsonStringUserData = JsonConvert.SerializeObject(userLoginData);
 
-                    MessageBox.Show(jsonStringKey);
-                    MessageBox.Show(jsonStringUserData);
 
                     connect = new ConnectionWithServer(loadInternalPanel, jsonStringKey, jsonStringUserData);
 

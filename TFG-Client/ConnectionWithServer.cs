@@ -15,8 +15,10 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,6 +34,7 @@ namespace TFG_Client {
 
         private Panel loadPanel;
         private string encryptKey;
+        private string ivString;
         private NetworkStream serverStream;
         private string jsonGetKey;
         private string jsonLoginData;
@@ -57,7 +60,7 @@ namespace TFG_Client {
         /// Run thread connection
         /// </summary>
         public void run() {
-            try {
+            //try {
 
                 increaseLoadingBar();
 
@@ -80,11 +83,28 @@ namespace TFG_Client {
                     int recv = clientSocket.Client.Receive(buffer);
                     string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
                     
-                    JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonSingleData>(mensajeServidor);
+                    JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
+
+                // Recibo y almacenamiento de clave para encriptado de datos
                 if (answerServer.A_Title.Equals("key")) {
-                    encryptKey = answerServer.B_Content;
-                    // AQUI
-                    // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
+                    encryptKey = answerServer.B_Content[0];
+                    ivString = answerServer.B_Content[1];
+
+                // AQUI
+                // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
+                // Envio de datos
+
+                // Array de datos del cliente encriptados
+                MessageBox.Show(encryptKey);
+                MessageBox.Show(ivString);
+
+                    byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Encrypt(jsonLoginData, encryptKey, ivString));
+
+                    serverStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
+                    // Envio de datos mediante flush
+                    serverStream.Flush();
+
+
                 } else {
                     // Mensaje de error al no poder obtener la key
                 }
@@ -99,20 +119,101 @@ namespace TFG_Client {
 
 
 
-            } catch (Exception ex) {
+            //} catch (Exception ex) {
                 // Reset all values
                 // Cierre de la conexion
                 //clientSocket.Client.Close();
-                resetLoadingBar();
-                MainFormProgram.tConnection = null;
-            }            
+               // resetLoadingBar();
+              //  MainFormProgram.tConnection = null;
+            //}            
         }
 
-       /// <summary>
-       /// Incrementa la barra de carga del formulario del login
-       /// 
-       /// Increment loading bar in login screen
-       /// </summary>
+        public static string Decrypt(string encryptedInputBase64, string ivStringParam, string passwd) {
+
+            using (AesCryptoServiceProvider aesEncryptor = new AesCryptoServiceProvider()) {
+                var encryptedData = Convert.FromBase64String(encryptedInputBase64);
+                var btKey = System.Text.Encoding.ASCII.GetBytes(passwd);
+                byte[] iv = Encoding.ASCII.GetBytes(ivStringParam);
+
+                var keyString = System.Text.Encoding.Unicode.GetString(aesEncryptor.Key);
+                aesEncryptor.Mode = CipherMode.CBC;
+                aesEncryptor.Padding = PaddingMode.PKCS7;
+                aesEncryptor.KeySize = 256;
+                aesEncryptor.BlockSize = 128;
+                aesEncryptor.Key = btKey;
+
+                aesEncryptor.IV = iv;
+
+                return InternalDecrypt(aesEncryptor, encryptedData);
+            }
+        }
+
+
+        private static string InternalDecrypt(AesCryptoServiceProvider aesEncryptor, byte[] encryptedData) {
+            using (ICryptoTransform decryptor = aesEncryptor.CreateDecryptor(aesEncryptor.Key,
+                                                                             aesEncryptor.IV)) {
+                byte[] decrypted;
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(encryptedData)) {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt,
+                                                                     decryptor,
+                                                                     CryptoStreamMode.Read)) {
+                        decrypted = new byte[encryptedData.Length];
+                        var byteCount = csDecrypt.Read(decrypted, 0, encryptedData.Length);
+                        string strResult = Encoding.ASCII.GetString(decrypted);
+                        int pos = strResult.IndexOf('\0');
+                        if (pos >= 0)
+                            strResult = strResult.Substring(0, pos);
+                        return strResult;
+                    }
+                }
+            }
+        }
+
+
+        private static string Encrypt(string message, string KeyString, string IVString) {
+            byte[] Key = ASCIIEncoding.UTF8.GetBytes(KeyString);
+            byte[] IV = ASCIIEncoding.UTF8.GetBytes(IVString);
+
+            string encrypted = null;
+            RijndaelManaged rj = new RijndaelManaged();
+            rj.Key = Key;
+            rj.IV = IV;
+            rj.Mode = CipherMode.CBC;
+
+            try {
+                MemoryStream ms = new MemoryStream();
+
+                using (CryptoStream cs = new CryptoStream(ms, rj.CreateEncryptor(Key, IV), CryptoStreamMode.Write)) {
+                    using (StreamWriter sw = new StreamWriter(cs)) {
+                        sw.Write(message);
+                        sw.Close();
+                    }
+                    cs.Close();
+                }
+                byte[] encoded = ms.ToArray();
+                encrypted = Convert.ToBase64String(encoded);
+
+                ms.Close();
+            } catch (CryptographicException e) {
+                Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
+                return null;
+            } catch (UnauthorizedAccessException e) {
+                Console.WriteLine("A file error occurred: {0}", e.Message);
+                return null;
+            } catch (Exception e) {
+                Console.WriteLine("An error occurred: {0}", e.Message);
+            } finally {
+                rj.Clear();
+            }
+            return encrypted;
+        }
+
+        /// <summary>
+        /// Incrementa la barra de carga del formulario del login
+        /// 
+        /// Increment loading bar in login screen
+        /// </summary>
         private void increaseLoadingBar() {
             LoadPanel.Invoke(new Action(() => {
                 LoadPanel.Width += 50;
