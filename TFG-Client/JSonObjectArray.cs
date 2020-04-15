@@ -26,19 +26,19 @@ namespace TFG_Client {
     /// Constructor of the class.
     /// Establishes title and content of the JSon
     /// </summary>
-    public class JSonObject {
+    public class JSonObjectArray {
 
-        private string[] content;
-        private string title;
+        private string[] b_Content;
+        private string a_Title;
         /// <summary>
         /// Constructor vacío
         /// 
         /// Empty constructor
         /// </summary>
-        public JSonObject() {
+        public JSonObjectArray() {
         }
 
-        public string[] Content { get => content; set => content = value; }
-        public string Title { get => title; set => title = value; }
+        public string A_Title { get => a_Title; set => a_Title = value; }
+        public string[] B_Content { get => b_Content; set => b_Content = value; }
     }
 }

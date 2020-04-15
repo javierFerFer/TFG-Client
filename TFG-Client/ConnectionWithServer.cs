@@ -12,6 +12,7 @@
 /// 
 /// All using of the class
 ///
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,10 @@ namespace TFG_Client {
     public class ConnectionWithServer {
 
         private Panel loadPanel;
+        private string encryptKey;
         private NetworkStream serverStream;
-        private string jSonObject;
+        private string jsonGetKey;
+        private string jsonLoginData;
 
         /// <summary>
         /// Constructor del objeto conexión
@@ -42,9 +45,10 @@ namespace TFG_Client {
         /// <param name="loadPanelParam">Panel, load bar that change when the connection progress</param>
         /// <param name="jSonObjectParam">string, objeto JSon convertido a string para enviarselo al servidor</param>
         /// <param name="jSonObjectParam">string, JSon object converted to string for to sernd to server</param>
-        public ConnectionWithServer(Panel loadPanelParam, string jSonObjectParam) {
+        public ConnectionWithServer(Panel loadPanelParam, string jsonKeyParam, string jsonUserLoginDataParam) {
             LoadPanel = loadPanelParam;
-            jSonObject = jSonObjectParam;
+            jsonGetKey = jsonKeyParam;
+            jsonLoginData = jsonUserLoginDataParam;
         }
 
         /// <summary>
@@ -65,19 +69,26 @@ namespace TFG_Client {
                 increaseLoadingBar();
 
                 // Antes debe hacer una petición para obtener la clave de encriptación
-                // Antes debe encriptar
-
-                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jSonObject);
+                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonGetKey);
                 serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
                 serverStream.Flush();
 
                 // Recibo de datos
-                    //MessageBox.Show(clientSocket.Connected.ToString());
-                    //byte[] buffer = new byte[1024];
-                    //int recv = clientSocket.Client.Receive(buffer);
-                    //string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
-                    //Console.WriteLine(mensajeServidor);
+                    
+                    byte[] buffer = new byte[1024];
+                    int recv = clientSocket.Client.Receive(buffer);
+                    string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
+                    
+                    JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonSingleData>(mensajeServidor);
+                if (answerServer.A_Title.Equals("key")) {
+                    encryptKey = answerServer.B_Content;
+                    // AQUI
+                    // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
+                } else {
+                    // Mensaje de error al no poder obtener la key
+                }
+                //Console.WriteLine(mensajeServidor);
 
 
 

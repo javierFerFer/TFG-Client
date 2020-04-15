@@ -53,7 +53,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ConnectionWithServer.cs" />
-    <Compile Include="JSonObject.cs" />
+    <Compile Include="JSonObjectArray.cs" />
+    <Compile Include="JSonSingleData.cs" />
     <Compile Include="MainFormProgram.cs">
       <SubType>Form</SubType>
     </Compile>

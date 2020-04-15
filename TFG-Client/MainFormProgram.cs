@@ -196,9 +196,9 @@ namespace TFG_Client {
             saveWindowsFormPosition();
             try {
                 if (connect != null) {
-                    JSonObject foo = new JSonObject();
-                    foo.Title = "Connect";
-                    foo.Content = new string[] { "javi", textBoxPasswd.Text.Trim() };
+                    JSonObjectArray foo = new JSonObjectArray();
+                    foo.A_Title = "Connect";
+                    foo.B_Content = new string[] { "javi", textBoxPasswd.Text.Trim() };
                     string jsonString = JsonConvert.SerializeObject(foo);
                     byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
                     connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
@@ -700,15 +700,28 @@ namespace TFG_Client {
                      * Create JSon object with login data, after encrypt these datas and send to server.
                      * Conection with the server is a thread object.
                      */
+
+                    JSonSingleData getPasswd = new JSonSingleData();
+                    getPasswd.A_Title = "GetPasswd";
+
+                    JSonObjectArray userLoginData = new JSonObjectArray();
+
+                    userLoginData.A_Title = "loginCredentials";
+                    userLoginData.B_Content = new string[] { textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim() };
+
                     loadInternalPanel.Width += 50;
-                    JSonObject foo = new JSonObject();
+                    //JSonObject foo = new JSonObject();
 
-                    foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
-                    foo.Title = "Connect";
+                    //foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
+                    //foo.Title = "Connect";
 
-                    string jsonString = JsonConvert.SerializeObject(foo);
-                    MessageBox.Show(jsonString);
-                    connect = new ConnectionWithServer(loadInternalPanel, jsonString);
+                    string jsonStringKey = JsonConvert.SerializeObject(getPasswd);
+                    string jsonStringUserData = JsonConvert.SerializeObject(userLoginData);
+
+                    MessageBox.Show(jsonStringKey);
+                    MessageBox.Show(jsonStringUserData);
+
+                    connect = new ConnectionWithServer(loadInternalPanel, jsonStringKey, jsonStringUserData);
 
                     loadInternalPanel.Width += 50;
 
@@ -873,9 +886,9 @@ namespace TFG_Client {
 
         private void sendData_Click(object sender, EventArgs e) {
                 if (connect != null) {
-                    JSonObject foo = new JSonObject();
-                    foo.Title = "Connect";
-                    foo.Content = new string[] { "vengo desde el boton", textBoxPasswd.Text.Trim() };
+                    JSonObjectArray foo = new JSonObjectArray();
+                    foo.A_Title = "Connect";
+                    foo.B_Content = new string[] { "vengo desde el boton", textBoxPasswd.Text.Trim() };
                     string jsonString = JsonConvert.SerializeObject(foo);
                     byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
                     connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
