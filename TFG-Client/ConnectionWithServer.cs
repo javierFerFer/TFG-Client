@@ -13,6 +13,7 @@
 /// All using of the class
 ///
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,7 @@ namespace TFG_Client {
         private NetworkStream serverStream;
         private string jsonGetKey;
         private string jsonLoginData;
+        private static bool readServerData = true;
 
         /// <summary>
         /// Constructor del objeto conexión
@@ -81,9 +83,9 @@ namespace TFG_Client {
                     
                     byte[] buffer = new byte[1024];
                     int recv = clientSocket.Client.Receive(buffer);
-                    string mensajeServidor = Encoding.ASCII.GetString(buffer, 0, recv);
+                    string serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
                     
-                    JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
+                    JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessage);
 
                 // Recibo y almacenamiento de clave para encriptado de datos
                 if (answerServer.A_Title.Equals("key")) {
@@ -95,8 +97,8 @@ namespace TFG_Client {
                 // Envio de datos
 
                 // Array de datos del cliente encriptados
-                MessageBox.Show(encryptKey);
-                MessageBox.Show(ivString);
+                //MessageBox.Show(encryptKey);
+                //MessageBox.Show(ivString);
 
                     byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Encrypt(jsonLoginData, encryptKey, ivString));
 
@@ -104,6 +106,32 @@ namespace TFG_Client {
                     // Envio de datos mediante flush
                     serverStream.Flush();
 
+
+                while (readServerData) {
+
+                    buffer = new byte[1024];
+                    recv = clientSocket.Client.Receive(buffer);
+                    serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
+
+                    string serverMessageDesencrypt = Decrypt(serverMessage, ivString, encryptKey);
+
+                    // Conversión del mensaje recibido a Json para poder leer el título
+                    // Con esto sabemos que formato va a tener el mensaje recibido
+                    JObject json = JObject.Parse(serverMessageDesencrypt);
+
+                    if (json.First.ToString().Contains("loginStatus")) {
+                        JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                        if (singleAnswer.B_Content.Equals("correct")) {
+                            S// Pasaria a la ventana del programa principal
+                        }
+                    }
+
+
+                    
+
+                    //JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
+
+                }
 
                 } else {
                     // Mensaje de error al no poder obtener la key
