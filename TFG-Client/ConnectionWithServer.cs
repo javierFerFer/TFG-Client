@@ -122,7 +122,7 @@ namespace TFG_Client {
                     if (json.First.ToString().Contains("loginStatus")) {
                         JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                         if (singleAnswer.B_Content.Equals("correct")) {
-                            S// Pasaria a la ventana del programa principal
+                            // Pasaria a la ventana del programa principal
                         }
                     }
 
