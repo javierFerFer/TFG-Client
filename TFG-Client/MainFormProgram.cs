@@ -24,6 +24,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -192,23 +193,23 @@ namespace TFG_Client {
         /// <param name="e">FormClosedEventArgs, evento de cierre recibido como parámetro</param>
         /// <param name="e">FormClosedEventArgs, closed event received as parameter</param>
         protected override void OnFormClosed(FormClosedEventArgs e) {
-            base.OnFormClosed(e);
-            saveWindowsFormPosition();
             try {
                 if (checkConnectionWithServer) {
                     JSonSingleData clientDisconnectMessage = new JSonSingleData();
                     clientDisconnectMessage.A_Title = "client_disconnect";
+                    // No puede ir vacio, si no salta excepción en el servidor y se cierra la conexión
                     clientDisconnectMessage.B_Content = "";
                     string jsonString = JsonConvert.SerializeObject(clientDisconnectMessage);
-
                     byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-
                     ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
                     ConnectionWithServer.ServerStream.Flush();
                 }
             } catch (Exception ex) {
             }
+            
+            base.OnFormClosed(e);
+            saveWindowsFormPosition();
             Application.Exit();
         }
 
@@ -674,7 +675,8 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void loginButton_Click(object sender, EventArgs e) {
-
+            // Desactivación del botón hasta que finaliza proceso de login
+            loginButton.Enabled = false;
             /**
              * Pasa el control activo a la barra de título para que no se quede el botón de login marcado
              * 
@@ -693,6 +695,7 @@ namespace TFG_Client {
                     // Error, invalid login data
                     loadInternalPanel.Visible = false;
                     loadInternalPanel.Width = 50;
+                    loginButton.Enabled = true;
                 } else {
                     /**
                      * Crea un objeto JSon con los datos del login, lo encripta y lo evía al servidor.
@@ -701,7 +704,9 @@ namespace TFG_Client {
                      * Create JSon object with login data, after encrypt these datas and send to server.
                      * Conection with the server is a thread object.
                      */
-
+                    if (textBoxUser.Text.Trim().Length < 10 || textBoxUser.Text.Trim().Length < 10) { 
+                    
+                    }
                     JSonSingleData getPasswd = new JSonSingleData();
                     getPasswd.A_Title = "GetPasswd";
 
@@ -718,17 +723,30 @@ namespace TFG_Client {
 
                     string jsonStringKey = JsonConvert.SerializeObject(getPasswd);
                     string jsonStringUserData = JsonConvert.SerializeObject(userLoginData);
-
-
                     ConnectionWithServer.LoadPanel = loadInternalPanel;
                     ConnectionWithServer.JsonGetKey = jsonStringKey;
                     ConnectionWithServer.JsonLoginData = jsonStringUserData;
+                    ConnectionWithServer.LoginButton = loginButton;
 
                     loadInternalPanel.Width += 50;
+                    if (checkConnectionWithServer) {
+                        //MessageBox.Show("NO soy el hilo");
+                        // Ya se ha realizado la conexión, se intenta iniciar sesión
+                        byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(ConnectionWithServer.JsonLoginData, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
 
-                    tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
-                    tConnection.IsBackground = true;
-                    tConnection.Start();
+                        ConnectionWithServer.ServerStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
+                        // Envio de datos mediante flush
+                        ConnectionWithServer.ServerStream.Flush();
+                    } else {
+                        /**
+                         * Primer intento de inicio de sesión, se crea la conexión inicial como hilo para lectura de datos
+                         * del servidor
+                         */
+                        //MessageBox.Show("soy el hilo");
+                        tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
+                        tConnection.IsBackground = true;
+                        tConnection.Start();
+                    }
                 }
 
             } else {

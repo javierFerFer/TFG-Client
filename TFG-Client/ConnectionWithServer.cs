@@ -36,10 +36,11 @@ namespace TFG_Client {
         private static Panel loadPanel;
         private static string encryptKey;
         private static string ivString;
-        private static NetworkStream serverStream;
         private static string jsonGetKey;
         private static string jsonLoginData;
+        private static NetworkStream serverStream;
         private static bool readServerData = true;
+        private static Button loginButton;
 
         /// <summary>
         /// Constructor del objeto conexión
@@ -59,67 +60,71 @@ namespace TFG_Client {
         public static void run() {
             try {
 
-                increaseLoadingBar();
+            // Reseteo de variable en caso de login fallido
+            readServerData = true;
 
-                TcpClient clientSocket = new TcpClient();
-                clientSocket.Connect("178.62.40.25", 12345);
-                increaseLoadingBar();
+            increaseLoadingBar();
 
-                serverStream = clientSocket.GetStream();
-                increaseLoadingBar();
+            TcpClient clientSocket = new TcpClient();
+            clientSocket.Connect("178.62.40.25", 12345);
+            increaseLoadingBar();
 
-                // Antes debe hacer una petición para obtener la clave de encriptación
-                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(JsonGetKey);
-                serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            serverStream = clientSocket.GetStream();
+            increaseLoadingBar();
+
+            // Antes debe hacer una petición para obtener la clave de encriptación
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(JsonGetKey);
+            serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            serverStream.Flush();
+
+            // Recibo de datos
+
+            byte[] buffer = new byte[1024];
+            int recv = clientSocket.Client.Receive(buffer);
+            string serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
+
+            JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessage);
+
+            // Recibo y almacenamiento de clave para encriptado de datos
+            if (answerServer.A_Title.Equals("key")) {
+                EncryptKey = answerServer.B_Content[0];
+                IvString = answerServer.B_Content[1];
+
+                // AQUI
+                // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
+                // Envio de datos
+
+                // Array de datos del cliente encriptados
+                //MessageBox.Show(encryptKey);
+                //MessageBox.Show(ivString);
+
+                byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Encrypt(JsonLoginData, EncryptKey, IvString));
+
+                serverStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
                 // Envio de datos mediante flush
                 serverStream.Flush();
 
                 // Conexión con el servidor establecida
                 MainFormProgram.checkConnectionWithServer = true;
+                while (ReadServerData) {
 
-                // Recibo de datos
+                    buffer = new byte[1024];
+                    recv = clientSocket.Client.Receive(buffer);
+                    serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
 
-                byte[] buffer = new byte[1024];
-                int recv = clientSocket.Client.Receive(buffer);
-                string serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
-
-                JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessage);
-
-                // Recibo y almacenamiento de clave para encriptado de datos
-                if (answerServer.A_Title.Equals("key")) {
-                    EncryptKey = answerServer.B_Content[0];
-                    IvString = answerServer.B_Content[1];
-
-                    // AQUI
-                    // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
-                    // Envio de datos
-
-                    // Array de datos del cliente encriptados
-                    //MessageBox.Show(encryptKey);
-                    //MessageBox.Show(ivString);
-
-                    byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Encrypt(JsonLoginData, EncryptKey, IvString));
-
-                    serverStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
-                    // Envio de datos mediante flush
-                    serverStream.Flush();
+                    string serverMessageDesencrypt = Decrypt(serverMessage, IvString, EncryptKey);
 
 
-                    while (ReadServerData) {
 
-                        buffer = new byte[1024];
-                        recv = clientSocket.Client.Receive(buffer);
-                        serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
-
-                        string serverMessageDesencrypt = Decrypt(serverMessage, IvString, EncryptKey);
-
-                        if (serverMessageDesencrypt == "") {
-                            // Conexión con el servidor perdida, cierre de app y vuelta a login
-                            MessageBox.Show("Se ha cerrado la conexion");
-                            MainFormProgram.checkConnectionWithServer = false;
-                            resetLoadingBar();
-                        }
-
+                    if (serverMessageDesencrypt == "") {
+                        // Conexión con el servidor perdida, cierre de app y vuelta a login
+                        MessageBox.Show("Se ha cerrado la conexion");
+                        MainFormProgram.checkConnectionWithServer = false;
+                        readServerData = false;
+                        loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                        resetLoadingBar();
+                    } else {
                         // Conversión del mensaje recibido a Json para poder leer el título
                         // Con esto sabemos que formato va a tener el mensaje recibido
                         JObject json = JObject.Parse(serverMessageDesencrypt);
@@ -133,12 +138,16 @@ namespace TFG_Client {
                             } else if (singleAnswer.B_Content.Equals("incorrect")) {
                                 // Mensaje de error de datos invalidos en el login
                                 MessageBox.Show("Login incorrecto");
+                                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
                             }
                         } else if (json.First.ToString().Contains("connectionStatus")) {
                             JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                             if (singleAnswer.B_Content.Equals("closedForTimeOut")) {
                                 MessageBox.Show("Conexión con el servidor finalizada por time out");
+                                resetLoadingBar();
                                 MainFormProgram.checkConnectionWithServer = false;
+                                readServerData = false;
+                                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
                             }
                         }
 
@@ -146,34 +155,25 @@ namespace TFG_Client {
 
 
                         //JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
-
                     }
-
-                } else {
-                    // Mensaje de error al no poder obtener la key
                 }
-                //Console.WriteLine(mensajeServidor);
+
+            } else {
+                // Mensaje de error al no poder obtener la key
+            }
+            //Console.WriteLine(mensajeServidor);
 
 
 
-                // Desencriptación del mensaje recibido por el servidor
-                // Si es correcto, abre la siguiente interfaz, en caso contrario error
-
-
-
-
-
-                //} catch (Exception ex) {
-                // Reset all values
-                // Cierre de la conexion
-                //clientSocket.Client.Close();
-                // resetLoadingBar();
-                //  MainFormProgram.tConnection = null;
-                //}            
+            // Desencriptación del mensaje recibido por el servidor
+            // Si es correcto, abre la siguiente interfaz, en caso contrario error
+            
             } catch (Exception) {
                 // Error al intentar acceder al sistema, el servidor no está funcionando
                 resetLoadingBar();
-
+                MainFormProgram.checkConnectionWithServer = false;
+                readServerData = false;
+                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
             }
 
         }
@@ -290,5 +290,6 @@ namespace TFG_Client {
         public static string JsonGetKey { get => jsonGetKey; set => jsonGetKey = value; }
         public static string JsonLoginData { get => jsonLoginData; set => jsonLoginData = value; }
         public static bool ReadServerData { get => readServerData; set => readServerData = value; }
+        public static Button LoginButton { get => loginButton; set => loginButton = value; }
     }
 }
