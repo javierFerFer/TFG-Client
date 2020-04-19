@@ -55,9 +55,9 @@
             this.layoutBar = new System.Windows.Forms.FlowLayoutPanel();
             this.loadAllPanel = new System.Windows.Forms.Panel();
             this.loadInternalPanel = new System.Windows.Forms.Panel();
+            this.sendData = new System.Windows.Forms.Button();
             this.loginButton = new TFG_Client.CirularButton();
             this.userImage = new TFG_Client.MyOwnCircleComponent();
-            this.sendData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.orangeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userPasswdImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginImage)).BeginInit();
@@ -364,6 +364,16 @@
             this.loadInternalPanel.TabIndex = 0;
             this.loadInternalPanel.Visible = false;
             // 
+            // sendData
+            // 
+            this.sendData.Location = new System.Drawing.Point(625, 334);
+            this.sendData.Name = "sendData";
+            this.sendData.Size = new System.Drawing.Size(121, 23);
+            this.sendData.TabIndex = 16;
+            this.sendData.Text = "Enviar datos prueba";
+            this.sendData.UseVisualStyleBackColor = true;
+            this.sendData.Click += new System.EventHandler(this.sendData_Click);
+            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -391,16 +401,6 @@
             this.userImage.TabIndex = 1;
             this.userImage.TabStop = false;
             this.userImage.Click += new System.EventHandler(this.userImage_Click);
-            // 
-            // sendData
-            // 
-            this.sendData.Location = new System.Drawing.Point(625, 334);
-            this.sendData.Name = "sendData";
-            this.sendData.Size = new System.Drawing.Size(121, 23);
-            this.sendData.TabIndex = 16;
-            this.sendData.Text = "Enviar datos prueba";
-            this.sendData.UseVisualStyleBackColor = true;
-            this.sendData.Click += new System.EventHandler(this.sendData_Click);
             // 
             // MainFormProgram
             // 

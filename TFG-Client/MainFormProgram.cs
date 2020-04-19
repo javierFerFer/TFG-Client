@@ -46,7 +46,7 @@ namespace TFG_Client {
         private bool clickMouse = false;
         private Point startPoint = new Point(0, 0);
         public static Thread tConnection;
-        public static ConnectionWithServer connect;
+        public static bool checkConnectionWithServer = false;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -195,17 +195,18 @@ namespace TFG_Client {
             base.OnFormClosed(e);
             saveWindowsFormPosition();
             try {
-                if (connect != null) {
-                    JSonObjectArray foo = new JSonObjectArray();
-                    foo.A_Title = "Connect";
-                    foo.B_Content = new string[] { "javi", textBoxPasswd.Text.Trim() };
-                    string jsonString = JsonConvert.SerializeObject(foo);
-                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
-                    connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                if (checkConnectionWithServer) {
+                    JSonSingleData clientDisconnectMessage = new JSonSingleData();
+                    clientDisconnectMessage.A_Title = "client_disconnect";
+                    clientDisconnectMessage.B_Content = "";
+                    string jsonString = JsonConvert.SerializeObject(clientDisconnectMessage);
+
+                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+
+                    ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
-                    connect.ServerStream.Flush();
+                    ConnectionWithServer.ServerStream.Flush();
                 }
-                
             } catch (Exception ex) {
             }
             Application.Exit();
@@ -719,11 +720,13 @@ namespace TFG_Client {
                     string jsonStringUserData = JsonConvert.SerializeObject(userLoginData);
 
 
-                    connect = new ConnectionWithServer(loadInternalPanel, jsonStringKey, jsonStringUserData);
+                    ConnectionWithServer.LoadPanel = loadInternalPanel;
+                    ConnectionWithServer.JsonGetKey = jsonStringKey;
+                    ConnectionWithServer.JsonLoginData = jsonStringUserData;
 
                     loadInternalPanel.Width += 50;
 
-                    tConnection = new Thread(new ThreadStart(connect.run));
+                    tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
                     tConnection.IsBackground = true;
                     tConnection.Start();
                 }
@@ -883,16 +886,17 @@ namespace TFG_Client {
         }
 
         private void sendData_Click(object sender, EventArgs e) {
-                if (connect != null) {
-                    JSonObjectArray foo = new JSonObjectArray();
-                    foo.A_Title = "Connect";
-                    foo.B_Content = new string[] { "vengo desde el boton", textBoxPasswd.Text.Trim() };
-                    string jsonString = JsonConvert.SerializeObject(foo);
-                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(jsonString);
-                    connect.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-                    // Envio de datos mediante flush
-                    connect.ServerStream.Flush();
-                }
+
+            JSonSingleData clientDisconnectMessage = new JSonSingleData();
+            clientDisconnectMessage.A_Title = "test";
+            clientDisconnectMessage.B_Content = "";
+            string jsonString = JsonConvert.SerializeObject(clientDisconnectMessage);
+
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+
+            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            ConnectionWithServer.ServerStream.Flush();
         }
     }
 }
