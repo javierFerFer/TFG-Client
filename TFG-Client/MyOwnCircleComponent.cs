@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    class MyOwnCircleComponent : PictureBox {
+    public class MyOwnCircleComponent : PictureBox {
         /// <summary>
         /// Constructor del componente que permite crear objetos redondos
         /// 

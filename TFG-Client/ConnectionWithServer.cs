@@ -16,9 +16,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -33,14 +35,18 @@ namespace TFG_Client {
     /// </summary>
     public static class ConnectionWithServer {
 
+        private static MainFormProgram loginForm;
+        private static UserControlPanel userControlPanelObject;
         private static Panel loadPanel;
         private static string encryptKey;
         private static string ivString;
         private static string jsonGetKey;
         private static string jsonLoginData;
+        private static string emailUser;
         private static NetworkStream serverStream;
         private static bool readServerData = true;
         private static Button loginButton;
+        private static MyOwnCircleComponent userImage;
 
         /// <summary>
         /// Constructor del objeto conexión
@@ -57,118 +63,126 @@ namespace TFG_Client {
         /// 
         /// Run thread connection
         /// </summary>
-        public static void run() {
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static void run(MainFormProgram loginFormParam) {
             try {
+                loginForm = loginFormParam;
+                // Reseteo de variable en caso de login fallido
+                readServerData = true;
 
-            // Reseteo de variable en caso de login fallido
-            readServerData = true;
+                increaseLoadingBar();
 
-            increaseLoadingBar();
+                TcpClient clientSocket = new TcpClient();
+                clientSocket.Connect("178.62.40.25", 12345);
+                increaseLoadingBar();
 
-            TcpClient clientSocket = new TcpClient();
-            clientSocket.Connect("178.62.40.25", 12345);
-            increaseLoadingBar();
+                serverStream = clientSocket.GetStream();
+                increaseLoadingBar();
 
-            serverStream = clientSocket.GetStream();
-            increaseLoadingBar();
-
-            // Antes debe hacer una petición para obtener la clave de encriptación
-            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(JsonGetKey);
-            serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-            // Envio de datos mediante flush
-            serverStream.Flush();
-
-            // Recibo de datos
-
-            byte[] buffer = new byte[1024];
-            int recv = clientSocket.Client.Receive(buffer);
-            string serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
-
-            JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessage);
-
-            // Recibo y almacenamiento de clave para encriptado de datos
-            if (answerServer.A_Title.Equals("key")) {
-                EncryptKey = answerServer.B_Content[0];
-                IvString = answerServer.B_Content[1];
-
-                // AQUI
-                // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
-                // Envio de datos
-
-                // Array de datos del cliente encriptados
-                //MessageBox.Show(encryptKey);
-                //MessageBox.Show(ivString);
-
-                byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Encrypt(JsonLoginData, EncryptKey, IvString));
-
-                serverStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
+                // Antes debe hacer una petición para obtener la clave de encriptación
+                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(JsonGetKey);
+                serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
                 serverStream.Flush();
 
-                // Conexión con el servidor establecida
-                MainFormProgram.checkConnectionWithServer = true;
-                while (ReadServerData) {
+                // Recibo de datos
 
-                    buffer = new byte[1024];
-                    recv = clientSocket.Client.Receive(buffer);
-                    serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
+                byte[] buffer = new byte[1024];
+                int recv = clientSocket.Client.Receive(buffer);
+                string serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
 
-                    string serverMessageDesencrypt = Decrypt(serverMessage, IvString, EncryptKey);
+                JSonObjectArray answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessage);
+
+                // Recibo y almacenamiento de clave para encriptado de datos
+                if (answerServer.A_Title.Equals("key")) {
+                    EncryptKey = answerServer.B_Content[0];
+                    IvString = answerServer.B_Content[1];
+
+                    // AQUI
+                    // Debe usar la clave recibida para cifrar los datos del usuario y enviarlos
+                    // Envio de datos
+
+                    // Array de datos del cliente encriptados
+                    //MessageBox.Show(encryptKey);
+                    //MessageBox.Show(ivString);
+
+                    byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Utilities.Encrypt(JsonLoginData, EncryptKey, IvString));
+
+                    serverStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
+                    // Envio de datos mediante flush
+                    serverStream.Flush();
+
+                    // Conexión con el servidor establecida
+                    MainFormProgram.checkConnectionWithServer = true;
+                    while (ReadServerData) {
+
+                        buffer = new byte[1024];
+                        recv = clientSocket.Client.Receive(buffer);
+                        serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
+
+                        string serverMessageDesencrypt = Utilities.Decrypt(serverMessage, IvString, EncryptKey);
 
 
 
-                    if (serverMessageDesencrypt == "") {
-                        // Conexión con el servidor perdida, cierre de app y vuelta a login
-                        MessageBox.Show("Se ha cerrado la conexion");
-                        MainFormProgram.checkConnectionWithServer = false;
-                        readServerData = false;
-                        loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-                        resetLoadingBar();
-                    } else {
-                        // Conversión del mensaje recibido a Json para poder leer el título
-                        // Con esto sabemos que formato va a tener el mensaje recibido
-                        JObject json = JObject.Parse(serverMessageDesencrypt);
+                        if (serverMessageDesencrypt == "") {
+                            // Conexión con el servidor perdida, cierre de app y vuelta a login
+                            MessageBox.Show("Se ha cerrado la conexion");
+                            MainFormProgram.checkConnectionWithServer = false;
+                            readServerData = false;
+                            loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                            resetLoadingBar();
+                        } else {
+                            // Conversión del mensaje recibido a Json para poder leer el título
+                            // Con esto sabemos que formato va a tener el mensaje recibido
+                            JObject json = JObject.Parse(serverMessageDesencrypt);
 
-                        if (json.First.ToString().Contains("loginStatus")) {
-                            JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
-                            if (singleAnswer.B_Content.Equals("correct")) {
-                                // Pasaria a la ventana del programa principal
-                                MessageBox.Show("Login correcto");
+                            if (json.First.ToString().Contains("loginStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                if (singleAnswer.B_Content.Equals("correct")) {
+                                    // Pasaria a la ventana del programa principal
+                                    MessageBox.Show("Login correcto");
 
-                            } else if (singleAnswer.B_Content.Equals("incorrect")) {
-                                // Mensaje de error de datos invalidos en el login
-                                MessageBox.Show("Login incorrecto");
-                                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                                    // Peticion de nombre del usuario al servidor
+
+
+                                    //loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
+                                    //userControlPanelObject = new UserControlPanel(emailUser, userImage);
+                                    //userControlPanelObject.ShowDialog();
+                                } else if (singleAnswer.B_Content.Equals("incorrect")) {
+                                    // Mensaje de error de datos invalidos en el login
+                                    MessageBox.Show("Login incorrecto");
+                                    loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                                }
+                            } else if (json.First.ToString().Contains("connectionStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                if (singleAnswer.B_Content.Equals("closedForTimeOut")) {
+                                    MessageBox.Show("Conexión con el servidor finalizada por time out");
+                                    resetLoadingBar();
+                                    MainFormProgram.checkConnectionWithServer = false;
+                                    readServerData = false;
+                                    loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                                }
                             }
-                        } else if (json.First.ToString().Contains("connectionStatus")) {
-                            JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
-                            if (singleAnswer.B_Content.Equals("closedForTimeOut")) {
-                                MessageBox.Show("Conexión con el servidor finalizada por time out");
-                                resetLoadingBar();
-                                MainFormProgram.checkConnectionWithServer = false;
-                                readServerData = false;
-                                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-                            }
+
+
+
+
+                            //JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
                         }
-
-
-
-
-                        //JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
                     }
+
+                } else {
+                    // Mensaje de error al no poder obtener la key
                 }
-
-            } else {
-                // Mensaje de error al no poder obtener la key
-            }
-            //Console.WriteLine(mensajeServidor);
+                //Console.WriteLine(mensajeServidor);
 
 
 
-            // Desencriptación del mensaje recibido por el servidor
-            // Si es correcto, abre la siguiente interfaz, en caso contrario error
-            
-            } catch (Exception) {
+                // Desencriptación del mensaje recibido por el servidor
+                // Si es correcto, abre la siguiente interfaz, en caso contrario error
+
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
                 // Error al intentar acceder al sistema, el servidor no está funcionando
                 resetLoadingBar();
                 MainFormProgram.checkConnectionWithServer = false;
@@ -178,86 +192,10 @@ namespace TFG_Client {
 
         }
 
-        public static string Decrypt(string encryptedInputBase64, string ivStringParam, string passwd) {
-
-            using (AesCryptoServiceProvider aesEncryptor = new AesCryptoServiceProvider()) {
-                var encryptedData = Convert.FromBase64String(encryptedInputBase64);
-                var btKey = System.Text.Encoding.ASCII.GetBytes(passwd);
-                byte[] iv = Encoding.ASCII.GetBytes(ivStringParam);
-
-                var keyString = System.Text.Encoding.Unicode.GetString(aesEncryptor.Key);
-                aesEncryptor.Mode = CipherMode.CBC;
-                aesEncryptor.Padding = PaddingMode.PKCS7;
-                aesEncryptor.KeySize = 256;
-                aesEncryptor.BlockSize = 128;
-                aesEncryptor.Key = btKey;
-
-                aesEncryptor.IV = iv;
-
-                return InternalDecrypt(aesEncryptor, encryptedData);
-            }
-        }
+        
 
 
-        private static string InternalDecrypt(AesCryptoServiceProvider aesEncryptor, byte[] encryptedData) {
-            using (ICryptoTransform decryptor = aesEncryptor.CreateDecryptor(aesEncryptor.Key,
-                                                                             aesEncryptor.IV)) {
-                byte[] decrypted;
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(encryptedData)) {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt,
-                                                                     decryptor,
-                                                                     CryptoStreamMode.Read)) {
-                        decrypted = new byte[encryptedData.Length];
-                        var byteCount = csDecrypt.Read(decrypted, 0, encryptedData.Length);
-                        string strResult = Encoding.ASCII.GetString(decrypted);
-                        int pos = strResult.IndexOf('\0');
-                        if (pos >= 0)
-                            strResult = strResult.Substring(0, pos);
-                        return strResult;
-                    }
-                }
-            }
-        }
-
-
-        public static string Encrypt(string message, string KeyString, string IVString) {
-            byte[] Key = ASCIIEncoding.UTF8.GetBytes(KeyString);
-            byte[] IV = ASCIIEncoding.UTF8.GetBytes(IVString);
-
-            string encrypted = null;
-            RijndaelManaged rj = new RijndaelManaged();
-            rj.Key = Key;
-            rj.IV = IV;
-            rj.Mode = CipherMode.CBC;
-
-            try {
-                MemoryStream ms = new MemoryStream();
-
-                using (CryptoStream cs = new CryptoStream(ms, rj.CreateEncryptor(Key, IV), CryptoStreamMode.Write)) {
-                    using (StreamWriter sw = new StreamWriter(cs)) {
-                        sw.Write(message);
-                        sw.Close();
-                    }
-                    cs.Close();
-                }
-                byte[] encoded = ms.ToArray();
-                encrypted = Convert.ToBase64String(encoded);
-
-                ms.Close();
-            } catch (CryptographicException e) {
-                Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
-                return null;
-            } catch (UnauthorizedAccessException e) {
-                Console.WriteLine("A file error occurred: {0}", e.Message);
-                return null;
-            } catch (Exception e) {
-                Console.WriteLine("An error occurred: {0}", e.Message);
-            } finally {
-                rj.Clear();
-            }
-            return encrypted;
-        }
+        
 
         /// <summary>
         /// Incrementa la barra de carga del formulario del login
@@ -291,5 +229,7 @@ namespace TFG_Client {
         public static string JsonLoginData { get => jsonLoginData; set => jsonLoginData = value; }
         public static bool ReadServerData { get => readServerData; set => readServerData = value; }
         public static Button LoginButton { get => loginButton; set => loginButton = value; }
+        public static string EmailUser { get => emailUser; set => emailUser = value; }
+        internal static MyOwnCircleComponent UserImage { get => userImage; set => userImage = value; }
     }
 }

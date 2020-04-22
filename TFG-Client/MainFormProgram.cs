@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,6 +50,7 @@ namespace TFG_Client {
         private string [] charsToRemove = new string[] { ",", ";", "'", '"'.ToString() };
         public static Thread tConnection;
         public static bool checkConnectionWithServer = false;
+        private MainFormProgram loginForm;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -64,6 +66,7 @@ namespace TFG_Client {
              * This is for to remove focus of the user textBox.
              */
             ActiveControl = titleLabel;
+            loginForm = this;
         }
         /// <summary>
         /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
@@ -196,12 +199,9 @@ namespace TFG_Client {
         protected override void OnFormClosed(FormClosedEventArgs e) {
             try {
                 if (checkConnectionWithServer) {
-                    JSonSingleData clientDisconnectMessage = new JSonSingleData();
-                    clientDisconnectMessage.A_Title = "client_disconnect";
-                    // No puede ir vacio, si no salta excepción en el servidor y se cierra la conexión
-                    clientDisconnectMessage.B_Content = "";
-                    string jsonString = JsonConvert.SerializeObject(clientDisconnectMessage);
-                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                    string jsonMessage = Utilities.generateSingleDataRequest("client_disconnect");
+
+                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessage, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                     ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
                     ConnectionWithServer.ServerStream.Flush();
@@ -260,7 +260,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, Activated event</param>
         private void MainFormProgram_Load(object sender, EventArgs e) {
             layoutOptions.Visible = false;
-            if (!CheckForInternetConnection()) {
+            if (!Utilities.CheckForInternetConnection()) {
                 // Mensaje de error por no tener conexión a internet
                 MessageBox.Show("No tienes internet");
                 Application.Exit();
@@ -508,27 +508,7 @@ namespace TFG_Client {
             }
         }
 
-        /// <summary>
-        /// Detecta si el usuario tiene conexión a internet.
-        /// 
-        /// Function that detect if this user has a internet connection
-        /// </summary>
-        /// <returns>
-        /// True, si el servidor al que se conecta responde (Tiene conexión)
-        /// False, si el servidor al que se conecta no responde (No tiene conexión)
-        /// 
-        /// True, If the server that you have connected to responds (Have internet connection)
-        /// False, If the server that you have connected not to responds (Don't have internet connection)
-        /// </returns>
-        private bool CheckForInternetConnection() {
-            try {
-                WebClient client = new WebClient();
-                client.OpenRead("http://google.com/generate_204");
-                return true;
-            } catch (Exception) {
-                return false;
-            }
-        }
+        
 
         /// <summary>
         /// Evento de click sobre la imagen del usuario, permite al usuario elegir una imagen para cargarla, la redimensiona adecuadamente
@@ -553,8 +533,8 @@ namespace TFG_Client {
                 if (fileDialogObject.ShowDialog() == DialogResult.OK) {
                     try {
                         Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
-                        GetOrientation((Image)userSelectedImage).ToString();
-                        userImage.Image = FixedSize(userSelectedImage, 320, 320, true);
+                        Utilities.GetOrientation((Image)userSelectedImage).ToString();
+                        userImage.Image = Utilities.FixedSize(userSelectedImage, 320, 320, true);
                     } catch (Exception) {
                         // Error de carga de imagen
                     }
@@ -564,107 +544,11 @@ namespace TFG_Client {
             }
         }
 
-        /// <summary>
-        /// Permite mirar la horientación de la imagen y establecer en las propiedades de la misma
-        /// que esté recta en caso de ser necesario.
-        /// 
-        /// Check if the image are in wrong position, if this case are real, change the position of image.
-        /// </summary>
-        /// <param name="image">Image, imagen recibida como parámetro para revisar</param>
-        /// <param name="image">Image, image as paramter to check</param>
-        /// <returns>
-        /// ImageOrientation, Horientación de la imagen en vertical
-        /// ImageOrientation, Horientation of image into vertical.
-        /// </returns>
-        private static ImageOrientation GetOrientation(Image image) {
-            PropertyItem pi = SafeGetPropertyItem(image, 0x112);
-            return ImageOrientation.Vertical;
-        }
+        
 
-        /// <summary>
-        /// Almacena las propiedades de la imagen trás ser modificadas para que la imagen esté en vertical.
-        /// 
-        /// Store image properties when the image has changed.
-        /// </summary>
-        /// <param name="image">Image, imagen como parámetro</param>
-        /// <param name="image">Image, imagen has parameter</param>
-        /// <param name="propid">int, Id de la imagen</param>
-        /// <param name="propid">int, Id about image</param>
-        /// <returns>
-        /// PropertyItem, Propiedades de la imagen modificadas
-        /// PropertyItem, Properties of image changed.
-        /// 
-        /// null, Si el archivo que se intentó modificar no tiene un archivo de registro EXIF.
-        /// null, If this image hasn't EXIF file (Properties file)
-        /// </returns>
-        private static PropertyItem SafeGetPropertyItem(Image image, int propid) {
-            try {
-                return image.GetPropertyItem(propid);
-            } catch (ArgumentException) {
-                return null;
-            }
-        }
 
-        /// <summary>
-        /// Permite redimensionar la imagen.
-        /// 
-        /// Resize image
-        /// </summary>
-        /// <param name="image">Image, imagen como parámetro</param>
-        /// <param name="image">Image, image as param</param>
-        /// <param name="Width">int, anchura de la imagen deseada</param>
-        /// <param name="Width">int, width of image that login form need</param>
-        /// <param name="Height">int, altura de la imagen deseada</param>
-        /// <param name="Height">int, height of image that login form need</param>
-        /// <param name="needToFill">bool, indica si la imagen necesita ser llenada</param>
-        /// <param name="needToFill">bool, tell if this image needs to fill</param>
-        /// <returns></returns>
-        private Image FixedSize(Image image, int Width, int Height, bool needToFill) {
 
-            int sourceWidth = image.Width;
-            int sourceHeight = image.Height;
-            int sourceX = 0;
-            int sourceY = 0;
-            double destX = 0;
-            double destY = 0;
-
-            double nScale = 0;
-            double nScaleW = 0;
-            double nScaleH = 0;
-
-            nScaleW = ((double)Width / (double)sourceWidth);
-            nScaleH = ((double)Height / (double)sourceHeight);
-            if (!needToFill) {
-                nScale = Math.Min(nScaleH, nScaleW);
-            } else {
-                nScale = Math.Max(nScaleH, nScaleW);
-                destY = (Height - sourceHeight * nScale) / 2;
-                destX = (Width - sourceWidth * nScale) / 2;
-            }
-
-            if (nScale > 1)
-                nScale = 1;
-
-            int destWidth = (int)Math.Round(sourceWidth * nScale);
-            int destHeight = (int)Math.Round(sourceHeight * nScale);
-
-            Bitmap bmPhoto = null;
-            try {
-                bmPhoto = new Bitmap(destWidth + (int)Math.Round(2 * destX), destHeight + (int)Math.Round(2 * destY));
-            } catch (Exception ex) {}
-
-            using (Graphics grPhoto = Graphics.FromImage(bmPhoto)) {
-                grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                grPhoto.CompositingQuality = CompositingQuality.HighQuality;
-                grPhoto.SmoothingMode = SmoothingMode.HighQuality;
-
-                Rectangle to = new Rectangle((int)Math.Round(destX), (int)Math.Round(destY), destWidth, destHeight);
-                Rectangle from = new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight);
-                grPhoto.DrawImage(image, to, from, GraphicsUnit.Pixel);
-
-                return bmPhoto;
-            }
-        }
+        
 
         /// <summary>
         /// Evento de click sobre el botón de login
@@ -685,7 +569,7 @@ namespace TFG_Client {
              */
             ActiveControl = titleLabel;
 
-            if (CheckForInternetConnection()) {
+            if (Utilities.CheckForInternetConnection()) {
                 // Tiene internet
                 // Have internet connection
                 loadInternalPanel.Visible = true;
@@ -706,12 +590,7 @@ namespace TFG_Client {
                      * Conection with the server is a thread object.
                      */
                     
-                    JSonSingleData getPasswd = new JSonSingleData();
-                    getPasswd.A_Title = "GetPasswd";
 
-                    JSonObjectArray userLoginData = new JSonObjectArray();
-
-                    userLoginData.A_Title = "loginCredentials";
                     // Limpieza de caracteres extraños
                     
                     string userData = textBoxUser.Text.Trim();
@@ -722,26 +601,26 @@ namespace TFG_Client {
                         userPasswdData = userPasswdData.Replace(c, string.Empty);
                     }
 
-                    userLoginData.B_Content = new string[] { userData, userPasswdData};
-
                     loadInternalPanel.Width += 50;
                     //JSonObject foo = new JSonObject();
 
                     //foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
                     //foo.Title = "Connect";
 
-                    string jsonStringKey = JsonConvert.SerializeObject(getPasswd);
-                    string jsonStringUserData = JsonConvert.SerializeObject(userLoginData);
+                    string jsonStringKey = Utilities.generateSingleDataRequest("GetPasswd");
+                    string jsonStringUserData = Utilities.generateJsonObjectArrayString("loginCredentials", new string[] { userData, userPasswdData });
                     ConnectionWithServer.LoadPanel = loadInternalPanel;
                     ConnectionWithServer.JsonGetKey = jsonStringKey;
                     ConnectionWithServer.JsonLoginData = jsonStringUserData;
+                    ConnectionWithServer.EmailUser = userData;
+                    ConnectionWithServer.UserImage = userImage;
                     ConnectionWithServer.LoginButton = loginButton;
 
                     loadInternalPanel.Width += 50;
                     if (checkConnectionWithServer) {
                         //MessageBox.Show("NO soy el hilo");
                         // Ya se ha realizado la conexión, se intenta iniciar sesión
-                        byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(ConnectionWithServer.JsonLoginData, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                        byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Utilities.Encrypt(ConnectionWithServer.JsonLoginData, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
 
                         ConnectionWithServer.ServerStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
                         // Envio de datos mediante flush
@@ -752,7 +631,8 @@ namespace TFG_Client {
                          * del servidor
                          */
                         //MessageBox.Show("soy el hilo");
-                        tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
+                        //tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
+                        tConnection = new Thread(() => ConnectionWithServer.run(loginForm));
                         tConnection.IsBackground = true;
                         tConnection.Start();
                     }
@@ -914,12 +794,9 @@ namespace TFG_Client {
 
         private void sendData_Click(object sender, EventArgs e) {
 
-            JSonSingleData clientDisconnectMessage = new JSonSingleData();
-            clientDisconnectMessage.A_Title = "test";
-            clientDisconnectMessage.B_Content = "";
-            string jsonString = JsonConvert.SerializeObject(clientDisconnectMessage);
+            string jsonString = Utilities.generateSingleDataRequest("test", "");
 
-            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(ConnectionWithServer.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
 
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
