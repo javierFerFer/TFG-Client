@@ -114,7 +114,7 @@
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(137, 22);
             this.textBoxUser.TabIndex = 4;
-            this.textBoxUser.Text = "Usuario";
+            this.textBoxUser.Text = "Correo";
             this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
             this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);

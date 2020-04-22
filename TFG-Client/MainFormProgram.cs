@@ -107,7 +107,7 @@ namespace TFG_Client {
                  * 
                  * Restarted user input placeholder.
                  */
-                if (textBoxUser.Text == "Usuario") {
+                if (textBoxUser.Text == "Correo") {
                     textBoxUser.ForeColor = Color.DarkGray;
                 } else {
                     textBoxUser.ForeColor = Color.Black;
@@ -451,7 +451,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void textBoxUser_Enter(object sender, EventArgs e) {
-            if (textBoxUser.Text == "Usuario") {
+            if (textBoxUser.Text == "Correo") {
                 textBoxUser.Text = "";
                 textBoxUser.ForeColor = Color.Black;
             }
@@ -468,7 +468,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, Activated event</param>
         private void textBoxUser_Leave(object sender, EventArgs e) {
             if (textBoxUser.Text == "") {
-                textBoxUser.Text = "Usuario";
+                textBoxUser.Text = "Correo";
                 textBoxUser.ForeColor = Color.DarkGray;
             }
         }
@@ -691,7 +691,7 @@ namespace TFG_Client {
                 loadInternalPanel.Visible = true;
                 loadInternalPanel.Width += 50;
                 
-                if (textBoxUser.Text.Trim().Length == 0 || textBoxPasswd.Text.Trim().Length == 0 || (textBoxUser.Text.Trim() == "Usuario" || textBoxPasswd.Text.Trim() == "Contraseña")) {
+                if (textBoxUser.Text.Trim().Length == 0 || textBoxPasswd.Text.Trim().Length == 0 || (textBoxUser.Text.Trim() == "Correo" || textBoxPasswd.Text.Trim() == "Contraseña")) {
                     // Error de valores inválidos
                     // Error, invalid login data
                     loadInternalPanel.Visible = false;
