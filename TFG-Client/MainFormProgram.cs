@@ -46,6 +46,7 @@ namespace TFG_Client {
     public partial class MainFormProgram : Form {
         private bool clickMouse = false;
         private Point startPoint = new Point(0, 0);
+        private string [] charsToRemove = new string[] { ",", ";", "'", '"'.ToString() };
         public static Thread tConnection;
         public static bool checkConnectionWithServer = false;
         /// <summary>
@@ -704,16 +705,24 @@ namespace TFG_Client {
                      * Create JSon object with login data, after encrypt these datas and send to server.
                      * Conection with the server is a thread object.
                      */
-                    if (textBoxUser.Text.Trim().Length < 10 || textBoxUser.Text.Trim().Length < 10) { 
                     
-                    }
                     JSonSingleData getPasswd = new JSonSingleData();
                     getPasswd.A_Title = "GetPasswd";
 
                     JSonObjectArray userLoginData = new JSonObjectArray();
 
                     userLoginData.A_Title = "loginCredentials";
-                    userLoginData.B_Content = new string[] { textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim() };
+                    // Limpieza de caracteres extraños
+                    
+                    string userData = textBoxUser.Text.Trim();
+                    string userPasswdData = textBoxPasswd.Text.Trim();
+
+                    foreach (string c in charsToRemove) {
+                        userData = userData.Replace(c, string.Empty);
+                        userPasswdData = userPasswdData.Replace(c, string.Empty);
+                    }
+
+                    userLoginData.B_Content = new string[] { userData, userPasswdData};
 
                     loadInternalPanel.Width += 50;
                     //JSonObject foo = new JSonObject();
