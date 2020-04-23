@@ -58,33 +58,18 @@ namespace TFG_Client {
         /// Constructor of the class
         /// </summary>
         public MainFormProgram() {
-            InitializeComponent();
-            loginForm = this;
-            Utilities.checkWindowsFormPositon(loginForm);
-            /**
-             * Se usa para que el textbox de usuario no establezca el foco.
-             * 
-             * This is for to remove focus of the user textBox.
-             */
-            ActiveControl = titleLabel;
-        }
-
-
-        /// <summary>
-        /// Convierte el array de bytes en una imagen
-        /// 
-        /// Convert byte array into image
-        /// </summary>
-        /// <param name="byteArrayParam">byte [], Array de bytes que contiene toda la info sobre la imagen antes de ser convertida a imagen</param>
-        /// <param name="byteArrayParam">byte [], array of bytes that contain all information about image before that convert into image</param>
-        /// <returns>
-        /// El array de bytes convertido a imagen
-        /// 
-        /// Array of bytes convert into image
-        /// </returns>
-        public Image byteArrayToImage(byte [] byteArrayParam) {
-            using (var ms = new MemoryStream(byteArrayParam)) {
-                return Image.FromStream(ms);
+            try {
+                InitializeComponent();
+                loginForm = this;
+                Utilities.checkWindowsFormPositon(loginForm);
+                /**
+                 * Se usa para que el textbox de usuario no establezca el foco.
+                 * 
+                 * This is for to remove focus of the user textBox.
+                 */
+                ActiveControl = titleLabel;
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 404, null);
             }
         }
 
@@ -101,13 +86,16 @@ namespace TFG_Client {
             try {
                 if (checkConnectionWithServer) {
                     string jsonMessage = Utilities.generateSingleDataRequest("client_disconnect");
-
+                    if (jsonMessage == "") {
+                        throw new Exception("Error, valor vacío detectado");
+                    }
                     byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessage, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                     ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
                     ConnectionWithServer.ServerStream.Flush();
                 }
             } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 501, null);
             }
             
             base.OnFormClosed(e);
@@ -163,12 +151,16 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void MainFormProgram_Load(object sender, EventArgs e) {
-            layoutOptions.Visible = false;
-            if (!Utilities.CheckForInternetConnection()) {
-                // Mensaje de error por no tener conexión a internet
-                MessageBox.Show("No tienes internet");
-                Application.Exit();
-                // Cierre de la App
+            try {
+                layoutOptions.Visible = false;
+                if (!Utilities.CheckForInternetConnection()) {
+                    // Mensaje de error por no tener conexión a internet
+                    Utilities.customErrorInfo("No tiene conexión a internet, no se pudo cargar el programa");
+                    Application.Exit();
+                    // Cierre de la App
+                }
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 404, null);
             }
         }
 
@@ -412,25 +404,27 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void userImage_Click(object sender, EventArgs e) {
-            if (tConnection == null) {
-                if (layoutOptions.Visible) {
-                    layoutOptions.Visible = false;
-                }
+            try {
+                if (tConnection == null) {
+                    if (layoutOptions.Visible) {
+                        layoutOptions.Visible = false;
+                    }
 
-                OpenFileDialog fileDialogObject = new OpenFileDialog();
-                fileDialogObject.Filter = "Image Files(*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
+                    OpenFileDialog fileDialogObject = new OpenFileDialog();
+                    fileDialogObject.Filter = "Image Files(*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
 
-                if (fileDialogObject.ShowDialog() == DialogResult.OK) {
-                    try {
-                        Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
-                        Utilities.GetOrientation((Image)userSelectedImage).ToString();
-                        userImage.Image = Utilities.FixedSize(userSelectedImage, 320, 320, true);
-                    } catch (Exception) {
-                        // Error de carga de imagen
+                    if (fileDialogObject.ShowDialog() == DialogResult.OK) {
+                        try {
+                            Bitmap userSelectedImage = new Bitmap(fileDialogObject.FileName);
+                            Utilities.GetOrientation((Image)userSelectedImage).ToString();
+                            userImage.Image = Utilities.FixedSize(userSelectedImage, 320, 320, true);
+                        } catch (Exception exImage) {
+                            Utilities.createErrorMessage(exImage.Message.ToString(), Utilities.showDevelopMessages, 405, null);
+                        }
                     }
                 }
-            } else {
-                // Mensaje de error, no se puede cambiar la imagen durante el login
+            } catch (Exception exOpenFile) {
+                Utilities.createErrorMessage(exOpenFile.Message.ToString(), Utilities.showDevelopMessages, 600, loginForm);
             }
         }
 
@@ -450,89 +444,99 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void loginButton_Click(object sender, EventArgs e) {
-            // Desactivación del botón hasta que finaliza proceso de login
-            loginButton.Enabled = false;
-            /**
-             * Pasa el control activo a la barra de título para que no se quede el botón de login marcado
-             * 
-             * Transers ActiveControl to titleBar for to the login button don't show clicked status
-             */
-            ActiveControl = titleLabel;
+            try {
+                // Desactivación del botón hasta que finaliza proceso de login
+                loginButton.Enabled = false;
+                /**
+                 * Pasa el control activo a la barra de título para que no se quede el botón de login marcado
+                 * 
+                 * Transers ActiveControl to titleBar for to the login button don't show clicked status
+                 */
+                ActiveControl = titleLabel;
 
-            if (Utilities.CheckForInternetConnection()) {
-                // Tiene internet
-                // Have internet connection
-                loadInternalPanel.Visible = true;
-                loadInternalPanel.Width += 50;
-                
-                if (textBoxUser.Text.Trim().Length == 0 || textBoxPasswd.Text.Trim().Length == 0 || (textBoxUser.Text.Trim() == "Correo" || textBoxPasswd.Text.Trim() == "Contraseña")) {
-                    // Error de valores inválidos
-                    // Error, invalid login data
-                    loadInternalPanel.Visible = false;
-                    loadInternalPanel.Width = 50;
-                    loginButton.Enabled = true;
-                } else {
-                    /**
-                     * Crea un objeto JSon con los datos del login, lo encripta y lo evía al servidor.
-                     * La conexión con el servidor es un objeto de tipo hilo.
-                     * 
-                     * Create JSon object with login data, after encrypt these datas and send to server.
-                     * Conection with the server is a thread object.
-                     */
-                    
-
-                    // Limpieza de caracteres extraños
-                    
-                    string userData = textBoxUser.Text.Trim();
-                    string userPasswdData = textBoxPasswd.Text.Trim();
-
-                    foreach (string c in charsToRemove) {
-                        userData = userData.Replace(c, string.Empty);
-                        userPasswdData = userPasswdData.Replace(c, string.Empty);
-                    }
-
+                if (Utilities.CheckForInternetConnection()) {
+                    // Tiene internet
+                    // Have internet connection
+                    loadInternalPanel.Visible = true;
                     loadInternalPanel.Width += 50;
-                    //JSonObject foo = new JSonObject();
 
-                    //foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
-                    //foo.Title = "Connect";
-
-                    string jsonStringKey = Utilities.generateSingleDataRequest("GetPasswd");
-                    string jsonStringUserData = Utilities.generateJsonObjectArrayString("loginCredentials", new string[] { userData, userPasswdData });
-                    ConnectionWithServer.LoadPanel = loadInternalPanel;
-                    ConnectionWithServer.JsonGetKey = jsonStringKey;
-                    ConnectionWithServer.JsonLoginData = jsonStringUserData;
-                    ConnectionWithServer.EmailUser = userData;
-                    ConnectionWithServer.UserImage = userImage;
-                    ConnectionWithServer.LoginButton = loginButton;
-
-                    loadInternalPanel.Width += 50;
-                    if (checkConnectionWithServer) {
-                        //MessageBox.Show("NO soy el hilo");
-                        // Ya se ha realizado la conexión, se intenta iniciar sesión
-                        byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Utilities.Encrypt(ConnectionWithServer.JsonLoginData, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-
-                        ConnectionWithServer.ServerStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
-                        // Envio de datos mediante flush
-                        ConnectionWithServer.ServerStream.Flush();
+                    if (textBoxUser.Text.Trim().Length == 0 || textBoxPasswd.Text.Trim().Length == 0 || (textBoxUser.Text.Trim() == "Correo" || textBoxPasswd.Text.Trim() == "Contraseña")) {
+                        // Error de valores inválidos
+                        // Error, invalid login data
+                        loadInternalPanel.Visible = false;
+                        loadInternalPanel.Width = 50;
+                        loginButton.Enabled = true;
                     } else {
                         /**
-                         * Primer intento de inicio de sesión, se crea la conexión inicial como hilo para lectura de datos
-                         * del servidor
+                         * Crea un objeto JSon con los datos del login, lo encripta y lo evía al servidor.
+                         * La conexión con el servidor es un objeto de tipo hilo.
+                         * 
+                         * Create JSon object with login data, after encrypt these datas and send to server.
+                         * Conection with the server is a thread object.
                          */
-                        //MessageBox.Show("soy el hilo");
-                        //tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
-                        tConnection = new Thread(() => ConnectionWithServer.run(loginForm));
-                        tConnection.IsBackground = true;
-                        tConnection.Start();
-                    }
-                }
 
-            } else {
-                // Carga ventana de error de conexión
-                // Load error window
-                loadInternalPanel.Visible = false;
-                loadInternalPanel.Width = 50;
+
+                        // Limpieza de caracteres extraños
+
+                        string userData = textBoxUser.Text.Trim();
+                        string userPasswdData = textBoxPasswd.Text.Trim();
+
+                        foreach (string c in charsToRemove) {
+                            userData = userData.Replace(c, string.Empty);
+                            userPasswdData = userPasswdData.Replace(c, string.Empty);
+                        }
+
+                        loadInternalPanel.Width += 50;
+                        //JSonObject foo = new JSonObject();
+
+                        //foo.Content = new string[] {textBoxUser.Text.Trim(), textBoxPasswd.Text.Trim()};
+                        //foo.Title = "Connect";
+
+                        string jsonStringKey = Utilities.generateSingleDataRequest("GetPasswd");
+                        if (jsonStringKey == "") {
+                            throw new Exception("Error, valor vacío detectado");
+                        }
+                        string jsonStringUserData = Utilities.generateJsonObjectArrayString("loginCredentials", new string[] { userData, userPasswdData });
+                        if (jsonStringUserData == "") {
+                            throw new Exception("Error, valor vacío detectado");
+                        }
+                        ConnectionWithServer.LoadPanel = loadInternalPanel;
+                        ConnectionWithServer.JsonGetKey = jsonStringKey;
+                        ConnectionWithServer.JsonLoginData = jsonStringUserData;
+                        ConnectionWithServer.EmailUser = userData;
+                        ConnectionWithServer.UserImage = userImage;
+                        ConnectionWithServer.LoginButton = loginButton;
+
+                        loadInternalPanel.Width += 50;
+                        if (checkConnectionWithServer) {
+                            //MessageBox.Show("NO soy el hilo");
+                            // Ya se ha realizado la conexión, se intenta iniciar sesión
+                            byte[] byteArrayLoginData = Encoding.ASCII.GetBytes(Utilities.Encrypt(ConnectionWithServer.JsonLoginData, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+
+                            ConnectionWithServer.ServerStream.Write(byteArrayLoginData, 0, byteArrayLoginData.Length);
+                            // Envio de datos mediante flush
+                            ConnectionWithServer.ServerStream.Flush();
+                        } else {
+                            /**
+                             * Primer intento de inicio de sesión, se crea la conexión inicial como hilo para lectura de datos
+                             * del servidor
+                             */
+                            //MessageBox.Show("soy el hilo");
+                            //tConnection = new Thread(new ThreadStart(ConnectionWithServer.run));
+                            tConnection = new Thread(() => ConnectionWithServer.run(loginForm));
+                            tConnection.IsBackground = true;
+                            tConnection.Start();
+                        }
+                    }
+
+                } else {
+                    // Carga ventana de error de conexión
+                    // Load error window
+                    loadInternalPanel.Visible = false;
+                    loadInternalPanel.Width = 50;
+                }
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 502, loginForm);
             }
         }
 

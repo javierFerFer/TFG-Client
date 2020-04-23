@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlPanel));
             this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
+            this.iconApp = new TFG_Client.MyOwnCircleComponent();
             this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.layoutSupport = new System.Windows.Forms.FlowLayoutPanel();
@@ -40,9 +41,9 @@
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconApp = new TFG_Client.MyOwnCircleComponent();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.flowLayoutUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.layoutOptions.SuspendLayout();
             this.layoutSupport.SuspendLayout();
@@ -54,7 +55,6 @@
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutUp
@@ -69,6 +69,16 @@
             this.flowLayoutUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseDown);
             this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
             this.flowLayoutUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseUp);
+            // 
+            // iconApp
+            // 
+            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
+            this.iconApp.Location = new System.Drawing.Point(3, 3);
+            this.iconApp.Name = "iconApp";
+            this.iconApp.Size = new System.Drawing.Size(51, 46);
+            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconApp.TabIndex = 1;
+            this.iconApp.TabStop = false;
             // 
             // iconUser
             // 
@@ -238,16 +248,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(361, 52);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // iconApp
-            // 
-            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
-            this.iconApp.Location = new System.Drawing.Point(3, 3);
-            this.iconApp.Name = "iconApp";
-            this.iconApp.Size = new System.Drawing.Size(51, 46);
-            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconApp.TabIndex = 1;
-            this.iconApp.TabStop = false;
-            // 
             // userNameLabel
             // 
             this.userNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -275,6 +275,7 @@
             this.Name = "UserControlPanel";
             this.Text = "userControlPanel";
             this.flowLayoutUp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.layoutOptions.ResumeLayout(false);
             this.layoutSupport.ResumeLayout(false);
@@ -291,7 +292,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

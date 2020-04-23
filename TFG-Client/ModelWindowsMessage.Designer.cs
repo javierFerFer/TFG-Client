@@ -141,9 +141,9 @@
         public System.Windows.Forms.PictureBox ImageSchool;
         public System.Windows.Forms.Label messageLabel;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Panel panelDown;
-        private System.Windows.Forms.Panel panelUp;
+        public System.Windows.Forms.Panel panelDown;
+        public System.Windows.Forms.Panel panelUp;
         public System.Windows.Forms.Label title;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutTitle;
+        public System.Windows.Forms.FlowLayoutPanel flowLayoutTitle;
     }
 }

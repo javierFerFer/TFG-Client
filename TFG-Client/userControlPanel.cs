@@ -15,11 +15,15 @@ namespace TFG_Client {
         private Point startPoint = new Point(0, 0);
 
         public UserControlPanel(string userMailParam, MyOwnCircleComponent userImageParam) {
-            InitializeComponent();
-            userNameLabel.Text = userMailParam;
-            iconUser.Image = userImageParam.Image;
-            layoutOptions.Visible = false;
-            Utilities.checkWindowsFormPositon(this);
+            try {
+                InitializeComponent();
+                userNameLabel.Text = userMailParam;
+                iconUser.Image = userImageParam.Image;
+                layoutOptions.Visible = false;
+                Utilities.checkWindowsFormPositon(this);
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 407, null);
+            }
         }
 
         /// <summary>

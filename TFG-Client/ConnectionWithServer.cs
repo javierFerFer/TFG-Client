@@ -48,6 +48,7 @@ namespace TFG_Client {
         private static bool readServerData = true;
         private static Button loginButton;
         private static MyOwnCircleComponent userImage;
+        private static TcpClient clientSocket;
 
         /// <summary>
         /// Constructor del objeto conexión
@@ -66,14 +67,15 @@ namespace TFG_Client {
         /// </summary>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void run(MainFormProgram loginFormParam) {
-            //try {
+
                 loginForm = loginFormParam;
+
                 // Reseteo de variable en caso de login fallido
                 readServerData = true;
 
                 increaseLoadingBar();
-
-                TcpClient clientSocket = new TcpClient();
+            try {
+                clientSocket = new TcpClient();
                 clientSocket.Connect("178.62.40.25", 12345);
                 increaseLoadingBar();
 
@@ -82,6 +84,7 @@ namespace TFG_Client {
 
                 // Antes debe hacer una petición para obtener la clave de encriptación
                 byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(JsonGetKey);
+
                 serverStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
                 serverStream.Flush();
@@ -122,12 +125,15 @@ namespace TFG_Client {
                         serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
 
                         string serverMessageDesencrypt = Utilities.Decrypt(serverMessage, IvString, EncryptKey);
-
-
+                        if (serverMessageDesencrypt == "") {
+                            resetLoadingBar();
+                            throw new Exception("Error, el servidor se cerró inesperadamente");
+                        }
 
                         if (serverMessageDesencrypt == "") {
                             // Conexión con el servidor perdida, cierre de app y vuelta a login
-                            MessageBox.Show("Se ha cerrado la conexion");
+                            Utilities.customErrorInfo("Se ha cerrado la conexion");
+                            resetLoadingBar();
                             MainFormProgram.checkConnectionWithServer = false;
                             readServerData = false;
                             loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
@@ -141,11 +147,11 @@ namespace TFG_Client {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 if (singleAnswer.B_Content.Equals("correct")) {
                                     // Pasaria a la ventana del programa principal
-                                    MessageBox.Show("Login correcto");
-
                                     // Peticion de nombre del usuario al servidor
                                     string getNameJson = Utilities.generateSingleDataRequest("getNameOfMail", emailUser);
-
+                                    if (getNameJson == "") {
+                                        throw new Exception("Error, valor vacío detectado");
+                                    }
                                     byte[] byteArrayNameData = Encoding.ASCII.GetBytes(Utilities.Encrypt(getNameJson, EncryptKey, IvString));
 
                                     serverStream.Write(byteArrayNameData, 0, byteArrayNameData.Length);
@@ -153,14 +159,17 @@ namespace TFG_Client {
                                     serverStream.Flush();
 
                                 } else if (singleAnswer.B_Content.Equals("incorrect")) {
+                                    resetLoadingBar();
                                     // Mensaje de error de datos invalidos en el login
-                                    MessageBox.Show("Login incorrecto");
+                                    Utilities.customErrorInfo("Datos de login incorrectos");
                                     loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
                                 }
                             } else if (json.First.ToString().Contains("connectionStatus")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 if (singleAnswer.B_Content.Equals("closedForTimeOut")) {
-                                    MessageBox.Show("Conexión con el servidor finalizada por time out");
+                                    resetLoadingBar();
+                                    // Debe borrar ventana de usuario y volver a mostrar la de login
+                                    Utilities.customErrorInfo("Su tiempo de inactividad ha alcanzado el límite,\n se ha desconectado del servidor");
                                     resetLoadingBar();
                                     MainFormProgram.checkConnectionWithServer = false;
                                     readServerData = false;
@@ -171,43 +180,24 @@ namespace TFG_Client {
                                 // Tras login correcto, se ha pedido el nombre de usuario al servidor
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 nameOfUser = singleAnswer.B_Content;
-                                MessageBox.Show(nameOfUser);
                                 loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
                                 UserControlPanelObject = new UserControlPanel(NameOfUser, userImage);
                                 UserControlPanelObject.ShowDialog();
                             }
-
-
-
-
-                            //JSonSingleData answerServer = JsonConvert.DeserializeObject<JSonObjectArray>(mensajeServidor);
                         }
                     }
-
                 } else {
-                    // Mensaje de error al no poder obtener la key
+                    resetLoadingBar();
+                    Utilities.customErrorInfo("No se pudo obtener la clave de conexión con el servidor, intentelo más tarde");
                 }
-            //Console.WriteLine(mensajeServidor);
-
-
-
-            // Desencriptación del mensaje recibido por el servidor
-            // Si es correcto, abre la siguiente interfaz, en caso contrario error
-
-            //} catch (Exception ex) {
-            //    MessageBox.Show(ex.ToString());
-            //    // Error al intentar acceder al sistema, el servidor no está funcionando
-            //resetLoadingBar();
-            //MainFormProgram.checkConnectionWithServer = false;
-            //readServerData = false;
-            //loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-            //}
-
+            } catch (Exception ex) {
+                resetLoadingBar();
+                MainFormProgram.checkConnectionWithServer = false;
+                readServerData = false;
+                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 500, null);
+            }
         }
-
-
-
-
 
 
         /// <summary>
@@ -216,9 +206,13 @@ namespace TFG_Client {
         /// Increment loading bar in login screen
         /// </summary>
         private static void increaseLoadingBar() {
-            LoadPanel.Invoke(new Action(() => {
-                LoadPanel.Width += 50;
-            }));
+            try {
+                LoadPanel.Invoke(new Action(() => {
+                    LoadPanel.Width += 50;
+                }));
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 402, loginForm);
+            }
         }
 
         /// <summary>
@@ -227,10 +221,16 @@ namespace TFG_Client {
         /// Reset loading bar in login screen
         /// </summary>
         private static void resetLoadingBar() {
-            LoadPanel.Invoke(new Action(() => {
-                LoadPanel.Visible = false;
-                LoadPanel.Width = 50;
-            }));
+            try {
+                MainFormProgram.tConnection = null;
+
+                LoadPanel.Invoke(new Action(() => {
+                    LoadPanel.Visible = false;
+                    LoadPanel.Width = 50;
+                }));
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 403, loginForm);
+            }
         }
 
         // Gets y sets

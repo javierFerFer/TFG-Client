@@ -17,115 +17,147 @@ using System.Windows.Forms.VisualStyles;
 namespace TFG_Client {
     static class Utilities {
 
+        public static bool showDevelopMessages = true;
+        private static string emptyString = "";
 
         public static string generateSingleDataRequest(string titleMessageParam) {
-            JSonSingleData singleDataObject = new JSonSingleData();
-            singleDataObject.A_Title = titleMessageParam;
+            try {
+                JSonSingleData singleDataObject = new JSonSingleData();
+                singleDataObject.A_Title = titleMessageParam;
 
-            string jsonFormat = JsonConvert.SerializeObject(singleDataObject);
+                string jsonFormat = JsonConvert.SerializeObject(singleDataObject);
 
-            return jsonFormat;
+                return jsonFormat;
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 701, null);
+                return emptyString;
+            }
         }
 
         public static string generateSingleDataRequest(string titleMessageParam, string contentParam) {
-            JSonSingleData singleDataObject = new JSonSingleData();
-            singleDataObject.A_Title = titleMessageParam;
-            singleDataObject.B_Content = contentParam;
+            try {
+                JSonSingleData singleDataObject = new JSonSingleData();
+                singleDataObject.A_Title = titleMessageParam;
+                singleDataObject.B_Content = contentParam;
 
-            string jsonFormat = JsonConvert.SerializeObject(singleDataObject);
+                string jsonFormat = JsonConvert.SerializeObject(singleDataObject);
 
-            return jsonFormat;
+                return jsonFormat;
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 702, null);
+                return emptyString;
+            }
         }
 
         public static string generateJsonObjectArrayString(string titleMessageParam, string [] allContentParam) {
-            JSonObjectArray objectArray = new JSonObjectArray();
-            objectArray.A_Title = titleMessageParam;
-            objectArray.B_Content = allContentParam;
+            try {
+                JSonObjectArray objectArray = new JSonObjectArray();
+                objectArray.A_Title = titleMessageParam;
+                objectArray.B_Content = allContentParam;
 
-            string jsonFormat = JsonConvert.SerializeObject(objectArray);
-            return jsonFormat;
+                string jsonFormat = JsonConvert.SerializeObject(objectArray);
+                return jsonFormat;
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 703, null);
+                return emptyString;
+            }
+            
         }
 
 
 
         public static string Decrypt(string encryptedInputBase64, string ivStringParam, string passwd) {
+            try {
+                using (AesCryptoServiceProvider aesEncryptor = new AesCryptoServiceProvider()) {
+                    var encryptedData = Convert.FromBase64String(encryptedInputBase64);
+                    var btKey = System.Text.Encoding.ASCII.GetBytes(passwd);
+                    byte[] iv = Encoding.ASCII.GetBytes(ivStringParam);
 
-            using (AesCryptoServiceProvider aesEncryptor = new AesCryptoServiceProvider()) {
-                var encryptedData = Convert.FromBase64String(encryptedInputBase64);
-                var btKey = System.Text.Encoding.ASCII.GetBytes(passwd);
-                byte[] iv = Encoding.ASCII.GetBytes(ivStringParam);
+                    var keyString = System.Text.Encoding.Unicode.GetString(aesEncryptor.Key);
+                    aesEncryptor.Mode = CipherMode.CBC;
+                    aesEncryptor.Padding = PaddingMode.PKCS7;
+                    aesEncryptor.KeySize = 256;
+                    aesEncryptor.BlockSize = 128;
+                    aesEncryptor.Key = btKey;
 
-                var keyString = System.Text.Encoding.Unicode.GetString(aesEncryptor.Key);
-                aesEncryptor.Mode = CipherMode.CBC;
-                aesEncryptor.Padding = PaddingMode.PKCS7;
-                aesEncryptor.KeySize = 256;
-                aesEncryptor.BlockSize = 128;
-                aesEncryptor.Key = btKey;
+                    aesEncryptor.IV = iv;
 
-                aesEncryptor.IV = iv;
-
-                return InternalDecrypt(aesEncryptor, encryptedData);
+                    return InternalDecrypt(aesEncryptor, encryptedData);
+                }
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 704, null);
+                return emptyString;
             }
         }
 
 
         private static string InternalDecrypt(AesCryptoServiceProvider aesEncryptor, byte[] encryptedData) {
-            using (ICryptoTransform decryptor = aesEncryptor.CreateDecryptor(aesEncryptor.Key,
+            try {
+                using (ICryptoTransform decryptor = aesEncryptor.CreateDecryptor(aesEncryptor.Key,
                                                                              aesEncryptor.IV)) {
-                byte[] decrypted;
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(encryptedData)) {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt,
-                                                                     decryptor,
-                                                                     CryptoStreamMode.Read)) {
-                        decrypted = new byte[encryptedData.Length];
-                        var byteCount = csDecrypt.Read(decrypted, 0, encryptedData.Length);
-                        string strResult = Encoding.ASCII.GetString(decrypted);
-                        int pos = strResult.IndexOf('\0');
-                        if (pos >= 0)
-                            strResult = strResult.Substring(0, pos);
-                        return strResult;
+                    byte[] decrypted;
+                    // Create the streams used for decryption.
+                    using (MemoryStream msDecrypt = new MemoryStream(encryptedData)) {
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt,
+                                                                         decryptor,
+                                                                         CryptoStreamMode.Read)) {
+                            decrypted = new byte[encryptedData.Length];
+                            var byteCount = csDecrypt.Read(decrypted, 0, encryptedData.Length);
+                            string strResult = Encoding.ASCII.GetString(decrypted);
+                            int pos = strResult.IndexOf('\0');
+                            if (pos >= 0)
+                                strResult = strResult.Substring(0, pos);
+                            return strResult;
+                        }
                     }
                 }
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 705, null);
+                return emptyString;
             }
         }
 
         public static string Encrypt(string message, string KeyString, string IVString) {
-            byte[] Key = ASCIIEncoding.UTF8.GetBytes(KeyString);
-            byte[] IV = ASCIIEncoding.UTF8.GetBytes(IVString);
-
-            string encrypted = null;
-            RijndaelManaged rj = new RijndaelManaged();
-            rj.Key = Key;
-            rj.IV = IV;
-            rj.Mode = CipherMode.CBC;
-
             try {
-                MemoryStream ms = new MemoryStream();
+                byte[] Key = ASCIIEncoding.UTF8.GetBytes(KeyString);
+                byte[] IV = ASCIIEncoding.UTF8.GetBytes(IVString);
 
-                using (CryptoStream cs = new CryptoStream(ms, rj.CreateEncryptor(Key, IV), CryptoStreamMode.Write)) {
-                    using (StreamWriter sw = new StreamWriter(cs)) {
-                        sw.Write(message);
-                        sw.Close();
+                string encrypted = null;
+                RijndaelManaged rj = new RijndaelManaged();
+                rj.Key = Key;
+                rj.IV = IV;
+                rj.Mode = CipherMode.CBC;
+
+                try {
+                    MemoryStream ms = new MemoryStream();
+
+                    using (CryptoStream cs = new CryptoStream(ms, rj.CreateEncryptor(Key, IV), CryptoStreamMode.Write)) {
+                        using (StreamWriter sw = new StreamWriter(cs)) {
+                            sw.Write(message);
+                            sw.Close();
+                        }
+                        cs.Close();
                     }
-                    cs.Close();
-                }
-                byte[] encoded = ms.ToArray();
-                encrypted = Convert.ToBase64String(encoded);
+                    byte[] encoded = ms.ToArray();
+                    encrypted = Convert.ToBase64String(encoded);
 
-                ms.Close();
-            } catch (CryptographicException e) {
-                Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
-                return null;
-            } catch (UnauthorizedAccessException e) {
-                Console.WriteLine("A file error occurred: {0}", e.Message);
-                return null;
-            } catch (Exception e) {
-                Console.WriteLine("An error occurred: {0}", e.Message);
-            } finally {
-                rj.Clear();
+                    ms.Close();
+                } catch (CryptographicException e) {
+                    Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
+                    return null;
+                } catch (UnauthorizedAccessException e) {
+                    Console.WriteLine("A file error occurred: {0}", e.Message);
+                    return null;
+                } catch (Exception e) {
+                    Console.WriteLine("An error occurred: {0}", e.Message);
+                } finally {
+                    rj.Clear();
+                }
+                return encrypted;
+            } catch (Exception ex) {
+                createErrorMessage(ex.Message.ToString(), showDevelopMessages, 706, null);
+                return emptyString;
             }
-            return encrypted;
         }
 
         /// <summary>
@@ -179,7 +211,7 @@ namespace TFG_Client {
                 string userName = keyPosition.GetValue("user", true).ToString();
 
                 byte[] imageArrayBytes = (byte[])keyPosition.GetValue("userImage", true);
-                loginForm.userImage.Image = loginForm.byteArrayToImage(imageArrayBytes);
+                loginForm.userImage.Image = byteArrayToImage(imageArrayBytes);
 
                 loginForm.Left = Int32.Parse(positionX);
                 loginForm.Top = Int32.Parse(positionY);
@@ -252,20 +284,6 @@ namespace TFG_Client {
                 keyPosition.Close();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         /// <summary>
@@ -351,18 +369,82 @@ namespace TFG_Client {
         /// Create and show support form.
         /// </summary>
         public static void createSupportForm() {
-            ModelWindowsMessage supportForm = new ModelWindowsMessage();
-            supportForm.StartPosition = FormStartPosition.CenterParent;
-            supportForm.title.Text = "Soporte";
-            supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
-                                            "envie un correo a javierferfer99@gmail.com \n" +
-                                            "gracias por su colaboración";
+            try {
+                ModelWindowsMessage supportForm = new ModelWindowsMessage();
+                supportForm.StartPosition = FormStartPosition.CenterParent;
+                supportForm.title.Text = "Soporte";
+                supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
+                                                "envie un correo a javierferfer99@gmail.com \n" +
+                                                "gracias por su colaboración";
 
-            Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
-            supportForm.messageLabel.Location = centerLocation;
-            supportForm.ImageSchool.Visible = false;
-            supportForm.ShowDialog();
+                Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
+                supportForm.messageLabel.Location = centerLocation;
+                supportForm.ImageSchool.Visible = false;
+                supportForm.ShowDialog();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+
+
+        public static void customErrorInfo(string messageParam) {
+            try {
+                ModelWindowsMessage customErrorMessage = new ModelWindowsMessage();
+                customErrorMessage.StartPosition = FormStartPosition.CenterScreen;
+                customErrorMessage.title.Text = "Un error se ha producido";
+                customErrorMessage.messageLabel.Text = messageParam;
+
+                if (customErrorMessage.Width < customErrorMessage.messageLabel.Width) {
+                    customErrorMessage.Width = customErrorMessage.messageLabel.Width + 50;
+
+                    customErrorMessage.flowLayoutTitle.Width = customErrorMessage.messageLabel.Width + 60;
+                    customErrorMessage.panelDown.Width = customErrorMessage.Width + 10;
+                    customErrorMessage.panelUp.Width = customErrorMessage.Width + 10;
+                }
+
+                customErrorMessage.ImageSchool.Visible = false;
+                customErrorMessage.ShowDialog();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        public static void createErrorMessage(string message, bool showDevelopMessage, int codError, Form activeFormParam) {
+            try {
+                ModelWindowsMessage errorForm = new ModelWindowsMessage();
+                errorForm.title.Text = "Error";
+
+
+                if (showDevelopMessage) {
+                    errorForm.messageLabel.Text = message;
+                } else {
+                    errorForm.messageLabel.Text = "Se ha producido un error interno con código: " + codError.ToString() + "\n" +
+                                                   "Pongase en contacto con el administrador";
+                }
+
+                if (errorForm.Width < errorForm.messageLabel.Width) {
+                    errorForm.Width = errorForm.messageLabel.Width + 50;
+
+                    errorForm.flowLayoutTitle.Width = errorForm.messageLabel.Width + 60;
+                    errorForm.panelDown.Width = errorForm.Width + 10;
+                    errorForm.panelUp.Width = errorForm.Width + 10;
+                }
+
+                if (activeFormParam == null) {
+                    errorForm.StartPosition = FormStartPosition.CenterScreen;
+                    errorForm.ImageSchool.Visible = false;
+                    errorForm.ShowDialog();
+                } else {
+                    Point centerLocation = new Point(activeFormParam.Location.X + 120, activeFormParam.Location.Y);
+                    errorForm.messageLabel.Location = centerLocation;
+                    errorForm.ImageSchool.Visible = false;
+                    errorForm.ShowDialog();
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
 
         /// <summary>
         /// Crea y muestra el formulario de 'Acerca de...' al usuario
@@ -370,14 +452,19 @@ namespace TFG_Client {
         /// Create and show About form.
         /// </summary>
         public static void createAboutForm() {
-            ModelWindowsMessage aboutForm = new ModelWindowsMessage();
-            aboutForm.StartPosition = FormStartPosition.CenterParent;
-            aboutForm.title.Text = "Acerca de...";
-            aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
-                                          "por Javier Fernández Fernández \n" +
-                                          "como trabajo de final de grado.";
-            aboutForm.ShowDialog();
+            try {
+                ModelWindowsMessage aboutForm = new ModelWindowsMessage();
+                aboutForm.StartPosition = FormStartPosition.CenterParent;
+                aboutForm.title.Text = "Acerca de...";
+                aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
+                                              "por Javier Fernández Fernández \n" +
+                                              "como trabajo de final de grado.";
+                aboutForm.ShowDialog();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+
 
         /// <summary>
         /// Permite mirar la horientación de la imagen y establecer en las propiedades de la misma
@@ -396,7 +483,23 @@ namespace TFG_Client {
             return ImageOrientation.Vertical;
         }
 
-
+        /// <summary>
+        /// Convierte el array de bytes en una imagen
+        /// 
+        /// Convert byte array into image
+        /// </summary>
+        /// <param name="byteArrayParam">byte [], Array de bytes que contiene toda la info sobre la imagen antes de ser convertida a imagen</param>
+        /// <param name="byteArrayParam">byte [], array of bytes that contain all information about image before that convert into image</param>
+        /// <returns>
+        /// El array de bytes convertido a imagen
+        /// 
+        /// Array of bytes convert into image
+        /// </returns>
+        public static Image byteArrayToImage(byte[] byteArrayParam) {
+            using (MemoryStream ms = new MemoryStream(byteArrayParam)) {
+                return Image.FromStream(ms);
+            }
+        }
 
         /// <summary>
         /// Almacena las propiedades de la imagen trás ser modificadas para que la imagen esté en vertical.

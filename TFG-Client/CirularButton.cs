@@ -29,10 +29,14 @@ namespace TFG_Client {
         /// <param name="pevent">PaintEventArgs, evento que indica que se debe mostrar el componente en pantalla</param>
         /// <param name="pevent">PaintEventArgs, Event about 'paint' this component into screen</param>
         protected override void OnPaint(PaintEventArgs pevent) {
-            GraphicsPath gPath = new GraphicsPath();
-            gPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-            Region = new System.Drawing.Region(gPath);
-            base.OnPaint(pevent);
+            try {
+                GraphicsPath gPath = new GraphicsPath();
+                gPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
+                Region = new System.Drawing.Region(gPath);
+                base.OnPaint(pevent);
+            } catch (Exception ex) {
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 401, null);
+            }
         }
     }
 }
