@@ -295,20 +295,6 @@ namespace TFG_Client {
         /// <param name="sender">object, Object that active this event</param>
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
-        private void exitLabel_Click(object sender, EventArgs e) {
-            saveWindowsFormPosition();
-            Application.Exit();
-        }
-
-        /// <summary>
-        /// Evento de click para cerrar el formulario
-        /// 
-        /// Click event for to close this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
         private void exitImage_Click(object sender, EventArgs e) {
             saveWindowsFormPosition();
             Application.Exit();
@@ -690,7 +676,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutAbout_Click(object sender, EventArgs e) {
-            createAboutForm();
+            Utilities.createAboutForm();
         }
 
         /// <summary>
@@ -703,7 +689,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void aboutLabel_Click(object sender, EventArgs e) {
-            createAboutForm();
+            Utilities.createAboutForm();
         }
 
         /// <summary>
@@ -716,7 +702,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void aboutIcon_Click(object sender, EventArgs e) {
-            createAboutForm();
+            Utilities.createAboutForm();
         }
 
         /// <summary>
@@ -729,7 +715,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutSupport_Click(object sender, EventArgs e) {
-            createSupportForm();
+            Utilities.createSupportForm();
         }
 
         /// <summary>
@@ -742,7 +728,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void supportLabel_Click(object sender, EventArgs e) {
-            createSupportForm();
+            Utilities.createSupportForm();
         }
 
         /// <summary>
@@ -755,41 +741,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void supportIcon_Click(object sender, EventArgs e) {
-            createSupportForm();
-        }
-
-        /// <summary>
-        /// Crea y muestra el formulario de soporte al usuario
-        /// 
-        /// Create and show support form.
-        /// </summary>
-        private void createSupportForm() {
-            ModelWindowsMessage supportForm = new ModelWindowsMessage();
-            supportForm.StartPosition = FormStartPosition.CenterParent;
-            supportForm.title.Text = "Soporte";
-            supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
-                                            "envie un correo a javierferfer99@gmail.com \n" +
-                                            "gracias por su colaboración";
-
-            Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
-            supportForm.messageLabel.Location = centerLocation;
-            supportForm.ImageSchool.Visible = false;
-            supportForm.ShowDialog();
-        }
-
-        /// <summary>
-        /// Crea y muestra el formulario de 'Acerca de...' al usuario
-        /// 
-        /// Create and show About form.
-        /// </summary>
-        private void createAboutForm() {
-            ModelWindowsMessage aboutForm = new ModelWindowsMessage();
-            aboutForm.StartPosition = FormStartPosition.CenterParent;
-            aboutForm.title.Text = "Acerca de...";
-            aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
-                                          "por Javier Fernández Fernández \n" +
-                                          "como trabajo de final de grado.";
-            aboutForm.ShowDialog();
+            Utilities.createSupportForm();
         }
 
         private void sendData_Click(object sender, EventArgs e) {

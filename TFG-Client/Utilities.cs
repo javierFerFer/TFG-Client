@@ -10,10 +10,12 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace TFG_Client {
     static class Utilities {
+
 
         public static string generateSingleDataRequest(string titleMessageParam) {
             JSonSingleData singleDataObject = new JSonSingleData();
@@ -148,6 +150,40 @@ namespace TFG_Client {
         }
 
         /// <summary>
+        /// Crea y muestra el formulario de soporte al usuario
+        /// 
+        /// Create and show support form.
+        /// </summary>
+        public static void createSupportForm() {
+            ModelWindowsMessage supportForm = new ModelWindowsMessage();
+            supportForm.StartPosition = FormStartPosition.CenterParent;
+            supportForm.title.Text = "Soporte";
+            supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
+                                            "envie un correo a javierferfer99@gmail.com \n" +
+                                            "gracias por su colaboración";
+
+            Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
+            supportForm.messageLabel.Location = centerLocation;
+            supportForm.ImageSchool.Visible = false;
+            supportForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Crea y muestra el formulario de 'Acerca de...' al usuario
+        /// 
+        /// Create and show About form.
+        /// </summary>
+        public static void createAboutForm() {
+            ModelWindowsMessage aboutForm = new ModelWindowsMessage();
+            aboutForm.StartPosition = FormStartPosition.CenterParent;
+            aboutForm.title.Text = "Acerca de...";
+            aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
+                                          "por Javier Fernández Fernández \n" +
+                                          "como trabajo de final de grado.";
+            aboutForm.ShowDialog();
+        }
+
+        /// <summary>
         /// Permite mirar la horientación de la imagen y establecer en las propiedades de la misma
         /// que esté recta en caso de ser necesario.
         /// 
@@ -163,6 +199,8 @@ namespace TFG_Client {
             PropertyItem pi = SafeGetPropertyItem(image, 0x112);
             return ImageOrientation.Vertical;
         }
+
+
 
         /// <summary>
         /// Almacena las propiedades de la imagen trás ser modificadas para que la imagen esté en vertical.

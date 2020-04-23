@@ -43,6 +43,7 @@ namespace TFG_Client {
         private static string jsonGetKey;
         private static string jsonLoginData;
         private static string emailUser;
+        private static string nameOfUser;
         private static NetworkStream serverStream;
         private static bool readServerData = true;
         private static Button loginButton;
@@ -143,11 +144,14 @@ namespace TFG_Client {
                                     MessageBox.Show("Login correcto");
 
                                     // Peticion de nombre del usuario al servidor
+                                    string getNameJson = Utilities.generateSingleDataRequest("getNameOfMail", emailUser);
 
+                                    byte[] byteArrayNameData = Encoding.ASCII.GetBytes(Utilities.Encrypt(getNameJson, EncryptKey, IvString));
 
-                                    //loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
-                                    //userControlPanelObject = new UserControlPanel(emailUser, userImage);
-                                    //userControlPanelObject.ShowDialog();
+                                    serverStream.Write(byteArrayNameData, 0, byteArrayNameData.Length);
+                                    // Envio de datos mediante flush
+                                    serverStream.Flush();
+
                                 } else if (singleAnswer.B_Content.Equals("incorrect")) {
                                     // Mensaje de error de datos invalidos en el login
                                     MessageBox.Show("Login incorrecto");
@@ -162,6 +166,13 @@ namespace TFG_Client {
                                     readServerData = false;
                                     loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
                                 }
+                            } else if (json.First.ToString().Contains("userNameData")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                nameOfUser = singleAnswer.B_Content;
+
+                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
+                                userControlPanelObject = new UserControlPanel(NameOfUser, userImage);
+                                userControlPanelObject.ShowDialog();
                             }
 
 
@@ -231,5 +242,6 @@ namespace TFG_Client {
         public static Button LoginButton { get => loginButton; set => loginButton = value; }
         public static string EmailUser { get => emailUser; set => emailUser = value; }
         internal static MyOwnCircleComponent UserImage { get => userImage; set => userImage = value; }
+        public static string NameOfUser { get => nameOfUser; set => nameOfUser = value; }
     }
 }

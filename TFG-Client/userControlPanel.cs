@@ -16,8 +16,9 @@ namespace TFG_Client {
 
         public UserControlPanel(string userMailParam, MyOwnCircleComponent userImageParam) {
             InitializeComponent();
-            userMailLabel.Text = userMailParam;
-            userImageCircle.Image = userImageParam.Image;
+            userNameLabel.Text = userMailParam;
+            iconUser.Image = userImageParam.Image;
+            layoutOptions.Visible = false;
         }
 
         /// <summary>
@@ -96,6 +97,191 @@ namespace TFG_Client {
         /// <param name="e">MouseEventArgs, Activated event</param>
         private void flowLayoutUp_MouseUp(object sender, MouseEventArgs e) {
             clickMouse = false;
+        }
+
+        private void userMailLabel_Click(object sender, EventArgs e) {
+            if (layoutOptions.Visible) {
+                layoutOptions.Visible = false;
+            } else {
+                layoutOptions.Visible = true;
+            }
+        }
+
+        private void userImageCircle_Click(object sender, EventArgs e) {
+            if (layoutOptions.Visible) {
+                layoutOptions.Visible = false;
+            } else {
+                layoutOptions.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'Support' option, show support form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void supportLabel_Click(object sender, EventArgs e) {
+            Utilities.createSupportForm();
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'Support' option, show support form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void supportIcon_Click(object sender, EventArgs e) {
+            Utilities.createSupportForm();
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'Support' option, show support form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void layoutSupport_MouseClick(object sender, MouseEventArgs e) {
+            Utilities.createSupportForm();
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'About' option, show about form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void aboutLabel_Click(object sender, EventArgs e) {
+            Utilities.createAboutForm();
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'About' option, show about form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void aboutIcon_Click(object sender, EventArgs e) {
+            Utilities.createAboutForm();
+        }
+
+        /// <summary>
+        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
+        /// 
+        /// Detect if the user does click into 'About' option, show about form.
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void layoutAbout_Click(object sender, EventArgs e) {
+            Utilities.createAboutForm();
+        }
+
+        /// <summary>
+        /// Evento de click para minimizar el formulario
+        /// 
+        /// Click event for to minimize this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void minimizeLabel_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
+            WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Evento de click para minimizar el formulario
+        /// 
+        /// Click event for to minimize this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void minimizeIcon_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
+            WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Evento de click para minimizar el formulario
+        /// 
+        /// Click event for to minimize this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void layoutMinimize_Click(object sender, EventArgs e) {
+            layoutOptions.Visible = false;
+            WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Evento de click para cerrar el formulario
+        /// 
+        /// Click event for to close this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void exitLabel_Click(object sender, EventArgs e) {
+            // Falta guardar la posición al cerrar y al cargar el formulario
+            Application.Exit();
+        }
+        /// <summary>
+        /// Evento de click para cerrar el formulario
+        /// 
+        /// Click event for to close this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void exitImage_Click(object sender, EventArgs e) {
+            // Falta guardar la posición al cerrar y al cargar el formulario
+            Application.Exit();
+        }
+
+        /// <summary>
+        /// Evento de click para cerrar el formulario
+        /// 
+        /// Click event for to close this form
+        /// </summary>
+        /// <param name="sender">object, Objecto que avtiva el evento</param>
+        /// <param name="sender">object, Object that active this event</param>
+        /// <param name="e">EventArgs, evento activado</param>
+        /// <param name="e">EventArgs, Activated event</param>
+        private void layoutExit_Click(object sender, EventArgs e) {
+            // Falta guardar la posición al cerrar y al cargar el formulario
+            Application.Exit();
+        }
+
+        private void userNameLabel_Click(object sender, EventArgs e) {
+            if (layoutOptions.Visible) {
+                layoutOptions.Visible = false;
+            } else {
+                layoutOptions.Visible = true;
+            }
         }
     }
 }
