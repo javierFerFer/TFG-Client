@@ -66,7 +66,7 @@ namespace TFG_Client {
         /// </summary>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void run(MainFormProgram loginFormParam) {
-            try {
+            //try {
                 loginForm = loginFormParam;
                 // Reseteo de variable en caso de login fallido
                 readServerData = true;
@@ -167,12 +167,14 @@ namespace TFG_Client {
                                     loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
                                 }
                             } else if (json.First.ToString().Contains("userNameData")) {
+
+                                // Tras login correcto, se ha pedido el nombre de usuario al servidor
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 nameOfUser = singleAnswer.B_Content;
-
+                                MessageBox.Show(nameOfUser);
                                 loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
-                                userControlPanelObject = new UserControlPanel(NameOfUser, userImage);
-                                userControlPanelObject.ShowDialog();
+                                UserControlPanelObject = new UserControlPanel(NameOfUser, userImage);
+                                UserControlPanelObject.ShowDialog();
                             }
 
 
@@ -185,28 +187,28 @@ namespace TFG_Client {
                 } else {
                     // Mensaje de error al no poder obtener la key
                 }
-                //Console.WriteLine(mensajeServidor);
+            //Console.WriteLine(mensajeServidor);
 
 
 
-                // Desencriptación del mensaje recibido por el servidor
-                // Si es correcto, abre la siguiente interfaz, en caso contrario error
+            // Desencriptación del mensaje recibido por el servidor
+            // Si es correcto, abre la siguiente interfaz, en caso contrario error
 
-            } catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
-                // Error al intentar acceder al sistema, el servidor no está funcionando
-                resetLoadingBar();
-                MainFormProgram.checkConnectionWithServer = false;
-                readServerData = false;
-                loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-            }
+            //} catch (Exception ex) {
+            //    MessageBox.Show(ex.ToString());
+            //    // Error al intentar acceder al sistema, el servidor no está funcionando
+            //resetLoadingBar();
+            //MainFormProgram.checkConnectionWithServer = false;
+            //readServerData = false;
+            //loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+            //}
 
         }
 
-        
 
 
-        
+
+
 
         /// <summary>
         /// Incrementa la barra de carga del formulario del login
@@ -243,5 +245,6 @@ namespace TFG_Client {
         public static string EmailUser { get => emailUser; set => emailUser = value; }
         internal static MyOwnCircleComponent UserImage { get => userImage; set => userImage = value; }
         public static string NameOfUser { get => nameOfUser; set => nameOfUser = value; }
+        public static UserControlPanel UserControlPanelObject { get => userControlPanelObject; set => userControlPanelObject = value; }
     }
 }

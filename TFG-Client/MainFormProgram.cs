@@ -59,67 +59,16 @@ namespace TFG_Client {
         /// </summary>
         public MainFormProgram() {
             InitializeComponent();
-            checkWindowsFormPositon();
+            loginForm = this;
+            Utilities.checkWindowsFormPositon(loginForm);
             /**
              * Se usa para que el textbox de usuario no establezca el foco.
              * 
              * This is for to remove focus of the user textBox.
              */
             ActiveControl = titleLabel;
-            loginForm = this;
         }
-        /// <summary>
-        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
-        /// 
-        /// Check windows form position, user data and user image in the windows registry. Load these datas if found in the windows registry.
-        /// </summary>
-        private void checkWindowsFormPositon() {
 
-            bool checkPositionRegistryKey = OpenKey("positionX");
-
-            if (!checkPositionRegistryKey) {
-                RegistryKey keyPosition;
-                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
-                keyPosition.SetValue("positionX", Left);
-                keyPosition.SetValue("positionY", Top);
-
-                ImageConverter imgConv = new ImageConverter();
-                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(userImage.Image, typeof(byte []));
-                keyPosition.SetValue("userImage", imgArrayBytes);
-
-                keyPosition.SetValue("user", textBoxUser.Text);
-
-                keyPosition.Close();
-            } else {
-                RegistryKey keyPosition = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
-                string positionX = keyPosition.GetValue("positionX", true).ToString();
-                string positionY = keyPosition.GetValue("positionY", true).ToString();
-                string userName = keyPosition.GetValue("user", true).ToString();
-
-                byte [] imageArrayBytes = (byte []) keyPosition.GetValue("userImage", true);
-                userImage.Image = byteArrayToImage(imageArrayBytes);
-
-                Left = Int32.Parse(positionX);
-                Top = Int32.Parse(positionY);
-                StartPosition = FormStartPosition.Manual;
-                Location = new Point(Left, Top);
-
-                textBoxUser.Text = userName;
-                /**
-                 * Restablece el placeholder del input text asociado al usuario
-                 * 
-                 * Restarted user input placeholder.
-                 */
-                if (textBoxUser.Text == "Correo") {
-                    textBoxUser.ForeColor = Color.DarkGray;
-                } else {
-                    textBoxUser.ForeColor = Color.Black;
-                }
-                
-
-            }
-
-        }
 
         /// <summary>
         /// Convierte el array de bytes en una imagen
@@ -139,55 +88,7 @@ namespace TFG_Client {
             }
         }
 
-        /// <summary>
-        /// Almacena la posición de la ventana al ser cerrada por el usuario
-        /// 
-        /// Stored position of login form when user close the login screen
-        /// </summary>
-        private void saveWindowsFormPosition() {
-            if (WindowState != FormWindowState.Minimized) {
-                int positionX = Left;
-                int positionY = Top;
-
-                RegistryKey keyPosition;
-                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
-                keyPosition.SetValue("positionX", positionX);
-                keyPosition.SetValue("positionY", positionY);
-                ImageConverter imgConv = new ImageConverter();
-                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(userImage.Image, typeof(byte[]));
-                keyPosition.SetValue("userImage", imgArrayBytes);
-                keyPosition.SetValue("user", textBoxUser.Text);
-                keyPosition.Close();
-            }
-        }
-
-        /// <summary>
-        /// Revisa si el valor recibido como parámetro se encuentra en el registro de windows
-        /// 
-        /// Check if parameter value exist into windows registry.
-        /// </summary>
-        /// <param name="value">string, valor a buscar en el registro de windows</param>
-        /// <param name="value">string, value to find into windows registry</param>
-        /// <returns>
-        /// True, si encuentra el valor.
-        /// False, si no lo encuentra.
-        /// 
-        /// True, if this valor exist.
-        /// False, if this valor don't exist.
-        /// </returns>
-        private bool OpenKey(string value) {
-            try {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
-                if (key == null) {
-                    throw new Exception();
-                } else {
-                    return true;
-                }
-            } catch (Exception ex) {
-                return false;
-            }
-
-        }
+        
 
         /// <summary>
         /// Evento de cierre sobreescrito para que, antes de cerrar el formulario, almacene la posición del mismo en el registro de windows
@@ -210,7 +111,10 @@ namespace TFG_Client {
             }
             
             base.OnFormClosed(e);
-            saveWindowsFormPosition();
+            Utilities.saveWindowsFormPosition(loginForm);
+            if (ConnectionWithServer.UserControlPanelObject != null) {
+                Utilities.saveWindowsFormPosition(ConnectionWithServer.UserControlPanelObject);
+            }
             Application.Exit();
         }
 
@@ -296,7 +200,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void exitImage_Click(object sender, EventArgs e) {
-            saveWindowsFormPosition();
+            Utilities.saveWindowsFormPosition(loginForm);
             Application.Exit();
         }
 
@@ -310,7 +214,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void exitLabel_Click_1(object sender, EventArgs e) {
-            saveWindowsFormPosition();
+            Utilities.saveWindowsFormPosition(loginForm);
             Application.Exit();
         }
 
@@ -324,7 +228,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutExit_Click(object sender, EventArgs e) {
-            saveWindowsFormPosition();
+            Utilities.saveWindowsFormPosition(loginForm);
             Application.Exit();
         }
 

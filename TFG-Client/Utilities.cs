@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -148,6 +149,201 @@ namespace TFG_Client {
                 return false;
             }
         }
+
+        /// <summary>
+        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
+        /// 
+        /// Check windows form position, user data and user image in the windows registry. Load these datas if found in the windows registry.
+        /// </summary>
+        public static void checkWindowsFormPositon(MainFormProgram loginForm) {
+
+            bool checkPositionRegistryKey = OpenKey(loginForm);
+
+            if (!checkPositionRegistryKey) {
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
+                keyPosition.SetValue("positionX", loginForm.Left);
+                keyPosition.SetValue("positionY", loginForm.Top);
+
+                ImageConverter imgConv = new ImageConverter();
+                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(loginForm.userImage.Image, typeof(byte[]));
+                keyPosition.SetValue("userImage", imgArrayBytes);
+
+                keyPosition.SetValue("user", loginForm.textBoxUser.Text);
+
+                keyPosition.Close();
+            } else {
+                RegistryKey keyPosition = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
+                string positionX = keyPosition.GetValue("positionX", true).ToString();
+                string positionY = keyPosition.GetValue("positionY", true).ToString();
+                string userName = keyPosition.GetValue("user", true).ToString();
+
+                byte[] imageArrayBytes = (byte[])keyPosition.GetValue("userImage", true);
+                loginForm.userImage.Image = loginForm.byteArrayToImage(imageArrayBytes);
+
+                loginForm.Left = Int32.Parse(positionX);
+                loginForm.Top = Int32.Parse(positionY);
+                loginForm.StartPosition = FormStartPosition.Manual;
+                loginForm.Location = new Point(loginForm.Left, loginForm.Top);
+
+                loginForm.textBoxUser.Text = userName;
+                /**
+                 * Restablece el placeholder del input text asociado al usuario
+                 * 
+                 * Restarted user input placeholder.
+                 */
+                if (loginForm.textBoxUser.Text == "Correo") {
+                    loginForm.textBoxUser.ForeColor = Color.DarkGray;
+                } else {
+                    loginForm.textBoxUser.ForeColor = Color.Black;
+                }
+
+
+            }
+
+        }
+
+        /// <summary>
+        /// Revisa si el valor recibido como parámetro se encuentra en el registro de windows
+        /// 
+        /// Check if parameter value exist into windows registry.
+        /// </summary>
+        /// <param name="value">string, valor a buscar en el registro de windows</param>
+        /// <param name="value">string, value to find into windows registry</param>
+        /// <returns>
+        /// True, si encuentra el valor.
+        /// False, si no lo encuentra.
+        /// 
+        /// True, if this valor exist.
+        /// False, if this valor don't exist.
+        /// </returns>
+        public static bool OpenKey(MainFormProgram loginForm) {
+            try {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
+                if (key == null) {
+                    throw new Exception();
+                } else {
+                    return true;
+                }
+            } catch (Exception ex) {
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// Almacena la posición de la ventana al ser cerrada por el usuario
+        /// 
+        /// Stored position of login form when user close the login screen
+        /// </summary>
+        public static void saveWindowsFormPosition(MainFormProgram loginForm) {
+            if (loginForm.WindowState != FormWindowState.Minimized) {
+                int positionX = loginForm.Left;
+                int positionY = loginForm.Top;
+
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config");
+                keyPosition.SetValue("positionX", positionX);
+                keyPosition.SetValue("positionY", positionY);
+                ImageConverter imgConv = new ImageConverter();
+                byte[] imgArrayBytes = (byte[])imgConv.ConvertTo(loginForm.userImage.Image, typeof(byte[]));
+                keyPosition.SetValue("userImage", imgArrayBytes);
+                keyPosition.SetValue("user", loginForm.textBoxUser.Text);
+                keyPosition.Close();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
+        /// 
+        /// Check windows form position, user data and user image in the windows registry. Load these datas if found in the windows registry.
+        /// </summary>
+        public static void checkWindowsFormPositon(UserControlPanel userControlPanel) {
+
+            bool checkPositionRegistryKey = OpenKey(userControlPanel);
+
+            if (!checkPositionRegistryKey) {
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config_userPanel");
+                keyPosition.SetValue("positionX_userPanel", userControlPanel.Left);
+                keyPosition.SetValue("positionY_userPanel", userControlPanel.Top);
+                keyPosition.Close();
+
+            } else {
+                RegistryKey keyPosition = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config_userPanel", true);
+                string positionX = keyPosition.GetValue("positionX_userPanel", true).ToString();
+                string positionY = keyPosition.GetValue("positionY_userPanel", true).ToString();
+
+                userControlPanel.Left = Int32.Parse(positionX);
+                userControlPanel.Top = Int32.Parse(positionY);
+                userControlPanel.StartPosition = FormStartPosition.Manual;
+                userControlPanel.Location = new Point(userControlPanel.Left, userControlPanel.Top);
+            }
+
+        }
+
+        /// <summary>
+        /// Revisa si el valor recibido como parámetro se encuentra en el registro de windows
+        /// 
+        /// Check if parameter value exist into windows registry.
+        /// </summary>
+        /// <param name="value">string, valor a buscar en el registro de windows</param>
+        /// <param name="value">string, value to find into windows registry</param>
+        /// <returns>
+        /// True, si encuentra el valor.
+        /// False, si no lo encuentra.
+        /// 
+        /// True, if this valor exist.
+        /// False, if this valor don't exist.
+        /// </returns>
+        public static bool OpenKey(UserControlPanel userControlPanel) {
+            try {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config_userPanel", true);
+                if (key == null) {
+                    throw new Exception();
+                } else {
+                    return true;
+                }
+            } catch (Exception ex) {
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// Almacena la posición de la ventana al ser cerrada por el usuario
+        /// 
+        /// Stored position of login form when user close the login screen
+        /// </summary>
+        public static void saveWindowsFormPosition(UserControlPanel userControlPanel) {
+            if (userControlPanel.WindowState != FormWindowState.Minimized) {
+                int positionX = userControlPanel.Left;
+                int positionY = userControlPanel.Top;
+
+                RegistryKey keyPosition;
+                keyPosition = Registry.CurrentUser.CreateSubKey("Software\\SEC\\Config_userPanel");
+                keyPosition.SetValue("positionX_userPanel", positionX);
+                keyPosition.SetValue("positionY_userPanel", positionY);
+                keyPosition.Close();
+            }
+        }
+
+
 
         /// <summary>
         /// Crea y muestra el formulario de soporte al usuario

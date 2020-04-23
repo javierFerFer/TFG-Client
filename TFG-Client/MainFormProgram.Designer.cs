@@ -459,10 +459,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox orangeBox;
-        private MyOwnCircleComponent userImage;
+        public MyOwnCircleComponent userImage;
         private System.Windows.Forms.PictureBox userPasswdImage;
         private System.Windows.Forms.PictureBox loginImage;
-        private System.Windows.Forms.TextBox textBoxUser;
+        public System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.PictureBox userIcon;
         private System.Windows.Forms.PictureBox passwdIcon;
         private System.Windows.Forms.TextBox textBoxPasswd;

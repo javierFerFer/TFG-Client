@@ -19,6 +19,7 @@ namespace TFG_Client {
             userNameLabel.Text = userMailParam;
             iconUser.Image = userImageParam.Image;
             layoutOptions.Visible = false;
+            Utilities.checkWindowsFormPositon(this);
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void exitLabel_Click(object sender, EventArgs e) {
-            // Falta guardar la posición al cerrar y al cargar el formulario
+            Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
         /// <summary>
@@ -258,7 +259,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void exitImage_Click(object sender, EventArgs e) {
-            // Falta guardar la posición al cerrar y al cargar el formulario
+            Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
 
@@ -272,7 +273,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutExit_Click(object sender, EventArgs e) {
-            // Falta guardar la posición al cerrar y al cargar el formulario
+            Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
 
