@@ -235,14 +235,14 @@
             this.layoutPanelUserAndImage.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.layoutPanelUserAndImage.Location = new System.Drawing.Point(0, 0);
             this.layoutPanelUserAndImage.Name = "layoutPanelUserAndImage";
-            this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1484, 52);
+            this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1095, 52);
             this.layoutPanelUserAndImage.TabIndex = 3;
             // 
             // iconUser
             // 
             this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
-            this.iconUser.Location = new System.Drawing.Point(1432, 3);
+            this.iconUser.Location = new System.Drawing.Point(1043, 3);
             this.iconUser.Name = "iconUser";
             this.iconUser.Size = new System.Drawing.Size(49, 46);
             this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -257,7 +257,7 @@
             this.userNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameLabel.ForeColor = System.Drawing.Color.White;
-            this.userNameLabel.Location = new System.Drawing.Point(1128, 7);
+            this.userNameLabel.Location = new System.Drawing.Point(739, 7);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(298, 37);
             this.userNameLabel.TabIndex = 2;
@@ -279,7 +279,7 @@
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 52);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(54, 600);
+            this.leftPanel.Size = new System.Drawing.Size(54, 536);
             this.leftPanel.TabIndex = 14;
             // 
             // changesPicture
@@ -322,7 +322,7 @@
             this.flowLayoutUp.Controls.Add(this.iconApp);
             this.flowLayoutUp.Location = new System.Drawing.Point(0, -1);
             this.flowLayoutUp.Name = "flowLayoutUp";
-            this.flowLayoutUp.Size = new System.Drawing.Size(1132, 52);
+            this.flowLayoutUp.Size = new System.Drawing.Size(745, 52);
             this.flowLayoutUp.TabIndex = 0;
             this.flowLayoutUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseDown);
             this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
@@ -344,16 +344,16 @@
             this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataPanel.Location = new System.Drawing.Point(54, 52);
             this.dataPanel.Name = "dataPanel";
-            this.dataPanel.Size = new System.Drawing.Size(1430, 600);
+            this.dataPanel.Size = new System.Drawing.Size(1041, 536);
             this.dataPanel.TabIndex = 15;
             // 
             // rightDock
             // 
             this.rightDock.Controls.Add(this.layoutOptions);
             this.rightDock.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightDock.Location = new System.Drawing.Point(1253, 0);
+            this.rightDock.Location = new System.Drawing.Point(864, 0);
             this.rightDock.Name = "rightDock";
-            this.rightDock.Size = new System.Drawing.Size(177, 600);
+            this.rightDock.Size = new System.Drawing.Size(177, 536);
             this.rightDock.TabIndex = 14;
             // 
             // createExamPicture
@@ -432,7 +432,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1484, 652);
+            this.ClientSize = new System.Drawing.Size(1095, 588);
             this.Controls.Add(this.dataPanel);
             this.Controls.Add(this.leftPanel);
             this.Controls.Add(this.flowLayoutUp);
