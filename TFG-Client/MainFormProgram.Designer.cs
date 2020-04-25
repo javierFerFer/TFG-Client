@@ -179,6 +179,7 @@
             // 
             // optionsIcon
             // 
+            this.optionsIcon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.optionsIcon.Image = ((System.Drawing.Image)(resources.GetObject("optionsIcon.Image")));
             this.optionsIcon.Location = new System.Drawing.Point(732, 3);
             this.optionsIcon.Name = "optionsIcon";
@@ -206,6 +207,7 @@
             this.layoutSupport.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutSupport.Controls.Add(this.supportIcon);
             this.layoutSupport.Controls.Add(this.supportLabel);
+            this.layoutSupport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.layoutSupport.Location = new System.Drawing.Point(3, 3);
             this.layoutSupport.Name = "layoutSupport";
             this.layoutSupport.Size = new System.Drawing.Size(169, 45);
@@ -239,6 +241,7 @@
             this.layoutAbout.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutAbout.Controls.Add(this.aboutIcon);
             this.layoutAbout.Controls.Add(this.aboutLabel);
+            this.layoutAbout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.layoutAbout.Location = new System.Drawing.Point(3, 54);
             this.layoutAbout.Name = "layoutAbout";
             this.layoutAbout.Size = new System.Drawing.Size(169, 49);
@@ -272,6 +275,7 @@
             this.layoutMinimize.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutMinimize.Controls.Add(this.minimizeIcon);
             this.layoutMinimize.Controls.Add(this.minimizeLabel);
+            this.layoutMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.layoutMinimize.Location = new System.Drawing.Point(3, 109);
             this.layoutMinimize.Name = "layoutMinimize";
             this.layoutMinimize.Size = new System.Drawing.Size(169, 42);
@@ -305,6 +309,7 @@
             this.layoutExit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutExit.Controls.Add(this.exitImage);
             this.layoutExit.Controls.Add(this.exitLabel);
+            this.layoutExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.layoutExit.Location = new System.Drawing.Point(3, 157);
             this.layoutExit.Name = "layoutExit";
             this.layoutExit.Size = new System.Drawing.Size(169, 34);
@@ -377,6 +382,7 @@
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.loginButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginButton.FlatAppearance.BorderSize = 0;
             this.loginButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.loginButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -393,6 +399,7 @@
             // 
             // userImage
             // 
+            this.userImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userImage.Image = ((System.Drawing.Image)(resources.GetObject("userImage.Image")));
             this.userImage.Location = new System.Drawing.Point(425, 102);
             this.userImage.Name = "userImage";

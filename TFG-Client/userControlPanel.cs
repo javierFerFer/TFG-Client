@@ -19,7 +19,7 @@ namespace TFG_Client {
                 InitializeComponent();
                 userNameLabel.Text = userMailParam;
                 iconUser.Image = userImageParam.Image;
-                layoutOptions.Visible = false;
+                rightDock.Visible = false;
                 Utilities.checkWindowsFormPositon(this);
             } catch (Exception ex) {
                 Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 407, null);
@@ -113,10 +113,10 @@ namespace TFG_Client {
         }
 
         private void userImageCircle_Click(object sender, EventArgs e) {
-            if (layoutOptions.Visible) {
-                layoutOptions.Visible = false;
+            if (rightDock.Visible) {
+                rightDock.Visible = false;
             } else {
-                layoutOptions.Visible = true;
+                rightDock.Visible = true;
             }
         }
 
@@ -208,7 +208,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void minimizeLabel_Click(object sender, EventArgs e) {
-            layoutOptions.Visible = false;
+            rightDock.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -222,7 +222,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void minimizeIcon_Click(object sender, EventArgs e) {
-            layoutOptions.Visible = false;
+            rightDock.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -236,7 +236,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutMinimize_Click(object sender, EventArgs e) {
-            layoutOptions.Visible = false;
+            rightDock.Visible = false;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -283,10 +283,34 @@ namespace TFG_Client {
 
         private void userNameLabel_Click(object sender, EventArgs e) {
             if (layoutOptions.Visible) {
-                layoutOptions.Visible = false;
+                rightDock.Visible = false;
             } else {
-                layoutOptions.Visible = true;
+                rightDock.Visible = true;
             }
+        }
+
+        private void showHideLeftPanel() {
+            if (leftPanel.Width == 54) {
+                leftPanel.Width = 216;
+            } else {
+                leftPanel.Width = 54;
+            }
+        }
+
+        private void subjectPicture_Click(object sender, EventArgs e) {
+            showHideLeftPanel();
+        }
+
+        private void createExamPicture_Click(object sender, EventArgs e) {
+            showHideLeftPanel();
+        }
+
+        private void modelsPicture_Click(object sender, EventArgs e) {
+            showHideLeftPanel();
+        }
+
+        private void changesPicture_Click(object sender, EventArgs e) {
+            showHideLeftPanel();
         }
     }
 }

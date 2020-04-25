@@ -24,9 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlPanel));
-            this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconApp = new TFG_Client.MyOwnCircleComponent();
-            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.layoutSupport = new System.Windows.Forms.FlowLayoutPanel();
             this.supportIcon = new System.Windows.Forms.PictureBox();
@@ -40,11 +37,18 @@
             this.layoutExit = new System.Windows.Forms.FlowLayoutPanel();
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutPanelUserAndImage = new System.Windows.Forms.FlowLayoutPanel();
+            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.userNameLabel = new System.Windows.Forms.Label();
-            this.flowLayoutUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
+            this.leftPanel = new System.Windows.Forms.Panel();
+            this.changesPicture = new System.Windows.Forms.PictureBox();
+            this.modelsPicture = new System.Windows.Forms.PictureBox();
+            this.createExamPicture = new System.Windows.Forms.PictureBox();
+            this.subjectPicture = new System.Windows.Forms.PictureBox();
+            this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
+            this.iconApp = new TFG_Client.MyOwnCircleComponent();
+            this.dataPanel = new System.Windows.Forms.Panel();
+            this.rightDock = new System.Windows.Forms.Panel();
             this.layoutOptions.SuspendLayout();
             this.layoutSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).BeginInit();
@@ -54,42 +58,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimizeIcon)).BeginInit();
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.layoutPanelUserAndImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
+            this.leftPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).BeginInit();
+            this.flowLayoutUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
+            this.dataPanel.SuspendLayout();
+            this.rightDock.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // flowLayoutUp
-            // 
-            this.flowLayoutUp.AutoSize = true;
-            this.flowLayoutUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.flowLayoutUp.Controls.Add(this.iconApp);
-            this.flowLayoutUp.Location = new System.Drawing.Point(0, -2);
-            this.flowLayoutUp.Name = "flowLayoutUp";
-            this.flowLayoutUp.Size = new System.Drawing.Size(751, 52);
-            this.flowLayoutUp.TabIndex = 0;
-            this.flowLayoutUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseDown);
-            this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
-            this.flowLayoutUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseUp);
-            // 
-            // iconApp
-            // 
-            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
-            this.iconApp.Location = new System.Drawing.Point(3, 3);
-            this.iconApp.Name = "iconApp";
-            this.iconApp.Size = new System.Drawing.Size(51, 46);
-            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconApp.TabIndex = 1;
-            this.iconApp.TabStop = false;
-            // 
-            // iconUser
-            // 
-            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
-            this.iconUser.Location = new System.Drawing.Point(307, 3);
-            this.iconUser.Name = "iconUser";
-            this.iconUser.Size = new System.Drawing.Size(51, 46);
-            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconUser.TabIndex = 1;
-            this.iconUser.TabStop = false;
-            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // layoutOptions
             // 
@@ -99,9 +79,9 @@
             this.layoutOptions.Controls.Add(this.layoutMinimize);
             this.layoutOptions.Controls.Add(this.layoutExit);
             this.layoutOptions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.layoutOptions.Location = new System.Drawing.Point(928, 50);
+            this.layoutOptions.Location = new System.Drawing.Point(7, -1);
             this.layoutOptions.Name = "layoutOptions";
-            this.layoutOptions.Size = new System.Drawing.Size(177, 198);
+            this.layoutOptions.Size = new System.Drawing.Size(171, 197);
             this.layoutOptions.TabIndex = 13;
             // 
             // layoutSupport
@@ -109,7 +89,8 @@
             this.layoutSupport.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutSupport.Controls.Add(this.supportIcon);
             this.layoutSupport.Controls.Add(this.supportLabel);
-            this.layoutSupport.Location = new System.Drawing.Point(5, 3);
+            this.layoutSupport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutSupport.Location = new System.Drawing.Point(-1, 3);
             this.layoutSupport.Name = "layoutSupport";
             this.layoutSupport.Size = new System.Drawing.Size(169, 45);
             this.layoutSupport.TabIndex = 13;
@@ -142,7 +123,8 @@
             this.layoutAbout.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutAbout.Controls.Add(this.aboutIcon);
             this.layoutAbout.Controls.Add(this.aboutLabel);
-            this.layoutAbout.Location = new System.Drawing.Point(5, 54);
+            this.layoutAbout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutAbout.Location = new System.Drawing.Point(-1, 54);
             this.layoutAbout.Name = "layoutAbout";
             this.layoutAbout.Size = new System.Drawing.Size(169, 49);
             this.layoutAbout.TabIndex = 13;
@@ -175,7 +157,8 @@
             this.layoutMinimize.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutMinimize.Controls.Add(this.minimizeIcon);
             this.layoutMinimize.Controls.Add(this.minimizeLabel);
-            this.layoutMinimize.Location = new System.Drawing.Point(5, 109);
+            this.layoutMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutMinimize.Location = new System.Drawing.Point(-1, 109);
             this.layoutMinimize.Name = "layoutMinimize";
             this.layoutMinimize.Size = new System.Drawing.Size(169, 42);
             this.layoutMinimize.TabIndex = 14;
@@ -208,7 +191,8 @@
             this.layoutExit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.layoutExit.Controls.Add(this.exitImage);
             this.layoutExit.Controls.Add(this.exitLabel);
-            this.layoutExit.Location = new System.Drawing.Point(5, 157);
+            this.layoutExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutExit.Location = new System.Drawing.Point(-1, 157);
             this.layoutExit.Name = "layoutExit";
             this.layoutExit.Size = new System.Drawing.Size(169, 34);
             this.layoutExit.TabIndex = 15;
@@ -236,47 +220,157 @@
             this.exitLabel.Text = "Salir";
             this.exitLabel.Click += new System.EventHandler(this.exitLabel_Click);
             // 
-            // flowLayoutPanel1
+            // layoutPanelUserAndImage
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.flowLayoutPanel1.Controls.Add(this.iconUser);
-            this.flowLayoutPanel1.Controls.Add(this.userNameLabel);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(744, -2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(361, 52);
-            this.flowLayoutPanel1.TabIndex = 3;
+            this.layoutPanelUserAndImage.AutoSize = true;
+            this.layoutPanelUserAndImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.layoutPanelUserAndImage.Controls.Add(this.iconUser);
+            this.layoutPanelUserAndImage.Controls.Add(this.userNameLabel);
+            this.layoutPanelUserAndImage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layoutPanelUserAndImage.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.layoutPanelUserAndImage.Location = new System.Drawing.Point(0, 0);
+            this.layoutPanelUserAndImage.Name = "layoutPanelUserAndImage";
+            this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1484, 52);
+            this.layoutPanelUserAndImage.TabIndex = 3;
+            // 
+            // iconUser
+            // 
+            this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
+            this.iconUser.Location = new System.Drawing.Point(1432, 3);
+            this.iconUser.Name = "iconUser";
+            this.iconUser.Size = new System.Drawing.Size(49, 46);
+            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconUser.TabIndex = 1;
+            this.iconUser.TabStop = false;
+            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // userNameLabel
             // 
             this.userNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.userNameLabel.AutoSize = true;
+            this.userNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameLabel.ForeColor = System.Drawing.Color.White;
-            this.userNameLabel.Location = new System.Drawing.Point(3, 7);
+            this.userNameLabel.Location = new System.Drawing.Point(1128, 7);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(298, 37);
             this.userNameLabel.TabIndex = 2;
             this.userNameLabel.Text = "Nombre del usuario";
             this.userNameLabel.Click += new System.EventHandler(this.userNameLabel_Click);
             // 
+            // leftPanel
+            // 
+            this.leftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.leftPanel.Controls.Add(this.changesPicture);
+            this.leftPanel.Controls.Add(this.modelsPicture);
+            this.leftPanel.Controls.Add(this.createExamPicture);
+            this.leftPanel.Controls.Add(this.subjectPicture);
+            this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftPanel.Location = new System.Drawing.Point(0, 52);
+            this.leftPanel.Name = "leftPanel";
+            this.leftPanel.Size = new System.Drawing.Size(54, 600);
+            this.leftPanel.TabIndex = 14;
+            // 
+            // changesPicture
+            // 
+            this.changesPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changesPicture.Image = ((System.Drawing.Image)(resources.GetObject("changesPicture.Image")));
+            this.changesPicture.Location = new System.Drawing.Point(-3, 473);
+            this.changesPicture.Name = "changesPicture";
+            this.changesPicture.Size = new System.Drawing.Size(218, 39);
+            this.changesPicture.TabIndex = 3;
+            this.changesPicture.TabStop = false;
+            this.changesPicture.Click += new System.EventHandler(this.changesPicture_Click);
+            // 
+            // modelsPicture
+            // 
+            this.modelsPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.modelsPicture.Image = ((System.Drawing.Image)(resources.GetObject("modelsPicture.Image")));
+            this.modelsPicture.Location = new System.Drawing.Point(0, 336);
+            this.modelsPicture.Name = "modelsPicture";
+            this.modelsPicture.Size = new System.Drawing.Size(218, 40);
+            this.modelsPicture.TabIndex = 2;
+            this.modelsPicture.TabStop = false;
+            this.modelsPicture.Click += new System.EventHandler(this.modelsPicture_Click);
+            // 
+            // createExamPicture
+            // 
+            this.createExamPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createExamPicture.Image = ((System.Drawing.Image)(resources.GetObject("createExamPicture.Image")));
+            this.createExamPicture.Location = new System.Drawing.Point(0, 194);
+            this.createExamPicture.Name = "createExamPicture";
+            this.createExamPicture.Size = new System.Drawing.Size(218, 39);
+            this.createExamPicture.TabIndex = 1;
+            this.createExamPicture.TabStop = false;
+            this.createExamPicture.Click += new System.EventHandler(this.createExamPicture_Click);
+            // 
+            // subjectPicture
+            // 
+            this.subjectPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.subjectPicture.Image = ((System.Drawing.Image)(resources.GetObject("subjectPicture.Image")));
+            this.subjectPicture.Location = new System.Drawing.Point(-3, 46);
+            this.subjectPicture.Name = "subjectPicture";
+            this.subjectPicture.Size = new System.Drawing.Size(218, 41);
+            this.subjectPicture.TabIndex = 0;
+            this.subjectPicture.TabStop = false;
+            this.subjectPicture.Click += new System.EventHandler(this.subjectPicture_Click);
+            // 
+            // flowLayoutUp
+            // 
+            this.flowLayoutUp.AutoSize = true;
+            this.flowLayoutUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.flowLayoutUp.Controls.Add(this.iconApp);
+            this.flowLayoutUp.Location = new System.Drawing.Point(0, -1);
+            this.flowLayoutUp.Name = "flowLayoutUp";
+            this.flowLayoutUp.Size = new System.Drawing.Size(1132, 52);
+            this.flowLayoutUp.TabIndex = 0;
+            this.flowLayoutUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseDown);
+            this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
+            this.flowLayoutUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseUp);
+            // 
+            // iconApp
+            // 
+            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
+            this.iconApp.Location = new System.Drawing.Point(3, 3);
+            this.iconApp.Name = "iconApp";
+            this.iconApp.Size = new System.Drawing.Size(51, 46);
+            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconApp.TabIndex = 1;
+            this.iconApp.TabStop = false;
+            // 
+            // dataPanel
+            // 
+            this.dataPanel.Controls.Add(this.rightDock);
+            this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataPanel.Location = new System.Drawing.Point(54, 52);
+            this.dataPanel.Name = "dataPanel";
+            this.dataPanel.Size = new System.Drawing.Size(1430, 600);
+            this.dataPanel.TabIndex = 15;
+            // 
+            // rightDock
+            // 
+            this.rightDock.Controls.Add(this.layoutOptions);
+            this.rightDock.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightDock.Location = new System.Drawing.Point(1253, 0);
+            this.rightDock.Name = "rightDock";
+            this.rightDock.Size = new System.Drawing.Size(177, 600);
+            this.rightDock.TabIndex = 14;
+            // 
             // UserControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1106, 668);
-            this.Controls.Add(this.layoutOptions);
+            this.ClientSize = new System.Drawing.Size(1484, 652);
+            this.Controls.Add(this.dataPanel);
+            this.Controls.Add(this.leftPanel);
             this.Controls.Add(this.flowLayoutUp);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.layoutPanelUserAndImage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserControlPanel";
             this.Text = "userControlPanel";
-            this.flowLayoutUp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.layoutOptions.ResumeLayout(false);
             this.layoutSupport.ResumeLayout(false);
             this.layoutSupport.PerformLayout();
@@ -290,18 +384,25 @@
             this.layoutExit.ResumeLayout(false);
             this.layoutExit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.layoutPanelUserAndImage.ResumeLayout(false);
+            this.layoutPanelUserAndImage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
+            this.leftPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).EndInit();
+            this.flowLayoutUp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
+            this.dataPanel.ResumeLayout(false);
+            this.rightDock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutUp;
         private MyOwnCircleComponent iconUser;
-        private System.Windows.Forms.FlowLayoutPanel layoutOptions;
         private System.Windows.Forms.FlowLayoutPanel layoutSupport;
         private System.Windows.Forms.PictureBox supportIcon;
         private System.Windows.Forms.Label supportLabel;
@@ -314,8 +415,17 @@
         private System.Windows.Forms.FlowLayoutPanel layoutExit;
         private System.Windows.Forms.PictureBox exitImage;
         private System.Windows.Forms.Label exitLabel;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel layoutPanelUserAndImage;
         private MyOwnCircleComponent iconApp;
         private System.Windows.Forms.Label userNameLabel;
+        private System.Windows.Forms.Panel leftPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutUp;
+        private System.Windows.Forms.Panel dataPanel;
+        private System.Windows.Forms.PictureBox changesPicture;
+        private System.Windows.Forms.PictureBox modelsPicture;
+        private System.Windows.Forms.PictureBox createExamPicture;
+        private System.Windows.Forms.PictureBox subjectPicture;
+        private System.Windows.Forms.FlowLayoutPanel layoutOptions;
+        private System.Windows.Forms.Panel rightDock;
     }
 }
