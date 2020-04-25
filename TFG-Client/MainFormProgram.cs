@@ -51,6 +51,7 @@ namespace TFG_Client {
         public static Thread tConnection;
         public static bool checkConnectionWithServer = false;
         private MainFormProgram loginForm;
+        private static UserControlPanel userControlPanelObject;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -100,8 +101,8 @@ namespace TFG_Client {
             
             base.OnFormClosed(e);
             Utilities.saveWindowsFormPosition(loginForm);
-            if (ConnectionWithServer.UserControlPanelObject != null) {
-                Utilities.saveWindowsFormPosition(ConnectionWithServer.UserControlPanelObject);
+            if (UserControlPanelObject != null) {
+                Utilities.saveWindowsFormPosition(UserControlPanelObject);
             }
             Application.Exit();
         }
@@ -662,5 +663,12 @@ namespace TFG_Client {
             // Envio de datos mediante flush
             ConnectionWithServer.ServerStream.Flush();
         }
+
+        public void createUserPanel(string nameOfUserParam, string emailUserParam) {
+            UserControlPanelObject = new UserControlPanel(nameOfUserParam, emailUserParam, userImage);
+            UserControlPanelObject.Show();
+        }
+
+        public UserControlPanel UserControlPanelObject { get => userControlPanelObject; set => userControlPanelObject = value; }
     }
 }

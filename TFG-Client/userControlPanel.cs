@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,15 +14,22 @@ namespace TFG_Client {
     public partial class UserControlPanel : Form {
 
         private bool clickMouse = false;
+        private string emailUser;
+        private int counterSubject = 5;
         private Point startPoint = new Point(0, 0);
+        private ArrayList allSubjectObjects = new ArrayList();
 
-        public UserControlPanel(string userMailParam, MyOwnCircleComponent userImageParam) {
+        public UserControlPanel(string userMailParam, string emailUserParam ,MyOwnCircleComponent userImageParam) {
             try {
                 InitializeComponent();
+                emailUser = emailUserParam;
                 userNameLabel.Text = userMailParam;
                 iconUser.Image = userImageParam.Image;
                 rightDock.Visible = false;
+                fillAllSubjectsIntoArray();
+                addClickEventToSUbjects();
                 Utilities.checkWindowsFormPositon(this);
+
             } catch (Exception ex) {
                 Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 407, null);
             }
@@ -59,6 +68,38 @@ namespace TFG_Client {
             }
 
             base.WndProc(ref m);
+        }
+
+        private void addClickEventToSUbjects() {
+            for (int counter = 0; counter < allSubjectObjects.Count; counter++) {
+                Label tempLabel;
+                tempLabel = (Label)allSubjectObjects[counter];
+                tempLabel.Click -= new EventHandler(labelSubjectClick);
+                tempLabel.Click += new EventHandler(labelSubjectClick);
+            }
+        }
+
+        protected void labelSubjectClick(object sender, EventArgs e) {
+            //attempt to cast the sender as a label
+            Label tempLabel = sender as Label;
+
+            MessageBox.Show(tempLabel.Text.ToString());
+
+        }
+
+        private void fillAllSubjectsIntoArray() {
+            allSubjectObjects.Clear();
+            allSubjectObjects.Add(asignatura1);
+            asignatura1.Visible = false;
+            allSubjectObjects.Add(asignatura2);
+            asignatura2.Visible = false;
+            allSubjectObjects.Add(asignatura3);
+            asignatura3.Visible = false;
+            allSubjectObjects.Add(asignatura4);
+            asignatura4.Visible = false;
+            allSubjectObjects.Add(asignatura5);
+            asignatura5.Visible = false;
+            addClickEventToSUbjects();
         }
 
         /// <summary>
@@ -298,7 +339,12 @@ namespace TFG_Client {
         }
 
         private void subjectPicture_Click(object sender, EventArgs e) {
-            showHideLeftPanel();
+            if (leftPanel.Width == 54) {
+                getAllSubjects();
+            } else {
+                showHideLeftPanel();
+                fillAllSubjectsIntoArray();
+            }
         }
 
         private void createExamPicture_Click(object sender, EventArgs e) {
@@ -312,5 +358,30 @@ namespace TFG_Client {
         private void changesPicture_Click(object sender, EventArgs e) {
             showHideLeftPanel();
         }
+
+        public void fillAllSubjects(string [] allSubjectsParam) {
+            Label temLabel;
+            showHideLeftPanel();
+            for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
+                 temLabel = (Label)allSubjectObjects[counter];
+                 temLabel.Text = allSubjectsParam[counter];
+                temLabel.Visible = true;
+            }
+            for (int counterHideLabels = allSubjectsParam.Length; counterHideLabels < counterSubject; counterHideLabels++) {
+                temLabel = (Label)allSubjectObjects[counterHideLabels];
+                temLabel.Visible = false;
+            }
+        }
+
+        private void getAllSubjects() {
+            string jsonString = Utilities.generateSingleDataRequest("getAllSubjects", emailUser);
+
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+
+            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            ConnectionWithServer.ServerStream.Flush();
+        }
+
     }
 }

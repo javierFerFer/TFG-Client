@@ -36,7 +36,6 @@ namespace TFG_Client {
     public static class ConnectionWithServer {
 
         private static MainFormProgram loginForm;
-        private static UserControlPanel userControlPanelObject;
         private static Panel loadPanel;
         private static string encryptKey;
         private static string ivString;
@@ -125,14 +124,11 @@ namespace TFG_Client {
                         serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
 
                         string serverMessageDesencrypt = Utilities.Decrypt(serverMessage, IvString, EncryptKey);
-                        if (serverMessageDesencrypt == "") {
-                            resetLoadingBar();
-                            throw new Exception("Error, el servidor se cerró inesperadamente");
-                        }
+
 
                         if (serverMessageDesencrypt == "") {
                             // Conexión con el servidor perdida, cierre de app y vuelta a login
-                            Utilities.customErrorInfo("Se ha cerrado la conexion");
+                            Utilities.customErrorInfo("Error, el servidor se cerró inesperadamente");
                             resetLoadingBar();
                             MainFormProgram.checkConnectionWithServer = false;
                             readServerData = false;
@@ -142,6 +138,7 @@ namespace TFG_Client {
                             // Conversión del mensaje recibido a Json para poder leer el título
                             // Con esto sabemos que formato va a tener el mensaje recibido
                             JObject json = JObject.Parse(serverMessageDesencrypt);
+
 
                             if (json.First.ToString().Contains("loginStatus")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
@@ -181,8 +178,12 @@ namespace TFG_Client {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 nameOfUser = singleAnswer.B_Content;
                                 loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
-                                UserControlPanelObject = new UserControlPanel(NameOfUser, userImage);
-                                UserControlPanelObject.ShowDialog();
+                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.createUserPanel(nameOfUser, emailUser); }));
+
+                            } else if (json.First.ToString().Contains("allSubjects")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allSubjects = complexAnswer.B_Content;
+                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.UserControlPanelObject.fillAllSubjects(allSubjects); }));
                             }
                         }
                     }
@@ -245,6 +246,6 @@ namespace TFG_Client {
         public static string EmailUser { get => emailUser; set => emailUser = value; }
         internal static MyOwnCircleComponent UserImage { get => userImage; set => userImage = value; }
         public static string NameOfUser { get => nameOfUser; set => nameOfUser = value; }
-        public static UserControlPanel UserControlPanelObject { get => userControlPanelObject; set => userControlPanelObject = value; }
+        
     }
 }
