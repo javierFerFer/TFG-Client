@@ -28,6 +28,7 @@ namespace TFG_Client {
                 rightDock.Visible = false;
                 fillAllSubjectsIntoArray();
                 addClickEventToSUbjects();
+                Utilities.openForm(new EmptyDataForm(), dataPanel, rightDock);
                 Utilities.checkWindowsFormPositon(this);
 
             } catch (Exception ex) {
@@ -82,9 +83,7 @@ namespace TFG_Client {
         protected void labelSubjectClick(object sender, EventArgs e) {
             //attempt to cast the sender as a label
             Label tempLabel = sender as Label;
-
-            MessageBox.Show(tempLabel.Text.ToString());
-
+            Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
         }
 
         private void fillAllSubjectsIntoArray() {
@@ -372,6 +371,8 @@ namespace TFG_Client {
                 temLabel.Visible = false;
             }
         }
+
+        
 
         private void getAllSubjects() {
             string jsonString = Utilities.generateSingleDataRequest("getAllSubjects", emailUser);

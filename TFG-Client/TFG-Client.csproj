@@ -50,10 +50,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskTypeOfData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskTypeOfData.Designer.cs">
+      <DependentUpon>AskTypeOfData.cs</DependentUpon>
+    </Compile>
     <Compile Include="CirularButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ConnectionWithServer.cs" />
+    <Compile Include="AskOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskOperation.Designer.cs">
+      <DependentUpon>AskOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmptyDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmptyDataForm.Designer.cs">
+      <DependentUpon>EmptyDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="JSonObjectArray.cs" />
     <Compile Include="JSonSingleData.cs" />
     <Compile Include="MainFormProgram.cs">
@@ -80,6 +98,15 @@
       <DependentUpon>UserControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="AskTypeOfData.resx">
+      <DependentUpon>AskTypeOfData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AskOperation.resx">
+      <DependentUpon>AskOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmptyDataForm.resx">
+      <DependentUpon>EmptyDataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFormProgram.resx">
       <DependentUpon>MainFormProgram.cs</DependentUpon>
     </EmbeddedResource>

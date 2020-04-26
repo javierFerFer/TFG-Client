@@ -38,22 +38,22 @@
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.layoutPanelUserAndImage = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.leftPanel = new System.Windows.Forms.Panel();
+            this.asignatura5 = new System.Windows.Forms.Label();
+            this.asignatura4 = new System.Windows.Forms.Label();
+            this.asignatura3 = new System.Windows.Forms.Label();
+            this.asignatura2 = new System.Windows.Forms.Label();
+            this.asignatura1 = new System.Windows.Forms.Label();
             this.changesPicture = new System.Windows.Forms.PictureBox();
             this.modelsPicture = new System.Windows.Forms.PictureBox();
+            this.createExamPicture = new System.Windows.Forms.PictureBox();
             this.subjectPicture = new System.Windows.Forms.PictureBox();
             this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconApp = new TFG_Client.MyOwnCircleComponent();
             this.dataPanel = new System.Windows.Forms.Panel();
             this.rightDock = new System.Windows.Forms.Panel();
-            this.createExamPicture = new System.Windows.Forms.PictureBox();
-            this.asignatura1 = new System.Windows.Forms.Label();
-            this.asignatura2 = new System.Windows.Forms.Label();
-            this.asignatura3 = new System.Windows.Forms.Label();
-            this.asignatura4 = new System.Windows.Forms.Label();
-            this.asignatura5 = new System.Windows.Forms.Label();
+            this.iconApp = new TFG_Client.MyOwnCircleComponent();
+            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.layoutOptions.SuspendLayout();
             this.layoutSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).BeginInit();
@@ -64,16 +64,15 @@
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
             this.layoutPanelUserAndImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.leftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).BeginInit();
             this.flowLayoutUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
-            this.dataPanel.SuspendLayout();
             this.rightDock.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutOptions
@@ -235,20 +234,8 @@
             this.layoutPanelUserAndImage.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.layoutPanelUserAndImage.Location = new System.Drawing.Point(0, 0);
             this.layoutPanelUserAndImage.Name = "layoutPanelUserAndImage";
-            this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1095, 52);
+            this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1306, 52);
             this.layoutPanelUserAndImage.TabIndex = 3;
-            // 
-            // iconUser
-            // 
-            this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
-            this.iconUser.Location = new System.Drawing.Point(1043, 3);
-            this.iconUser.Name = "iconUser";
-            this.iconUser.Size = new System.Drawing.Size(49, 46);
-            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconUser.TabIndex = 1;
-            this.iconUser.TabStop = false;
-            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // userNameLabel
             // 
@@ -257,7 +244,7 @@
             this.userNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameLabel.ForeColor = System.Drawing.Color.White;
-            this.userNameLabel.Location = new System.Drawing.Point(739, 7);
+            this.userNameLabel.Location = new System.Drawing.Point(950, 7);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(298, 37);
             this.userNameLabel.TabIndex = 2;
@@ -279,8 +266,68 @@
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 52);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(54, 536);
+            this.leftPanel.Size = new System.Drawing.Size(54, 578);
             this.leftPanel.TabIndex = 14;
+            // 
+            // asignatura5
+            // 
+            this.asignatura5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.asignatura5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignatura5.ForeColor = System.Drawing.Color.White;
+            this.asignatura5.Location = new System.Drawing.Point(0, 175);
+            this.asignatura5.Name = "asignatura5";
+            this.asignatura5.Size = new System.Drawing.Size(215, 23);
+            this.asignatura5.TabIndex = 8;
+            this.asignatura5.Text = "asignatura5";
+            this.asignatura5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // asignatura4
+            // 
+            this.asignatura4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.asignatura4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignatura4.ForeColor = System.Drawing.Color.White;
+            this.asignatura4.Location = new System.Drawing.Point(0, 152);
+            this.asignatura4.Name = "asignatura4";
+            this.asignatura4.Size = new System.Drawing.Size(215, 23);
+            this.asignatura4.TabIndex = 7;
+            this.asignatura4.Text = "asignatura4";
+            this.asignatura4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // asignatura3
+            // 
+            this.asignatura3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.asignatura3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignatura3.ForeColor = System.Drawing.Color.White;
+            this.asignatura3.Location = new System.Drawing.Point(0, 129);
+            this.asignatura3.Name = "asignatura3";
+            this.asignatura3.Size = new System.Drawing.Size(215, 23);
+            this.asignatura3.TabIndex = 6;
+            this.asignatura3.Text = "asignatura3";
+            this.asignatura3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // asignatura2
+            // 
+            this.asignatura2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.asignatura2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignatura2.ForeColor = System.Drawing.Color.White;
+            this.asignatura2.Location = new System.Drawing.Point(0, 106);
+            this.asignatura2.Name = "asignatura2";
+            this.asignatura2.Size = new System.Drawing.Size(215, 23);
+            this.asignatura2.TabIndex = 5;
+            this.asignatura2.Text = "asignatura2";
+            this.asignatura2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // asignatura1
+            // 
+            this.asignatura1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.asignatura1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignatura1.ForeColor = System.Drawing.Color.White;
+            this.asignatura1.Location = new System.Drawing.Point(0, 84);
+            this.asignatura1.Name = "asignatura1";
+            this.asignatura1.Size = new System.Drawing.Size(215, 23);
+            this.asignatura1.TabIndex = 4;
+            this.asignatura1.Text = "asignatura1";
+            this.asignatura1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // changesPicture
             // 
@@ -304,6 +351,17 @@
             this.modelsPicture.TabStop = false;
             this.modelsPicture.Click += new System.EventHandler(this.modelsPicture_Click);
             // 
+            // createExamPicture
+            // 
+            this.createExamPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createExamPicture.Image = ((System.Drawing.Image)(resources.GetObject("createExamPicture.Image")));
+            this.createExamPicture.Location = new System.Drawing.Point(0, 242);
+            this.createExamPicture.Name = "createExamPicture";
+            this.createExamPicture.Size = new System.Drawing.Size(218, 39);
+            this.createExamPicture.TabIndex = 1;
+            this.createExamPicture.TabStop = false;
+            this.createExamPicture.Click += new System.EventHandler(this.createExamPicture_Click);
+            // 
             // subjectPicture
             // 
             this.subjectPicture.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -322,11 +380,28 @@
             this.flowLayoutUp.Controls.Add(this.iconApp);
             this.flowLayoutUp.Location = new System.Drawing.Point(0, -1);
             this.flowLayoutUp.Name = "flowLayoutUp";
-            this.flowLayoutUp.Size = new System.Drawing.Size(745, 52);
+            this.flowLayoutUp.Size = new System.Drawing.Size(956, 52);
             this.flowLayoutUp.TabIndex = 0;
             this.flowLayoutUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseDown);
             this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
             this.flowLayoutUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseUp);
+            // 
+            // dataPanel
+            // 
+            this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataPanel.Location = new System.Drawing.Point(54, 52);
+            this.dataPanel.Name = "dataPanel";
+            this.dataPanel.Size = new System.Drawing.Size(1252, 578);
+            this.dataPanel.TabIndex = 15;
+            // 
+            // rightDock
+            // 
+            this.rightDock.Controls.Add(this.layoutOptions);
+            this.rightDock.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightDock.Location = new System.Drawing.Point(1129, 52);
+            this.rightDock.Name = "rightDock";
+            this.rightDock.Size = new System.Drawing.Size(177, 578);
+            this.rightDock.TabIndex = 14;
             // 
             // iconApp
             // 
@@ -338,101 +413,25 @@
             this.iconApp.TabIndex = 1;
             this.iconApp.TabStop = false;
             // 
-            // dataPanel
+            // iconUser
             // 
-            this.dataPanel.Controls.Add(this.rightDock);
-            this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataPanel.Location = new System.Drawing.Point(54, 52);
-            this.dataPanel.Name = "dataPanel";
-            this.dataPanel.Size = new System.Drawing.Size(1041, 536);
-            this.dataPanel.TabIndex = 15;
-            // 
-            // rightDock
-            // 
-            this.rightDock.Controls.Add(this.layoutOptions);
-            this.rightDock.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightDock.Location = new System.Drawing.Point(864, 0);
-            this.rightDock.Name = "rightDock";
-            this.rightDock.Size = new System.Drawing.Size(177, 536);
-            this.rightDock.TabIndex = 14;
-            // 
-            // createExamPicture
-            // 
-            this.createExamPicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.createExamPicture.Image = ((System.Drawing.Image)(resources.GetObject("createExamPicture.Image")));
-            this.createExamPicture.Location = new System.Drawing.Point(0, 242);
-            this.createExamPicture.Name = "createExamPicture";
-            this.createExamPicture.Size = new System.Drawing.Size(218, 39);
-            this.createExamPicture.TabIndex = 1;
-            this.createExamPicture.TabStop = false;
-            this.createExamPicture.Click += new System.EventHandler(this.createExamPicture_Click);
-            // 
-            // asignatura1
-            // 
-            this.asignatura1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.asignatura1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asignatura1.ForeColor = System.Drawing.Color.White;
-            this.asignatura1.Location = new System.Drawing.Point(0, 84);
-            this.asignatura1.Name = "asignatura1";
-            this.asignatura1.Size = new System.Drawing.Size(215, 23);
-            this.asignatura1.TabIndex = 4;
-            this.asignatura1.Text = "asignatura1";
-            this.asignatura1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // asignatura2
-            // 
-            this.asignatura2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.asignatura2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asignatura2.ForeColor = System.Drawing.Color.White;
-            this.asignatura2.Location = new System.Drawing.Point(0, 106);
-            this.asignatura2.Name = "asignatura2";
-            this.asignatura2.Size = new System.Drawing.Size(215, 23);
-            this.asignatura2.TabIndex = 5;
-            this.asignatura2.Text = "asignatura2";
-            this.asignatura2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // asignatura3
-            // 
-            this.asignatura3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.asignatura3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asignatura3.ForeColor = System.Drawing.Color.White;
-            this.asignatura3.Location = new System.Drawing.Point(0, 129);
-            this.asignatura3.Name = "asignatura3";
-            this.asignatura3.Size = new System.Drawing.Size(215, 23);
-            this.asignatura3.TabIndex = 6;
-            this.asignatura3.Text = "asignatura3";
-            this.asignatura3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // asignatura4
-            // 
-            this.asignatura4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.asignatura4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asignatura4.ForeColor = System.Drawing.Color.White;
-            this.asignatura4.Location = new System.Drawing.Point(0, 152);
-            this.asignatura4.Name = "asignatura4";
-            this.asignatura4.Size = new System.Drawing.Size(215, 23);
-            this.asignatura4.TabIndex = 7;
-            this.asignatura4.Text = "asignatura4";
-            this.asignatura4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // asignatura5
-            // 
-            this.asignatura5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.asignatura5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asignatura5.ForeColor = System.Drawing.Color.White;
-            this.asignatura5.Location = new System.Drawing.Point(0, 175);
-            this.asignatura5.Name = "asignatura5";
-            this.asignatura5.Size = new System.Drawing.Size(215, 23);
-            this.asignatura5.TabIndex = 8;
-            this.asignatura5.Text = "asignatura5";
-            this.asignatura5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
+            this.iconUser.Location = new System.Drawing.Point(1254, 3);
+            this.iconUser.Name = "iconUser";
+            this.iconUser.Size = new System.Drawing.Size(49, 46);
+            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconUser.TabIndex = 1;
+            this.iconUser.TabStop = false;
+            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // UserControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1095, 588);
+            this.ClientSize = new System.Drawing.Size(1306, 630);
+            this.Controls.Add(this.rightDock);
             this.Controls.Add(this.dataPanel);
             this.Controls.Add(this.leftPanel);
             this.Controls.Add(this.flowLayoutUp);
@@ -456,16 +455,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
             this.layoutPanelUserAndImage.ResumeLayout(false);
             this.layoutPanelUserAndImage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.leftPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).EndInit();
             this.flowLayoutUp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
-            this.dataPanel.ResumeLayout(false);
             this.rightDock.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
