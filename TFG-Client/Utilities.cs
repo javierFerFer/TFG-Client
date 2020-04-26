@@ -590,15 +590,17 @@ namespace TFG_Client {
             if (DataPanelParam.Controls.Count > 0) {
                 DataPanelParam.Controls.RemoveAt(0);
             }
+
             // Agregar comprobante para evitar perdida de datos por parte del usuario
             //MessageBox.Show(childFormParam.GetType().ToString());
             Form childFormObject = childFormParam as Form;
             childFormObject.TopLevel = false;
             childFormObject.Dock = DockStyle.Fill;
+            //DataPanelParam.Controls.SetChildIndex(childFormObject, 0, 0);
             DataPanelParam.Controls.Add(childFormObject);
             DataPanelParam.Tag = childFormObject;
-            childFormObject.Show();
             rightPanelParam.Dock = DockStyle.Right;
+            childFormObject.Show();
         }
 
     }

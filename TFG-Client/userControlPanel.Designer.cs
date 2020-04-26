@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlPanel));
-            this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.layoutSupport = new System.Windows.Forms.FlowLayoutPanel();
             this.supportIcon = new System.Windows.Forms.PictureBox();
             this.supportLabel = new System.Windows.Forms.Label();
@@ -52,9 +51,9 @@
             this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
             this.dataPanel = new System.Windows.Forms.Panel();
             this.rightDock = new System.Windows.Forms.Panel();
+            this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.iconApp = new TFG_Client.MyOwnCircleComponent();
             this.iconUser = new TFG_Client.MyOwnCircleComponent();
-            this.layoutOptions.SuspendLayout();
             this.layoutSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).BeginInit();
             this.layoutAbout.SuspendLayout();
@@ -71,22 +70,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).BeginInit();
             this.flowLayoutUp.SuspendLayout();
             this.rightDock.SuspendLayout();
+            this.layoutOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.SuspendLayout();
-            // 
-            // layoutOptions
-            // 
-            this.layoutOptions.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.layoutOptions.Controls.Add(this.layoutSupport);
-            this.layoutOptions.Controls.Add(this.layoutAbout);
-            this.layoutOptions.Controls.Add(this.layoutMinimize);
-            this.layoutOptions.Controls.Add(this.layoutExit);
-            this.layoutOptions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.layoutOptions.Location = new System.Drawing.Point(7, -1);
-            this.layoutOptions.Name = "layoutOptions";
-            this.layoutOptions.Size = new System.Drawing.Size(171, 197);
-            this.layoutOptions.TabIndex = 13;
             // 
             // layoutSupport
             // 
@@ -94,7 +81,7 @@
             this.layoutSupport.Controls.Add(this.supportIcon);
             this.layoutSupport.Controls.Add(this.supportLabel);
             this.layoutSupport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutSupport.Location = new System.Drawing.Point(-1, 3);
+            this.layoutSupport.Location = new System.Drawing.Point(5, 3);
             this.layoutSupport.Name = "layoutSupport";
             this.layoutSupport.Size = new System.Drawing.Size(169, 45);
             this.layoutSupport.TabIndex = 13;
@@ -128,7 +115,7 @@
             this.layoutAbout.Controls.Add(this.aboutIcon);
             this.layoutAbout.Controls.Add(this.aboutLabel);
             this.layoutAbout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutAbout.Location = new System.Drawing.Point(-1, 54);
+            this.layoutAbout.Location = new System.Drawing.Point(5, 54);
             this.layoutAbout.Name = "layoutAbout";
             this.layoutAbout.Size = new System.Drawing.Size(169, 49);
             this.layoutAbout.TabIndex = 13;
@@ -162,7 +149,7 @@
             this.layoutMinimize.Controls.Add(this.minimizeIcon);
             this.layoutMinimize.Controls.Add(this.minimizeLabel);
             this.layoutMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutMinimize.Location = new System.Drawing.Point(-1, 109);
+            this.layoutMinimize.Location = new System.Drawing.Point(5, 109);
             this.layoutMinimize.Name = "layoutMinimize";
             this.layoutMinimize.Size = new System.Drawing.Size(169, 42);
             this.layoutMinimize.TabIndex = 14;
@@ -196,7 +183,7 @@
             this.layoutExit.Controls.Add(this.exitImage);
             this.layoutExit.Controls.Add(this.exitLabel);
             this.layoutExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutExit.Location = new System.Drawing.Point(-1, 157);
+            this.layoutExit.Location = new System.Drawing.Point(5, 157);
             this.layoutExit.Name = "layoutExit";
             this.layoutExit.Size = new System.Drawing.Size(169, 34);
             this.layoutExit.TabIndex = 15;
@@ -391,17 +378,31 @@
             this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataPanel.Location = new System.Drawing.Point(54, 52);
             this.dataPanel.Name = "dataPanel";
-            this.dataPanel.Size = new System.Drawing.Size(1252, 578);
+            this.dataPanel.Size = new System.Drawing.Size(1075, 578);
             this.dataPanel.TabIndex = 15;
             // 
             // rightDock
             // 
+            this.rightDock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.rightDock.Controls.Add(this.layoutOptions);
             this.rightDock.Dock = System.Windows.Forms.DockStyle.Right;
             this.rightDock.Location = new System.Drawing.Point(1129, 52);
             this.rightDock.Name = "rightDock";
             this.rightDock.Size = new System.Drawing.Size(177, 578);
             this.rightDock.TabIndex = 14;
+            // 
+            // layoutOptions
+            // 
+            this.layoutOptions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.layoutOptions.Controls.Add(this.layoutSupport);
+            this.layoutOptions.Controls.Add(this.layoutAbout);
+            this.layoutOptions.Controls.Add(this.layoutMinimize);
+            this.layoutOptions.Controls.Add(this.layoutExit);
+            this.layoutOptions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.layoutOptions.Location = new System.Drawing.Point(3, 0);
+            this.layoutOptions.Name = "layoutOptions";
+            this.layoutOptions.Size = new System.Drawing.Size(177, 197);
+            this.layoutOptions.TabIndex = 13;
             // 
             // iconApp
             // 
@@ -431,8 +432,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(1306, 630);
-            this.Controls.Add(this.rightDock);
             this.Controls.Add(this.dataPanel);
+            this.Controls.Add(this.rightDock);
             this.Controls.Add(this.leftPanel);
             this.Controls.Add(this.flowLayoutUp);
             this.Controls.Add(this.layoutPanelUserAndImage);
@@ -440,7 +441,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserControlPanel";
             this.Text = "userControlPanel";
-            this.layoutOptions.ResumeLayout(false);
             this.layoutSupport.ResumeLayout(false);
             this.layoutSupport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).EndInit();
@@ -462,6 +462,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).EndInit();
             this.flowLayoutUp.ResumeLayout(false);
             this.rightDock.ResumeLayout(false);
+            this.layoutOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.ResumeLayout(false);
@@ -492,7 +493,6 @@
         private System.Windows.Forms.PictureBox changesPicture;
         private System.Windows.Forms.PictureBox modelsPicture;
         private System.Windows.Forms.PictureBox subjectPicture;
-        private System.Windows.Forms.FlowLayoutPanel layoutOptions;
         private System.Windows.Forms.Panel rightDock;
         private System.Windows.Forms.PictureBox createExamPicture;
         private System.Windows.Forms.Label asignatura1;
@@ -500,5 +500,6 @@
         private System.Windows.Forms.Label asignatura4;
         private System.Windows.Forms.Label asignatura3;
         private System.Windows.Forms.Label asignatura2;
+        private System.Windows.Forms.FlowLayoutPanel layoutOptions;
     }
 }

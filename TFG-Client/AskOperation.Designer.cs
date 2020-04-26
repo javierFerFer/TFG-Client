@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.emptyRightPanel = new System.Windows.Forms.Panel();
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
             this.subjectSelected = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
@@ -34,15 +33,6 @@
             this.typeOfDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // emptyRightPanel
-            // 
-            this.emptyRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.emptyRightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.emptyRightPanel.Location = new System.Drawing.Point(912, 0);
-            this.emptyRightPanel.Name = "emptyRightPanel";
-            this.emptyRightPanel.Size = new System.Drawing.Size(340, 578);
-            this.emptyRightPanel.TabIndex = 1;
-            // 
             // typeOfDataPanel
             // 
             this.typeOfDataPanel.Controls.Add(this.subjectSelected);
@@ -51,9 +41,10 @@
             this.typeOfDataPanel.Controls.Add(this.checkBoxAdd);
             this.typeOfDataPanel.Controls.Add(this.checkBoxModify);
             this.typeOfDataPanel.Controls.Add(this.labelAskTypeOfOperation);
-            this.typeOfDataPanel.Location = new System.Drawing.Point(-2, 0);
+            this.typeOfDataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.typeOfDataPanel.Location = new System.Drawing.Point(0, 0);
             this.typeOfDataPanel.Name = "typeOfDataPanel";
-            this.typeOfDataPanel.Size = new System.Drawing.Size(917, 578);
+            this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 578);
             this.typeOfDataPanel.TabIndex = 2;
             // 
             // subjectSelected
@@ -61,7 +52,7 @@
             this.subjectSelected.AutoSize = true;
             this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subjectSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.subjectSelected.Location = new System.Drawing.Point(192, 166);
+            this.subjectSelected.Location = new System.Drawing.Point(193, 165);
             this.subjectSelected.Name = "subjectSelected";
             this.subjectSelected.Size = new System.Drawing.Size(198, 39);
             this.subjectSelected.TabIndex = 7;
@@ -74,7 +65,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(79, 434);
+            this.buttonBack.Location = new System.Drawing.Point(80, 433);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -89,7 +80,7 @@
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextButton.ForeColor = System.Drawing.Color.White;
-            this.nextButton.Location = new System.Drawing.Point(788, 434);
+            this.nextButton.Location = new System.Drawing.Point(785, 433);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(108, 37);
             this.nextButton.TabIndex = 5;
@@ -102,7 +93,7 @@
             this.checkBoxAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxAdd.Location = new System.Drawing.Point(519, 278);
+            this.checkBoxAdd.Location = new System.Drawing.Point(520, 277);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(198, 51);
             this.checkBoxAdd.TabIndex = 4;
@@ -117,7 +108,7 @@
             this.checkBoxModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxModify.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxModify.Location = new System.Drawing.Point(213, 278);
+            this.checkBoxModify.Location = new System.Drawing.Point(214, 277);
             this.checkBoxModify.Name = "checkBoxModify";
             this.checkBoxModify.Size = new System.Drawing.Size(165, 51);
             this.checkBoxModify.TabIndex = 3;
@@ -130,7 +121,7 @@
             this.labelAskTypeOfOperation.AutoSize = true;
             this.labelAskTypeOfOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAskTypeOfOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelAskTypeOfOperation.Location = new System.Drawing.Point(169, 85);
+            this.labelAskTypeOfOperation.Location = new System.Drawing.Point(170, 84);
             this.labelAskTypeOfOperation.Name = "labelAskTypeOfOperation";
             this.labelAskTypeOfOperation.Size = new System.Drawing.Size(618, 39);
             this.labelAskTypeOfOperation.TabIndex = 2;
@@ -143,7 +134,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(1252, 578);
             this.Controls.Add(this.typeOfDataPanel);
-            this.Controls.Add(this.emptyRightPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AskOperation";
             this.Text = "AskTypeOfData";
@@ -154,13 +144,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel emptyRightPanel;
         private System.Windows.Forms.Panel typeOfDataPanel;
         private System.Windows.Forms.Label labelAskTypeOfOperation;
         private System.Windows.Forms.CheckBox checkBoxModify;
         private System.Windows.Forms.CheckBox checkBoxAdd;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button nextButton;
-        private System.Windows.Forms.Label subjectSelected;
+        public System.Windows.Forms.Label subjectSelected;
     }
 }

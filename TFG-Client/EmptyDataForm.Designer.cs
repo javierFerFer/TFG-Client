@@ -24,29 +24,31 @@
         /// </summary>
         private void InitializeComponent() {
             this.emptyMessage = new System.Windows.Forms.Label();
-            this.emptyRightPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // emptyMessage
             // 
             this.emptyMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.emptyMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emptyMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emptyMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.emptyMessage.Location = new System.Drawing.Point(-3, 0);
+            this.emptyMessage.Location = new System.Drawing.Point(0, 0);
             this.emptyMessage.Name = "emptyMessage";
-            this.emptyMessage.Size = new System.Drawing.Size(986, 579);
+            this.emptyMessage.Size = new System.Drawing.Size(1252, 578);
             this.emptyMessage.TabIndex = 0;
             this.emptyMessage.Text = "Seleccione una opción del menú de la derecha";
             this.emptyMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // emptyRightPanel
+            // panel1
             // 
-            this.emptyRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.emptyRightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.emptyRightPanel.Location = new System.Drawing.Point(981, 0);
-            this.emptyRightPanel.Name = "emptyRightPanel";
-            this.emptyRightPanel.Size = new System.Drawing.Size(271, 578);
-            this.emptyRightPanel.TabIndex = 1;
+            this.panel1.Controls.Add(this.emptyMessage);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1252, 578);
+            this.panel1.TabIndex = 0;
             // 
             // EmptyDataForm
             // 
@@ -54,11 +56,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(1252, 578);
-            this.Controls.Add(this.emptyRightPanel);
-            this.Controls.Add(this.emptyMessage);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmptyDataForm";
             this.Text = "EmptyDataForm";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -66,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Label emptyMessage;
-        private System.Windows.Forms.Panel emptyRightPanel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

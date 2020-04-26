@@ -50,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AskTypeOfData.cs">
+    <Compile Include="AddNewQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AskTypeOfData.Designer.cs">
-      <DependentUpon>AskTypeOfData.cs</DependentUpon>
+    <Compile Include="AddNewQuestion.Designer.cs">
+      <DependentUpon>AddNewQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AskTypeData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskTypeData.Designer.cs">
+      <DependentUpon>AskTypeData.cs</DependentUpon>
     </Compile>
     <Compile Include="CirularButton.cs">
       <SubType>Component</SubType>
@@ -98,8 +104,11 @@
       <DependentUpon>UserControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
-    <EmbeddedResource Include="AskTypeOfData.resx">
-      <DependentUpon>AskTypeOfData.cs</DependentUpon>
+    <EmbeddedResource Include="AddNewQuestion.resx">
+      <DependentUpon>AddNewQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AskTypeData.resx">
+      <DependentUpon>AskTypeData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AskOperation.resx">
       <DependentUpon>AskOperation.cs</DependentUpon>

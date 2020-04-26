@@ -27,7 +27,11 @@ namespace TFG_Client {
 
         private void nextButton_Click(object sender, EventArgs e) {
             if (checkBoxAdd.Checked || checkBoxModify.Checked) {
-                Utilities.openForm(new AskTypeOfData(dataPanel, rightPanel, this), dataPanel, rightPanel);
+                if (checkBoxAdd.Checked) {
+                    Utilities.openForm(new AskTypeData(dataPanel, rightPanel, this, true), dataPanel, rightPanel);
+                } else {
+                    Utilities.openForm(new AskTypeData(dataPanel, rightPanel, this, false), dataPanel, rightPanel);
+                }
             } else {
                 Utilities.customErrorInfo("No ha seleccionado ninguna opción");
             }

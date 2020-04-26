@@ -25,7 +25,7 @@ namespace TFG_Client {
                 emailUser = emailUserParam;
                 userNameLabel.Text = userMailParam;
                 iconUser.Image = userImageParam.Image;
-                rightDock.Visible = false;
+                showHideRightPanel();
                 fillAllSubjectsIntoArray();
                 addClickEventToSUbjects();
                 Utilities.openForm(new EmptyDataForm(), dataPanel, rightDock);
@@ -83,6 +83,7 @@ namespace TFG_Client {
         protected void labelSubjectClick(object sender, EventArgs e) {
             //attempt to cast the sender as a label
             Label tempLabel = sender as Label;
+            // AQUI puedo saber la asignatura seleccionada
             Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
         }
 
@@ -144,20 +145,9 @@ namespace TFG_Client {
             clickMouse = false;
         }
 
-        private void userMailLabel_Click(object sender, EventArgs e) {
-            if (layoutOptions.Visible) {
-                layoutOptions.Visible = false;
-            } else {
-                layoutOptions.Visible = true;
-            }
-        }
 
         private void userImageCircle_Click(object sender, EventArgs e) {
-            if (rightDock.Visible) {
-                rightDock.Visible = false;
-            } else {
-                rightDock.Visible = true;
-            }
+            showHideRightPanel();
         }
 
         /// <summary>
@@ -322,11 +312,7 @@ namespace TFG_Client {
         }
 
         private void userNameLabel_Click(object sender, EventArgs e) {
-            if (layoutOptions.Visible) {
-                rightDock.Visible = false;
-            } else {
-                rightDock.Visible = true;
-            }
+            showHideRightPanel();
         }
 
         private void showHideLeftPanel() {
@@ -334,6 +320,14 @@ namespace TFG_Client {
                 leftPanel.Width = 216;
             } else {
                 leftPanel.Width = 54;
+            }
+        }
+
+        private void showHideRightPanel() {
+            if (rightDock.Width == 177) {
+                rightDock.Width = 0;
+            } else {
+                rightDock.Width = 177;
             }
         }
 
