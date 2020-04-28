@@ -45,6 +45,7 @@ namespace TFG_Client {
         private static string nameOfUser;
         private static NetworkStream serverStream;
         private static bool readServerData = true;
+        private static bool checkNewQuestion = false;
         private static Button loginButton;
         private static MyOwnCircleComponent userImage;
         private static TcpClient clientSocket;
@@ -191,8 +192,54 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("allThemesNames")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allThemesNames = complexAnswer.B_Content;
-
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.fillAllThemes(allThemesNames); }));
+
+                            } else if (json.First.ToString().Contains("checkIfThemeExist")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    //Utilities.customErrorInfo("Ya existe un tema con este nombre, pruebe con otro nombre \n" +
+                                    //                          " o contante con el administrador del sistema");
+                                    checkNewQuestion = false;
+                                } else {
+                                    checkNewQuestion = true;
+                                }
+                            } else if (json.First.ToString().Contains("checkIfQuestionExist")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Ya existe un una pregunta con este nombre, pruebe con otro nombre \n" +
+                                                              " o contante con el administrador del sistema");
+                                } else {
+                                    if (checkNewQuestion) {
+                                        // petición de agregación de nueva pregunta
+                                        LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addNewQuestionRequest(); }));
+                                    } else {
+                                        Utilities.customErrorInfo("El nombre de la pregunta es valido, pero  el tema \n " +
+                                                                  "que está intentando crear ya existe, pruebe con otro nombre \n" +
+                                                                  "o contante con el andministrador");
+                                    }
+                                }
+                            } else if (json.First.ToString().Contains("insertNewThemeStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addDataOfNewQuestionRequest(); }));
+                                } else {
+                                    // Carga formulario de error de insercción de los datos
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar el tema al sistema, contacte con el administrador");
+                                }
+                            } else if (json.First.ToString().Contains("insertNewQuestionStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.openSuccessAddQuestionForm(); }));
+                                } else {
+                                    // Carga formulario de error de insercción de los datos
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la pregunta al sistema, contacte con el administrador");
+                                }
                             }
                         }
                     }

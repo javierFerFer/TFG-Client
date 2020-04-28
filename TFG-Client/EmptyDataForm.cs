@@ -13,5 +13,9 @@ namespace TFG_Client {
         public EmptyDataForm() {
             InitializeComponent();
         }
+        public EmptyDataForm(string messageParam) {
+            InitializeComponent();
+            emptyMessage.Text = messageParam;
+        }
     }
 }
