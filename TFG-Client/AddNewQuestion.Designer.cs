@@ -24,15 +24,27 @@
         /// </summary>
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
+            this.labelAskNewTheme = new System.Windows.Forms.Label();
+            this.comboBoxOfThemes = new System.Windows.Forms.ComboBox();
+            this.textBoxQuestion = new System.Windows.Forms.TextBox();
             this.subjectSelected = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.labelRequestTypeOfQuestion = new System.Windows.Forms.Label();
+            this.checkBoxSelectedTheme = new System.Windows.Forms.CheckBox();
+            this.checkBoxNewTheme = new System.Windows.Forms.CheckBox();
+            this.textBoxNameOfTheme = new System.Windows.Forms.TextBox();
             this.typeOfDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // typeOfDataPanel
             // 
+            this.typeOfDataPanel.Controls.Add(this.textBoxNameOfTheme);
+            this.typeOfDataPanel.Controls.Add(this.checkBoxSelectedTheme);
+            this.typeOfDataPanel.Controls.Add(this.checkBoxNewTheme);
+            this.typeOfDataPanel.Controls.Add(this.labelAskNewTheme);
+            this.typeOfDataPanel.Controls.Add(this.comboBoxOfThemes);
+            this.typeOfDataPanel.Controls.Add(this.textBoxQuestion);
             this.typeOfDataPanel.Controls.Add(this.subjectSelected);
             this.typeOfDataPanel.Controls.Add(this.buttonBack);
             this.typeOfDataPanel.Controls.Add(this.sendButton);
@@ -43,15 +55,51 @@
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 578);
             this.typeOfDataPanel.TabIndex = 2;
             // 
+            // labelAskNewTheme
+            // 
+            this.labelAskNewTheme.AutoSize = true;
+            this.labelAskNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAskNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.labelAskNewTheme.Location = new System.Drawing.Point(174, 264);
+            this.labelAskNewTheme.Name = "labelAskNewTheme";
+            this.labelAskNewTheme.Size = new System.Drawing.Size(354, 18);
+            this.labelAskNewTheme.TabIndex = 10;
+            this.labelAskNewTheme.Text = "¿Desea agregarlo a un tema o crear un tema nuevo?";
+            // 
+            // comboBoxOfThemes
+            // 
+            this.comboBoxOfThemes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.comboBoxOfThemes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxOfThemes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxOfThemes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxOfThemes.ForeColor = System.Drawing.Color.White;
+            this.comboBoxOfThemes.FormattingEnabled = true;
+            this.comboBoxOfThemes.Location = new System.Drawing.Point(180, 311);
+            this.comboBoxOfThemes.Name = "comboBoxOfThemes";
+            this.comboBoxOfThemes.Size = new System.Drawing.Size(337, 28);
+            this.comboBoxOfThemes.TabIndex = 9;
+            // 
+            // textBoxQuestion
+            // 
+            this.textBoxQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.textBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxQuestion.ForeColor = System.Drawing.Color.White;
+            this.textBoxQuestion.Location = new System.Drawing.Point(177, 203);
+            this.textBoxQuestion.Name = "textBoxQuestion";
+            this.textBoxQuestion.Size = new System.Drawing.Size(629, 29);
+            this.textBoxQuestion.TabIndex = 8;
+            this.textBoxQuestion.TextChanged += new System.EventHandler(this.textBoxQuestion_TextChanged_1);
+            // 
             // subjectSelected
             // 
             this.subjectSelected.AutoSize = true;
-            this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subjectSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.subjectSelected.Location = new System.Drawing.Point(193, 165);
+            this.subjectSelected.Location = new System.Drawing.Point(172, 150);
             this.subjectSelected.Name = "subjectSelected";
-            this.subjectSelected.Size = new System.Drawing.Size(0, 39);
+            this.subjectSelected.Size = new System.Drawing.Size(138, 29);
             this.subjectSelected.TabIndex = 7;
+            this.subjectSelected.Text = "Asignatura: ";
             // 
             // buttonBack
             // 
@@ -94,6 +142,44 @@
             this.labelRequestTypeOfQuestion.TabIndex = 2;
             this.labelRequestTypeOfQuestion.Text = "Petición de agregación de pregunta tipo: ";
             // 
+            // checkBoxSelectedTheme
+            // 
+            this.checkBoxSelectedTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxSelectedTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSelectedTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.checkBoxSelectedTheme.Location = new System.Drawing.Point(710, 250);
+            this.checkBoxSelectedTheme.Name = "checkBoxSelectedTheme";
+            this.checkBoxSelectedTheme.Size = new System.Drawing.Size(198, 51);
+            this.checkBoxSelectedTheme.TabIndex = 12;
+            this.checkBoxSelectedTheme.Text = "Seleccionar tema";
+            this.checkBoxSelectedTheme.UseVisualStyleBackColor = true;
+            this.checkBoxSelectedTheme.CheckedChanged += new System.EventHandler(this.checkBoxSelectedTheme_CheckedChanged);
+            // 
+            // checkBoxNewTheme
+            // 
+            this.checkBoxNewTheme.Checked = true;
+            this.checkBoxNewTheme.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxNewTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.checkBoxNewTheme.Location = new System.Drawing.Point(558, 250);
+            this.checkBoxNewTheme.Name = "checkBoxNewTheme";
+            this.checkBoxNewTheme.Size = new System.Drawing.Size(165, 51);
+            this.checkBoxNewTheme.TabIndex = 11;
+            this.checkBoxNewTheme.Text = "Nuevo tema";
+            this.checkBoxNewTheme.UseVisualStyleBackColor = true;
+            this.checkBoxNewTheme.CheckedChanged += new System.EventHandler(this.checkBoxNewTheme_CheckedChanged);
+            // 
+            // textBoxNameOfTheme
+            // 
+            this.textBoxNameOfTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.textBoxNameOfTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNameOfTheme.ForeColor = System.Drawing.Color.White;
+            this.textBoxNameOfTheme.Location = new System.Drawing.Point(177, 346);
+            this.textBoxNameOfTheme.Name = "textBoxNameOfTheme";
+            this.textBoxNameOfTheme.Size = new System.Drawing.Size(340, 26);
+            this.textBoxNameOfTheme.TabIndex = 13;
+            // 
             // AddNewQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,5 +202,11 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button sendButton;
         public System.Windows.Forms.Label subjectSelected;
+        private System.Windows.Forms.TextBox textBoxQuestion;
+        private System.Windows.Forms.ComboBox comboBoxOfThemes;
+        private System.Windows.Forms.Label labelAskNewTheme;
+        private System.Windows.Forms.CheckBox checkBoxSelectedTheme;
+        private System.Windows.Forms.CheckBox checkBoxNewTheme;
+        private System.Windows.Forms.TextBox textBoxNameOfTheme;
     }
 }

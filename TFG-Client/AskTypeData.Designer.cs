@@ -133,8 +133,8 @@
         #endregion
         private System.Windows.Forms.Panel typeOfDataPanel;
         private System.Windows.Forms.Label labelAskTypeOfOperation;
-        private System.Windows.Forms.CheckBox checkBoxTest;
-        private System.Windows.Forms.CheckBox checkBoxNormal;
+        public System.Windows.Forms.CheckBox checkBoxTest;
+        public System.Windows.Forms.CheckBox checkBoxNormal;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button nextButton;
     }

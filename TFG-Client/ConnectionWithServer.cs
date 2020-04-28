@@ -67,12 +67,12 @@ namespace TFG_Client {
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void run(MainFormProgram loginFormParam) {
 
-                loginForm = loginFormParam;
+            LoginForm = loginFormParam;
 
-                // Reseteo de variable en caso de login fallido
-                readServerData = true;
+            // Reseteo de variable en caso de login fallido
+            readServerData = true;
 
-                increaseLoadingBar();
+            increaseLoadingBar();
             try {
                 clientSocket = new TcpClient();
                 clientSocket.Connect("178.62.40.25", 12345);
@@ -133,11 +133,7 @@ namespace TFG_Client {
                             MainFormProgram.checkConnectionWithServer = false;
                             readServerData = false;
                             loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-                            if (loginForm.UserControlPanelObject != null) {
-                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.UserControlPanelObject.Visible = false;
-                                loginForm.Visible = true;
-                                }));
-                            }
+                            resetAllDataConnection();
                         } else {
                             // Conversión del mensaje recibido a Json para poder leer el título
                             // Con esto sabemos que formato va a tener el mensaje recibido
@@ -176,12 +172,7 @@ namespace TFG_Client {
                                     readServerData = false;
 
                                     loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-                                    if (loginForm.UserControlPanelObject != null) {
-                                        loginForm.Invoke(new MethodInvoker(delegate {
-                                            loginForm.UserControlPanelObject.Visible = false;
-                                            loginForm.Visible = true;
-                                        }));
-                                    }
+                                    resetAllDataConnection();
 
                                 }
                             } else if (json.First.ToString().Contains("userNameData")) {
@@ -189,13 +180,19 @@ namespace TFG_Client {
                                 // Tras login correcto, se ha pedido el nombre de usuario al servidor
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 nameOfUser = singleAnswer.B_Content;
-                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.Visible = false; }));
-                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.createUserPanel(nameOfUser, emailUser); }));
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.Visible = false; }));
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.createUserPanel(nameOfUser, emailUser); }));
 
                             } else if (json.First.ToString().Contains("allSubjects")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allSubjects = complexAnswer.B_Content;
-                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.UserControlPanelObject.fillAllSubjects(allSubjects); }));
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.UserControlPanelObject.fillAllSubjects(allSubjects); }));
+
+                            } else if (json.First.ToString().Contains("allThemesNames")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allThemesNames = complexAnswer.B_Content;
+
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.fillAllThemes(allThemesNames); }));
                             }
                         }
                     }
@@ -212,6 +209,12 @@ namespace TFG_Client {
             }
         }
 
+        internal static void setNewQuestionFrom(AddNewQuestion addNewQuestion) {
+            loginForm.AddNewQuestionObject = addNewQuestion;
+        }
+
+
+
 
         /// <summary>
         /// Incrementa la barra de carga del formulario del login
@@ -224,7 +227,7 @@ namespace TFG_Client {
                     LoadPanel.Width += 50;
                 }));
             } catch (Exception ex) {
-                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 402, loginForm);
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 402, LoginForm);
             }
         }
 
@@ -242,7 +245,16 @@ namespace TFG_Client {
                     LoadPanel.Width = 50;
                 }));
             } catch (Exception ex) {
-                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 403, loginForm);
+                Utilities.createErrorMessage(ex.Message.ToString(), Utilities.showDevelopMessages, 403, LoginForm);
+            }
+        }
+
+        private static void resetAllDataConnection() {
+            if (LoginForm.UserControlPanelObject != null) {
+                LoginForm.Invoke(new MethodInvoker(delegate {
+                    LoginForm.UserControlPanelObject.Visible = false;
+                    LoginForm.Visible = true;
+                }));
             }
         }
 
@@ -258,6 +270,6 @@ namespace TFG_Client {
         public static string EmailUser { get => emailUser; set => emailUser = value; }
         internal static MyOwnCircleComponent UserImage { get => userImage; set => userImage = value; }
         public static string NameOfUser { get => nameOfUser; set => nameOfUser = value; }
-        
+        public static MainFormProgram LoginForm { get => loginForm; set => loginForm = value; }
     }
 }
