@@ -133,7 +133,11 @@ namespace TFG_Client {
                             MainFormProgram.checkConnectionWithServer = false;
                             readServerData = false;
                             loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
-                            resetLoadingBar();
+                            if (loginForm.UserControlPanelObject != null) {
+                                loginForm.Invoke(new MethodInvoker(delegate { loginForm.UserControlPanelObject.Visible = false;
+                                loginForm.Visible = true;
+                                }));
+                            }
                         } else {
                             // Conversión del mensaje recibido a Json para poder leer el título
                             // Con esto sabemos que formato va a tener el mensaje recibido
@@ -170,7 +174,15 @@ namespace TFG_Client {
                                     resetLoadingBar();
                                     MainFormProgram.checkConnectionWithServer = false;
                                     readServerData = false;
+
                                     loginButton.Invoke(new MethodInvoker(delegate { loginButton.Enabled = true; }));
+                                    if (loginForm.UserControlPanelObject != null) {
+                                        loginForm.Invoke(new MethodInvoker(delegate {
+                                            loginForm.UserControlPanelObject.Visible = false;
+                                            loginForm.Visible = true;
+                                        }));
+                                    }
+
                                 }
                             } else if (json.First.ToString().Contains("userNameData")) {
 
