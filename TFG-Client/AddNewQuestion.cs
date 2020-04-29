@@ -42,28 +42,60 @@ namespace TFG_Client {
 
         private void nextButton_Click(object sender, EventArgs e) {
             if (checkBoxNewTheme.Checked || checkBoxSelectedTheme.Checked) {
-                if (checkBoxNewTheme.Checked) {
-                    checkDataForNewTheme();
+                if (textBoxNameOfTheme.Text == bannerComboBox || textBoxNameOfTheme.Text == nothingToShow) {
+                    Utilities.customErrorInfo("Valores introducidos inválidos");
+                } else {
+                    if (checkBoxNewTheme.Checked) {
+                        checkDataForNewTheme();
+                    } else if (checkBoxSelectedTheme.Checked) {
+                        checkDataForSelectedTheme();
+                    }
                 }
             } else {
                 Utilities.customErrorInfo("No ha seleccionado ninguna opción referente al tema");
             }
         }
 
+        private void checkDataForSelectedTheme() {
+            if (textBoxQuestion.Text.Trim().Length != 0 && textBoxQuestion.Text.Trim().Length > 5) {
+                if (comboBoxOfThemes.SelectedItem.ToString() != bannerComboBox && comboBoxOfThemes.SelectedItem.ToString() != nothingToShow) {
+                    sendAlldataNameOfTheme(false);
+                } else {
+                    Utilities.customErrorInfo("No se ha seleccionado nigún tema de la lista");
+                }
+            } else {
+                Utilities.customErrorInfo("La longitud de la pregunta que desea agregar es demasiado corta. \n" +
+                                          "Debe tener al menos 5 caracteres.");
+            }
+        }
+
+        private void sendAlldataNameOfTheme(bool option) {
+            if (option) {
+                // Buscar nombre del tema antes de agregarlo
+                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findNameOfTheme", textBoxNameOfTheme.Text);
+                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
+            } else {
+
+                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("selectedThemeQuestionAdd", textBoxQuestion.Text);
+                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
+            }
+        }
+
         private void checkDataForNewTheme() {
             if (textBoxQuestion.Text.Trim().Length != 0 && textBoxQuestion.Text.Trim().Length > 5) {
                 if (textBoxNameOfTheme.Text.Trim().Length != 0 && textBoxNameOfTheme.Text.Trim().Length > 5) {
-                    // Buscar nombre del tema antes de agregarlo
-                    string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findNameOfTheme", textBoxNameOfTheme.Text.Trim());
-                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-                    ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-                    // Envio de datos mediante flush
-                    ConnectionWithServer.ServerStream.Flush();
+
+                    sendAlldataNameOfTheme(true);
 
                     // Buscar nombre de la pregunta antes de enviar
-                    string questionFiltered = textBoxQuestion.Text.Trim().Replace("?", "").Replace("¿", "").ToLower();
-                    jsonMessageGetThemes = Utilities.generateSingleDataRequest("findQuestion", questionFiltered);
-                    jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                    string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findQuestion", textBoxQuestion.Text);
+                    byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                     ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
                     ConnectionWithServer.ServerStream.Flush();
@@ -78,7 +110,7 @@ namespace TFG_Client {
         }
 
         public void addNewQuestionRequest() {
-            string jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewTheme", new string[] { textBoxNameOfTheme.Text.Trim() , subject });
+            string jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewTheme", new string[] { textBoxNameOfTheme.Text.Trim(), subject });
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageCreateTheme, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -88,9 +120,15 @@ namespace TFG_Client {
 
         }
 
-        public void addDataOfNewQuestionRequest() {
-            string questionFiltered = textBoxQuestion.Text.Trim().Replace("?", "").Replace("¿", "").ToLower();
-            string jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewQuestion", new string[]{ questionFiltered, textBoxNameOfTheme.Text.Trim()});
+        public void addDataOfNewQuestionRequest(bool optionParam) {
+            string jsonMessageCreateTheme = "";
+
+            if (optionParam) {
+                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewQuestion", new string[] { textBoxQuestion.Text, comboBoxOfThemes.SelectedItem.ToString() });
+            } else {
+                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewQuestion", new string[] { textBoxQuestion.Text, textBoxNameOfTheme.Text.Trim() });
+            }
+
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageCreateTheme, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -99,7 +137,7 @@ namespace TFG_Client {
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
             if (textBoxQuestion.Text.Length > 50) {
-                textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length-1);
+                textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
                 textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
                 Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
             }
@@ -125,7 +163,7 @@ namespace TFG_Client {
         }
 
 
-        public void fillAllThemes(string [] allThemesNames) {
+        public void fillAllThemes(string[] allThemesNames) {
 
             // Limpieza del combobox para evitar errores
             comboBoxOfThemes.Items.Clear();

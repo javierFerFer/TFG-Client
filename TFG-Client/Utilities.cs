@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,6 +34,7 @@ namespace TFG_Client {
                 return emptyString;
             }
         }
+
 
         public static string generateSingleDataRequest(string titleMessageParam, string contentParam) {
             try {
@@ -70,8 +72,8 @@ namespace TFG_Client {
             try {
                 using (AesCryptoServiceProvider aesEncryptor = new AesCryptoServiceProvider()) {
                     var encryptedData = Convert.FromBase64String(encryptedInputBase64);
-                    var btKey = System.Text.Encoding.ASCII.GetBytes(passwd);
-                    byte[] iv = Encoding.ASCII.GetBytes(ivStringParam);
+                    var btKey = Encoding.UTF8.GetBytes(passwd);
+                    byte[] iv = Encoding.UTF8.GetBytes(ivStringParam);
 
                     var keyString = System.Text.Encoding.Unicode.GetString(aesEncryptor.Key);
                     aesEncryptor.Mode = CipherMode.CBC;
@@ -103,7 +105,7 @@ namespace TFG_Client {
                                                                          CryptoStreamMode.Read)) {
                             decrypted = new byte[encryptedData.Length];
                             var byteCount = csDecrypt.Read(decrypted, 0, encryptedData.Length);
-                            string strResult = Encoding.ASCII.GetString(decrypted);
+                            string strResult = Encoding.UTF8.GetString(decrypted);
                             int pos = strResult.IndexOf('\0');
                             if (pos >= 0)
                                 strResult = strResult.Substring(0, pos);

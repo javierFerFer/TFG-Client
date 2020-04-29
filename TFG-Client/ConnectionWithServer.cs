@@ -226,7 +226,7 @@ namespace TFG_Client {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 string serverAnswer = singleAnswer.B_Content;
                                 if (serverAnswer == "true") {
-                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addDataOfNewQuestionRequest(); }));
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addDataOfNewQuestionRequest(false); }));
                                 } else {
                                     // Carga formulario de error de insercción de los datos
                                     Utilities.customErrorInfo("Hubo un error al intentar agregar el tema al sistema, contacte con el administrador");
@@ -239,6 +239,16 @@ namespace TFG_Client {
                                 } else {
                                     // Carga formulario de error de insercción de los datos
                                     Utilities.customErrorInfo("Hubo un error al intentar agregar la pregunta al sistema, contacte con el administrador");
+                                }
+                            } else if (json.First.ToString().Contains("checkIfQuestionSelectedTheme")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Ya existe un una pregunta con este nombre, pruebe con otro nombre \n" +
+                                                              " o contante con el administrador del sistema");
+                                } else {
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addDataOfNewQuestionRequest(true); }));
                                 }
                             }
                         }
