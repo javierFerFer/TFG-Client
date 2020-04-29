@@ -35,6 +35,10 @@ namespace TFG_Client {
             }
         }
 
+        public static void createCustomErrorTestMessage(string letterParam) {
+            Utilities.customErrorInfo("La longitud de la pregunta " + "'" + letterParam + "' " + "que desea agregar es demasiado corta. \n" +
+                                              "Debe tener al menos 5 caracteres.");
+        }
 
         public static string generateSingleDataRequest(string titleMessageParam, string contentParam) {
             try {

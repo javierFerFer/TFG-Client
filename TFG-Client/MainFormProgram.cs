@@ -53,6 +53,7 @@ namespace TFG_Client {
         private MainFormProgram loginForm;
         private static UserControlPanel userControlPanelObject;
         private static AddNewQuestion addNewQuestionObject;
+        private static AddNewQuestionTypeTest addNewQuestionTypeTest;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -672,5 +673,6 @@ namespace TFG_Client {
 
         public UserControlPanel UserControlPanelObject { get => userControlPanelObject; set => userControlPanelObject = value; }
         public AddNewQuestion AddNewQuestionObject { get => addNewQuestionObject; set => addNewQuestionObject = value; }
+        public AddNewQuestionTypeTest AddNewQuestionTypeTest { get => addNewQuestionTypeTest; set => addNewQuestionTypeTest = value; }
     }
 }

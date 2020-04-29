@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewQuestionTypeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewQuestionTypeTest.Designer.cs">
+      <DependentUpon>AddNewQuestionTypeTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
       <DependentUpon>UserControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="AddNewQuestionTypeTest.resx">
+      <DependentUpon>AddNewQuestionTypeTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewQuestion.resx">
       <DependentUpon>AddNewQuestion.cs</DependentUpon>
     </EmbeddedResource>

@@ -37,6 +37,9 @@ namespace TFG_Client {
                         // Crear un menu para guardar una pregunta en base a la asignatura seleccionada
                         AskOperation tempForm = (AskOperation)beforeForm;
                         Utilities.openForm(new AddNewQuestion("normal", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
+                    } else {
+                        AskOperation tempForm = (AskOperation)beforeForm;
+                        Utilities.openForm(new AddNewQuestionTypeTest("test", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
                     }
                 } else {
                     Utilities.customErrorInfo("No ha seleccionado ninguna opción");

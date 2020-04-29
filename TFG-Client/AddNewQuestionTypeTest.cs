@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    public partial class AddNewQuestion : Form {
+    public partial class AddNewQuestionTypeTest : Form {
 
         private Panel dataPanel;
         private Panel rightPanel;
@@ -18,7 +18,7 @@ namespace TFG_Client {
         private const string bannerComboBox = "Temas";
         private const string nothingToShow = "Ningún tema encontrado";
 
-        public AddNewQuestion(string typeOfExamParam, string subjectSelectedParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
+        public AddNewQuestionTypeTest(string typeOfExamParam, string subjectSelectedParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
@@ -29,7 +29,8 @@ namespace TFG_Client {
             beforeForm = beforeFormParam;
             comboBoxOfThemes.Items.Add(bannerComboBox);
             comboBoxOfThemes.Visible = false;
-            ConnectionWithServer.setNewQuestionFrom(this);
+            ConnectionWithServer.setNewQuestionFormTestType(this);
+            comboBoxCorrectAnswer.SelectedIndex = comboBoxCorrectAnswer.FindStringExact("A");
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
@@ -46,7 +47,18 @@ namespace TFG_Client {
                     Utilities.customErrorInfo("Valores introducidos inválidos");
                 } else {
                     if (checkBoxNewTheme.Checked) {
-                        checkDataForNewTheme();
+                        if (textBox_A_answer.Text.Trim().Length < 5 || textBox_A_answer.Text.Trim().Length == 0) {
+                            Utilities.createCustomErrorTestMessage("A");
+                        } else if (textBox_B_answer.Text.Trim().Length < 5 || textBox_B_answer.Text.Trim().Length == 0) {
+                            Utilities.createCustomErrorTestMessage("B");
+                        } else if (textBox_C_answer.Text.Trim().Length < 5 || textBox_C_answer.Text.Trim().Length == 0) {
+                            Utilities.createCustomErrorTestMessage("C");
+                        } else if (textBox_D_answer.Text.Trim().Length < 5 || textBox_D_answer.Text.Trim().Length == 0) {
+                            Utilities.createCustomErrorTestMessage("D");
+                        } else {
+                            checkDataForNewTheme();
+                        }
+
                     } else if (checkBoxSelectedTheme.Checked) {
                         checkDataForSelectedTheme();
                     }
@@ -79,7 +91,7 @@ namespace TFG_Client {
                 ConnectionWithServer.ServerStream.Flush();
             } else {
 
-                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("selectedThemeQuestionAdd", textBoxQuestion.Text);
+                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("selectedTestThemeQuestionAdd", textBoxQuestion.Text);
                 byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                 ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
@@ -94,7 +106,7 @@ namespace TFG_Client {
                     sendAlldataNameOfTheme(true);
 
                     // Buscar nombre de la pregunta antes de enviar
-                    string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findQuestion", textBoxQuestion.Text);
+                    string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findQuestionTest", textBoxQuestion.Text);
                     byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                     ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                     // Envio de datos mediante flush
@@ -110,7 +122,7 @@ namespace TFG_Client {
         }
 
         public void addNewQuestionRequest() {
-            string jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewTheme", new string[] { textBoxNameOfTheme.Text.Trim(), subject });
+            string jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertTestNewTheme", new string[] { textBoxNameOfTheme.Text.Trim(), subject });
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageCreateTheme, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -122,11 +134,10 @@ namespace TFG_Client {
 
         public void addDataOfNewQuestionRequest(bool optionParam) {
             string jsonMessageCreateTheme = "";
-
             if (optionParam) {
-                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewQuestion", new string[] { textBoxQuestion.Text, comboBoxOfThemes.SelectedItem.ToString() });
+                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewTestQuestion", new string[] { textBoxQuestion.Text, textBox_A_answer.Text, textBox_B_answer.Text, textBox_C_answer.Text, textBox_D_answer.Text, comboBoxCorrectAnswer.SelectedItem.ToString(), comboBoxOfThemes.SelectedItem.ToString() });
             } else {
-                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewQuestion", new string[] { textBoxQuestion.Text, textBoxNameOfTheme.Text.Trim() });
+                jsonMessageCreateTheme = Utilities.generateJsonObjectArrayString("insertNewTestQuestion", new string[] { textBoxQuestion.Text, textBox_A_answer.Text, textBox_B_answer.Text, textBox_C_answer.Text, textBox_D_answer.Text, comboBoxCorrectAnswer.SelectedItem.ToString(), textBoxNameOfTheme.Text.Trim() });
             }
 
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageCreateTheme, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
@@ -136,6 +147,7 @@ namespace TFG_Client {
         }
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
+            //MessageBox.Show(textBoxQuestion.Text.Length.ToString());
             if (textBoxQuestion.Text.Length > 120) {
                 if (textBoxQuestion.Text.Length == 121) {
                     textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
@@ -160,7 +172,7 @@ namespace TFG_Client {
         private void checkBoxSelectedTheme_CheckedChanged(object sender, EventArgs e) {
             if (checkBoxSelectedTheme.Checked) {
                 // Petición de datos al servidor sobre los temas de la asignatura
-                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("getThemes", subject);
+                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("getThemeForTest", subject);
                 byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                 ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
