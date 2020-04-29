@@ -136,10 +136,16 @@ namespace TFG_Client {
         }
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
-            if (textBoxQuestion.Text.Length > 50) {
-                textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
-                textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
-                Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
+            if (textBoxQuestion.Text.Length > 120) {
+                if (textBoxQuestion.Text.Length == 121) {
+                    textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
+                    textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
+                    Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
+                    MessageBox.Show(textBoxQuestion.Text.Length.ToString());
+                } else {
+                    Utilities.customErrorInfo("El texto introducido supera el limite máximo de caracteres");
+                    textBoxQuestion.Text = "";
+                }
             }
         }
 
