@@ -54,6 +54,7 @@ namespace TFG_Client {
         private static UserControlPanel userControlPanelObject;
         private static AddNewQuestion addNewQuestionObject;
         private static AddNewQuestionTypeTest addNewQuestionTypeTest;
+        private static ListAllNormalQuestions listAllNormalQuestions;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -469,6 +470,7 @@ namespace TFG_Client {
                         loadInternalPanel.Visible = false;
                         loadInternalPanel.Width = 50;
                         loginButton.Enabled = true;
+                        Utilities.customErrorInfo("Valores de login incorrectos");
                     } else {
                         /**
                          * Crea un objeto JSon con los datos del login, lo encripta y lo evía al servidor.
@@ -674,5 +676,6 @@ namespace TFG_Client {
         public UserControlPanel UserControlPanelObject { get => userControlPanelObject; set => userControlPanelObject = value; }
         public AddNewQuestion AddNewQuestionObject { get => addNewQuestionObject; set => addNewQuestionObject = value; }
         public AddNewQuestionTypeTest AddNewQuestionTypeTest { get => addNewQuestionTypeTest; set => addNewQuestionTypeTest = value; }
+        public  ListAllNormalQuestions ListAllNormalQuestions { get => listAllNormalQuestions; set => listAllNormalQuestions = value; }
     }
 }

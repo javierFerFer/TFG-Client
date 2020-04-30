@@ -298,6 +298,27 @@ namespace TFG_Client {
                                 } else {
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionTypeTest.addDataOfNewQuestionRequest(true); }));
                                 }
+
+                            } else if (json.First.ToString().Contains("normalQuestionsNotFound")) {
+                                // No se han encontrado preguntas normales de las asignatura
+                                LoginForm.Invoke(new MethodInvoker(delegate { loginForm.ListAllNormalQuestions.hide_show_dataGridView(false); }));
+                            } else if (json.First.ToString().Contains("allNormalQuestionsSpecificSubject")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allQuestions = complexAnswer.B_Content;
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.ListAllNormalQuestions.fillDataGridView(allQuestions);
+                                    loginForm.ListAllNormalQuestions.hide_show_dataGridView(true);
+                                }));
+                            } else if (json.First.ToString().Contains("insertNewNormalModification")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Petición de modificación enviada correctamente
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.ListAllNormalQuestions.openSuccessAddModificationNormalQuest(); }));
+                                } else {
+                                    // Carga formulario de error de insercción de los datos
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
+                                }
                             }
                         }
                     }

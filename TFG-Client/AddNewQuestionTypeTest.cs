@@ -38,7 +38,7 @@ namespace TFG_Client {
         }
 
         public void openSuccessAddQuestionForm() {
-            Utilities.openForm(new EmptyDataForm("Se ha agregado el tema y la pregunta correctamente al sistema"), dataPanel, rightPanel);
+            Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la petición de agregación al sistema"), dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
@@ -47,13 +47,13 @@ namespace TFG_Client {
                     Utilities.customErrorInfo("Valores introducidos inválidos");
                 } else {
                     if (checkBoxNewTheme.Checked) {
-                        if (textBox_A_answer.Text.Trim().Length < 5 || textBox_A_answer.Text.Trim().Length == 0) {
+                        if (textBox_A_answer.Text.Trim().Length < 5 || textBox_A_answer.Text.Trim().Length == 0 || textBox_A_answer.Text.Trim().Length > 45) {
                             Utilities.createCustomErrorTestMessage("A");
-                        } else if (textBox_B_answer.Text.Trim().Length < 5 || textBox_B_answer.Text.Trim().Length == 0) {
+                        } else if (textBox_B_answer.Text.Trim().Length < 5 || textBox_B_answer.Text.Trim().Length == 0 || textBox_B_answer.Text.Trim().Length > 45) {
                             Utilities.createCustomErrorTestMessage("B");
-                        } else if (textBox_C_answer.Text.Trim().Length < 5 || textBox_C_answer.Text.Trim().Length == 0) {
+                        } else if (textBox_C_answer.Text.Trim().Length < 5 || textBox_C_answer.Text.Trim().Length == 0 || textBox_C_answer.Text.Trim().Length > 45) {
                             Utilities.createCustomErrorTestMessage("C");
-                        } else if (textBox_D_answer.Text.Trim().Length < 5 || textBox_D_answer.Text.Trim().Length == 0) {
+                        } else if (textBox_D_answer.Text.Trim().Length < 5 || textBox_D_answer.Text.Trim().Length == 0 || textBox_D_answer.Text.Trim().Length > 45) {
                             Utilities.createCustomErrorTestMessage("D");
                         } else {
                             checkDataForNewTheme();
@@ -148,8 +148,8 @@ namespace TFG_Client {
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
             //MessageBox.Show(textBoxQuestion.Text.Length.ToString());
-            if (textBoxQuestion.Text.Length > 120) {
-                if (textBoxQuestion.Text.Length == 121) {
+            if (textBoxQuestion.Text.Length > 45) {
+                if (textBoxQuestion.Text.Length == 46) {
                     textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
                     textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
                     Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");

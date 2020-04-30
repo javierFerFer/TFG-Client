@@ -37,7 +37,7 @@ namespace TFG_Client {
         }
 
         public void openSuccessAddQuestionForm() {
-            Utilities.openForm(new EmptyDataForm("Se ha agregado el tema y la pregunta correctamente al sistema"), dataPanel, rightPanel);
+            Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la petición de agregación al sistema"), dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
@@ -136,8 +136,8 @@ namespace TFG_Client {
         }
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
-            if (textBoxQuestion.Text.Length > 120) {
-                if (textBoxQuestion.Text.Length == 121) {
+            if (textBoxQuestion.Text.Length > 90) {
+                if (textBoxQuestion.Text.Length == 91) {
                     textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
                     textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
                     Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");

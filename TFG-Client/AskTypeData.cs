@@ -31,22 +31,26 @@ namespace TFG_Client {
 
         private void nextButton_Click(object sender, EventArgs e) {
             // true = add selected, false = modify
+            AskOperation tempForm = (AskOperation)beforeForm;
             if (selectedOption) {
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                     if (checkBoxNormal.Checked) {
                         // Crear un menu para guardar una pregunta en base a la asignatura seleccionada
-                        AskOperation tempForm = (AskOperation)beforeForm;
                         Utilities.openForm(new AddNewQuestion("normal", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
                     } else {
-                        AskOperation tempForm = (AskOperation)beforeForm;
                         Utilities.openForm(new AddNewQuestionTypeTest("test", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
                     }
                 } else {
                     Utilities.customErrorInfo("No ha seleccionado ninguna opción");
                 }
             } else {
-                // Revisar aqui
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
+                    if (checkBoxNormal.Checked) {
+                        // Muestra panel con toda la lista de preguntas de tipo normal de la asignatura seleccionada
+                        Utilities.openForm(new ListAllNormalQuestions("normal", tempForm.Subject, dataPanel, rightPanel), dataPanel, rightPanel);
+                    } else { 
+                        // Muestra panel con toda la lista de preguntas de tipo test de la asignatura seleccionada
+                    }
                     //Utilities.openForm(new AskTypeOfData(dataPanel, rightPanel, this), dataPanel, rightPanel);
                 } else {
                     Utilities.customErrorInfo("No ha seleccionado ninguna opción");

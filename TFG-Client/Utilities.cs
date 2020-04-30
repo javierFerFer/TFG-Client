@@ -36,8 +36,8 @@ namespace TFG_Client {
         }
 
         public static void createCustomErrorTestMessage(string letterParam) {
-            Utilities.customErrorInfo("La longitud de la pregunta " + "'" + letterParam + "' " + "que desea agregar es demasiado corta. \n" +
-                                              "Debe tener al menos 5 caracteres.");
+            Utilities.customErrorInfo("La longitud de la pregunta " + "'" + letterParam + "' " + "tiene una longitud incorrecta. \n" +
+                                              "Debe tener al menos 5 caracteres y como máximo 45.");
         }
 
         public static string generateSingleDataRequest(string titleMessageParam, string contentParam) {
@@ -414,6 +414,33 @@ namespace TFG_Client {
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        public static void customErrorInfoModificationNormal(string messageParam) {
+            try {
+                ModelWindowsMessageWithBroder customErrorMessage = new ModelWindowsMessageWithBroder();
+                customErrorMessage.StartPosition = FormStartPosition.CenterScreen;
+                customErrorMessage.title.Text = "Un error se ha producido";
+                customErrorMessage.messageLabel.Text = messageParam;
+
+                if (customErrorMessage.Width < customErrorMessage.messageLabel.Width) {
+                    customErrorMessage.Width = customErrorMessage.messageLabel.Width + 50;
+
+                    customErrorMessage.flowLayoutTitle.Width = customErrorMessage.messageLabel.Width + 60;
+                    customErrorMessage.panelDown.Width = customErrorMessage.Width + 10;
+                    customErrorMessage.panelUp.Width = customErrorMessage.Width + 10;
+                }
+                customErrorMessage.ShowDialog();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        public static void createFormNewNormalModification(string titleParam, string id, string question) {
+            FormNewNormalModification formNewNormalObject = new FormNewNormalModification(id);
+            formNewNormalObject.StartPosition = FormStartPosition.CenterParent;
+            formNewNormalObject.title.Text = titleParam;
+            formNewNormalObject.labelQuestionInfo.Text = question;
+            formNewNormalObject.ShowDialog();
+        }
 
         public static void createErrorMessage(string message, bool showDevelopMessage, int codError, Form activeFormParam) {
             try {
@@ -530,6 +557,7 @@ namespace TFG_Client {
                 return null;
             }
         }
+
 
         /// <summary>
         /// Permite redimensionar la imagen.

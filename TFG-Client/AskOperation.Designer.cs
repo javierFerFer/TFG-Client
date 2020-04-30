@@ -146,8 +146,8 @@
         #endregion
         private System.Windows.Forms.Panel typeOfDataPanel;
         private System.Windows.Forms.Label labelAskTypeOfOperation;
-        private System.Windows.Forms.CheckBox checkBoxModify;
-        private System.Windows.Forms.CheckBox checkBoxAdd;
+        public System.Windows.Forms.CheckBox checkBoxModify;
+        public System.Windows.Forms.CheckBox checkBoxAdd;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button nextButton;
         public System.Windows.Forms.Label subjectSelected;

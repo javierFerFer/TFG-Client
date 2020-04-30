@@ -13,12 +13,15 @@ namespace TFG_Client {
 
         private Panel dataPanel;
         private Panel rightPanel;
+        private string subject;
+
 
         public AskOperation(string subjectSelectedParam, Panel dataPanelParam, Panel rightPanelParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
             subjectSelected.Text += subjectSelectedParam;
+            Subject = subjectSelectedParam;
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
@@ -48,5 +51,7 @@ namespace TFG_Client {
                 checkBoxModify.Checked = false;
             }
         }
+
+        public string Subject { get => subject; set => subject = value; }
     }
 }

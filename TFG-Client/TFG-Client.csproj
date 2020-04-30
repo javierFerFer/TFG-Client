@@ -78,6 +78,12 @@
     <Compile Include="AskOperation.Designer.cs">
       <DependentUpon>AskOperation.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListAllNormalQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListAllNormalQuestions.Designer.cs">
+      <DependentUpon>ListAllNormalQuestions.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmptyDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,18 @@
     </Compile>
     <Compile Include="MainFormProgram.Designer.cs">
       <DependentUpon>MainFormProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNewNormalModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewNormalModification.Designer.cs">
+      <DependentUpon>FormNewNormalModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelWindowsMessageWithBroder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelWindowsMessageWithBroder.Designer.cs">
+      <DependentUpon>ModelWindowsMessageWithBroder.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelWindowsMessage.cs">
       <SubType>Form</SubType>
@@ -122,11 +140,20 @@
     <EmbeddedResource Include="AskOperation.resx">
       <DependentUpon>AskOperation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListAllNormalQuestions.resx">
+      <DependentUpon>ListAllNormalQuestions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmptyDataForm.resx">
       <DependentUpon>EmptyDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFormProgram.resx">
       <DependentUpon>MainFormProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewNormalModification.resx">
+      <DependentUpon>FormNewNormalModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelWindowsMessageWithBroder.resx">
+      <DependentUpon>ModelWindowsMessageWithBroder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelWindowsMessage.resx">
       <DependentUpon>ModelWindowsMessage.cs</DependentUpon>
