@@ -19,7 +19,44 @@ namespace TFG_Client {
     static class Utilities {
 
         public static bool showDevelopMessages = true;
+        public static bool warningAnser = true;
         private static string emptyString = "";
+
+
+        public static void resetWarningAnserValue() {
+            warningAnser = true;
+        }
+
+        public static bool createWarningForm() {
+            try {
+
+                resetWarningAnserValue();
+
+                ModelWindowsMessageWithBroderWarning customWarningMessage = new ModelWindowsMessageWithBroderWarning();
+                customWarningMessage.StartPosition = FormStartPosition.CenterScreen;
+                customWarningMessage.title.Text = "Advertencia";
+                customWarningMessage.messageLabel.Text = "Si continua, se perderán todos los cambios que haya realizado\n" +
+                                                       "¿Desea continuar?";
+
+                if (customWarningMessage.Width < customWarningMessage.messageLabel.Width) {
+                    customWarningMessage.Width = customWarningMessage.messageLabel.Width + 50;
+
+                    customWarningMessage.flowLayoutTitle.Width = customWarningMessage.messageLabel.Width + 60;
+                    customWarningMessage.panelDown.Width = customWarningMessage.Width + 10;
+                    customWarningMessage.panelUp.Width = customWarningMessage.Width + 10;
+                }
+
+                customWarningMessage.ShowDialog();
+                if (warningAnser) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+                return false;
+            }
+        }
 
         public static string generateSingleDataRequest(string titleMessageParam) {
             try {

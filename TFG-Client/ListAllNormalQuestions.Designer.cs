@@ -23,11 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListAllNormalQuestions));
             this.panelInternal = new System.Windows.Forms.Panel();
             this.panelAllData = new System.Windows.Forms.Panel();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
             this.errorNoQuestionsFound = new System.Windows.Forms.Label();
             this.dataGridViewAllNormalData = new System.Windows.Forms.DataGridView();
@@ -35,7 +37,6 @@
             this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
             this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
-            this.resetButton = new System.Windows.Forms.Button();
             this.panelInternal.SuspendLayout();
             this.panelAllData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).BeginInit();
@@ -48,11 +49,12 @@
             this.panelInternal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelInternal.Location = new System.Drawing.Point(0, 0);
             this.panelInternal.Name = "panelInternal";
-            this.panelInternal.Size = new System.Drawing.Size(1252, 578);
+            this.panelInternal.Size = new System.Drawing.Size(1252, 626);
             this.panelInternal.TabIndex = 0;
             // 
             // panelAllData
             // 
+            this.panelAllData.Controls.Add(this.buttonBack);
             this.panelAllData.Controls.Add(this.resetButton);
             this.panelAllData.Controls.Add(this.searchButton);
             this.panelAllData.Controls.Add(this.errorNoQuestionsFound);
@@ -62,8 +64,38 @@
             this.panelAllData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAllData.Location = new System.Drawing.Point(0, 0);
             this.panelAllData.Name = "panelAllData";
-            this.panelAllData.Size = new System.Drawing.Size(1252, 578);
+            this.panelAllData.Size = new System.Drawing.Size(1252, 626);
             this.panelAllData.TabIndex = 0;
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.buttonBack.FlatAppearance.BorderSize = 0;
+            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.ForeColor = System.Drawing.Color.White;
+            this.buttonBack.Location = new System.Drawing.Point(804, 526);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(89, 37);
+            this.buttonBack.TabIndex = 8;
+            this.buttonBack.Text = "Volver";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // resetButton
+            // 
+            this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.resetButton.FlatAppearance.BorderSize = 0;
+            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetButton.ForeColor = System.Drawing.Color.White;
+            this.resetButton.Location = new System.Drawing.Point(805, 18);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(89, 37);
+            this.resetButton.TabIndex = 7;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // searchButton
             // 
@@ -85,7 +117,7 @@
             this.errorNoQuestionsFound.AutoSize = true;
             this.errorNoQuestionsFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorNoQuestionsFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.errorNoQuestionsFound.Location = new System.Drawing.Point(136, 274);
+            this.errorNoQuestionsFound.Location = new System.Drawing.Point(64, 242);
             this.errorNoQuestionsFound.Name = "errorNoQuestionsFound";
             this.errorNoQuestionsFound.Size = new System.Drawing.Size(664, 29);
             this.errorNoQuestionsFound.TabIndex = 3;
@@ -103,14 +135,14 @@
             this.dataGridViewAllNormalData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAllNormalData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridViewAllNormalData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAllNormalData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAllNormalData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewAllNormalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAllNormalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDNormalQuestion,
@@ -123,16 +155,16 @@
             this.dataGridViewAllNormalData.ReadOnly = true;
             this.dataGridViewAllNormalData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewAllNormalData.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAllNormalData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAllNormalData.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewAllNormalData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAllNormalData.Size = new System.Drawing.Size(881, 503);
+            this.dataGridViewAllNormalData.Size = new System.Drawing.Size(881, 457);
             this.dataGridViewAllNormalData.TabIndex = 2;
             this.dataGridViewAllNormalData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellDoubleClick);
             // 
@@ -155,10 +187,10 @@
             this.textBoxFindQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
             this.textBoxFindQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxFindQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFindQuestion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.textBoxFindQuestion.ForeColor = System.Drawing.Color.White;
             this.textBoxFindQuestion.Location = new System.Drawing.Point(45, 27);
             this.textBoxFindQuestion.Name = "textBoxFindQuestion";
-            this.textBoxFindQuestion.Size = new System.Drawing.Size(628, 20);
+            this.textBoxFindQuestion.Size = new System.Drawing.Size(621, 20);
             this.textBoxFindQuestion.TabIndex = 1;
             this.textBoxFindQuestion.Text = "Nombre de la pregunta a buscar...";
             this.textBoxFindQuestion.Enter += new System.EventHandler(this.textBoxFindQuestion_Enter);
@@ -168,34 +200,18 @@
             // pictureBoxSearchQuestion
             // 
             this.pictureBoxSearchQuestion.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearchQuestion.Image")));
-            this.pictureBoxSearchQuestion.Location = new System.Drawing.Point(12, 18);
+            this.pictureBoxSearchQuestion.Location = new System.Drawing.Point(12, 16);
             this.pictureBoxSearchQuestion.Name = "pictureBoxSearchQuestion";
             this.pictureBoxSearchQuestion.Size = new System.Drawing.Size(674, 39);
-            this.pictureBoxSearchQuestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxSearchQuestion.TabIndex = 0;
             this.pictureBoxSearchQuestion.TabStop = false;
-            // 
-            // resetButton
-            // 
-            this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.resetButton.FlatAppearance.BorderSize = 0;
-            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetButton.ForeColor = System.Drawing.Color.White;
-            this.resetButton.Location = new System.Drawing.Point(805, 18);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(89, 37);
-            this.resetButton.TabIndex = 7;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = false;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // ListAllNormalQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 578);
+            this.ClientSize = new System.Drawing.Size(1252, 626);
             this.Controls.Add(this.panelInternal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ListAllNormalQuestions";
@@ -220,5 +236,6 @@
         private System.Windows.Forms.Label errorNoQuestionsFound;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button buttonBack;
     }
 }

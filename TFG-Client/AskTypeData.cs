@@ -47,7 +47,7 @@ namespace TFG_Client {
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                     if (checkBoxNormal.Checked) {
                         // Muestra panel con toda la lista de preguntas de tipo normal de la asignatura seleccionada
-                        Utilities.openForm(new ListAllNormalQuestions("normal", tempForm.Subject, dataPanel, rightPanel), dataPanel, rightPanel);
+                        Utilities.openForm(new ListAllNormalQuestions("normal", tempForm.Subject, dataPanel, rightPanel, this), dataPanel, rightPanel);
                     } else { 
                         // Muestra panel con toda la lista de preguntas de tipo test de la asignatura seleccionada
                     }

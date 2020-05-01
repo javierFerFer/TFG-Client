@@ -104,6 +104,12 @@
     <Compile Include="FormNewNormalModification.Designer.cs">
       <DependentUpon>FormNewNormalModification.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelWindowsMessageWithBroderWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelWindowsMessageWithBroderWarning.Designer.cs">
+      <DependentUpon>ModelWindowsMessageWithBroderWarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelWindowsMessageWithBroder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewNormalModification.resx">
       <DependentUpon>FormNewNormalModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelWindowsMessageWithBroderWarning.resx">
+      <DependentUpon>ModelWindowsMessageWithBroderWarning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelWindowsMessageWithBroder.resx">
       <DependentUpon>ModelWindowsMessageWithBroder.cs</DependentUpon>

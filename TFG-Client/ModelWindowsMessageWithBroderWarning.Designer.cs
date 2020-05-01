@@ -1,5 +1,5 @@
 ﻿namespace TFG_Client {
-    partial class ModelWindowsMessageWithBroder {
+    partial class ModelWindowsMessageWithBroderWarning {
         /// <summary>
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -29,6 +29,7 @@
             this.flowLayoutTitle = new System.Windows.Forms.FlowLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
             this.panelBorder = new System.Windows.Forms.Panel();
+            this.buttonContinue = new System.Windows.Forms.Button();
             this.flowLayoutTitle.SuspendLayout();
             this.panelBorder.SuspendLayout();
             this.SuspendLayout();
@@ -87,17 +88,18 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(11, 223);
+            this.closeButton.Location = new System.Drawing.Point(10, 215);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(80, 29);
             this.closeButton.TabIndex = 9;
-            this.closeButton.Text = "Volver";
+            this.closeButton.Text = "Cerrar";
             this.closeButton.UseVisualStyleBackColor = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // panelBorder
             // 
             this.panelBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBorder.Controls.Add(this.buttonContinue);
             this.panelBorder.Controls.Add(this.flowLayoutTitle);
             this.panelBorder.Controls.Add(this.panelUp);
             this.panelBorder.Controls.Add(this.panelDown);
@@ -105,20 +107,35 @@
             this.panelBorder.Controls.Add(this.closeButton);
             this.panelBorder.Location = new System.Drawing.Point(1, 1);
             this.panelBorder.Name = "panelBorder";
-            this.panelBorder.Size = new System.Drawing.Size(602, 263);
+            this.panelBorder.Size = new System.Drawing.Size(591, 252);
             this.panelBorder.TabIndex = 14;
             // 
-            // ModelWindowsMessageWithBroder
+            // buttonContinue
+            // 
+            this.buttonContinue.BackColor = System.Drawing.Color.DimGray;
+            this.buttonContinue.FlatAppearance.BorderSize = 0;
+            this.buttonContinue.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonContinue.ForeColor = System.Drawing.Color.White;
+            this.buttonContinue.Location = new System.Drawing.Point(492, 215);
+            this.buttonContinue.Name = "buttonContinue";
+            this.buttonContinue.Size = new System.Drawing.Size(80, 29);
+            this.buttonContinue.TabIndex = 14;
+            this.buttonContinue.Text = "Continuar";
+            this.buttonContinue.UseVisualStyleBackColor = false;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
+            // 
+            // ModelWindowsMessageWithBroderWarning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 265);
+            this.ClientSize = new System.Drawing.Size(593, 254);
             this.Controls.Add(this.panelBorder);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ModelWindowsMessageWithBroder";
+            this.Name = "ModelWindowsMessageWithBroderWarning";
             this.Padding = new System.Windows.Forms.Padding(9);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -140,5 +157,6 @@
         public System.Windows.Forms.FlowLayoutPanel flowLayoutTitle;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Panel panelBorder;
+        private System.Windows.Forms.Button buttonContinue;
     }
 }

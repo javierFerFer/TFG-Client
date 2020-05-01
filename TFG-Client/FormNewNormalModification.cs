@@ -44,7 +44,10 @@ namespace TFG_Client {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void closeButton_Click(object sender, EventArgs e) {
-            Dispose();
+            bool userOption = Utilities.createWarningForm();
+            if (userOption) {
+                Dispose();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {

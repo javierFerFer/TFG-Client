@@ -16,9 +16,11 @@ namespace TFG_Client {
         string nameOfSubject;
         Panel dataPanel;
         Panel rightPanel;
+        Form beforeForm;
         string[] allDataOnView;
+        private const string searchBanner = "Nombre de la pregunta a buscar...";
 
-        public ListAllNormalQuestions(string typeOfDataParam, string nameOfSubjectParam, Panel dataPanelParam, Panel rightPanelParam) {
+        public ListAllNormalQuestions(string typeOfDataParam, string nameOfSubjectParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             typeOfData = typeOfDataParam;
             nameOfSubject = nameOfSubjectParam;
@@ -30,6 +32,8 @@ namespace TFG_Client {
             textBoxFindQuestion.Visible = false;
             searchButton.Visible = false;
             resetButton.Visible = false;
+            buttonBack.Visible = false;
+            beforeForm = beforeFormParam;
             pictureBoxSearchQuestion.Visible = false;
             dataGridViewAllNormalData.Visible = false;
             getAllNormalQuestions();
@@ -44,9 +48,11 @@ namespace TFG_Client {
             resetButton.Visible = option;
             if (option) {
                 errorNoQuestionsFound.Visible = false;
+                buttonBack.Visible = true;
             } else {
                 errorNoQuestionsFound.Text = "No se han encontrado preguntas normales asociadas a la asignatura";
                 errorNoQuestionsFound.Visible = true;
+                buttonBack.Visible = true;
             }
         }
 
@@ -76,7 +82,6 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = (DataGridViewRow)allDataParamObjects[questionCounter];
                 object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() };
                 dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
             }
         }
 
@@ -89,14 +94,14 @@ namespace TFG_Client {
         }
 
         private void textBoxFindQuestion_Enter(object sender, EventArgs e) {
-            if (textBoxFindQuestion.Text == "Nombre de la pregunta a buscar...") {
+            if (textBoxFindQuestion.Text == searchBanner) {
                 textBoxFindQuestion.Text = "";
             }
         }
 
         private void textBoxFindQuestion_Leave(object sender, EventArgs e) {
             if (textBoxFindQuestion.Text == "") {
-                textBoxFindQuestion.Text = "Nombre de la pregunta a buscar...";
+                textBoxFindQuestion.Text = searchBanner;
             }
         }
 
@@ -110,18 +115,20 @@ namespace TFG_Client {
         private void searchButton_Click(object sender, EventArgs e) {
             ArrayList removedRows = new ArrayList();
 
-            foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
-                MessageBox.Show(row.Cells[1].Value.ToString().ToLower());
-                if (row.Cells[1].Value.ToString().ToLower().Equals(textBoxFindQuestion.Text.ToLower())) {
-                    DataGridViewRow tempRow = row;
-                    removedRows.Add(tempRow);
+            resetButton.PerformClick();
+            if (textBoxFindQuestion.Text != searchBanner) {
+                foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
+                    //MessageBox.Show(row.Cells[1].Value.ToString().ToLower());
+                    if (row.Cells[1].Value.ToString().ToLower().Contains(textBoxFindQuestion.Text.ToLower())) {
+                        DataGridViewRow tempRow = row;
+                        removedRows.Add(tempRow);
+                    }
                 }
+
+                dataGridViewAllNormalData.Rows.Clear();
+
+                fillDataGridView(removedRows);
             }
-
-            dataGridViewAllNormalData.Rows.Clear();
-
-            fillDataGridView(removedRows);
-
         }
 
         private void textBoxFindQuestion_KeyPress(object sender, KeyPressEventArgs e) {
@@ -134,6 +141,10 @@ namespace TFG_Client {
         private void resetButton_Click(object sender, EventArgs e) {
             dataGridViewAllNormalData.Rows.Clear();
             fillDataGridView();
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e) {
+            Utilities.openForm(beforeForm, dataPanel, rightPanel);
         }
     }
 }

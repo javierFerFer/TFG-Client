@@ -34,7 +34,10 @@ namespace TFG_Client {
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
-            Utilities.openForm(beforeForm, dataPanel, rightPanel);
+            bool userOption = Utilities.createWarningForm();
+            if (userOption) {
+                Utilities.openForm(beforeForm, dataPanel, rightPanel);
+            }
         }
 
         public void openSuccessAddQuestionForm() {
