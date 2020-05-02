@@ -73,7 +73,7 @@
             this.textBoxNameOfTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBoxNameOfTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNameOfTheme.ForeColor = System.Drawing.Color.White;
-            this.textBoxNameOfTheme.Location = new System.Drawing.Point(206, 324);
+            this.textBoxNameOfTheme.Location = new System.Drawing.Point(206, 378);
             this.textBoxNameOfTheme.Name = "textBoxNameOfTheme";
             this.textBoxNameOfTheme.Size = new System.Drawing.Size(340, 26);
             this.textBoxNameOfTheme.TabIndex = 13;
@@ -85,7 +85,7 @@
             this.checkBoxSelectedTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxSelectedTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxSelectedTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxSelectedTheme.Location = new System.Drawing.Point(737, 262);
+            this.checkBoxSelectedTheme.Location = new System.Drawing.Point(737, 316);
             this.checkBoxSelectedTheme.Name = "checkBoxSelectedTheme";
             this.checkBoxSelectedTheme.Size = new System.Drawing.Size(198, 51);
             this.checkBoxSelectedTheme.TabIndex = 12;
@@ -100,7 +100,7 @@
             this.checkBoxNewTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxNewTheme.Location = new System.Drawing.Point(585, 262);
+            this.checkBoxNewTheme.Location = new System.Drawing.Point(585, 316);
             this.checkBoxNewTheme.Name = "checkBoxNewTheme";
             this.checkBoxNewTheme.Size = new System.Drawing.Size(165, 51);
             this.checkBoxNewTheme.TabIndex = 11;
@@ -113,7 +113,7 @@
             this.labelAskNewTheme.AutoSize = true;
             this.labelAskNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAskNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelAskNewTheme.Location = new System.Drawing.Point(201, 276);
+            this.labelAskNewTheme.Location = new System.Drawing.Point(201, 330);
             this.labelAskNewTheme.Name = "labelAskNewTheme";
             this.labelAskNewTheme.Size = new System.Drawing.Size(354, 18);
             this.labelAskNewTheme.TabIndex = 10;
@@ -127,7 +127,7 @@
             this.comboBoxOfThemes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxOfThemes.ForeColor = System.Drawing.Color.White;
             this.comboBoxOfThemes.FormattingEnabled = true;
-            this.comboBoxOfThemes.Location = new System.Drawing.Point(207, 323);
+            this.comboBoxOfThemes.Location = new System.Drawing.Point(207, 377);
             this.comboBoxOfThemes.Name = "comboBoxOfThemes";
             this.comboBoxOfThemes.Size = new System.Drawing.Size(337, 28);
             this.comboBoxOfThemes.TabIndex = 9;
@@ -140,10 +140,9 @@
             this.textBoxQuestion.Location = new System.Drawing.Point(175, 206);
             this.textBoxQuestion.Multiline = true;
             this.textBoxQuestion.Name = "textBoxQuestion";
-            this.textBoxQuestion.Size = new System.Drawing.Size(629, 56);
+            this.textBoxQuestion.Size = new System.Drawing.Size(629, 104);
             this.textBoxQuestion.TabIndex = 8;
             this.textBoxQuestion.TextChanged += new System.EventHandler(this.textBoxQuestion_TextChanged_1);
-            this.textBoxQuestion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxQuestion_KeyPress);
             // 
             // subjectSelected
             // 
@@ -163,7 +162,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 433);
+            this.buttonBack.Location = new System.Drawing.Point(80, 487);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -178,7 +177,7 @@
             this.sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sendButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendButton.ForeColor = System.Drawing.Color.White;
-            this.sendButton.Location = new System.Drawing.Point(785, 433);
+            this.sendButton.Location = new System.Drawing.Point(785, 487);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(108, 37);
             this.sendButton.TabIndex = 5;

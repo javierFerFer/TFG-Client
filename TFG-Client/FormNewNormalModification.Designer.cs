@@ -32,7 +32,10 @@
             this.labelQuestionInfo = new System.Windows.Forms.Label();
             this.textBoxNewQuest = new System.Windows.Forms.TextBox();
             this.labelInfoNewModification = new System.Windows.Forms.Label();
+            this.flowLayoutPanelQuestionInfo = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBoxDelete = new System.Windows.Forms.CheckBox();
             this.flowLayoutTitle.SuspendLayout();
+            this.flowLayoutPanelQuestionInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoNormalQuestionData
@@ -116,7 +119,7 @@
             // 
             this.labelQuestionInfo.AutoSize = true;
             this.labelQuestionInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestionInfo.Location = new System.Drawing.Point(27, 120);
+            this.labelQuestionInfo.Location = new System.Drawing.Point(3, 0);
             this.labelQuestionInfo.Name = "labelQuestionInfo";
             this.labelQuestionInfo.Size = new System.Drawing.Size(0, 20);
             this.labelQuestionInfo.TabIndex = 15;
@@ -126,10 +129,9 @@
             this.textBoxNewQuest.Location = new System.Drawing.Point(23, 272);
             this.textBoxNewQuest.Multiline = true;
             this.textBoxNewQuest.Name = "textBoxNewQuest";
-            this.textBoxNewQuest.Size = new System.Drawing.Size(662, 86);
+            this.textBoxNewQuest.Size = new System.Drawing.Size(629, 104);
             this.textBoxNewQuest.TabIndex = 16;
             this.textBoxNewQuest.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBoxNewQuest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // labelInfoNewModification
             // 
@@ -141,14 +143,35 @@
             this.labelInfoNewModification.TabIndex = 17;
             this.labelInfoNewModification.Text = "Escriba como desea que quede la pregunta";
             // 
+            // flowLayoutPanelQuestionInfo
+            // 
+            this.flowLayoutPanelQuestionInfo.AutoScroll = true;
+            this.flowLayoutPanelQuestionInfo.Controls.Add(this.labelQuestionInfo);
+            this.flowLayoutPanelQuestionInfo.Location = new System.Drawing.Point(23, 116);
+            this.flowLayoutPanelQuestionInfo.Name = "flowLayoutPanelQuestionInfo";
+            this.flowLayoutPanelQuestionInfo.Size = new System.Drawing.Size(808, 100);
+            this.flowLayoutPanelQuestionInfo.TabIndex = 18;
+            // 
+            // checkBoxDelete
+            // 
+            this.checkBoxDelete.AutoSize = true;
+            this.checkBoxDelete.Location = new System.Drawing.Point(732, 311);
+            this.checkBoxDelete.Name = "checkBoxDelete";
+            this.checkBoxDelete.Size = new System.Drawing.Size(99, 17);
+            this.checkBoxDelete.TabIndex = 19;
+            this.checkBoxDelete.Text = "Borrar pregunta";
+            this.checkBoxDelete.UseVisualStyleBackColor = true;
+            this.checkBoxDelete.CheckedChanged += new System.EventHandler(this.checkBoxDelete_CheckedChanged);
+            // 
             // FormNewNormalModification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 487);
+            this.Controls.Add(this.checkBoxDelete);
+            this.Controls.Add(this.flowLayoutPanelQuestionInfo);
             this.Controls.Add(this.labelInfoNewModification);
             this.Controls.Add(this.textBoxNewQuest);
-            this.Controls.Add(this.labelQuestionInfo);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.flowLayoutTitle);
             this.Controls.Add(this.infoNormalQuestionData);
@@ -167,6 +190,8 @@
             this.Text = "ModelWindowsMessage";
             this.flowLayoutTitle.ResumeLayout(false);
             this.flowLayoutTitle.PerformLayout();
+            this.flowLayoutPanelQuestionInfo.ResumeLayout(false);
+            this.flowLayoutPanelQuestionInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +208,7 @@
         public System.Windows.Forms.Label labelQuestionInfo;
         private System.Windows.Forms.TextBox textBoxNewQuest;
         public System.Windows.Forms.Label labelInfoNewModification;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelQuestionInfo;
+        private System.Windows.Forms.CheckBox checkBoxDelete;
     }
 }

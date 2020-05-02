@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    partial class ModelWindowsMessage : Form {
+    public partial class ModelWindowsMessage : Form {
         /// <summary>
         /// Constructor de la clase modelo de mensajes
         /// 

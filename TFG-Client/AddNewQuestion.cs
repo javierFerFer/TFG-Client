@@ -139,17 +139,19 @@ namespace TFG_Client {
         }
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
-            if (textBoxQuestion.Text.Length > 90) {
-                if (textBoxQuestion.Text.Length == 91) {
-                    textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
-                    textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
-                    Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
-                    MessageBox.Show(textBoxQuestion.Text.Length.ToString());
-                } else {
-                    Utilities.customErrorInfo("El texto introducido supera el limite máximo de caracteres");
-                    textBoxQuestion.Text = "";
+            try {
+                if (textBoxQuestion.Text.Length > 230) {
+                    if (textBoxQuestion.Text.Length == 231) {
+                        textBoxQuestion.Text = textBoxQuestion.Text.Substring(0, textBoxQuestion.Text.Length - 1);
+                        textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
+                        Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
+                    } else {
+                        Utilities.customErrorInfo("El texto introducido supera el limite máximo de caracteres");
+                        textBoxQuestion.Text = "";
+                    }
                 }
-            }
+            } catch (Exception) {}
+            
         }
 
         private void checkBoxNewTheme_CheckedChanged(object sender, EventArgs e) {
@@ -199,24 +201,21 @@ namespace TFG_Client {
         }
 
         private void textBoxNameOfTheme_TextChanged(object sender, EventArgs e) {
-            if (textBoxNameOfTheme.Text.Trim().Length != 0) {
-                string textToReplace = textBoxNameOfTheme.Text.Substring(0, 1).ToUpper();
-                textToReplace += textBoxNameOfTheme.Text.Substring(1, textBoxNameOfTheme.Text.Length - 1);
-                textBoxNameOfTheme.Text = textToReplace;
-                textBoxNameOfTheme.Select(textBoxNameOfTheme.Text.Length, 0);
-            }
-            if (textBoxNameOfTheme.Text.Trim().Length > 25) {
-                textBoxNameOfTheme.Text = textBoxNameOfTheme.Text.Substring(0, textBoxNameOfTheme.Text.Length - 1);
-                textBoxNameOfTheme.Select(textBoxNameOfTheme.Text.Length, 0);
-                Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en el tema");
-            }
+            try {
+                if (textBoxNameOfTheme.Text.Trim().Length != 0) {
+                    string textToReplace = textBoxNameOfTheme.Text.Substring(0, 1).ToUpper();
+                    textToReplace += textBoxNameOfTheme.Text.Substring(1, textBoxNameOfTheme.Text.Length - 1);
+                    textBoxNameOfTheme.Text = textToReplace;
+                    textBoxNameOfTheme.Select(textBoxNameOfTheme.Text.Length, 0);
+                }
+                if (textBoxNameOfTheme.Text.Trim().Length > 25) {
+                    textBoxNameOfTheme.Text = textBoxNameOfTheme.Text.Substring(0, textBoxNameOfTheme.Text.Length - 1);
+                    textBoxNameOfTheme.Select(textBoxNameOfTheme.Text.Length, 0);
+                    Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en el tema");
+                }
+            } catch (Exception) {}
         }
 
-        private void textBoxQuestion_KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == (char)13) {
-                sendButton.PerformClick();
-            }
-        }
 
         private void textBoxNameOfTheme_KeyPress(object sender, KeyPressEventArgs e) {
             if (e.KeyChar == (char)13) {

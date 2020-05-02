@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    public partial class ListAllNormalQuestions : Form {
+    public partial class ListAllTestQuestions : Form {
         string nameOfSubject;
         Panel dataPanel;
         Panel rightPanel;
@@ -19,10 +19,10 @@ namespace TFG_Client {
         string[] allDataOnView;
         private const string searchBanner = "Nombre de la pregunta a buscar...";
 
-        public ListAllNormalQuestions(string nameOfSubjectParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
+        public ListAllTestQuestions(string nameOfSubjectParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             nameOfSubject = nameOfSubjectParam;
-            ConnectionWithServer.LoginForm.ListAllNormalQuestions = this;
+            ConnectionWithServer.LoginForm.ListAllTestQuestions = this;
             errorNoQuestionsFound.Text = "Esperando datos del servidor...";
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
@@ -33,14 +33,14 @@ namespace TFG_Client {
             buttonBack.Visible = false;
             beforeForm = beforeFormParam;
             pictureBoxSearchQuestion.Visible = false;
-            dataGridViewAllNormalData.Visible = false;
-            getAllNormalQuestions();
+            dataGridViewTestData.Visible = false;
+            getAllTestQuestions();
         }
 
         public void hide_show_dataGridView(bool option) {
             Thread.Sleep(2000);
             pictureBoxSearchQuestion.Visible = option;
-            dataGridViewAllNormalData.Visible = option;
+            dataGridViewTestData.Visible = option;
             textBoxFindQuestion.Visible = option;
             searchButton.Visible = option;
             resetButton.Visible = option;
@@ -48,7 +48,7 @@ namespace TFG_Client {
                 errorNoQuestionsFound.Visible = false;
                 buttonBack.Visible = true;
             } else {
-                errorNoQuestionsFound.Text = "No se han encontrado preguntas normales asociadas a la asignatura";
+                errorNoQuestionsFound.Text = "No se han encontrado preguntas de tipo test asociadas a la asignatura";
                 errorNoQuestionsFound.Visible = true;
                 buttonBack.Visible = true;
             }
@@ -58,8 +58,8 @@ namespace TFG_Client {
             Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la petición de modificación al sistema"), dataPanel, rightPanel);
         }
 
-        private void getAllNormalQuestions() {
-            string jsonMessageGetThemes = Utilities.generateSingleDataRequest("getAllNormalQuestionsSpecificNameOfSUbject", nameOfSubject);
+        private void getAllTestQuestions() {
+            string jsonMessageGetThemes = Utilities.generateSingleDataRequest("getAllTestQuestionsSpecificNameOfSUbject", nameOfSubject);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -69,25 +69,25 @@ namespace TFG_Client {
         public void fillDataGridView(string [] allDataParam) {
             allDataOnView = allDataParam;
             for (int questionCounter = 0; questionCounter < allDataParam.Length; questionCounter++) {
-                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1] };
-                dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
+                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1], allDataParam[questionCounter + 2], allDataParam[questionCounter + 3],  allDataParam[questionCounter + 4], allDataParam[questionCounter + 5] , allDataParam[questionCounter + 6] };
+                dataGridViewTestData.Rows.Add(row);
+                questionCounter += 6;
             }
         }
 
         public void fillDataGridView(ArrayList allDataParamObjects) {
             for (int questionCounter = 0; questionCounter < allDataParamObjects.Count; questionCounter++) {
                 DataGridViewRow tempRow = (DataGridViewRow)allDataParamObjects[questionCounter];
-                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() };
-                dataGridViewAllNormalData.Rows.Add(row);
+                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString(), tempRow.Cells[3].Value.ToString(), tempRow.Cells[4].Value.ToString(), tempRow.Cells[5].Value.ToString(), tempRow.Cells[6].Value.ToString() };
+                dataGridViewTestData.Rows.Add(row);
             }
         }
 
         private void fillDataGridView() {
             for (int questionCounter = 0; questionCounter < allDataOnView.Length; questionCounter++) {
-                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1] };
-                dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
+                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1], allDataOnView[questionCounter + 2], allDataOnView[questionCounter + 3], allDataOnView[questionCounter + 4], allDataOnView[questionCounter + 5], allDataOnView[questionCounter + 6] };
+                dataGridViewTestData.Rows.Add(row);
+                questionCounter += 6;
             }
         }
 
@@ -104,9 +104,10 @@ namespace TFG_Client {
         }
 
         private void dataGridViewAllNormalData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            DataGridViewSelectedRowCollection selectedRow = dataGridViewAllNormalData.SelectedRows;
+            DataGridViewSelectedRowCollection selectedRow = dataGridViewTestData.SelectedRows;
                 DataGridViewRow rowSelectedByUser = selectedRow[0];
                 Utilities.createFormNewNormalModification("Petición de modificación", rowSelectedByUser.Cells[0].Value.ToString(), rowSelectedByUser.Cells[1].Value.ToString());
+            
         }
 
         private void searchButton_Click(object sender, EventArgs e) {
@@ -114,7 +115,7 @@ namespace TFG_Client {
 
             resetButton.PerformClick();
             if (textBoxFindQuestion.Text != searchBanner) {
-                foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
+                foreach (DataGridViewRow row in dataGridViewTestData.Rows) {
                     //MessageBox.Show(row.Cells[1].Value.ToString().ToLower());
                     if (row.Cells[1].Value.ToString().ToLower().Contains(textBoxFindQuestion.Text.ToLower())) {
                         DataGridViewRow tempRow = row;
@@ -122,7 +123,7 @@ namespace TFG_Client {
                     }
                 }
 
-                dataGridViewAllNormalData.Rows.Clear();
+                dataGridViewTestData.Rows.Clear();
 
                 fillDataGridView(removedRows);
             }
@@ -136,7 +137,7 @@ namespace TFG_Client {
 
 
         private void resetButton_Click(object sender, EventArgs e) {
-            dataGridViewAllNormalData.Rows.Clear();
+            dataGridViewTestData.Rows.Clear();
             fillDataGridView();
         }
 
@@ -149,6 +150,19 @@ namespace TFG_Client {
         }
 
         private void dataGridViewAllNormalData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
+            DataGridViewRow tempRow = sender as DataGridViewRow;
+            MessageBox.Show(tempRow.Cells[0].Value.ToString());
+        }
+
+        private void dataGridViewTestData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            // Petición de modificación
+            
+            DataGridViewSelectedRowCollection selectedRow = dataGridViewTestData.SelectedRows;
+            DataGridViewRow rowSelectedByUser = selectedRow[0];
+            Utilities.createFormNewTestModification("Petición de modificación", rowSelectedByUser.Cells[0].Value.ToString(), rowSelectedByUser.Cells[1].Value.ToString(), rowSelectedByUser.Cells[2].Value.ToString(), rowSelectedByUser.Cells[3].Value.ToString(), rowSelectedByUser.Cells[4].Value.ToString(), rowSelectedByUser.Cells[5].Value.ToString(), rowSelectedByUser.Cells[6].Value.ToString());
+        }
+
+        private void dataGridViewTestData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
             try {
                 DataGridView tempView = (DataGridView)sender;
                 tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
@@ -156,8 +170,12 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" +  tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString();
-
+                // Set the Cell's ToolTipText.  In this case we're retrieving the value stored in 
+                // another cell in the same row (see my note below).
+                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString()
+                   + "\r\n" + "\r\n"+ "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString()
+                   + "\r\n" + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString()
+                  + "\r\n" + "\r\n" + "- Opción correcta: \r\n" + tempRow.Cells[6].Value.ToString();
             } catch (Exception) {}
         }
     }

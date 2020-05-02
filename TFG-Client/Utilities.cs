@@ -46,7 +46,15 @@ namespace TFG_Client {
                     customWarningMessage.panelUp.Width = customWarningMessage.Width + 10;
                 }
 
-                customWarningMessage.ShowDialog();
+                // Se establece propietario del formulario de error para evitar perdida del foco
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        customWarningMessage.ShowDialog(ConnectionWithServer.LoginForm);
+                        ConnectionWithServer.LoginForm.ModelWindowsMessageWithBroderWarning = customWarningMessage;
+                    }));
+                } else {
+                    customWarningMessage.ShowDialog();
+                }
                 if (warningAnser) {
                     return true;
                 } else {
@@ -446,7 +454,17 @@ namespace TFG_Client {
                 }
 
                 customErrorMessage.ImageSchool.Visible = false;
-                customErrorMessage.ShowDialog();
+
+                // Se establece propietario del formulario de error para evitar perdida del foco
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessage = customErrorMessage;
+                        customErrorMessage.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    customErrorMessage.ShowDialog();
+                }
+                
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -465,7 +483,15 @@ namespace TFG_Client {
                     customErrorMessage.panelDown.Width = customErrorMessage.Width + 10;
                     customErrorMessage.panelUp.Width = customErrorMessage.Width + 10;
                 }
-                customErrorMessage.ShowDialog();
+                // Se establece propietario del formulario de error para evitar perdida del foco
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessageWithBroder = customErrorMessage;
+                        customErrorMessage.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    customErrorMessage.ShowDialog();
+                }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -476,7 +502,37 @@ namespace TFG_Client {
             formNewNormalObject.StartPosition = FormStartPosition.CenterParent;
             formNewNormalObject.title.Text = titleParam;
             formNewNormalObject.labelQuestionInfo.Text = question;
-            formNewNormalObject.ShowDialog();
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewNormalModification = formNewNormalObject;
+                    formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+            
+        }
+
+        public static void createFormNewTestModification(string titleParam, string id, string question, string answer_A, string answer_B, string answer_C, string answer_D, string answer_correct) {
+            //AQUI
+            FormNewTestModification formNewTestObject = new FormNewTestModification(id, question, answer_A, answer_B, answer_C, answer_D, answer_correct);
+            formNewTestObject.StartPosition = FormStartPosition.CenterParent;
+            formNewTestObject.title.Text = titleParam;
+            formNewTestObject.labelQuestion.Text += question;
+            formNewTestObject.labelAnswerA.Text += answer_A;
+            formNewTestObject.labelAnswerB.Text += answer_B;
+            formNewTestObject.labelAnswerC.Text += answer_C;
+            formNewTestObject.labelAnswerD.Text += answer_D;
+            formNewTestObject.labelAnswerCorrect.Text += answer_correct;
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewTestModification = formNewTestObject;
+                    formNewTestObject.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewTestObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+
         }
 
         public static void createErrorMessage(string message, bool showDevelopMessage, int codError, Form activeFormParam) {
@@ -503,12 +559,27 @@ namespace TFG_Client {
                 if (activeFormParam == null) {
                     errorForm.StartPosition = FormStartPosition.CenterScreen;
                     errorForm.ImageSchool.Visible = false;
-                    errorForm.ShowDialog();
+                    // Se establece propietario del formulario de error para evitar perdida del foco
+                    if (ConnectionWithServer.LoginForm != null) {
+                        ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                            errorForm.ShowDialog(ConnectionWithServer.LoginForm);
+                        }));
+                    } else {
+                        errorForm.ShowDialog();
+                    }
                 } else {
                     Point centerLocation = new Point(activeFormParam.Location.X + 120, activeFormParam.Location.Y);
                     errorForm.messageLabel.Location = centerLocation;
                     errorForm.ImageSchool.Visible = false;
-                    errorForm.ShowDialog();
+                    // Se establece propietario del formulario de error para evitar perdida del foco
+                    if (ConnectionWithServer.LoginForm != null) {
+                        ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                            ConnectionWithServer.LoginForm.ModelWindowsMessage = errorForm;
+                            errorForm.ShowDialog(ConnectionWithServer.LoginForm);
+                        }));
+                    } else {
+                        errorForm.ShowDialog();
+                    }
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message.ToString());

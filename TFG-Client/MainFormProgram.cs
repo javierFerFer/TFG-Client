@@ -55,6 +55,12 @@ namespace TFG_Client {
         private static AddNewQuestion addNewQuestionObject;
         private static AddNewQuestionTypeTest addNewQuestionTypeTest;
         private static ListAllNormalQuestions listAllNormalQuestions;
+        private static ListAllTestQuestions listAllTestQuestions;
+        private static FormNewNormalModification formNewNormalModification;
+        private static FormNewTestModification formNewTestModification;
+        private static ModelWindowsMessage modelWindowsMessage;
+        private static ModelWindowsMessageWithBroder modelWindowsMessageWithBroder;
+        private static ModelWindowsMessageWithBroderWarning modelWindowsMessageWithBroderWarning;
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -677,5 +683,11 @@ namespace TFG_Client {
         public AddNewQuestion AddNewQuestionObject { get => addNewQuestionObject; set => addNewQuestionObject = value; }
         public AddNewQuestionTypeTest AddNewQuestionTypeTest { get => addNewQuestionTypeTest; set => addNewQuestionTypeTest = value; }
         public  ListAllNormalQuestions ListAllNormalQuestions { get => listAllNormalQuestions; set => listAllNormalQuestions = value; }
+        public ListAllTestQuestions ListAllTestQuestions { get => listAllTestQuestions; set => listAllTestQuestions = value; }
+        public FormNewNormalModification FormNewNormalModification { get => formNewNormalModification; set => formNewNormalModification = value; }
+        public ModelWindowsMessage ModelWindowsMessage { get => modelWindowsMessage; set => modelWindowsMessage = value; }
+        public ModelWindowsMessageWithBroder ModelWindowsMessageWithBroder { get => modelWindowsMessageWithBroder; set => modelWindowsMessageWithBroder = value; }
+        public ModelWindowsMessageWithBroderWarning ModelWindowsMessageWithBroderWarning { get => modelWindowsMessageWithBroderWarning; set => modelWindowsMessageWithBroderWarning = value; }
+        public FormNewTestModification FormNewTestModification { get => formNewTestModification; set => formNewTestModification = value; }
     }
 }

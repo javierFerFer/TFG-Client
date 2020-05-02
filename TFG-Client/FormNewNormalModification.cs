@@ -25,9 +25,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    partial class FormNewNormalModification : Form {
+    public partial class FormNewNormalModification : Form {
 
-        string id;
+        private string id;
 
         public FormNewNormalModification(string idParam) {
             InitializeComponent();
@@ -51,36 +51,54 @@ namespace TFG_Client {
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
-            if (textBoxNewQuest.Text.Length > 90) {
-                if (textBoxNewQuest.Text.Length == 91) {
-                    textBoxNewQuest.Text = textBoxNewQuest.Text.Substring(0, textBoxNewQuest.Text.Length - 1);
-                    textBoxNewQuest.Select(textBoxNewQuest.Text.Length, 0);
-                    Utilities.customErrorInfoModificationNormal("Se ha alcanzado el límite máximo de caracteres en la pregunta");
-                } else {
-                    Utilities.customErrorInfoModificationNormal("El texto introducido supera el limite máximo de caracteres");
-                    textBoxNewQuest.Text = "";
+            try {
+                if (textBoxNewQuest.Text.Length > 230) {
+                    if (textBoxNewQuest.Text.Length == 231) {
+                        textBoxNewQuest.Text = textBoxNewQuest.Text.Substring(0, textBoxNewQuest.Text.Length - 1);
+                        textBoxNewQuest.Select(textBoxNewQuest.Text.Length, 0);
+                        Utilities.customErrorInfoModificationNormal("Se ha alcanzado el límite máximo de caracteres en la pregunta");
+                    } else {
+                        Utilities.customErrorInfoModificationNormal("El texto introducido supera el limite máximo de caracteres");
+                        textBoxNewQuest.Text = "";
+                    }
                 }
-            }
+            } catch (Exception) {}
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == (char)13) {
-                buttonSend.PerformClick();
-            }
-        }
 
         private void buttonSend_Click(object sender, EventArgs e) {
-            if (textBoxNewQuest.Text.Trim().Length != 0 && textBoxNewQuest.Text.Trim().Length >= 5) {
+            if (checkBoxDelete.Checked) {
                 // Enviar petición de guardado de la modificación
-                string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, textBoxNewQuest.Text });
+                string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, "B" });
                 byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                 ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
                 ConnectionWithServer.ServerStream.Flush();
                 Dispose();
             } else {
-                Utilities.customErrorInfoModificationNormal("Valor para la modificación inválido, recuerde que la longitud máxima es 90 \n" +
-                                                            "y que la mínima es de 5 caracteres");
+                if (textBoxNewQuest.Text.Trim().Length != 0 && textBoxNewQuest.Text.Trim().Length >= 5) {
+                    // Enviar petición de guardado de la modificación
+                    string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, textBoxNewQuest.Text });
+                    byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                    ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                    // Envio de datos mediante flush
+                    ConnectionWithServer.ServerStream.Flush();
+                    Dispose();
+                } else {
+                    Utilities.customErrorInfoModificationNormal("Valor para la modificación inválido, recuerde que la longitud máxima es 90 \n" +
+                                                                "y que la mínima es de 5 caracteres");
+                }
+            }
+            
+        }
+
+        private void checkBoxDelete_CheckedChanged(object sender, EventArgs e) {
+            if (checkBoxDelete.Checked) {
+                textBoxNewQuest.Visible = false;
+                labelInfoNewModification.Visible = false;
+            } else {
+                textBoxNewQuest.Visible = true;
+                labelInfoNewModification.Visible = true;
             }
         }
     }

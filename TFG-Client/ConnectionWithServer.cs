@@ -129,6 +129,10 @@ namespace TFG_Client {
 
                         if (serverMessageDesencrypt == "") {
                             // Conexión con el servidor perdida, cierre de app y vuelta a login
+
+                            // Cierre de todos los formularios pop-up abiertos
+                            closeAllPopUps();
+
                             Utilities.customErrorInfo("Error, el servidor se cerró inesperadamente");
                             resetLoadingBar();
                             MainFormProgram.checkConnectionWithServer = false;
@@ -319,6 +323,16 @@ namespace TFG_Client {
                                     // Carga formulario de error de insercción de los datos
                                     Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
                                 }
+                            } else if (json.First.ToString().Contains("TestQuestionsNotFound")) {
+                                // No se han encontrado preguntas de tipo test de las asignatura
+                                LoginForm.Invoke(new MethodInvoker(delegate { loginForm.ListAllTestQuestions.hide_show_dataGridView(false); }));
+                            } else if (json.First.ToString().Contains("allTestQuestionsSpecificSubject")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allTestQuestions = complexAnswer.B_Content;
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.ListAllTestQuestions.fillDataGridView(allTestQuestions);
+                                    loginForm.ListAllTestQuestions.hide_show_dataGridView(true);
+                                }));
                             }
                         }
                     }
@@ -335,6 +349,7 @@ namespace TFG_Client {
             }
         }
 
+
         internal static void setNewQuestionFrom(AddNewQuestion addNewQuestion) {
             loginForm.AddNewQuestionObject = addNewQuestion;
         }
@@ -343,6 +358,25 @@ namespace TFG_Client {
             loginForm.AddNewQuestionTypeTest = addNewQuestionTypeObject;
         }
 
+
+        private static void closeAllPopUps() {
+            try {
+                loginForm.Invoke(new MethodInvoker(delegate {
+                    if (loginForm.FormNewNormalModification != null) {
+                        loginForm.FormNewNormalModification.Dispose();
+                    }
+                    if (loginForm.ModelWindowsMessage != null) {
+                        loginForm.ModelWindowsMessage.Dispose();
+                    }
+                    if (loginForm.ModelWindowsMessageWithBroder != null) {
+                        loginForm.ModelWindowsMessageWithBroder.Dispose();
+                    }
+                    if (loginForm.ModelWindowsMessageWithBroderWarning != null) {
+                        loginForm.ModelWindowsMessageWithBroderWarning.Dispose();
+                    }
+                }));
+            } catch (Exception ex) {}
+        }
 
 
         /// <summary>
