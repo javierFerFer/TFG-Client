@@ -229,7 +229,6 @@
             this.textBoxNewQuest.Name = "textBoxNewQuest";
             this.textBoxNewQuest.Size = new System.Drawing.Size(415, 26);
             this.textBoxNewQuest.TabIndex = 26;
-            this.textBoxNewQuest.TextChanged += new System.EventHandler(this.textBoxNewQuest_TextChanged);
             // 
             // labelNewQuest
             // 

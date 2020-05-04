@@ -333,6 +333,16 @@ namespace TFG_Client {
                                     loginForm.ListAllTestQuestions.fillDataGridView(allTestQuestions);
                                     loginForm.ListAllTestQuestions.hide_show_dataGridView(true);
                                 }));
+                            } else if (json.First.ToString().Contains("insertNewModificationTest")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Petición de modificación enviada correctamente
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.ListAllTestQuestions.openSuccessAddModificationNormalQuest(); }));
+                                } else {
+                                    // Carga formulario de error de insercción de los datos
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
+                                }
                             }
                         }
                     }
@@ -373,6 +383,9 @@ namespace TFG_Client {
                     }
                     if (loginForm.ModelWindowsMessageWithBroderWarning != null) {
                         loginForm.ModelWindowsMessageWithBroderWarning.Dispose();
+                    }
+                    if (loginForm.FormNewTestModification != null) {
+                        loginForm.FormNewTestModification.Dispose();
                     }
                 }));
             } catch (Exception ex) {}

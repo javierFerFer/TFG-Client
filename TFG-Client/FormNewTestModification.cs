@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -85,18 +86,33 @@ namespace TFG_Client {
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
                 // Petición de borrado a esta pregunta
+                string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("addNewTestModification", new string[] { id, "null", "null", "null", "null", "null", "null" });
+                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
+                Dispose();
             } else {
                 if (textBoxNewAnserA.Text.Trim().Length < 5 || textBoxNewAnserA.Text.Trim().Length == 0 || textBoxNewAnserA.Text.Trim().Length > 45) {
-                    Utilities.customErrorInfoModificationNormal("la longitud de la pregunta 'A' debe ser entre 5 y 45 carateres");
+                    Utilities.customErrorInfoModificationNormal("la longitud de la respuesta 'A' debe ser entre 5 y 45 carateres");
                 } else if (textBoxNewAnserB.Text.Trim().Length < 5 || textBoxNewAnserB.Text.Trim().Length == 0 || textBoxNewAnserB.Text.Trim().Length > 45) {
-                    Utilities.customErrorInfoModificationNormal("la longitud de la pregunta 'B' debe ser entre 5 y 45 carateres");
+                    Utilities.customErrorInfoModificationNormal("la longitud de la respuesta 'B' debe ser entre 5 y 45 carateres");
                 } else if (textBoxNewAnserC.Text.Trim().Length < 5 || textBoxNewAnserC.Text.Trim().Length == 0 || textBoxNewAnserC.Text.Trim().Length > 45) {
-                    Utilities.customErrorInfoModificationNormal("la longitud de la pregunta 'C' debe ser entre 5 y 45 carateres");
+                    Utilities.customErrorInfoModificationNormal("la longitud de la respuesta 'C' debe ser entre 5 y 45 carateres");
                 } else if (textBoxNewAnserD.Text.Trim().Length < 5 || textBoxNewAnserD.Text.Trim().Length == 0 || textBoxNewAnserD.Text.Trim().Length > 45) {
-                    Utilities.customErrorInfoModificationNormal("la longitud de la pregunta 'D' debe ser entre 5 y 45 carateres");
+                    Utilities.customErrorInfoModificationNormal("la longitud de la respuesta 'D' debe ser entre 5 y 45 carateres");
                 } else {
                     // Petición de envio de modificación de datos
-                    // AQUIII
+                    if (textBoxNewQuest.Text.Trim().Length != 0 && textBoxNewQuest.Text.Trim().Length >= 5) {
+                        string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("addNewTestModification", new string[] { id, textBoxNewQuest.Text, textBoxNewAnserA.Text, textBoxNewAnserB.Text, textBoxNewAnserC.Text, textBoxNewAnserD.Text, comboBoxCorrectAnswer.SelectedItem.ToString()});
+                        byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                        ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                        // Envio de datos mediante flush
+                        ConnectionWithServer.ServerStream.Flush();
+                        Dispose();      
+                    } else {
+                        Utilities.customErrorInfoModificationNormal("la longitud de la pregunta debe ser entre 5 y 45 carateres");
+                    }
                 }
             }
 
@@ -108,10 +124,6 @@ namespace TFG_Client {
             } else {
                 textBoxNewQuest.Visible = true;
             }
-        }
-
-        private void textBoxNewQuest_TextChanged(object sender, EventArgs e) {
-            MessageBox.Show(textBoxNewQuest.Text.Length.ToString());
         }
 
         private void checkBoxDelete_CheckedChanged_1(object sender, EventArgs e) {
