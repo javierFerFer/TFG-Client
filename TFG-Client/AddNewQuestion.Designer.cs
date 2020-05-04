@@ -143,6 +143,7 @@
             this.textBoxQuestion.Size = new System.Drawing.Size(629, 104);
             this.textBoxQuestion.TabIndex = 8;
             this.textBoxQuestion.TextChanged += new System.EventHandler(this.textBoxQuestion_TextChanged_1);
+            this.textBoxQuestion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxQuestion_KeyDown);
             // 
             // subjectSelected
             // 

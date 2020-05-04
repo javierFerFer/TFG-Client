@@ -132,6 +132,7 @@
             this.textBoxNewQuest.Size = new System.Drawing.Size(629, 104);
             this.textBoxNewQuest.TabIndex = 16;
             this.textBoxNewQuest.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxNewQuest.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNewQuest_KeyDown);
             // 
             // labelInfoNewModification
             // 

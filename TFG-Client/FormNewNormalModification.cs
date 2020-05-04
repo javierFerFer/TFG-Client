@@ -101,5 +101,15 @@ namespace TFG_Client {
                 labelInfoNewModification.Visible = true;
             }
         }
+
+        private void textBoxNewQuest_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Enter) {
+                e.SuppressKeyPress = true;
+            }
+
+            if (e.Control) {
+                Utilities.customErrorInfoModificationNormal("No está permitido la función de copiar/pegar");
+            }
+        }
     }
 }
