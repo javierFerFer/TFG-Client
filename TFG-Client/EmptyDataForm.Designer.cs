@@ -36,7 +36,7 @@
             this.emptyMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.emptyMessage.Location = new System.Drawing.Point(0, 0);
             this.emptyMessage.Name = "emptyMessage";
-            this.emptyMessage.Size = new System.Drawing.Size(1252, 578);
+            this.emptyMessage.Size = new System.Drawing.Size(1252, 673);
             this.emptyMessage.TabIndex = 0;
             this.emptyMessage.Text = "Seleccione una opción del menú de la derecha";
             this.emptyMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -47,7 +47,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1252, 578);
+            this.panel1.Size = new System.Drawing.Size(1252, 673);
             this.panel1.TabIndex = 0;
             // 
             // EmptyDataForm
@@ -55,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 578);
+            this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmptyDataForm";

@@ -53,5 +53,13 @@ namespace TFG_Client {
         }
 
         public string Subject { get => subject; set => subject = value; }
+
+        private void subjectSelected_Click(object sender, EventArgs e) {
+
+        }
+
+        private void labelAskTypeOfOperation_Click(object sender, EventArgs e) {
+
+        }
     }
 }

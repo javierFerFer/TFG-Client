@@ -44,7 +44,7 @@
             this.typeOfDataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.typeOfDataPanel.Location = new System.Drawing.Point(0, 0);
             this.typeOfDataPanel.Name = "typeOfDataPanel";
-            this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 578);
+            this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
             // 
             // subjectSelected
@@ -52,11 +52,12 @@
             this.subjectSelected.AutoSize = true;
             this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subjectSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.subjectSelected.Location = new System.Drawing.Point(193, 165);
+            this.subjectSelected.Location = new System.Drawing.Point(193, 252);
             this.subjectSelected.Name = "subjectSelected";
             this.subjectSelected.Size = new System.Drawing.Size(198, 39);
             this.subjectSelected.TabIndex = 7;
             this.subjectSelected.Text = "Asignatura: ";
+            this.subjectSelected.Click += new System.EventHandler(this.subjectSelected_Click);
             // 
             // buttonBack
             // 
@@ -65,7 +66,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 433);
+            this.buttonBack.Location = new System.Drawing.Point(80, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -80,7 +81,7 @@
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextButton.ForeColor = System.Drawing.Color.White;
-            this.nextButton.Location = new System.Drawing.Point(785, 433);
+            this.nextButton.Location = new System.Drawing.Point(785, 520);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(108, 37);
             this.nextButton.TabIndex = 5;
@@ -93,7 +94,7 @@
             this.checkBoxAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxAdd.Location = new System.Drawing.Point(520, 277);
+            this.checkBoxAdd.Location = new System.Drawing.Point(520, 364);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(198, 51);
             this.checkBoxAdd.TabIndex = 4;
@@ -108,7 +109,7 @@
             this.checkBoxModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxModify.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxModify.Location = new System.Drawing.Point(214, 277);
+            this.checkBoxModify.Location = new System.Drawing.Point(214, 364);
             this.checkBoxModify.Name = "checkBoxModify";
             this.checkBoxModify.Size = new System.Drawing.Size(165, 51);
             this.checkBoxModify.TabIndex = 3;
@@ -121,18 +122,19 @@
             this.labelAskTypeOfOperation.AutoSize = true;
             this.labelAskTypeOfOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAskTypeOfOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelAskTypeOfOperation.Location = new System.Drawing.Point(170, 84);
+            this.labelAskTypeOfOperation.Location = new System.Drawing.Point(170, 171);
             this.labelAskTypeOfOperation.Name = "labelAskTypeOfOperation";
             this.labelAskTypeOfOperation.Size = new System.Drawing.Size(618, 39);
             this.labelAskTypeOfOperation.TabIndex = 2;
             this.labelAskTypeOfOperation.Text = "¿Quiere modificar o agregar preguntas?";
+            this.labelAskTypeOfOperation.Click += new System.EventHandler(this.labelAskTypeOfOperation_Click);
             // 
             // AskOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 578);
+            this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AskOperation";

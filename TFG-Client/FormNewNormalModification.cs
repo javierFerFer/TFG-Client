@@ -69,7 +69,7 @@ namespace TFG_Client {
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
                 // Enviar petición de guardado de la modificación
-                string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, "B" });
+                string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, "null" });
                 byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                 ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush

@@ -49,7 +49,7 @@
             this.panelInternal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelInternal.Location = new System.Drawing.Point(0, 0);
             this.panelInternal.Name = "panelInternal";
-            this.panelInternal.Size = new System.Drawing.Size(1252, 626);
+            this.panelInternal.Size = new System.Drawing.Size(1252, 673);
             this.panelInternal.TabIndex = 0;
             // 
             // panelAllData
@@ -64,7 +64,7 @@
             this.panelAllData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAllData.Location = new System.Drawing.Point(0, 0);
             this.panelAllData.Name = "panelAllData";
-            this.panelAllData.Size = new System.Drawing.Size(1252, 626);
+            this.panelAllData.Size = new System.Drawing.Size(1252, 673);
             this.panelAllData.TabIndex = 0;
             // 
             // buttonBack
@@ -74,7 +74,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(804, 526);
+            this.buttonBack.Location = new System.Drawing.Point(804, 602);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(89, 37);
             this.buttonBack.TabIndex = 8;
@@ -117,7 +117,7 @@
             this.errorNoQuestionsFound.AutoSize = true;
             this.errorNoQuestionsFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorNoQuestionsFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.errorNoQuestionsFound.Location = new System.Drawing.Point(64, 242);
+            this.errorNoQuestionsFound.Location = new System.Drawing.Point(64, 291);
             this.errorNoQuestionsFound.Name = "errorNoQuestionsFound";
             this.errorNoQuestionsFound.Size = new System.Drawing.Size(664, 29);
             this.errorNoQuestionsFound.TabIndex = 3;
@@ -149,7 +149,7 @@
             this.question});
             this.dataGridViewAllNormalData.EnableHeadersVisualStyles = false;
             this.dataGridViewAllNormalData.GridColor = System.Drawing.Color.White;
-            this.dataGridViewAllNormalData.Location = new System.Drawing.Point(12, 63);
+            this.dataGridViewAllNormalData.Location = new System.Drawing.Point(12, 61);
             this.dataGridViewAllNormalData.MultiSelect = false;
             this.dataGridViewAllNormalData.Name = "dataGridViewAllNormalData";
             this.dataGridViewAllNormalData.ReadOnly = true;
@@ -164,7 +164,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewAllNormalData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewAllNormalData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAllNormalData.Size = new System.Drawing.Size(881, 457);
+            this.dataGridViewAllNormalData.Size = new System.Drawing.Size(881, 535);
             this.dataGridViewAllNormalData.TabIndex = 2;
             this.dataGridViewAllNormalData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellDoubleClick);
             this.dataGridViewAllNormalData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellMouseEnter);
@@ -213,7 +213,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 626);
+            this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.panelInternal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ListAllNormalQuestions";

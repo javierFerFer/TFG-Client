@@ -62,6 +62,12 @@
     <Compile Include="AddNewQuestion.Designer.cs">
       <DependentUpon>AddNewQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AskTypeDataNewExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskTypeDataNewExam.Designer.cs">
+      <DependentUpon>AskTypeDataNewExam.cs</DependentUpon>
+    </Compile>
     <Compile Include="AskTypeData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewQuestion.resx">
       <DependentUpon>AddNewQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AskTypeDataNewExam.resx">
+      <DependentUpon>AskTypeDataNewExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AskTypeData.resx">
       <DependentUpon>AskTypeData.cs</DependentUpon>

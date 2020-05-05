@@ -1,5 +1,5 @@
 ﻿namespace TFG_Client {
-    partial class AskTypeData {
+    partial class AskTypeDataNewExam {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
+            this.labelSelectedSubject = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.checkBoxNormal = new System.Windows.Forms.CheckBox();
@@ -34,6 +35,7 @@
             // 
             // typeOfDataPanel
             // 
+            this.typeOfDataPanel.Controls.Add(this.labelSelectedSubject);
             this.typeOfDataPanel.Controls.Add(this.buttonBack);
             this.typeOfDataPanel.Controls.Add(this.nextButton);
             this.typeOfDataPanel.Controls.Add(this.checkBoxNormal);
@@ -44,6 +46,17 @@
             this.typeOfDataPanel.Name = "typeOfDataPanel";
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
+            // 
+            // labelSelectedSubject
+            // 
+            this.labelSelectedSubject.AutoSize = true;
+            this.labelSelectedSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelectedSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.labelSelectedSubject.Location = new System.Drawing.Point(170, 236);
+            this.labelSelectedSubject.Name = "labelSelectedSubject";
+            this.labelSelectedSubject.Size = new System.Drawing.Size(198, 39);
+            this.labelSelectedSubject.TabIndex = 7;
+            this.labelSelectedSubject.Text = "Asignatura: ";
             // 
             // buttonBack
             // 
@@ -110,11 +123,11 @@
             this.labelAskTypeOfOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.labelAskTypeOfOperation.Location = new System.Drawing.Point(170, 171);
             this.labelAskTypeOfOperation.Name = "labelAskTypeOfOperation";
-            this.labelAskTypeOfOperation.Size = new System.Drawing.Size(639, 39);
+            this.labelAskTypeOfOperation.Size = new System.Drawing.Size(585, 39);
             this.labelAskTypeOfOperation.TabIndex = 2;
-            this.labelAskTypeOfOperation.Text = "¿Quiere ver de tipo normal o de tipo test?";
+            this.labelAskTypeOfOperation.Text = "¿De qué tipo quiere crear el examen?";
             // 
-            // AskTypeData
+            // AskTypeDataNewExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +135,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AskTypeData";
+            this.Name = "AskTypeDataNewExam";
             this.Text = "AskTypeOfData";
             this.typeOfDataPanel.ResumeLayout(false);
             this.typeOfDataPanel.PerformLayout();
@@ -137,5 +150,6 @@
         public System.Windows.Forms.CheckBox checkBoxNormal;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Label labelSelectedSubject;
     }
 }

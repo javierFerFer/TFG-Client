@@ -83,8 +83,31 @@ namespace TFG_Client {
         protected void labelSubjectClick(object sender, EventArgs e) {
             //attempt to cast the sender as a label
             Label tempLabel = sender as Label;
-            // AQUI puedo saber la asignatura seleccionada
-            Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            EmptyDataForm tempEmptyForm = new EmptyDataForm();
+
+            if (tempLabel.Name.ToString().Equals(asignatura1.Name.ToString())) {
+                Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura2.Name.ToString())) {
+                Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura3.Name.ToString())) {
+                Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura4.Name.ToString())) {
+                Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura5.Name.ToString())) {
+                Utilities.openForm(new AskOperation(tempLabel.Text, dataPanel, rightDock), dataPanel, rightDock);
+            }
+
+            if (tempLabel.Name.ToString().Equals(asignatura11.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura11.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura22.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura22.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura33.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura33.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura44.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura44.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura55.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura55.Text.ToString()), dataPanel, rightDock);
+            }
         }
 
         private void fillAllSubjectsIntoArray() {
@@ -99,6 +122,26 @@ namespace TFG_Client {
             asignatura4.Visible = false;
             allSubjectObjects.Add(asignatura5);
             asignatura5.Visible = false;
+            allSubjectObjects.Add(asignatura11);
+            asignatura11.Visible = false;
+            allSubjectObjects.Add(asignatura22);
+            asignatura22.Visible = false;
+            allSubjectObjects.Add(asignatura33);
+            asignatura33.Visible = false;
+            allSubjectObjects.Add(asignatura44);
+            asignatura44.Visible = false;
+            allSubjectObjects.Add(asignatura55);
+            asignatura55.Visible = false;
+            allSubjectObjects.Add(asignatura111);
+            asignatura111.Visible = false;
+            allSubjectObjects.Add(asignatura222);
+            asignatura222.Visible = false;
+            allSubjectObjects.Add(asignatura333);
+            asignatura333.Visible = false;
+            allSubjectObjects.Add(asignatura444);
+            asignatura444.Visible = false;
+            allSubjectObjects.Add(asignatura555);
+            asignatura555.Visible = false;
             addClickEventToSUbjects();
         }
 
@@ -341,15 +384,30 @@ namespace TFG_Client {
         }
 
         private void createExamPicture_Click(object sender, EventArgs e) {
-            showHideLeftPanel();
+            if (leftPanel.Width == 54) {
+                getAllSubjects();
+            } else {
+                showHideLeftPanel();
+                fillAllSubjectsIntoArray();
+            }
         }
 
         private void modelsPicture_Click(object sender, EventArgs e) {
-            showHideLeftPanel();
+            if (leftPanel.Width == 54) {
+                getAllSubjects();
+            } else {
+                showHideLeftPanel();
+                fillAllSubjectsIntoArray();
+            }
         }
 
         private void changesPicture_Click(object sender, EventArgs e) {
-            showHideLeftPanel();
+            if (leftPanel.Width == 54) {
+                getAllSubjects();
+            } else {
+                showHideLeftPanel();
+                fillAllSubjectsIntoArray();
+            }
         }
 
         public void fillAllSubjects(string [] allSubjectsParam) {
@@ -358,10 +416,28 @@ namespace TFG_Client {
             for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
                  temLabel = (Label)allSubjectObjects[counter];
                  temLabel.Text = allSubjectsParam[counter];
+                 temLabel.Visible = true;
+            }
+
+
+            for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
+                temLabel = (Label)allSubjectObjects[(counter + 5)];
+                temLabel.Text = allSubjectsParam[counter];
                 temLabel.Visible = true;
             }
+
+            for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
+                temLabel = (Label)allSubjectObjects[(counter + 10)];
+                temLabel.Text = allSubjectsParam[counter];
+                temLabel.Visible = true;
+            }
+
             for (int counterHideLabels = allSubjectsParam.Length; counterHideLabels < counterSubject; counterHideLabels++) {
                 temLabel = (Label)allSubjectObjects[counterHideLabels];
+                temLabel.Visible = false;
+                temLabel = (Label)allSubjectObjects[counterHideLabels + 5];
+                temLabel.Visible = false;
+                temLabel = (Label)allSubjectObjects[counterHideLabels + 10];
                 temLabel.Visible = false;
             }
         }

@@ -74,7 +74,7 @@
             this.typeOfDataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.typeOfDataPanel.Location = new System.Drawing.Point(0, 0);
             this.typeOfDataPanel.Name = "typeOfDataPanel";
-            this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 578);
+            this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
             // 
             // comboBoxCorrectAnswer
@@ -90,7 +90,7 @@
             "B",
             "C",
             "D"});
-            this.comboBoxCorrectAnswer.Location = new System.Drawing.Point(250, 481);
+            this.comboBoxCorrectAnswer.Location = new System.Drawing.Point(250, 514);
             this.comboBoxCorrectAnswer.Name = "comboBoxCorrectAnswer";
             this.comboBoxCorrectAnswer.Size = new System.Drawing.Size(262, 28);
             this.comboBoxCorrectAnswer.TabIndex = 25;
@@ -100,7 +100,7 @@
             this.labelInfo_Correct_answer.AutoSize = true;
             this.labelInfo_Correct_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo_Correct_answer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfo_Correct_answer.Location = new System.Drawing.Point(288, 450);
+            this.labelInfo_Correct_answer.Location = new System.Drawing.Point(288, 483);
             this.labelInfo_Correct_answer.Name = "labelInfo_Correct_answer";
             this.labelInfo_Correct_answer.Size = new System.Drawing.Size(224, 18);
             this.labelInfo_Correct_answer.TabIndex = 24;
@@ -111,7 +111,7 @@
             this.labelInfo_D_answer.AutoSize = true;
             this.labelInfo_D_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo_D_answer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfo_D_answer.Location = new System.Drawing.Point(48, 374);
+            this.labelInfo_D_answer.Location = new System.Drawing.Point(48, 407);
             this.labelInfo_D_answer.Name = "labelInfo_D_answer";
             this.labelInfo_D_answer.Size = new System.Drawing.Size(188, 18);
             this.labelInfo_D_answer.TabIndex = 22;
@@ -122,7 +122,7 @@
             this.textBox_D_answer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBox_D_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_D_answer.ForeColor = System.Drawing.Color.White;
-            this.textBox_D_answer.Location = new System.Drawing.Point(49, 401);
+            this.textBox_D_answer.Location = new System.Drawing.Point(49, 434);
             this.textBox_D_answer.Name = "textBox_D_answer";
             this.textBox_D_answer.Size = new System.Drawing.Size(463, 29);
             this.textBox_D_answer.TabIndex = 21;
@@ -132,7 +132,7 @@
             this.labelInfo_C_answer.AutoSize = true;
             this.labelInfo_C_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo_C_answer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfo_C_answer.Location = new System.Drawing.Point(48, 304);
+            this.labelInfo_C_answer.Location = new System.Drawing.Point(48, 337);
             this.labelInfo_C_answer.Name = "labelInfo_C_answer";
             this.labelInfo_C_answer.Size = new System.Drawing.Size(188, 18);
             this.labelInfo_C_answer.TabIndex = 20;
@@ -143,7 +143,7 @@
             this.textBox_C_answer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBox_C_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_C_answer.ForeColor = System.Drawing.Color.White;
-            this.textBox_C_answer.Location = new System.Drawing.Point(49, 331);
+            this.textBox_C_answer.Location = new System.Drawing.Point(49, 364);
             this.textBox_C_answer.Name = "textBox_C_answer";
             this.textBox_C_answer.Size = new System.Drawing.Size(463, 29);
             this.textBox_C_answer.TabIndex = 19;
@@ -153,7 +153,7 @@
             this.labelInfo_B_answer.AutoSize = true;
             this.labelInfo_B_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo_B_answer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfo_B_answer.Location = new System.Drawing.Point(48, 236);
+            this.labelInfo_B_answer.Location = new System.Drawing.Point(48, 269);
             this.labelInfo_B_answer.Name = "labelInfo_B_answer";
             this.labelInfo_B_answer.Size = new System.Drawing.Size(187, 18);
             this.labelInfo_B_answer.TabIndex = 18;
@@ -164,7 +164,7 @@
             this.textBox_B_answer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBox_B_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_B_answer.ForeColor = System.Drawing.Color.White;
-            this.textBox_B_answer.Location = new System.Drawing.Point(49, 263);
+            this.textBox_B_answer.Location = new System.Drawing.Point(49, 296);
             this.textBox_B_answer.Name = "textBox_B_answer";
             this.textBox_B_answer.Size = new System.Drawing.Size(463, 29);
             this.textBox_B_answer.TabIndex = 17;
@@ -174,7 +174,7 @@
             this.labelInfo_A_answer.AutoSize = true;
             this.labelInfo_A_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo_A_answer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfo_A_answer.Location = new System.Drawing.Point(48, 164);
+            this.labelInfo_A_answer.Location = new System.Drawing.Point(48, 197);
             this.labelInfo_A_answer.Name = "labelInfo_A_answer";
             this.labelInfo_A_answer.Size = new System.Drawing.Size(186, 18);
             this.labelInfo_A_answer.TabIndex = 16;
@@ -185,7 +185,7 @@
             this.textBox_A_answer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBox_A_answer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_A_answer.ForeColor = System.Drawing.Color.White;
-            this.textBox_A_answer.Location = new System.Drawing.Point(49, 192);
+            this.textBox_A_answer.Location = new System.Drawing.Point(49, 225);
             this.textBox_A_answer.Name = "textBox_A_answer";
             this.textBox_A_answer.Size = new System.Drawing.Size(463, 29);
             this.textBox_A_answer.TabIndex = 15;
@@ -195,7 +195,7 @@
             this.labelInfoQuestion.AutoSize = true;
             this.labelInfoQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfoQuestion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelInfoQuestion.Location = new System.Drawing.Point(48, 98);
+            this.labelInfoQuestion.Location = new System.Drawing.Point(48, 131);
             this.labelInfoQuestion.Name = "labelInfoQuestion";
             this.labelInfoQuestion.Size = new System.Drawing.Size(291, 18);
             this.labelInfoQuestion.TabIndex = 14;
@@ -206,7 +206,7 @@
             this.textBoxNameOfTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBoxNameOfTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNameOfTheme.ForeColor = System.Drawing.Color.White;
-            this.textBoxNameOfTheme.Location = new System.Drawing.Point(575, 291);
+            this.textBoxNameOfTheme.Location = new System.Drawing.Point(575, 324);
             this.textBoxNameOfTheme.Name = "textBoxNameOfTheme";
             this.textBoxNameOfTheme.Size = new System.Drawing.Size(262, 26);
             this.textBoxNameOfTheme.TabIndex = 13;
@@ -218,7 +218,7 @@
             this.checkBoxSelectedTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxSelectedTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxSelectedTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxSelectedTheme.Location = new System.Drawing.Point(575, 233);
+            this.checkBoxSelectedTheme.Location = new System.Drawing.Point(575, 266);
             this.checkBoxSelectedTheme.Name = "checkBoxSelectedTheme";
             this.checkBoxSelectedTheme.Size = new System.Drawing.Size(198, 51);
             this.checkBoxSelectedTheme.TabIndex = 12;
@@ -233,7 +233,7 @@
             this.checkBoxNewTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxNewTheme.Location = new System.Drawing.Point(575, 179);
+            this.checkBoxNewTheme.Location = new System.Drawing.Point(575, 212);
             this.checkBoxNewTheme.Name = "checkBoxNewTheme";
             this.checkBoxNewTheme.Size = new System.Drawing.Size(165, 51);
             this.checkBoxNewTheme.TabIndex = 11;
@@ -245,7 +245,7 @@
             // 
             this.labelAskNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAskNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelAskNewTheme.Location = new System.Drawing.Point(572, 129);
+            this.labelAskNewTheme.Location = new System.Drawing.Point(572, 162);
             this.labelAskNewTheme.Name = "labelAskNewTheme";
             this.labelAskNewTheme.Size = new System.Drawing.Size(198, 50);
             this.labelAskNewTheme.TabIndex = 10;
@@ -259,7 +259,7 @@
             this.comboBoxOfThemes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxOfThemes.ForeColor = System.Drawing.Color.White;
             this.comboBoxOfThemes.FormattingEnabled = true;
-            this.comboBoxOfThemes.Location = new System.Drawing.Point(575, 290);
+            this.comboBoxOfThemes.Location = new System.Drawing.Point(575, 323);
             this.comboBoxOfThemes.Name = "comboBoxOfThemes";
             this.comboBoxOfThemes.Size = new System.Drawing.Size(262, 28);
             this.comboBoxOfThemes.TabIndex = 9;
@@ -269,7 +269,7 @@
             this.textBoxQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxQuestion.ForeColor = System.Drawing.Color.White;
-            this.textBoxQuestion.Location = new System.Drawing.Point(49, 124);
+            this.textBoxQuestion.Location = new System.Drawing.Point(49, 157);
             this.textBoxQuestion.Name = "textBoxQuestion";
             this.textBoxQuestion.Size = new System.Drawing.Size(463, 29);
             this.textBoxQuestion.TabIndex = 8;
@@ -281,7 +281,7 @@
             this.subjectSelected.AutoSize = true;
             this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subjectSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.subjectSelected.Location = new System.Drawing.Point(46, 56);
+            this.subjectSelected.Location = new System.Drawing.Point(46, 89);
             this.subjectSelected.Name = "subjectSelected";
             this.subjectSelected.Size = new System.Drawing.Size(138, 29);
             this.subjectSelected.TabIndex = 7;
@@ -294,7 +294,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(49, 527);
+            this.buttonBack.Location = new System.Drawing.Point(49, 560);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -309,7 +309,7 @@
             this.sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sendButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendButton.ForeColor = System.Drawing.Color.White;
-            this.sendButton.Location = new System.Drawing.Point(729, 527);
+            this.sendButton.Location = new System.Drawing.Point(729, 560);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(108, 37);
             this.sendButton.TabIndex = 5;
@@ -322,7 +322,7 @@
             this.labelRequestTypeOfQuestion.AutoSize = true;
             this.labelRequestTypeOfQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRequestTypeOfQuestion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelRequestTypeOfQuestion.Location = new System.Drawing.Point(44, 12);
+            this.labelRequestTypeOfQuestion.Location = new System.Drawing.Point(44, 45);
             this.labelRequestTypeOfQuestion.Name = "labelRequestTypeOfQuestion";
             this.labelRequestTypeOfQuestion.Size = new System.Drawing.Size(636, 39);
             this.labelRequestTypeOfQuestion.TabIndex = 2;
@@ -333,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 578);
+            this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddNewQuestionTypeTest";

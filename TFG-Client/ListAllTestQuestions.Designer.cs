@@ -29,12 +29,6 @@
             this.panelInternal = new System.Windows.Forms.Panel();
             this.panelAllData = new System.Windows.Forms.Panel();
             this.dataGridViewTestData = new System.Windows.Forms.DataGridView();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.errorNoQuestionsFound = new System.Windows.Forms.Label();
-            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
-            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.IDNormalQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.answer_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +36,12 @@
             this.answer_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asnwer_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correct_answer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.errorNoQuestionsFound = new System.Windows.Forms.Label();
+            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
+            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.panelInternal.SuspendLayout();
             this.panelAllData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestData)).BeginInit();
@@ -54,7 +54,7 @@
             this.panelInternal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelInternal.Location = new System.Drawing.Point(0, 0);
             this.panelInternal.Name = "panelInternal";
-            this.panelInternal.Size = new System.Drawing.Size(1252, 626);
+            this.panelInternal.Size = new System.Drawing.Size(1252, 673);
             this.panelInternal.TabIndex = 0;
             // 
             // panelAllData
@@ -69,7 +69,7 @@
             this.panelAllData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAllData.Location = new System.Drawing.Point(0, 0);
             this.panelAllData.Name = "panelAllData";
-            this.panelAllData.Size = new System.Drawing.Size(1252, 626);
+            this.panelAllData.Size = new System.Drawing.Size(1252, 673);
             this.panelAllData.TabIndex = 0;
             // 
             // dataGridViewTestData
@@ -103,7 +103,7 @@
             this.correct_answer});
             this.dataGridViewTestData.EnableHeadersVisualStyles = false;
             this.dataGridViewTestData.GridColor = System.Drawing.Color.White;
-            this.dataGridViewTestData.Location = new System.Drawing.Point(13, 63);
+            this.dataGridViewTestData.Location = new System.Drawing.Point(13, 61);
             this.dataGridViewTestData.MultiSelect = false;
             this.dataGridViewTestData.Name = "dataGridViewTestData";
             this.dataGridViewTestData.ReadOnly = true;
@@ -118,91 +118,10 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTestData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTestData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTestData.Size = new System.Drawing.Size(881, 457);
+            this.dataGridViewTestData.Size = new System.Drawing.Size(881, 535);
             this.dataGridViewTestData.TabIndex = 9;
             this.dataGridViewTestData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellDoubleClick);
             this.dataGridViewTestData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellMouseEnter);
-            // 
-            // buttonBack
-            // 
-            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.buttonBack.FlatAppearance.BorderSize = 0;
-            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(804, 526);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(89, 37);
-            this.buttonBack.TabIndex = 8;
-            this.buttonBack.Text = "Volver";
-            this.buttonBack.UseVisualStyleBackColor = false;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
-            // resetButton
-            // 
-            this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.resetButton.FlatAppearance.BorderSize = 0;
-            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetButton.ForeColor = System.Drawing.Color.White;
-            this.resetButton.Location = new System.Drawing.Point(805, 18);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(89, 37);
-            this.resetButton.TabIndex = 7;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = false;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
-            // 
-            // searchButton
-            // 
-            this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.searchButton.FlatAppearance.BorderSize = 0;
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchButton.ForeColor = System.Drawing.Color.White;
-            this.searchButton.Location = new System.Drawing.Point(692, 18);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(89, 37);
-            this.searchButton.TabIndex = 6;
-            this.searchButton.Text = "Buscar";
-            this.searchButton.UseVisualStyleBackColor = false;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
-            // errorNoQuestionsFound
-            // 
-            this.errorNoQuestionsFound.AutoSize = true;
-            this.errorNoQuestionsFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorNoQuestionsFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.errorNoQuestionsFound.Location = new System.Drawing.Point(64, 242);
-            this.errorNoQuestionsFound.Name = "errorNoQuestionsFound";
-            this.errorNoQuestionsFound.Size = new System.Drawing.Size(664, 29);
-            this.errorNoQuestionsFound.TabIndex = 3;
-            this.errorNoQuestionsFound.Text = "No se han encontrado preguntas asociadas a esta asignatura";
-            // 
-            // textBoxFindQuestion
-            // 
-            this.textBoxFindQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
-            this.textBoxFindQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFindQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFindQuestion.ForeColor = System.Drawing.Color.White;
-            this.textBoxFindQuestion.Location = new System.Drawing.Point(45, 27);
-            this.textBoxFindQuestion.Name = "textBoxFindQuestion";
-            this.textBoxFindQuestion.Size = new System.Drawing.Size(621, 20);
-            this.textBoxFindQuestion.TabIndex = 1;
-            this.textBoxFindQuestion.Text = "Nombre de la pregunta a buscar...";
-            this.textBoxFindQuestion.TextChanged += new System.EventHandler(this.textBoxFindQuestion_TextChanged);
-            this.textBoxFindQuestion.Enter += new System.EventHandler(this.textBoxFindQuestion_Enter);
-            this.textBoxFindQuestion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFindQuestion_KeyPress);
-            this.textBoxFindQuestion.Leave += new System.EventHandler(this.textBoxFindQuestion_Leave);
-            // 
-            // pictureBoxSearchQuestion
-            // 
-            this.pictureBoxSearchQuestion.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearchQuestion.Image")));
-            this.pictureBoxSearchQuestion.Location = new System.Drawing.Point(12, 16);
-            this.pictureBoxSearchQuestion.Name = "pictureBoxSearchQuestion";
-            this.pictureBoxSearchQuestion.Size = new System.Drawing.Size(674, 39);
-            this.pictureBoxSearchQuestion.TabIndex = 0;
-            this.pictureBoxSearchQuestion.TabStop = false;
             // 
             // IDNormalQuestion
             // 
@@ -253,12 +172,93 @@
             this.correct_answer.ReadOnly = true;
             this.correct_answer.Width = 104;
             // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.buttonBack.FlatAppearance.BorderSize = 0;
+            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.ForeColor = System.Drawing.Color.White;
+            this.buttonBack.Location = new System.Drawing.Point(804, 602);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(89, 37);
+            this.buttonBack.TabIndex = 8;
+            this.buttonBack.Text = "Volver";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // resetButton
+            // 
+            this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.resetButton.FlatAppearance.BorderSize = 0;
+            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetButton.ForeColor = System.Drawing.Color.White;
+            this.resetButton.Location = new System.Drawing.Point(805, 18);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(89, 37);
+            this.resetButton.TabIndex = 7;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.ForeColor = System.Drawing.Color.White;
+            this.searchButton.Location = new System.Drawing.Point(692, 18);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(89, 37);
+            this.searchButton.TabIndex = 6;
+            this.searchButton.Text = "Buscar";
+            this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // errorNoQuestionsFound
+            // 
+            this.errorNoQuestionsFound.AutoSize = true;
+            this.errorNoQuestionsFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorNoQuestionsFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.errorNoQuestionsFound.Location = new System.Drawing.Point(64, 318);
+            this.errorNoQuestionsFound.Name = "errorNoQuestionsFound";
+            this.errorNoQuestionsFound.Size = new System.Drawing.Size(664, 29);
+            this.errorNoQuestionsFound.TabIndex = 3;
+            this.errorNoQuestionsFound.Text = "No se han encontrado preguntas asociadas a esta asignatura";
+            // 
+            // textBoxFindQuestion
+            // 
+            this.textBoxFindQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            this.textBoxFindQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxFindQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFindQuestion.ForeColor = System.Drawing.Color.White;
+            this.textBoxFindQuestion.Location = new System.Drawing.Point(45, 27);
+            this.textBoxFindQuestion.Name = "textBoxFindQuestion";
+            this.textBoxFindQuestion.Size = new System.Drawing.Size(621, 20);
+            this.textBoxFindQuestion.TabIndex = 1;
+            this.textBoxFindQuestion.Text = "Nombre de la pregunta a buscar...";
+            this.textBoxFindQuestion.TextChanged += new System.EventHandler(this.textBoxFindQuestion_TextChanged);
+            this.textBoxFindQuestion.Enter += new System.EventHandler(this.textBoxFindQuestion_Enter);
+            this.textBoxFindQuestion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFindQuestion_KeyPress);
+            this.textBoxFindQuestion.Leave += new System.EventHandler(this.textBoxFindQuestion_Leave);
+            // 
+            // pictureBoxSearchQuestion
+            // 
+            this.pictureBoxSearchQuestion.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSearchQuestion.Image")));
+            this.pictureBoxSearchQuestion.Location = new System.Drawing.Point(12, 16);
+            this.pictureBoxSearchQuestion.Name = "pictureBoxSearchQuestion";
+            this.pictureBoxSearchQuestion.Size = new System.Drawing.Size(674, 39);
+            this.pictureBoxSearchQuestion.TabIndex = 0;
+            this.pictureBoxSearchQuestion.TabStop = false;
+            // 
             // ListAllTestQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1252, 626);
+            this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.panelInternal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ListAllTestQuestions";
