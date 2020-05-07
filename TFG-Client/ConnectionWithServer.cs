@@ -120,9 +120,11 @@ namespace TFG_Client {
                     MainFormProgram.checkConnectionWithServer = true;
                     while (ReadServerData) {
 
-                        buffer = new byte[1024];
+                        buffer = new byte[12024];
                         recv = clientSocket.Client.Receive(buffer);
                         serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
+
+                        //MessageBox.Show(serverMessage);
 
                         string serverMessageDesencrypt = Utilities.Decrypt(serverMessage, IvString, EncryptKey);
 
@@ -197,6 +199,12 @@ namespace TFG_Client {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allThemesNames = complexAnswer.B_Content;
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.fillAllThemes(allThemesNames); }));
+
+                            } else if (json.First.ToString().Contains("allNamesFromSpecificSubject")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allThemesNames = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.SelectSubjectFormObject.fillAllThemes(allThemesNames); }));
 
                             } else if (json.First.ToString().Contains("allThemesForTest")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
@@ -343,6 +351,56 @@ namespace TFG_Client {
                                     // Carga formulario de error de insercción de los datos
                                     Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
                                 }
+                            } else if (json.First.ToString().Contains("normalQuestionsCreateExamNotFound")) {
+                                // Error de preguntas no encontradas
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.CreateNormalExamObject.showHideElements(false);
+                                    loginForm.CreateNormalExamObject.showHideLabelWait(false);
+                                    loginForm.CreateNormalExamObject.showHideErrorMessage(true);
+                                    loginForm.CreateNormalExamObject.showHideBackButton(true);
+                                }));
+                            } else if (json.First.ToString().Contains("allNormalCreateExamQuestions")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allQuestions = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.CreateNormalExamObject.fillDataGridView(allQuestions);
+                                    loginForm.CreateNormalExamObject.showHideElements(true);
+                                    loginForm.CreateNormalExamObject.showHideLabelWait(false);
+                                    loginForm.CreateNormalExamObject.showHideErrorMessage(false);
+                                    loginForm.CreateNormalExamObject.showHideErrorMessage(true);
+                                }));
+                            } else if (json.First.ToString().Contains("checkNormalNameModelExist")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Ya existe un modelo con este nombre, pruebe otro");
+                                } else {
+                                    // Petición de creación del modelo
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.createNormalModelRequest(); }));
+                                }
+                            } else if (json.First.ToString().Contains("createNormalModel")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "0") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Hubo un error al intentar guardar el modelo solicitado");
+                                } else {
+                                    // Petición de creación del modelo
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateExamRequest(serverAnswer); }));
+                                }
+                            } else if (json.First.ToString().Contains("updateNormalQuestionNewModelStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Petición de generación de examen con el listado de preguntas
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateFilesExam(); }));
+                                } else {
+                                    // Petición de creación del modelo
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateErrorMessage(); }));
+                                }
                             }
                         }
                     }
@@ -362,6 +420,18 @@ namespace TFG_Client {
 
         internal static void setNewQuestionFrom(AddNewQuestion addNewQuestion) {
             loginForm.AddNewQuestionObject = addNewQuestion;
+        }
+
+        internal static void setAllDataNormalMoel(AllDataNormalModel allDataNormalModelObject) {
+            loginForm.AllDataNormalModelObject = allDataNormalModelObject;
+        }
+
+        internal static void setCreateNormalExam(CreateNormalExam createNormalExam) {
+            loginForm.CreateNormalExamObject = createNormalExam;
+        }
+
+        internal static void setSelectedSUbjectForm(SelectSubjectForm selectSubjectFormParam) {
+            loginForm.SelectSubjectFormObject = selectSubjectFormParam;
         }
 
         internal static void setNewQuestionFormTestType(AddNewQuestionTypeTest addNewQuestionTypeObject) {

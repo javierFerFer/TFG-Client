@@ -53,6 +53,10 @@ namespace TFG_Client {
         private MainFormProgram loginForm;
         private static UserControlPanel userControlPanelObject;
         private static AddNewQuestion addNewQuestionObject;
+        private static SelectSubjectForm selectSubjectFormObject;
+        private static CreateNormalExam createNormalExamObject;
+        private static AllDataNormalModel allDataNormalModelObject;
+
         private static AddNewQuestionTypeTest addNewQuestionTypeTest;
         private static ListAllNormalQuestions listAllNormalQuestions;
         private static ListAllTestQuestions listAllTestQuestions;
@@ -689,5 +693,8 @@ namespace TFG_Client {
         public ModelWindowsMessageWithBroder ModelWindowsMessageWithBroder { get => modelWindowsMessageWithBroder; set => modelWindowsMessageWithBroder = value; }
         public ModelWindowsMessageWithBroderWarning ModelWindowsMessageWithBroderWarning { get => modelWindowsMessageWithBroderWarning; set => modelWindowsMessageWithBroderWarning = value; }
         public FormNewTestModification FormNewTestModification { get => formNewTestModification; set => formNewTestModification = value; }
+        public SelectSubjectForm SelectSubjectFormObject { get => selectSubjectFormObject; set => selectSubjectFormObject = value; }
+        public CreateNormalExam CreateNormalExamObject { get => createNormalExamObject; set => createNormalExamObject = value; }
+        public AllDataNormalModel AllDataNormalModelObject { get => allDataNormalModelObject; set => allDataNormalModelObject = value; }
     }
 }

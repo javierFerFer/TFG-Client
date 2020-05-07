@@ -36,6 +36,7 @@ namespace TFG_Client {
 
                 } else {
                     // Formulario para selección de asignatura
+                    Utilities.openForm(new SelectSubjectForm("normal", subjectSelected, dataPanel, rightPanel, this), dataPanel, rightPanel);
                 }
             } else {
                 Utilities.customErrorInfo("No ha seleccionado ninguna opción");

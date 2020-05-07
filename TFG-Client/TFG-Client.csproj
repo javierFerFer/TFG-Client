@@ -50,6 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllDataNormalModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllDataNormalModel.Designer.cs">
+      <DependentUpon>AllDataNormalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNormalExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNormalExam.Designer.cs">
+      <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSubjectForm.Designer.cs">
+      <DependentUpon>SelectSubjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewQuestionTypeTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +170,15 @@
       <DependentUpon>UserControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="AllDataNormalModel.resx">
+      <DependentUpon>AllDataNormalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNormalExam.resx">
+      <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSubjectForm.resx">
+      <DependentUpon>SelectSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewQuestionTypeTest.resx">
       <DependentUpon>AddNewQuestionTypeTest.cs</DependentUpon>
     </EmbeddedResource>
