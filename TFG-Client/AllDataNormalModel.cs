@@ -156,7 +156,7 @@ namespace TFG_Client {
 
         public void generateFilesExam() {
             // Petición de creación del fichero examen
-            allQuestionData.Add("pipóasñ?¿ÑaaÓ");
+            allQuestionData.Add(subject);
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
             string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createNormalExamFiles", tempArray);
             MessageBox.Show(jsonMessageGetThemes);

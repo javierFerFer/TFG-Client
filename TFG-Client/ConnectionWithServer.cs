@@ -69,7 +69,7 @@ namespace TFG_Client {
         public static void run(MainFormProgram loginFormParam) {
 
             LoginForm = loginFormParam;
-
+             
             // Reseteo de variable en caso de login fallido
             readServerData = true;
 
@@ -120,7 +120,7 @@ namespace TFG_Client {
                     MainFormProgram.checkConnectionWithServer = true;
                     while (ReadServerData) {
 
-                        buffer = new byte[12024];
+                        buffer = new byte[120024];
                         recv = clientSocket.Client.Receive(buffer);
                         serverMessage = Encoding.ASCII.GetString(buffer, 0, recv);
 
