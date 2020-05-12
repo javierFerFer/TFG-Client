@@ -182,6 +182,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(895, 487);
             this.MinimizeBox = false;
             this.Name = "FormNewNormalModification";
             this.Padding = new System.Windows.Forms.Padding(9);

@@ -261,6 +261,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.panelInternal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1252, 673);
             this.Name = "ListAllTestQuestions";
             this.Text = "EmptyDataForm";
             this.panelInternal.ResumeLayout(false);

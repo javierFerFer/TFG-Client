@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
+            this.checkBoxSaveAsModel = new System.Windows.Forms.CheckBox();
             this.labelStudents = new System.Windows.Forms.Label();
             this.labelThemes = new System.Windows.Forms.Label();
             this.comboBoxNumberOfStudents = new System.Windows.Forms.ComboBox();
@@ -33,7 +34,6 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.labelRequestTypeOfExam = new System.Windows.Forms.Label();
-            this.checkBoxSaveAsModel = new System.Windows.Forms.CheckBox();
             this.typeOfDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,18 @@
             this.typeOfDataPanel.Name = "typeOfDataPanel";
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
+            // 
+            // checkBoxSaveAsModel
+            // 
+            this.checkBoxSaveAsModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxSaveAsModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSaveAsModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.checkBoxSaveAsModel.Location = new System.Drawing.Point(581, 433);
+            this.checkBoxSaveAsModel.Name = "checkBoxSaveAsModel";
+            this.checkBoxSaveAsModel.Size = new System.Drawing.Size(312, 51);
+            this.checkBoxSaveAsModel.TabIndex = 14;
+            this.checkBoxSaveAsModel.Text = "¿Va a guardar el examen como modelo?";
+            this.checkBoxSaveAsModel.UseVisualStyleBackColor = true;
             // 
             // labelStudents
             // 
@@ -197,18 +209,6 @@
             this.labelRequestTypeOfExam.TabIndex = 2;
             this.labelRequestTypeOfExam.Text = "Tipo de examen a crear: ";
             // 
-            // checkBoxSaveAsModel
-            // 
-            this.checkBoxSaveAsModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxSaveAsModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxSaveAsModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxSaveAsModel.Location = new System.Drawing.Point(581, 433);
-            this.checkBoxSaveAsModel.Name = "checkBoxSaveAsModel";
-            this.checkBoxSaveAsModel.Size = new System.Drawing.Size(312, 51);
-            this.checkBoxSaveAsModel.TabIndex = 14;
-            this.checkBoxSaveAsModel.Text = "¿Va a guardar el examen como modelo?";
-            this.checkBoxSaveAsModel.UseVisualStyleBackColor = true;
-            // 
             // SelectSubjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +217,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1252, 673);
             this.Name = "SelectSubjectForm";
             this.Text = "AskTypeOfData";
             this.typeOfDataPanel.ResumeLayout(false);

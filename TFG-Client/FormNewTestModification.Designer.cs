@@ -371,6 +371,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1419, 633);
             this.MinimizeBox = false;
             this.Name = "FormNewTestModification";
             this.Padding = new System.Windows.Forms.Padding(9);

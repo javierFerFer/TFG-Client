@@ -58,6 +58,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1252, 673);
             this.Name = "EmptyDataForm";
             this.Text = "EmptyDataForm";
             this.panel1.ResumeLayout(false);

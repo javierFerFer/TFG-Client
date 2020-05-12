@@ -579,6 +579,7 @@
             this.Controls.Add(this.layoutPanelUserAndImage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1306, 725);
             this.Name = "UserControlPanel";
             this.Text = "userControlPanel";
             this.layoutSupport.ResumeLayout(false);

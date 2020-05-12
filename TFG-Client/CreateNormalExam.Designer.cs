@@ -29,6 +29,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateNormalExam));
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
+            this.labelWaitQuestions = new System.Windows.Forms.Label();
             this.labelListAllQuestions = new System.Windows.Forms.Label();
             this.labelInfoMyQuestions = new System.Windows.Forms.Label();
             this.dataGridViewMyQuestions = new System.Windows.Forms.DataGridView();
@@ -44,7 +45,6 @@
             this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
             this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.labelWaitQuestions = new System.Windows.Forms.Label();
             this.typeOfDataPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMyQuestions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).BeginInit();
@@ -70,6 +70,17 @@
             this.typeOfDataPanel.Name = "typeOfDataPanel";
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
+            // 
+            // labelWaitQuestions
+            // 
+            this.labelWaitQuestions.AutoSize = true;
+            this.labelWaitQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWaitQuestions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.labelWaitQuestions.Location = new System.Drawing.Point(12, 329);
+            this.labelWaitQuestions.Name = "labelWaitQuestions";
+            this.labelWaitQuestions.Size = new System.Drawing.Size(347, 29);
+            this.labelWaitQuestions.TabIndex = 19;
+            this.labelWaitQuestions.Text = "Esperando datos del servidor...";
             // 
             // labelListAllQuestions
             // 
@@ -309,17 +320,6 @@
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
-            // labelWaitQuestions
-            // 
-            this.labelWaitQuestions.AutoSize = true;
-            this.labelWaitQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWaitQuestions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelWaitQuestions.Location = new System.Drawing.Point(12, 329);
-            this.labelWaitQuestions.Name = "labelWaitQuestions";
-            this.labelWaitQuestions.Size = new System.Drawing.Size(347, 29);
-            this.labelWaitQuestions.TabIndex = 19;
-            this.labelWaitQuestions.Text = "Esperando datos del servidor...";
-            // 
             // CreateNormalExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +328,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1252, 673);
             this.Name = "CreateNormalExam";
             this.Text = "AskTypeOfData";
             this.typeOfDataPanel.ResumeLayout(false);

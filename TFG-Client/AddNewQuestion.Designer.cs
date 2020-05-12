@@ -205,6 +205,7 @@
             this.ClientSize = new System.Drawing.Size(1252, 673);
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1252, 673);
             this.Name = "AddNewQuestion";
             this.Text = "AskTypeOfData";
             this.typeOfDataPanel.ResumeLayout(false);
