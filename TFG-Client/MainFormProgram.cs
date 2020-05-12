@@ -55,7 +55,9 @@ namespace TFG_Client {
         private static AddNewQuestion addNewQuestionObject;
         private static SelectSubjectForm selectSubjectFormObject;
         private static CreateNormalExam createNormalExamObject;
+        private static CreateTestExam CreateTestExamObject;
         private static AllDataNormalModel allDataNormalModelObject;
+        private static AllDataTestModel allDataTestModel;
 
         private static AddNewQuestionTypeTest addNewQuestionTypeTest;
         private static ListAllNormalQuestions listAllNormalQuestions;
@@ -696,5 +698,7 @@ namespace TFG_Client {
         public SelectSubjectForm SelectSubjectFormObject { get => selectSubjectFormObject; set => selectSubjectFormObject = value; }
         public CreateNormalExam CreateNormalExamObject { get => createNormalExamObject; set => createNormalExamObject = value; }
         public AllDataNormalModel AllDataNormalModelObject { get => allDataNormalModelObject; set => allDataNormalModelObject = value; }
+        public CreateTestExam CreateTestExamObject1 { get => CreateTestExamObject; set => CreateTestExamObject = value; }
+        public  AllDataTestModel AllDataTestModel { get => allDataTestModel; set => allDataTestModel = value; }
     }
 }

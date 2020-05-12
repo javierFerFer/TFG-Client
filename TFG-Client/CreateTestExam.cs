@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    public partial class CreateNormalExam : Form {
+    public partial class CreateTestExam : Form {
 
         private Panel dataPanel;
         private Panel rightPanel;
@@ -23,30 +23,29 @@ namespace TFG_Client {
         // True muestra preguntas que no estén en modelos, false muestra preguntas que están en modelos
         private bool saveAsModel;
 
-        private ArrayList positionsArrayData = new ArrayList();
         string[] allDataOnView;
         private const string searchBanner = "Nombre de la pregunta a buscar...";
 
-        public CreateNormalExam(string typeOfExamParam, string themeSelectedParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam, bool saveAsModelParam) {
+        public CreateTestExam(string typeOfExamParam, string themeSelectedParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam, bool saveAsModelParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
             themeSelected = themeSelectedParam;
             typeOfExam = typeOfExamParam;
             beforeForm = beforeFormParam;
-            ConnectionWithServer.setCreateNormalExam(this);
+            ConnectionWithServer.setCreateTestExam(this);
             showHideElements(false);
             showHideBackButton(false);
             showHideLabelWait(true);
             showHideErrorMessage(false);
             saveAsModel = saveAsModelParam;
-            getAllNormalQuestionsSpecificTheme();
+            getAllTestQuestionsSpecificTheme();
             typeOfDataPanel.Focus();
         }
 
-        private void getAllNormalQuestionsSpecificTheme() {
+        private void getAllTestQuestionsSpecificTheme() {
             string jsonMessageGetThemes = "";
-                jsonMessageGetThemes = Utilities.generateSingleDataRequest("getAllNormalQuestionsSpecificTheme", themeSelected);
+                jsonMessageGetThemes = Utilities.generateSingleDataRequest("getAllTestQuestionsSpecificTheme", themeSelected);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -71,7 +70,7 @@ namespace TFG_Client {
             pictureBoxSearchQuestion.Visible = option;
             searchButton.Visible = option;
             resetButton.Visible = option;
-            dataGridViewAllNormalData.Visible = option;
+            dataGridViewTestData.Visible = option;
             labelInfoMyQuestions.Visible = option;
             dataGridViewMyQuestions.Visible = option;
             buttonBack.Visible = option;
@@ -91,12 +90,16 @@ namespace TFG_Client {
             buttonBack.Visible = option;
         }
 
+        private void nextButton_Click(object sender, EventArgs e) {
+
+        }
+
         private void searchButton_Click(object sender, EventArgs e) {
             ArrayList removedRows = new ArrayList();
 
             resetButton.PerformClick();
             if (textBoxFindQuestion.Text != searchBanner) {
-                foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
+                foreach (DataGridViewRow row in dataGridViewTestData.Rows) {
                     //MessageBox.Show(row.Cells[1].Value.ToString().ToLower());
                     if (row.Cells[1].Value.ToString().ToLower().Contains(textBoxFindQuestion.Text.ToLower())) {
                         DataGridViewRow tempRow = row;
@@ -104,7 +107,7 @@ namespace TFG_Client {
                     }
                 }
 
-                dataGridViewAllNormalData.Rows.Clear();
+                dataGridViewTestData.Rows.Clear();
 
                 fillDataGridView(removedRows);
             }
@@ -113,19 +116,19 @@ namespace TFG_Client {
         public void fillDataGridView(ArrayList allDataParamObjects) {
             for (int questionCounter = 0; questionCounter < allDataParamObjects.Count; questionCounter++) {
                 DataGridViewRow tempRow = (DataGridViewRow)allDataParamObjects[questionCounter];
-                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() };
-                dataGridViewAllNormalData.Rows.Add(row);
+                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString(), tempRow.Cells[3].Value.ToString(), tempRow.Cells[4].Value.ToString(), tempRow.Cells[5].Value.ToString(), tempRow.Cells[6].Value.ToString() };
+                dataGridViewTestData.Rows.Add(row);
             }
         }
 
         private void buttonSend_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
-            if (dataGridViewMyQuestions.Rows.Count < 5) {
+            if (dataGridViewMyQuestions.Rows.Count < 4) {
                 // Error, al menos el examen debe poseer 5 preguntas
-                Utilities.customErrorInfo("Debe seleccionar al menos 5 preguntas para poder continuar");
-            } else if (dataGridViewMyQuestions.Rows.Count > 30) {
+                Utilities.customErrorInfo("Debe seleccionar al menos 4 preguntas para poder continuar");
+            } else if (dataGridViewMyQuestions.Rows.Count > 100) {
                 // Error, el examen no puede de tipo normal no puede tener más de 30 preguntas
-                Utilities.customErrorInfo("No puede seleccionar más de 30 preguntas para un examen");
+                Utilities.customErrorInfo("No puede seleccionar más de 100 preguntas para un examen");
             } else {
                 // Petición de creación de examen
                 allQuestionData = new ArrayList();
@@ -133,10 +136,15 @@ namespace TFG_Client {
                 for (int counter = 0; counter < dataGridViewMyQuestions.Rows.Count; counter++) {
                     allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[0].Value.ToString());
                     allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[1].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[2].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[3].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[4].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[5].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[6].Value.ToString());
                 }
 
                 if (saveAsModel) {
-                    Utilities.openForm(new AllDataNormalModel(typeOfExam, themeSelected, allQuestionData, dataPanel, rightPanel, this), dataPanel, rightPanel);
+                    Utilities.openForm(new AllDataTestModel(typeOfExam, themeSelected, allQuestionData, dataPanel, rightPanel, this), dataPanel, rightPanel);
                 } else {
                     // Aquí versión sin salvar el modelo del examen
                     Utilities.openForm(new EmptyDataForm("Generando examen..."), dataPanel, rightPanel);
@@ -145,10 +153,10 @@ namespace TFG_Client {
             }
         }
 
-        public void normalExamGenerateSuccess() {
-            Thread.Sleep(3000);
+        public void testExamGenerateSuccess() {
+            Thread.Sleep(6000);
             Utilities.openForm(new EmptyDataForm("Examen generado correctamente, debería recibir un correo en breve con el mismo.\n Revise su bandeja de entrada"), dataPanel, rightPanel);
-            string jsonMessageGetThemes = Utilities.generateSingleDataRequest("sendNormalExam", ConnectionWithServer.EmailUser);
+            string jsonMessageGetThemes = Utilities.generateSingleDataRequest("sendTestExam", ConnectionWithServer.EmailUser);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -159,7 +167,7 @@ namespace TFG_Client {
 
             allQuestionData.Add(themeSelected);
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
-            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createNormalExamFiles", tempArray);
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestExamFiles", tempArray);
             MessageBox.Show(jsonMessageGetThemes);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
@@ -173,7 +181,6 @@ namespace TFG_Client {
             }
         }
 
-
         private void textBoxFindQuestion_Leave(object sender, EventArgs e) {
             if (textBoxFindQuestion.Text == "") {
                 textBoxFindQuestion.Text = searchBanner;
@@ -185,29 +192,29 @@ namespace TFG_Client {
         }
 
         private void resetButton_Click(object sender, EventArgs e) {
-            dataGridViewAllNormalData.Rows.Clear();
+            dataGridViewTestData.Rows.Clear();
             fillDataGridView();
         }
 
         public void fillDataGridView(string[] allDataParam) {
             allDataOnView = allDataParam;
+
             for (int questionCounter = 0; questionCounter < allDataParam.Length; questionCounter++) {
-                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1] };
-                dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
+                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1], allDataParam[questionCounter + 2], allDataParam[questionCounter + 3], allDataParam[questionCounter + 4], allDataParam[questionCounter + 5], allDataParam[questionCounter + 6] };
+                dataGridViewTestData.Rows.Add(row);
+                questionCounter+= 6;
             }
         }
 
         private void fillDataGridView() {
             for (int questionCounter = 0; questionCounter < allDataOnView.Length; questionCounter++) {
-                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1] };
-                dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
+                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1], allDataOnView[questionCounter + 2], allDataOnView[questionCounter + 3], allDataOnView[questionCounter + 4], allDataOnView[questionCounter + 5], allDataOnView[questionCounter + 6] };
+                dataGridViewTestData.Rows.Add(row);
+                questionCounter += 6;
             }
         }
 
-
-        private void dataGridViewAllNormalData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
+        private void dataGridViewTestData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
             try {
                 DataGridView tempView = (DataGridView)sender;
                 tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
@@ -215,12 +222,13 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString();
+                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
+                    + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
 
             } catch (Exception) { }
         }
 
-        private void dataGridViewMyQuestions_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
+        private void dataGridViewMyQuestions_CellMouseEnter_1(object sender, DataGridViewCellEventArgs e) {
             try {
                 DataGridView tempView = (DataGridView)sender;
                 tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
@@ -228,33 +236,52 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString();
+                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
+                   + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
 
             } catch (Exception) { }
         }
 
-        private void dataGridViewAllNormalData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+        private void dataGridViewTestData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
             try {
+
                 DataGridView tempView = (DataGridView)sender;
                 tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
 
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 tempView.Rows.Remove(tempRow);
+
+
                 for (int counter = 0; counter < allDataOnView.Length; counter++) {
                     if (allDataOnView[counter] == tempRow.Cells[0].Value.ToString()) {
                         int numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[0].Value.ToString());
                         allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
                         numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[1].Value.ToString());
                         allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
+                        numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[2].Value.ToString());
+                        allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
+                        numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[3].Value.ToString());
+                        allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
+                        numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[4].Value.ToString());
+                        allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
+                        numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[5].Value.ToString());
+                        allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
+                        numIndex = Array.IndexOf(allDataOnView, tempRow.Cells[6].Value.ToString());
+                        allDataOnView = allDataOnView.Where((val, idx) => idx != numIndex).ToArray();
                     }
                 }
+
                 dataGridViewMyQuestions.Rows.Add(tempRow);
 
+                //for (int i = 0; i < allDataOnView.Length; i++) {
+                
+                //MessageBox.Show(allDataOnView[i]);
+                //}
             } catch (Exception) { }
         }
 
-        private void dataGridViewMyQuestions_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+        private void dataGridViewMyQuestions_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e) {
             try {
                 DataGridView tempView = (DataGridView)sender;
                 tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
@@ -268,8 +295,18 @@ namespace TFG_Client {
                 allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[0].Value.ToString();
                 Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
                 allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[1].Value.ToString();
+                Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
+                allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[2].Value.ToString();
+                Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
+                allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[3].Value.ToString();
+                Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
+                allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[4].Value.ToString();
+                Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
+                allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[5].Value.ToString();
+                Array.Resize(ref allDataOnView, allDataOnView.Length + 1);
+                allDataOnView[allDataOnView.GetUpperBound(0)] = tempRow.Cells[6].Value.ToString();
 
-                dataGridViewAllNormalData.Rows.Add(tempRow);
+                dataGridViewTestData.Rows.Add(tempRow);
 
 
             } catch (Exception) { }

@@ -35,6 +35,7 @@ namespace TFG_Client {
             pictureBoxSearchQuestion.Visible = false;
             dataGridViewAllNormalData.Visible = false;
             getAllNormalQuestions();
+            panelAllData.Focus();
         }
 
         public void hide_show_dataGridView(bool option) {
@@ -141,6 +142,7 @@ namespace TFG_Client {
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            panelAllData.Focus();
             Utilities.openForm(beforeForm, dataPanel, rightPanel);
         }
 

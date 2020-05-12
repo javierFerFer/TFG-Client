@@ -30,9 +30,11 @@ namespace TFG_Client {
             comboBoxOfThemes.Items.Add(bannerComboBox);
             comboBoxOfThemes.Visible = false;
             ConnectionWithServer.setNewQuestionFrom(this);
+            typeOfDataPanel.Focus();
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             bool userOption = Utilities.createWarningForm();
             if (userOption) {
                 Utilities.openForm(beforeForm, dataPanel, rightPanel);
@@ -44,6 +46,7 @@ namespace TFG_Client {
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             if (checkBoxNewTheme.Checked || checkBoxSelectedTheme.Checked) {
                 if (textBoxNameOfTheme.Text == bannerComboBox || textBoxNameOfTheme.Text == nothingToShow) {
                     Utilities.customErrorInfo("Valores introducidos inválidos");

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
-    public partial class AllDataNormalModel : Form {
+    public partial class AllDataTestModel : Form {
 
         private Panel dataPanel;
         private Panel rightPanel;
@@ -20,7 +20,7 @@ namespace TFG_Client {
         private string idModel;
         private ArrayList allQuestionData;
 
-        public AllDataNormalModel(string typeOfExamParam, string subjectSelectedParam, ArrayList allQuestionDataParam , Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
+        public AllDataTestModel(string typeOfExamParam, string subjectSelectedParam, ArrayList allQuestionDataParam , Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
@@ -28,7 +28,7 @@ namespace TFG_Client {
             typeOfModel.Text += typeOfExamParam;
             beforeForm = beforeFormParam;
             allQuestionData = allQuestionDataParam;
-            ConnectionWithServer.setAllDataNormalModel(this);
+            ConnectionWithServer.setAllDataTestModel(this);
             typeOfDataPanel.Focus();
         }
 
@@ -49,7 +49,7 @@ namespace TFG_Client {
             if ((textBoxNameOfModel.Text.Length != 0 && textBoxDescription.Text.Length != 0) && (textBoxNameOfModel.Text.Length >= 5 && textBoxDescription.Text.Length >= 5)) {
                 // Comprobación de que el nombre del modelo no exista ya antes de crearlo
                 // Buscar nombre de la pregunta antes de enviar
-                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findNameNormalModel", textBoxNameOfModel.Text);
+                string jsonMessageGetThemes = Utilities.generateSingleDataRequest("findNameTestModel", textBoxNameOfModel.Text);
                 byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
                 ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
                 // Envio de datos mediante flush
@@ -74,7 +74,7 @@ namespace TFG_Client {
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
             tempArray.CopyTo(allData, 1);
 
-            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("updateAllNormalQuestionsNewNormalModel", allData);
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("updateAllTestQuestionsNewNormalModel", allData);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -149,9 +149,9 @@ namespace TFG_Client {
 
         }
 
-        public void createNormalModelRequest() {
+        public void createTestModelRequest() {
             // Petición de creación del modelo
-            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createNormalModel", new string[] { textBoxNameOfModel.Text, textBoxDescription.Text , subject , ConnectionWithServer.EmailUser});
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestModel", new string[] { textBoxNameOfModel.Text, textBoxDescription.Text , subject , ConnectionWithServer.EmailUser});
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
@@ -162,7 +162,7 @@ namespace TFG_Client {
             // Petición de creación del fichero examen
             allQuestionData.Add(subject);
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
-            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createNormalExamFiles", tempArray);
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestExamFiles", tempArray);
             MessageBox.Show(jsonMessageGetThemes);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);

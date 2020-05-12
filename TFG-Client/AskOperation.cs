@@ -22,13 +22,16 @@ namespace TFG_Client {
             rightPanel = rightPanelParam;
             subjectSelected.Text += subjectSelectedParam;
             Subject = subjectSelectedParam;
+            typeOfDataPanel.Focus();
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             Utilities.openForm(new EmptyDataForm(), dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             if (checkBoxAdd.Checked || checkBoxModify.Checked) {
                 if (checkBoxAdd.Checked) {
                     Utilities.openForm(new AskTypeData(dataPanel, rightPanel, this, true), dataPanel, rightPanel);

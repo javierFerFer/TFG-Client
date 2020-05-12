@@ -23,19 +23,25 @@ namespace TFG_Client {
             beforeForm = beforeFormParam;
             subjectSelected = subjectSelectedParam;
             labelSelectedSubject.Text += subjectSelected;
+            typeOfDataPanel.Focus();
+
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             Utilities.openForm(beforeForm, dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                 if (checkBoxTest.Checked) {
                     // Mostrar formulario para selección de asignatura
+                    typeOfDataPanel.Focus();
                     Utilities.openForm(new SelectSubjectForm("test", subjectSelected, dataPanel, rightPanel, this), dataPanel, rightPanel);
                 } else {
                     // Formulario para selección de asignatura
+                    typeOfDataPanel.Focus();
                     Utilities.openForm(new SelectSubjectForm("normal", subjectSelected, dataPanel, rightPanel, this), dataPanel, rightPanel);
                 }
             } else {

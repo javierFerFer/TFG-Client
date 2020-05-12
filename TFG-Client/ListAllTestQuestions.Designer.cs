@@ -29,6 +29,12 @@
             this.panelInternal = new System.Windows.Forms.Panel();
             this.panelAllData = new System.Windows.Forms.Panel();
             this.dataGridViewTestData = new System.Windows.Forms.DataGridView();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.errorNoQuestionsFound = new System.Windows.Forms.Label();
+            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
+            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.IDNormalQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.answer_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,12 +42,6 @@
             this.answer_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asnwer_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correct_answer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.errorNoQuestionsFound = new System.Windows.Forms.Label();
-            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
-            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.panelInternal.SuspendLayout();
             this.panelAllData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestData)).BeginInit();
@@ -123,55 +123,6 @@
             this.dataGridViewTestData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellDoubleClick);
             this.dataGridViewTestData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellMouseEnter);
             // 
-            // IDNormalQuestion
-            // 
-            this.IDNormalQuestion.HeaderText = "ID";
-            this.IDNormalQuestion.Name = "IDNormalQuestion";
-            this.IDNormalQuestion.ReadOnly = true;
-            this.IDNormalQuestion.Width = 50;
-            // 
-            // question
-            // 
-            this.question.HeaderText = "Pregunta";
-            this.question.Name = "question";
-            this.question.ReadOnly = true;
-            this.question.Width = 109;
-            // 
-            // answer_A
-            // 
-            this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_A.HeaderText = "Respuesta A";
-            this.answer_A.Name = "answer_A";
-            this.answer_A.ReadOnly = true;
-            // 
-            // asnwer_B
-            // 
-            this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_B.HeaderText = "Respuesta B";
-            this.asnwer_B.Name = "asnwer_B";
-            this.asnwer_B.ReadOnly = true;
-            // 
-            // answer_C
-            // 
-            this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_C.HeaderText = "Respuesta C";
-            this.answer_C.Name = "answer_C";
-            this.answer_C.ReadOnly = true;
-            // 
-            // asnwer_D
-            // 
-            this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_D.HeaderText = "Respuesta D";
-            this.asnwer_D.Name = "asnwer_D";
-            this.asnwer_D.ReadOnly = true;
-            // 
-            // correct_answer
-            // 
-            this.correct_answer.HeaderText = "Correcta";
-            this.correct_answer.Name = "correct_answer";
-            this.correct_answer.ReadOnly = true;
-            this.correct_answer.Width = 104;
-            // 
             // buttonBack
             // 
             this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -252,6 +203,55 @@
             this.pictureBoxSearchQuestion.Size = new System.Drawing.Size(674, 39);
             this.pictureBoxSearchQuestion.TabIndex = 0;
             this.pictureBoxSearchQuestion.TabStop = false;
+            // 
+            // IDNormalQuestion
+            // 
+            this.IDNormalQuestion.HeaderText = "ID";
+            this.IDNormalQuestion.Name = "IDNormalQuestion";
+            this.IDNormalQuestion.ReadOnly = true;
+            this.IDNormalQuestion.Width = 50;
+            // 
+            // question
+            // 
+            this.question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.question.HeaderText = "Pregunta";
+            this.question.Name = "question";
+            this.question.ReadOnly = true;
+            // 
+            // answer_A
+            // 
+            this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.answer_A.HeaderText = "Respuesta A";
+            this.answer_A.Name = "answer_A";
+            this.answer_A.ReadOnly = true;
+            // 
+            // asnwer_B
+            // 
+            this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.asnwer_B.HeaderText = "Respuesta B";
+            this.asnwer_B.Name = "asnwer_B";
+            this.asnwer_B.ReadOnly = true;
+            // 
+            // answer_C
+            // 
+            this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.answer_C.HeaderText = "Respuesta C";
+            this.answer_C.Name = "answer_C";
+            this.answer_C.ReadOnly = true;
+            // 
+            // asnwer_D
+            // 
+            this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.asnwer_D.HeaderText = "Respuesta D";
+            this.asnwer_D.Name = "asnwer_D";
+            this.asnwer_D.ReadOnly = true;
+            // 
+            // correct_answer
+            // 
+            this.correct_answer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.correct_answer.HeaderText = "Correcta";
+            this.correct_answer.Name = "correct_answer";
+            this.correct_answer.ReadOnly = true;
             // 
             // ListAllTestQuestions
             // 

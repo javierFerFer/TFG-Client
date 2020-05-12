@@ -50,11 +50,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllDataTestModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllDataTestModel.Designer.cs">
+      <DependentUpon>AllDataTestModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="AllDataNormalModel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AllDataNormalModel.Designer.cs">
       <DependentUpon>AllDataNormalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTestExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateTestExam.Designer.cs">
+      <DependentUpon>CreateTestExam.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateNormalExam.cs">
       <SubType>Form</SubType>
@@ -170,8 +182,14 @@
       <DependentUpon>UserControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="AllDataTestModel.resx">
+      <DependentUpon>AllDataTestModel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AllDataNormalModel.resx">
       <DependentUpon>AllDataNormalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateTestExam.resx">
+      <DependentUpon>CreateTestExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNormalExam.resx">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>

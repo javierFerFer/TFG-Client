@@ -39,6 +39,8 @@ namespace TFG_Client {
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
             ConnectionWithServer.ServerStream.Flush();
+
+            typeOfDataPanel.Focus();
         }
 
         private void showHideElements(bool option) {
@@ -54,19 +56,22 @@ namespace TFG_Client {
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             Utilities.openForm(beforeForm, dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
             // Open form formulario para crear examen tipo normal;
+            typeOfDataPanel.Focus();
             if (comboBoxOfThemes.SelectedItem.ToString().Equals(bannerComboBox) || comboBoxOfThemes.SelectedItem.ToString().Equals(nothingToShow)) {
                 Utilities.customErrorInfo("No se ha seleccionado tema");
             } else {
                 if (checkBoxSaveAsModel.Checked) {
                     if (typeOfExam.Equals("normal")) {
                         Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, true), dataPanel, rightPanel);
-                    } else { 
-                    // Creación de examen tipo test
+                    } else {
+                        // Creación de examen tipo test
+                        Utilities.openForm(new CreateTestExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, true), dataPanel, rightPanel);
 
                     }
                 } else {
@@ -75,7 +80,7 @@ namespace TFG_Client {
                         Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, false), dataPanel, rightPanel);
                     } else {
                         // Creación de examen tipo test sin guardar el modelo
-
+                        Utilities.openForm(new CreateTestExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, false), dataPanel, rightPanel);
                     }
                 }
                 

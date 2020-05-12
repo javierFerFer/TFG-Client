@@ -371,6 +371,26 @@ namespace TFG_Client {
                                     loginForm.CreateNormalExamObject.showHideErrorMessage(false);
                                     loginForm.CreateNormalExamObject.showHideErrorMessage(true);
                                 }));
+                            } else if (json.First.ToString().Contains("testQuestionsCreateExamNotFound")) {
+                                // Error de preguntas no encontradas
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.CreateTestExamObject1.showHideElements(false);
+                                    loginForm.CreateTestExamObject1.showHideLabelWait(false);
+                                    loginForm.CreateTestExamObject1.showHideErrorMessage(true);
+                                    loginForm.CreateTestExamObject1.showHideBackButton(true);
+                                }));
+                            } else if (json.First.ToString().Contains("allTestCreateExamQuestions")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allQuestions = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.CreateTestExamObject1.fillDataGridView(allQuestions);
+                                    loginForm.CreateTestExamObject1.showHideElements(true);
+                                    loginForm.CreateTestExamObject1.showHideLabelWait(false);
+                                    loginForm.CreateTestExamObject1.showHideErrorMessage(false);
+                                    loginForm.CreateTestExamObject1.showHideErrorMessage(true);
+                                }));
                             } else if (json.First.ToString().Contains("checkNormalNameModelExist")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 string serverAnswer = singleAnswer.B_Content;
@@ -380,6 +400,16 @@ namespace TFG_Client {
                                 } else {
                                     // Petición de creación del modelo
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.createNormalModelRequest(); }));
+                                }
+                            } else if (json.First.ToString().Contains("checkTestNameModelExist")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Ya existe un modelo con este nombre, pruebe otro");
+                                } else {
+                                    // Petición de creación del modelo
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataTestModel.createTestModelRequest(); }));
                                 }
                             } else if (json.First.ToString().Contains("createNormalModel")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
@@ -391,6 +421,16 @@ namespace TFG_Client {
                                     // Petición de creación del examen normal
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateExamRequest(serverAnswer); }));
                                 }
+                            } else if (json.First.ToString().Contains("createTestModel")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "0") {
+                                    // Mensaje de error, se encontró un tema con el mismo nombre
+                                    Utilities.customErrorInfo("Hubo un error al intentar guardar el modelo solicitado");
+                                } else {
+                                    // Petición de creación del examen normal
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataTestModel.generateExamRequest(serverAnswer); }));
+                                }
                             } else if (json.First.ToString().Contains("updateNormalQuestionNewModelStatus")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 string serverAnswer = singleAnswer.B_Content;
@@ -401,9 +441,22 @@ namespace TFG_Client {
                                     // Petición de creación del modelo
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateErrorMessage(); }));
                                 }
+                            } else if (json.First.ToString().Contains("updateTestQuestionNewModelStatus")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string serverAnswer = singleAnswer.B_Content;
+                                if (serverAnswer == "true") {
+                                    // Petición de generación de examen con el listado de preguntas
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataTestModel.generateFilesExam(); }));
+                                } else {
+                                    // Petición de creación del modelo
+                                    LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataTestModel.generateErrorMessage(); }));
+                                }
                             } else if (json.First.ToString().Contains("normalExamCreatedSucces")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateNormalExamObject.normalExamGenerateSuccess(); }));
+                            } else if (json.First.ToString().Contains("TestExamCreatedSucces")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateTestExamObject1.testExamGenerateSuccess(); }));
                             }
                         }
                     }
@@ -425,12 +478,20 @@ namespace TFG_Client {
             loginForm.AddNewQuestionObject = addNewQuestion;
         }
 
-        internal static void setAllDataNormalMoel(AllDataNormalModel allDataNormalModelObject) {
+        internal static void setAllDataNormalModel(AllDataNormalModel allDataNormalModelObject) {
             loginForm.AllDataNormalModelObject = allDataNormalModelObject;
+        }
+
+        internal static void setAllDataTestModel(AllDataTestModel allDataTestModelObject) {
+            LoginForm.AllDataTestModel = allDataTestModelObject;
         }
 
         internal static void setCreateNormalExam(CreateNormalExam createNormalExam) {
             loginForm.CreateNormalExamObject = createNormalExam;
+        }
+
+        internal static void setCreateTestExam(CreateTestExam createTestExam) {
+            loginForm.CreateTestExamObject1 = createTestExam;
         }
 
         internal static void setSelectedSUbjectForm(SelectSubjectForm selectSubjectFormParam) {

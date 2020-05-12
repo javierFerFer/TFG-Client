@@ -23,14 +23,17 @@ namespace TFG_Client {
             rightPanel = rightPanelParam;
             beforeForm = beforeFormParam;
             selectedOption = addOrModifyOption;
+            typeOfDataPanel.Focus();
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
+            typeOfDataPanel.Focus();
             Utilities.openForm(beforeForm, dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
             // true = add selected, false = modify
+            typeOfDataPanel.Focus();
             AskOperation tempForm = (AskOperation)beforeForm;
             if (selectedOption) {
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
