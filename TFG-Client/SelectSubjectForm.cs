@@ -32,7 +32,6 @@ namespace TFG_Client {
             beforeForm = beforeFormParam;
             comboBoxOfThemes.Items.Add(bannerComboBox);
             ConnectionWithServer.setSelectedSUbjectForm(this);
-            comboBoxNumberOfStudents.SelectedIndex = comboBoxNumberOfStudents.FindStringExact("1");
             showHideElements(false);
 
             string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("getAllThemesFromSignature", subject);
@@ -49,8 +48,6 @@ namespace TFG_Client {
             buttonBack.Visible = option;
             sendButton.Visible = option;
             labelThemes.Visible = option;
-            labelStudents.Visible = option;
-            comboBoxNumberOfStudents.Visible = option;
             checkBoxSaveAsModel.Visible = option;
 
             labelWaitData.Visible = !option;
@@ -66,9 +63,20 @@ namespace TFG_Client {
                 Utilities.customErrorInfo("No se ha seleccionado tema");
             } else {
                 if (checkBoxSaveAsModel.Checked) {
-                    Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), comboBoxNumberOfStudents.SelectedItem.ToString(), dataPanel, rightPanel, this, true), dataPanel, rightPanel);
+                    if (typeOfExam.Equals("normal")) {
+                        Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, true), dataPanel, rightPanel);
+                    } else { 
+                    // Creación de examen tipo test
+
+                    }
                 } else {
-                    Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), comboBoxNumberOfStudents.SelectedItem.ToString(), dataPanel, rightPanel, this, false), dataPanel, rightPanel);
+                    if (typeOfExam.Equals("normal")) {
+                        // Creación de examen sin guardar el modelo
+                        Utilities.openForm(new CreateNormalExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, false), dataPanel, rightPanel);
+                    } else {
+                        // Creación de examen tipo test sin guardar el modelo
+
+                    }
                 }
                 
             }
@@ -96,7 +104,6 @@ namespace TFG_Client {
                 comboBoxOfThemes.SelectedIndex = indexComboBox;
                 showHideElements(true);
                 sendButton.Visible = false;
-                comboBoxNumberOfStudents.Enabled = false;
                 comboBoxOfThemes.Enabled = false;
             }
         }

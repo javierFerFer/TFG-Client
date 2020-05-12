@@ -388,7 +388,7 @@ namespace TFG_Client {
                                     // Mensaje de error, se encontró un tema con el mismo nombre
                                     Utilities.customErrorInfo("Hubo un error al intentar guardar el modelo solicitado");
                                 } else {
-                                    // Petición de creación del modelo
+                                    // Petición de creación del examen normal
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateExamRequest(serverAnswer); }));
                                 }
                             } else if (json.First.ToString().Contains("updateNormalQuestionNewModelStatus")) {
@@ -401,6 +401,9 @@ namespace TFG_Client {
                                     // Petición de creación del modelo
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AllDataNormalModelObject.generateErrorMessage(); }));
                                 }
+                            } else if (json.First.ToString().Contains("normalExamCreatedSucces")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateNormalExamObject.normalExamGenerateSuccess(); }));
                             }
                         }
                     }

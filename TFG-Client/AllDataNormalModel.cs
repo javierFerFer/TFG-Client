@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,18 +17,16 @@ namespace TFG_Client {
         private Panel rightPanel;
         private Form beforeForm;
         private string subject;
-        private string numberOfAlumns;
         private string idModel;
         private ArrayList allQuestionData;
 
-        public AllDataNormalModel(string typeOfExamParam, string subjectSelectedParam, string numberOfAlumnsParam , ArrayList allQuestionDataParam , Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
+        public AllDataNormalModel(string typeOfExamParam, string subjectSelectedParam, ArrayList allQuestionDataParam , Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
             subject = subjectSelectedParam;
             typeOfModel.Text += typeOfExamParam;
             beforeForm = beforeFormParam;
-            numberOfAlumns = numberOfAlumnsParam;
             allQuestionData = allQuestionDataParam;
             ConnectionWithServer.setAllDataNormalMoel(this);
         }
@@ -79,6 +78,8 @@ namespace TFG_Client {
             ConnectionWithServer.ServerStream.Flush();
 
         }
+
+        
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
             try {

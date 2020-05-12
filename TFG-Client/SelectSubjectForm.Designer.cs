@@ -25,9 +25,7 @@
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
             this.checkBoxSaveAsModel = new System.Windows.Forms.CheckBox();
-            this.labelStudents = new System.Windows.Forms.Label();
             this.labelThemes = new System.Windows.Forms.Label();
-            this.comboBoxNumberOfStudents = new System.Windows.Forms.ComboBox();
             this.labelWaitData = new System.Windows.Forms.Label();
             this.comboBoxOfThemes = new System.Windows.Forms.ComboBox();
             this.subjectSelected = new System.Windows.Forms.Label();
@@ -40,9 +38,7 @@
             // typeOfDataPanel
             // 
             this.typeOfDataPanel.Controls.Add(this.checkBoxSaveAsModel);
-            this.typeOfDataPanel.Controls.Add(this.labelStudents);
             this.typeOfDataPanel.Controls.Add(this.labelThemes);
-            this.typeOfDataPanel.Controls.Add(this.comboBoxNumberOfStudents);
             this.typeOfDataPanel.Controls.Add(this.labelWaitData);
             this.typeOfDataPanel.Controls.Add(this.comboBoxOfThemes);
             this.typeOfDataPanel.Controls.Add(this.subjectSelected);
@@ -60,23 +56,12 @@
             this.checkBoxSaveAsModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxSaveAsModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxSaveAsModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxSaveAsModel.Location = new System.Drawing.Point(581, 433);
+            this.checkBoxSaveAsModel.Location = new System.Drawing.Point(537, 372);
             this.checkBoxSaveAsModel.Name = "checkBoxSaveAsModel";
             this.checkBoxSaveAsModel.Size = new System.Drawing.Size(312, 51);
             this.checkBoxSaveAsModel.TabIndex = 14;
             this.checkBoxSaveAsModel.Text = "¿Va a guardar el examen como modelo?";
             this.checkBoxSaveAsModel.UseVisualStyleBackColor = true;
-            // 
-            // labelStudents
-            // 
-            this.labelStudents.AutoSize = true;
-            this.labelStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelStudents.Location = new System.Drawing.Point(576, 330);
-            this.labelStudents.Name = "labelStudents";
-            this.labelStudents.Size = new System.Drawing.Size(170, 29);
-            this.labelStudents.TabIndex = 13;
-            this.labelStudents.Text = "Nº de alumnos";
             // 
             // labelThemes
             // 
@@ -88,50 +73,6 @@
             this.labelThemes.Size = new System.Drawing.Size(88, 29);
             this.labelThemes.TabIndex = 12;
             this.labelThemes.Text = "Temas";
-            // 
-            // comboBoxNumberOfStudents
-            // 
-            this.comboBoxNumberOfStudents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.comboBoxNumberOfStudents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNumberOfStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxNumberOfStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxNumberOfStudents.ForeColor = System.Drawing.Color.White;
-            this.comboBoxNumberOfStudents.FormattingEnabled = true;
-            this.comboBoxNumberOfStudents.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30"});
-            this.comboBoxNumberOfStudents.Location = new System.Drawing.Point(581, 384);
-            this.comboBoxNumberOfStudents.Name = "comboBoxNumberOfStudents";
-            this.comboBoxNumberOfStudents.Size = new System.Drawing.Size(78, 28);
-            this.comboBoxNumberOfStudents.TabIndex = 11;
             // 
             // labelWaitData
             // 
@@ -235,8 +176,6 @@
         private System.Windows.Forms.Label labelRequestTypeOfExam;
         private System.Windows.Forms.Label labelWaitData;
         private System.Windows.Forms.Label labelThemes;
-        private System.Windows.Forms.ComboBox comboBoxNumberOfStudents;
-        private System.Windows.Forms.Label labelStudents;
         private System.Windows.Forms.CheckBox checkBoxSaveAsModel;
     }
 }

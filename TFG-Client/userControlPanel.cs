@@ -454,5 +454,14 @@ namespace TFG_Client {
             ConnectionWithServer.ServerStream.Flush();
         }
 
+        // Prevent resize with windows + arrow keys
+        protected override CreateParams CreateParams {
+            get {
+                const int WS_MAXIMIZEBOX = 0x00010000;
+                var cp = base.CreateParams;
+                cp.Style &= ~WS_MAXIMIZEBOX;
+                return cp;
+            }
+        }
     }
 }

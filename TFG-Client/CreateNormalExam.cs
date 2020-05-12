@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace TFG_Client {
         private Form beforeForm;
         private string themeSelected;
         private string typeOfExam;
-        private string numberOfStudents;
+        private ArrayList allQuestionData = new ArrayList();
 
         // True muestra preguntas que no estén en modelos, false muestra preguntas que están en modelos
         private bool saveAsModel;
@@ -26,13 +27,12 @@ namespace TFG_Client {
         string[] allDataOnView;
         private const string searchBanner = "Nombre de la pregunta a buscar...";
 
-        public CreateNormalExam(string typeOfExamParam, string themeSelectedParam, string numberOfStudentsParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam, bool saveAsModelParam) {
+        public CreateNormalExam(string typeOfExamParam, string themeSelectedParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam, bool saveAsModelParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
             themeSelected = themeSelectedParam;
             typeOfExam = typeOfExamParam;
-            numberOfStudents = numberOfStudentsParam;
             beforeForm = beforeFormParam;
             ConnectionWithServer.setCreateNormalExam(this);
             showHideElements(false);
@@ -129,19 +129,43 @@ namespace TFG_Client {
                 Utilities.customErrorInfo("No puede seleccionar más de 30 preguntas para un examen");
             } else {
                 // Petición de creación de examen
-                ArrayList allQuestions = new ArrayList();
+                allQuestionData = new ArrayList();
 
                 for (int counter = 0; counter < dataGridViewMyQuestions.Rows.Count; counter++) {
-                    allQuestions.Add(dataGridViewMyQuestions.Rows[counter].Cells[0].Value.ToString());
-                    allQuestions.Add(dataGridViewMyQuestions.Rows[counter].Cells[1].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[0].Value.ToString());
+                    allQuestionData.Add(dataGridViewMyQuestions.Rows[counter].Cells[1].Value.ToString());
                 }
 
                 if (saveAsModel) {
-                    Utilities.openForm(new AllDataNormalModel(typeOfExam, themeSelected, numberOfStudents, allQuestions , dataPanel, rightPanel, this), dataPanel, rightPanel);
-                } else { 
-                
+                    Utilities.openForm(new AllDataNormalModel(typeOfExam, themeSelected, allQuestionData, dataPanel, rightPanel, this), dataPanel, rightPanel);
+                } else {
+                    // Aquí versión sin salvar el modelo del examen
+                    Utilities.openForm(new EmptyDataForm("Generando examen..."), dataPanel, rightPanel);
+                    generateFilesExam();
                 }
             }
+        }
+
+        public void normalExamGenerateSuccess() {
+            Thread.Sleep(3000);
+            Utilities.openForm(new EmptyDataForm("Examen generado correctamente, debería recibir un correo en breve con el mismo.\n Revise su bandeja de entrada"), dataPanel, rightPanel);
+            string jsonMessageGetThemes = Utilities.generateSingleDataRequest("sendNormalExam", ConnectionWithServer.EmailUser);
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            ConnectionWithServer.ServerStream.Flush();
+        }
+
+        public void generateFilesExam() {
+
+            allQuestionData.Add(themeSelected);
+            string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createNormalExamFiles", tempArray);
+            MessageBox.Show(jsonMessageGetThemes);
+            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            ConnectionWithServer.ServerStream.Flush();
         }
 
         private void textBoxFindQuestion_Enter(object sender, EventArgs e) {

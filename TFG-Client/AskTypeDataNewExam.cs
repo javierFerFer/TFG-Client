@@ -33,7 +33,7 @@ namespace TFG_Client {
             if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                 if (checkBoxTest.Checked) {
                     // Mostrar formulario para selección de asignatura
-
+                    Utilities.openForm(new SelectSubjectForm("test", subjectSelected, dataPanel, rightPanel, this), dataPanel, rightPanel);
                 } else {
                     // Formulario para selección de asignatura
                     Utilities.openForm(new SelectSubjectForm("normal", subjectSelected, dataPanel, rightPanel, this), dataPanel, rightPanel);
