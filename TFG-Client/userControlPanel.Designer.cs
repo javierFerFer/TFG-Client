@@ -295,7 +295,7 @@
             this.asignatura555.ForeColor = System.Drawing.Color.White;
             this.asignatura555.Location = new System.Drawing.Point(0, 562);
             this.asignatura555.Name = "asignatura555";
-            this.asignatura555.Size = new System.Drawing.Size(215, 23);
+            this.asignatura555.Size = new System.Drawing.Size(216, 23);
             this.asignatura555.TabIndex = 18;
             this.asignatura555.Text = "label6";
             this.asignatura555.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -307,7 +307,7 @@
             this.asignatura444.ForeColor = System.Drawing.Color.White;
             this.asignatura444.Location = new System.Drawing.Point(0, 539);
             this.asignatura444.Name = "asignatura444";
-            this.asignatura444.Size = new System.Drawing.Size(215, 23);
+            this.asignatura444.Size = new System.Drawing.Size(216, 23);
             this.asignatura444.TabIndex = 17;
             this.asignatura444.Text = "label7";
             this.asignatura444.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -319,7 +319,7 @@
             this.asignatura333.ForeColor = System.Drawing.Color.White;
             this.asignatura333.Location = new System.Drawing.Point(0, 516);
             this.asignatura333.Name = "asignatura333";
-            this.asignatura333.Size = new System.Drawing.Size(215, 23);
+            this.asignatura333.Size = new System.Drawing.Size(216, 23);
             this.asignatura333.TabIndex = 16;
             this.asignatura333.Text = "label8";
             this.asignatura333.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -331,7 +331,7 @@
             this.asignatura222.ForeColor = System.Drawing.Color.White;
             this.asignatura222.Location = new System.Drawing.Point(0, 493);
             this.asignatura222.Name = "asignatura222";
-            this.asignatura222.Size = new System.Drawing.Size(215, 23);
+            this.asignatura222.Size = new System.Drawing.Size(216, 23);
             this.asignatura222.TabIndex = 15;
             this.asignatura222.Text = "label9";
             this.asignatura222.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -343,7 +343,7 @@
             this.asignatura111.ForeColor = System.Drawing.Color.White;
             this.asignatura111.Location = new System.Drawing.Point(0, 471);
             this.asignatura111.Name = "asignatura111";
-            this.asignatura111.Size = new System.Drawing.Size(215, 23);
+            this.asignatura111.Size = new System.Drawing.Size(216, 23);
             this.asignatura111.TabIndex = 14;
             this.asignatura111.Text = "label10";
             this.asignatura111.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -353,9 +353,9 @@
             this.asignatura55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.asignatura55.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asignatura55.ForeColor = System.Drawing.Color.White;
-            this.asignatura55.Location = new System.Drawing.Point(1, 373);
+            this.asignatura55.Location = new System.Drawing.Point(0, 373);
             this.asignatura55.Name = "asignatura55";
-            this.asignatura55.Size = new System.Drawing.Size(215, 23);
+            this.asignatura55.Size = new System.Drawing.Size(216, 23);
             this.asignatura55.TabIndex = 13;
             this.asignatura55.Text = "label1";
             this.asignatura55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -365,9 +365,9 @@
             this.asignatura44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.asignatura44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asignatura44.ForeColor = System.Drawing.Color.White;
-            this.asignatura44.Location = new System.Drawing.Point(1, 350);
+            this.asignatura44.Location = new System.Drawing.Point(0, 350);
             this.asignatura44.Name = "asignatura44";
-            this.asignatura44.Size = new System.Drawing.Size(215, 23);
+            this.asignatura44.Size = new System.Drawing.Size(216, 23);
             this.asignatura44.TabIndex = 12;
             this.asignatura44.Text = "label2";
             this.asignatura44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -377,9 +377,9 @@
             this.asignatura33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.asignatura33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asignatura33.ForeColor = System.Drawing.Color.White;
-            this.asignatura33.Location = new System.Drawing.Point(1, 327);
+            this.asignatura33.Location = new System.Drawing.Point(0, 327);
             this.asignatura33.Name = "asignatura33";
-            this.asignatura33.Size = new System.Drawing.Size(215, 23);
+            this.asignatura33.Size = new System.Drawing.Size(216, 23);
             this.asignatura33.TabIndex = 11;
             this.asignatura33.Text = "label3";
             this.asignatura33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -389,9 +389,9 @@
             this.asignatura22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.asignatura22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asignatura22.ForeColor = System.Drawing.Color.White;
-            this.asignatura22.Location = new System.Drawing.Point(1, 304);
+            this.asignatura22.Location = new System.Drawing.Point(0, 304);
             this.asignatura22.Name = "asignatura22";
-            this.asignatura22.Size = new System.Drawing.Size(215, 23);
+            this.asignatura22.Size = new System.Drawing.Size(216, 23);
             this.asignatura22.TabIndex = 10;
             this.asignatura22.Text = "label4";
             this.asignatura22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -401,9 +401,9 @@
             this.asignatura11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.asignatura11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asignatura11.ForeColor = System.Drawing.Color.White;
-            this.asignatura11.Location = new System.Drawing.Point(1, 282);
+            this.asignatura11.Location = new System.Drawing.Point(0, 282);
             this.asignatura11.Name = "asignatura11";
-            this.asignatura11.Size = new System.Drawing.Size(215, 23);
+            this.asignatura11.Size = new System.Drawing.Size(216, 23);
             this.asignatura11.TabIndex = 9;
             this.asignatura11.Text = "label5";
             this.asignatura11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -415,7 +415,7 @@
             this.asignatura5.ForeColor = System.Drawing.Color.White;
             this.asignatura5.Location = new System.Drawing.Point(0, 175);
             this.asignatura5.Name = "asignatura5";
-            this.asignatura5.Size = new System.Drawing.Size(215, 23);
+            this.asignatura5.Size = new System.Drawing.Size(216, 23);
             this.asignatura5.TabIndex = 8;
             this.asignatura5.Text = "asignatura5";
             this.asignatura5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -427,7 +427,7 @@
             this.asignatura4.ForeColor = System.Drawing.Color.White;
             this.asignatura4.Location = new System.Drawing.Point(0, 152);
             this.asignatura4.Name = "asignatura4";
-            this.asignatura4.Size = new System.Drawing.Size(215, 23);
+            this.asignatura4.Size = new System.Drawing.Size(216, 23);
             this.asignatura4.TabIndex = 7;
             this.asignatura4.Text = "asignatura4";
             this.asignatura4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -439,7 +439,7 @@
             this.asignatura3.ForeColor = System.Drawing.Color.White;
             this.asignatura3.Location = new System.Drawing.Point(0, 129);
             this.asignatura3.Name = "asignatura3";
-            this.asignatura3.Size = new System.Drawing.Size(215, 23);
+            this.asignatura3.Size = new System.Drawing.Size(216, 23);
             this.asignatura3.TabIndex = 6;
             this.asignatura3.Text = "asignatura3";
             this.asignatura3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -451,7 +451,7 @@
             this.asignatura2.ForeColor = System.Drawing.Color.White;
             this.asignatura2.Location = new System.Drawing.Point(0, 106);
             this.asignatura2.Name = "asignatura2";
-            this.asignatura2.Size = new System.Drawing.Size(215, 23);
+            this.asignatura2.Size = new System.Drawing.Size(216, 23);
             this.asignatura2.TabIndex = 5;
             this.asignatura2.Text = "asignatura2";
             this.asignatura2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -463,7 +463,7 @@
             this.asignatura1.ForeColor = System.Drawing.Color.White;
             this.asignatura1.Location = new System.Drawing.Point(0, 84);
             this.asignatura1.Name = "asignatura1";
-            this.asignatura1.Size = new System.Drawing.Size(215, 23);
+            this.asignatura1.Size = new System.Drawing.Size(216, 23);
             this.asignatura1.TabIndex = 4;
             this.asignatura1.Text = "asignatura1";
             this.asignatura1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -474,7 +474,7 @@
             this.changesPicture.Image = ((System.Drawing.Image)(resources.GetObject("changesPicture.Image")));
             this.changesPicture.Location = new System.Drawing.Point(-3, 619);
             this.changesPicture.Name = "changesPicture";
-            this.changesPicture.Size = new System.Drawing.Size(218, 39);
+            this.changesPicture.Size = new System.Drawing.Size(219, 39);
             this.changesPicture.TabIndex = 3;
             this.changesPicture.TabStop = false;
             this.changesPicture.Click += new System.EventHandler(this.changesPicture_Click);
@@ -483,7 +483,7 @@
             // 
             this.modelsPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.modelsPicture.Image = ((System.Drawing.Image)(resources.GetObject("modelsPicture.Image")));
-            this.modelsPicture.Location = new System.Drawing.Point(-3, 438);
+            this.modelsPicture.Location = new System.Drawing.Point(-1, 438);
             this.modelsPicture.Name = "modelsPicture";
             this.modelsPicture.Size = new System.Drawing.Size(218, 40);
             this.modelsPicture.TabIndex = 2;
@@ -494,7 +494,7 @@
             // 
             this.createExamPicture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createExamPicture.Image = ((System.Drawing.Image)(resources.GetObject("createExamPicture.Image")));
-            this.createExamPicture.Location = new System.Drawing.Point(0, 245);
+            this.createExamPicture.Location = new System.Drawing.Point(-1, 245);
             this.createExamPicture.Name = "createExamPicture";
             this.createExamPicture.Size = new System.Drawing.Size(218, 39);
             this.createExamPicture.TabIndex = 1;
@@ -507,7 +507,7 @@
             this.subjectPicture.Image = ((System.Drawing.Image)(resources.GetObject("subjectPicture.Image")));
             this.subjectPicture.Location = new System.Drawing.Point(-3, 46);
             this.subjectPicture.Name = "subjectPicture";
-            this.subjectPicture.Size = new System.Drawing.Size(218, 41);
+            this.subjectPicture.Size = new System.Drawing.Size(219, 41);
             this.subjectPicture.TabIndex = 0;
             this.subjectPicture.TabStop = false;
             this.subjectPicture.Click += new System.EventHandler(this.subjectPicture_Click);
