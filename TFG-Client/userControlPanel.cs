@@ -108,6 +108,10 @@ namespace TFG_Client {
             } else if (tempLabel.Name.ToString().Equals(asignatura55.Name.ToString())) {
                 Utilities.openForm(new AskTypeDataNewExam(dataPanel, rightDock, tempEmptyForm, asignatura55.Text.ToString()), dataPanel, rightDock);
             }
+
+            if (tempLabel.Name.ToString().Equals(asignatura111.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura111.Text.ToString()), dataPanel, rightDock);
+            }
         }
 
         private void fillAllSubjectsIntoArray() {
@@ -281,7 +285,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void minimizeLabel_Click(object sender, EventArgs e) {
-            rightDock.Visible = false;
+            rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -295,7 +299,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void minimizeIcon_Click(object sender, EventArgs e) {
-            rightDock.Visible = false;
+            rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 
@@ -309,7 +313,7 @@ namespace TFG_Client {
         /// <param name="e">EventArgs, evento activado</param>
         /// <param name="e">EventArgs, Activated event</param>
         private void layoutMinimize_Click(object sender, EventArgs e) {
-            rightDock.Visible = false;
+            rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 

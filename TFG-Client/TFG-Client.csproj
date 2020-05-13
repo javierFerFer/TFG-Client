@@ -62,6 +62,12 @@
     <Compile Include="AllDataNormalModel.Designer.cs">
       <DependentUpon>AllDataNormalModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AskTypeDataModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskTypeDataModel.Designer.cs">
+      <DependentUpon>AskTypeDataModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateTestExam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,18 @@
     </Compile>
     <Compile Include="CreateNormalExam.Designer.cs">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectNormalModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectNormalModel.Designer.cs">
+      <DependentUpon>SelectNormalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSubjectFormModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSubjectFormModels.Designer.cs">
+      <DependentUpon>SelectSubjectFormModels.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectSubjectForm.cs">
       <SubType>Form</SubType>
@@ -188,11 +206,20 @@
     <EmbeddedResource Include="AllDataNormalModel.resx">
       <DependentUpon>AllDataNormalModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AskTypeDataModel.resx">
+      <DependentUpon>AskTypeDataModel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateTestExam.resx">
       <DependentUpon>CreateTestExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNormalExam.resx">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNormalModel.resx">
+      <DependentUpon>SelectNormalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSubjectFormModels.resx">
+      <DependentUpon>SelectSubjectFormModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSubjectForm.resx">
       <DependentUpon>SelectSubjectForm.cs</DependentUpon>

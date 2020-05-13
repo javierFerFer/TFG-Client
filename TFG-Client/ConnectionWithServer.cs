@@ -206,6 +206,11 @@ namespace TFG_Client {
                                 Thread.Sleep(2000);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.SelectSubjectFormObject.fillAllThemes(allThemesNames); }));
 
+                            } else if (json.First.ToString().Contains("allNamesModelsFromSpecificSubject")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] allThemesNames = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.SelectSubjectFormModelsObject.fillAllThemes(allThemesNames); }));
                             } else if (json.First.ToString().Contains("allThemesForTest")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allThemesNames = complexAnswer.B_Content;
@@ -502,6 +507,13 @@ namespace TFG_Client {
             loginForm.AddNewQuestionTypeTest = addNewQuestionTypeObject;
         }
 
+        internal static void setNewSelectSubjectFormModels(SelectSubjectFormModels selectSubjectFormModelsObject) {
+            loginForm.SelectSubjectFormModelsObject = selectSubjectFormModelsObject;
+        }
+
+        internal static void setNewSelectNormalModel(SelectNormalModel selectNormalModelObject) {
+            loginForm.SelectNormalModelObject = selectNormalModelObject;
+        }
 
         private static void closeAllPopUps() {
             try {
