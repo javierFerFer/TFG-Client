@@ -459,6 +459,9 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("normalExamCreatedSucces")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateNormalExamObject.normalExamGenerateSuccess(); }));
+                            } else if (json.First.ToString().Contains("normalModelExamCreated")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.FormNormalModelToUse.normalExamGenerateSuccess(); }));
                             } else if (json.First.ToString().Contains("TestExamCreatedSucces")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateTestExamObject1.testExamGenerateSuccess(); }));
@@ -477,7 +480,7 @@ namespace TFG_Client {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] alldataNormalQuestionsOfModel = complexAnswer.B_Content;
                                 loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
-                                   loginForm.SelectNormalModelObject.createPopUpMessage(alldataNormalQuestionsOfModel);
+                                    loginForm.SelectNormalModelObject.createPopUpMessage(alldataNormalQuestionsOfModel);
                                 }));
                             }
                         }
@@ -556,6 +559,9 @@ namespace TFG_Client {
                     }
                     if (loginForm.FormNormalModelToUse != null) {
                         loginForm.FormNormalModelToUse.Dispose();
+                    }
+                    if (LoginForm.FormNewNormalModificationForModel != null) {
+                        loginForm.FormNewNormalModificationForModel.Dispose();
                     }
                 }));
             } catch (Exception ex) { }

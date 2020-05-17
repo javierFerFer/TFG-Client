@@ -49,7 +49,6 @@ namespace TFG_Client {
         public void createAndShowModels(string [] allDataModelsParam) {
             buttonBack.Visible = true;
             labelWaitData.Visible = false;
-            for (int i = 0; i < 15; i++) {
                 for (int counterOfModels = 0; counterOfModels < allDataModelsParam.Length; counterOfModels += 4) {
                     ModelOfModels newModel = new ModelOfModels(allDataModelsParam[counterOfModels], allDataModelsParam[counterOfModels + 1], allDataModelsParam[counterOfModels + 2], allDataModelsParam[counterOfModels + 3]);
                     newModel.Tag = counterOfModels;
@@ -57,7 +56,6 @@ namespace TFG_Client {
                     flowLayoutPanelAllModels.Controls.Add(newModel);
                     newModel.Show();
                 }
-            }
             flowLayoutPanelAllModels.Visible = true;
         }
 
@@ -68,7 +66,7 @@ namespace TFG_Client {
 
 
         public async void createPopUpMessage(string[] allDataParam) {
-            await Task.Run(() => { Utilities.createPopUpWithAllQuestions(allDataParam); });
+            await Task.Run(() => { Utilities.createPopUpWithAllQuestions(allDataParam, dataPanel, rightPanel, subject); });
             
         }
 

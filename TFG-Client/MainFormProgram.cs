@@ -70,6 +70,7 @@ namespace TFG_Client {
         private static ModelWindowsMessage modelWindowsMessage;
         private static ModelWindowsMessageWithBroder modelWindowsMessageWithBroder;
         private static ModelWindowsMessageWithBroderWarning modelWindowsMessageWithBroderWarning;
+        private static FormNewNormalModificationForModel formNewNormalModificationForModel;
 
         /// <summary>
         /// 
@@ -707,5 +708,6 @@ namespace TFG_Client {
         public SelectSubjectFormModels SelectSubjectFormModelsObject { get => selectSubjectFormModelsObject; set => selectSubjectFormModelsObject = value; }
         public SelectNormalModel SelectNormalModelObject { get => selectNormalModelObject; set => selectNormalModelObject = value; }
         public FormNormalModelToUse FormNormalModelToUse { get => formNormalModelToUse; set => formNormalModelToUse = value; }
+        public FormNewNormalModificationForModel FormNewNormalModificationForModel { get => formNewNormalModificationForModel; set => formNewNormalModificationForModel = value; }
     }
 }

@@ -520,16 +520,30 @@ namespace TFG_Client {
             
         }
 
-        public static void createPopUpWithAllQuestions(string[] allQuestionsData) {
-            FormNormalModelToUse formNormalModelToUseObject = new FormNormalModelToUse();
+        public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam) {
+            FormNormalModelToUse formNormalModelToUseObject = new FormNormalModelToUse(allQuestionsData, dataPanelParam, rightPanelParam, subjectParam);
             formNormalModelToUseObject.StartPosition = FormStartPosition.CenterParent;
             if (ConnectionWithServer.LoginForm != null) {
                 ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
                     ConnectionWithServer.LoginForm.FormNormalModelToUse = formNormalModelToUseObject;
+                    formNormalModelToUseObject.fillQuestions();
                     formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
                 }));
             } else {
                 formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+        }
+
+        public static void createNewNormalModificationForModel(string idParam, string questionParam, DataGridViewRow tempRow, DataGridView allQuestionsParam) {
+            FormNewNormalModificationForModel formNewNormalModificationForModel = new FormNewNormalModificationForModel(idParam, questionParam, tempRow, allQuestionsParam);
+            formNewNormalModificationForModel.StartPosition = FormStartPosition.CenterParent;
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewNormalModificationForModel = formNewNormalModificationForModel;
+                    formNewNormalModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewNormalModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
 

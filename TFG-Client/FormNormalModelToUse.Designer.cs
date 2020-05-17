@@ -22,25 +22,31 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.infoNormalQuestionData = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.infoNormalModelQuestions = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.panelDown = new System.Windows.Forms.Panel();
             this.panelUp = new System.Windows.Forms.Panel();
             this.title = new System.Windows.Forms.Label();
             this.flowLayoutTitle = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonSend = new System.Windows.Forms.Button();
+            this.dataGridViewAllNormalData = new System.Windows.Forms.DataGridView();
+            this.IDNormalQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).BeginInit();
             this.SuspendLayout();
             // 
-            // infoNormalQuestionData
+            // infoNormalModelQuestions
             // 
-            this.infoNormalQuestionData.AutoSize = true;
-            this.infoNormalQuestionData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoNormalQuestionData.Location = new System.Drawing.Point(18, 78);
-            this.infoNormalQuestionData.Name = "infoNormalQuestionData";
-            this.infoNormalQuestionData.Size = new System.Drawing.Size(398, 25);
-            this.infoNormalQuestionData.TabIndex = 10;
-            this.infoNormalQuestionData.Text = "Esta es la pregunta que desea modificar";
+            this.infoNormalModelQuestions.AutoSize = true;
+            this.infoNormalModelQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoNormalModelQuestions.Location = new System.Drawing.Point(11, 60);
+            this.infoNormalModelQuestions.Name = "infoNormalModelQuestions";
+            this.infoNormalModelQuestions.Size = new System.Drawing.Size(369, 25);
+            this.infoNormalModelQuestions.TabIndex = 10;
+            this.infoNormalModelQuestions.Text = "Preguntas pertenecientes al modelo: ";
             // 
             // closeButton
             // 
@@ -101,22 +107,83 @@
             this.buttonSend.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSend.ForeColor = System.Drawing.Color.White;
-            this.buttonSend.Location = new System.Drawing.Point(768, 433);
+            this.buttonSend.Location = new System.Drawing.Point(721, 433);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(80, 29);
+            this.buttonSend.Size = new System.Drawing.Size(127, 29);
             this.buttonSend.TabIndex = 14;
-            this.buttonSend.Text = "Usar";
+            this.buttonSend.Text = "Usar este modelo";
             this.buttonSend.UseVisualStyleBackColor = false;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // dataGridViewAllNormalData
+            // 
+            this.dataGridViewAllNormalData.AllowUserToAddRows = false;
+            this.dataGridViewAllNormalData.AllowUserToDeleteRows = false;
+            this.dataGridViewAllNormalData.AllowUserToResizeColumns = false;
+            this.dataGridViewAllNormalData.AllowUserToResizeRows = false;
+            this.dataGridViewAllNormalData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewAllNormalData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewAllNormalData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            this.dataGridViewAllNormalData.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewAllNormalData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridViewAllNormalData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAllNormalData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewAllNormalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAllNormalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDNormalQuestion,
+            this.question});
+            this.dataGridViewAllNormalData.EnableHeadersVisualStyles = false;
+            this.dataGridViewAllNormalData.GridColor = System.Drawing.Color.White;
+            this.dataGridViewAllNormalData.Location = new System.Drawing.Point(7, 98);
+            this.dataGridViewAllNormalData.MultiSelect = false;
+            this.dataGridViewAllNormalData.Name = "dataGridViewAllNormalData";
+            this.dataGridViewAllNormalData.ReadOnly = true;
+            this.dataGridViewAllNormalData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridViewAllNormalData.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAllNormalData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewAllNormalData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAllNormalData.Size = new System.Drawing.Size(881, 297);
+            this.dataGridViewAllNormalData.TabIndex = 15;
+            this.dataGridViewAllNormalData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellDoubleClick);
+            this.dataGridViewAllNormalData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellMouseEnter);
+            // 
+            // IDNormalQuestion
+            // 
+            this.IDNormalQuestion.HeaderText = "ID";
+            this.IDNormalQuestion.Name = "IDNormalQuestion";
+            this.IDNormalQuestion.ReadOnly = true;
+            this.IDNormalQuestion.Width = 50;
+            // 
+            // question
+            // 
+            this.question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.question.HeaderText = "Pregunta";
+            this.question.Name = "question";
+            this.question.ReadOnly = true;
             // 
             // FormNormalModelToUse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 487);
+            this.Controls.Add(this.dataGridViewAllNormalData);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.flowLayoutTitle);
-            this.Controls.Add(this.infoNormalQuestionData);
+            this.Controls.Add(this.infoNormalModelQuestions);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.panelDown);
             this.Controls.Add(this.panelUp);
@@ -133,18 +200,22 @@
             this.Text = "ModelWindowsMessage";
             this.flowLayoutTitle.ResumeLayout(false);
             this.flowLayoutTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        public System.Windows.Forms.Label infoNormalQuestionData;
+        public System.Windows.Forms.Label infoNormalModelQuestions;
         private System.Windows.Forms.Button closeButton;
         public System.Windows.Forms.Panel panelDown;
         public System.Windows.Forms.Panel panelUp;
         public System.Windows.Forms.Label title;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutTitle;
         private System.Windows.Forms.Button buttonSend;
+        private System.Windows.Forms.DataGridView dataGridViewAllNormalData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDNormalQuestion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn question;
     }
 }
