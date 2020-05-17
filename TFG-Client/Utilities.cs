@@ -49,8 +49,8 @@ namespace TFG_Client {
                 // Se establece propietario del formulario de error para evitar perdida del foco
                 if (ConnectionWithServer.LoginForm != null) {
                     ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
-                        customWarningMessage.ShowDialog(ConnectionWithServer.LoginForm);
                         ConnectionWithServer.LoginForm.ModelWindowsMessageWithBroderWarning = customWarningMessage;
+                        customWarningMessage.ShowDialog(ConnectionWithServer.LoginForm);
                     }));
                 } else {
                     customWarningMessage.ShowDialog();
@@ -431,7 +431,14 @@ namespace TFG_Client {
                 Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
                 supportForm.messageLabel.Location = centerLocation;
                 supportForm.ImageSchool.Visible = false;
-                supportForm.ShowDialog();
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessage = supportForm;
+                        supportForm.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    supportForm.ShowDialog(ConnectionWithServer.LoginForm);
+                }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -513,8 +520,20 @@ namespace TFG_Client {
             
         }
 
+        public static void createPopUpWithAllQuestions(string[] allQuestionsData) {
+            FormNormalModelToUse formNormalModelToUseObject = new FormNormalModelToUse();
+            formNormalModelToUseObject.StartPosition = FormStartPosition.CenterParent;
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNormalModelToUse = formNormalModelToUseObject;
+                    formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+        }
+
         public static void createFormNewTestModification(string titleParam, string id, string question, string answer_A, string answer_B, string answer_C, string answer_D, string answer_correct) {
-            //AQUI
             FormNewTestModification formNewTestObject = new FormNewTestModification(id, question, answer_A, answer_B, answer_C, answer_D, answer_correct);
             formNewTestObject.StartPosition = FormStartPosition.CenterParent;
             formNewTestObject.title.Text = titleParam;
@@ -600,7 +619,14 @@ namespace TFG_Client {
                 aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
                                               "por Javier Fernández Fernández \n" +
                                               "como trabajo de final de grado.";
-                aboutForm.ShowDialog();
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessage = aboutForm;
+                        aboutForm.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    aboutForm.ShowDialog(ConnectionWithServer.LoginForm);
+                }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message.ToString());
             }

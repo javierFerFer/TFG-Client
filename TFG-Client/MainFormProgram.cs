@@ -66,9 +66,11 @@ namespace TFG_Client {
         private static ListAllTestQuestions listAllTestQuestions;
         private static FormNewNormalModification formNewNormalModification;
         private static FormNewTestModification formNewTestModification;
+        private static FormNormalModelToUse formNormalModelToUse;
         private static ModelWindowsMessage modelWindowsMessage;
         private static ModelWindowsMessageWithBroder modelWindowsMessageWithBroder;
         private static ModelWindowsMessageWithBroderWarning modelWindowsMessageWithBroderWarning;
+
         /// <summary>
         /// 
         /// Constructor de la clase
@@ -704,5 +706,6 @@ namespace TFG_Client {
         public AllDataTestModel AllDataTestModel { get => allDataTestModel; set => allDataTestModel = value; }
         public SelectSubjectFormModels SelectSubjectFormModelsObject { get => selectSubjectFormModelsObject; set => selectSubjectFormModelsObject = value; }
         public SelectNormalModel SelectNormalModelObject { get => selectNormalModelObject; set => selectNormalModelObject = value; }
+        public FormNormalModelToUse FormNormalModelToUse { get => formNormalModelToUse; set => formNormalModelToUse = value; }
     }
 }

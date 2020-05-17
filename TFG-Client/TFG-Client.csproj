@@ -83,6 +83,12 @@
     <Compile Include="CreateNormalExam.Designer.cs">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNormalModelToUse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNormalModelToUse.Designer.cs">
+      <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelOfModels.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNormalExam.resx">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNormalModelToUse.resx">
+      <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelOfModels.resx">
       <DependentUpon>ModelOfModels.cs</DependentUpon>

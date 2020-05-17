@@ -473,6 +473,12 @@ namespace TFG_Client {
                                         loginForm.SelectNormalModelObject.createAndShowModels(alldataNormalModels);
                                     }
                                 }));
+                            } else if (json.First.ToString().Contains("allNormalModelQuestionsList")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] alldataNormalQuestionsOfModel = complexAnswer.B_Content;
+                                loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
+                                   loginForm.SelectNormalModelObject.createPopUpMessage(alldataNormalQuestionsOfModel);
+                                }));
                             }
                         }
                     }
@@ -489,6 +495,10 @@ namespace TFG_Client {
             }
         }
 
+
+        internal static void setFormNormalModelToUse(FormNormalModelToUse formNormalModelToUseObject) {
+            loginForm.FormNormalModelToUse = formNormalModelToUseObject;
+        }
 
         internal static void setNewQuestionFrom(AddNewQuestion addNewQuestion) {
             loginForm.AddNewQuestionObject = addNewQuestion;
@@ -543,6 +553,9 @@ namespace TFG_Client {
                     }
                     if (loginForm.FormNewTestModification != null) {
                         loginForm.FormNewTestModification.Dispose();
+                    }
+                    if (loginForm.FormNormalModelToUse != null) {
+                        loginForm.FormNormalModelToUse.Dispose();
                     }
                 }));
             } catch (Exception ex) { }

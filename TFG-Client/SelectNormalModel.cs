@@ -38,6 +38,8 @@ namespace TFG_Client {
             typeOfDataPanel.Focus();
         }
 
+        
+
         private void showHideElements(bool option) {
             labelWaitData.Visible = !option;
             buttonBack.Visible = option;
@@ -64,13 +66,15 @@ namespace TFG_Client {
             buttonBack.Visible = true;
         }
 
+
+        public async void createPopUpMessage(string[] allDataParam) {
+            await Task.Run(() => { Utilities.createPopUpWithAllQuestions(allDataParam); });
+            
+        }
+
         private void buttonBack_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
             Utilities.openForm(beforeForm, dataPanel, rightPanel);
-        }
-
-        private void nextButton_Click(object sender, EventArgs e) {
-
         }
     }
 }

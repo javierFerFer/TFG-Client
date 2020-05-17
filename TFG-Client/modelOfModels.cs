@@ -114,7 +114,7 @@ namespace TFG_Client {
             base.OnPaint(e);
             RectangleF Rect = new RectangleF(0, 0, Width, Height);
             using (GraphicsPath GraphPath = GetRoundPath(Rect, 50)) {
-                this.Region = new Region(GraphPath);
+                Region = new Region(GraphPath);
                 using (Pen pen = new Pen(borderColor, 1.75f)) {
                     pen.Alignment = PenAlignment.Inset;
                     e.Graphics.DrawPath(pen, GraphPath);
@@ -137,7 +137,13 @@ namespace TFG_Client {
         }
 
         private void pictureBoxTextImage_Click(object sender, EventArgs e) {
-            MessageBox.Show("soy el modelo numero " + id);
+            string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("getAllNormalQuestionsOfSpecificNormalModel", id);
+            byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+            // Envio de datos mediante flush
+            ConnectionWithServer.ServerStream.Flush();
         }
+
+
     }
 }
