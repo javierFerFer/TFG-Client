@@ -47,7 +47,7 @@
             this.flowLayoutPanelAllModels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.flowLayoutPanelAllModels.Location = new System.Drawing.Point(80, 25);
             this.flowLayoutPanelAllModels.Name = "flowLayoutPanelAllModels";
-            this.flowLayoutPanelAllModels.Size = new System.Drawing.Size(812, 578);
+            this.flowLayoutPanelAllModels.Size = new System.Drawing.Size(764, 578);
             this.flowLayoutPanelAllModels.TabIndex = 11;
             // 
             // labelWaitData

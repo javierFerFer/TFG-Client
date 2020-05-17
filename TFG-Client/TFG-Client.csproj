@@ -286,6 +286,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControlPanel.resx">
       <DependentUpon>UserControlPanel.cs</DependentUpon>
@@ -306,6 +307,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="programIcon.ico" />
+    <None Include="resources\allLetters\Z.png" />
+    <None Include="resources\allLetters\Y.png" />
+    <None Include="resources\allLetters\X.png" />
+    <None Include="resources\allLetters\W.png" />
+    <None Include="resources\allLetters\V.png" />
+    <None Include="resources\allLetters\U.png" />
+    <None Include="resources\allLetters\T.png" />
+    <None Include="resources\allLetters\S.png" />
+    <None Include="resources\allLetters\R.png" />
+    <None Include="resources\allLetters\Q.png" />
+    <None Include="resources\allLetters\P.png" />
+    <None Include="resources\allLetters\O.png" />
+    <None Include="resources\allLetters\Ñ.png" />
+    <None Include="resources\allLetters\N.png" />
+    <None Include="resources\allLetters\M.png" />
+    <None Include="resources\allLetters\L.png" />
+    <None Include="resources\allLetters\K.png" />
+    <None Include="resources\allLetters\J.png" />
+    <None Include="resources\allLetters\I.png" />
+    <None Include="resources\allLetters\H.png" />
+    <None Include="resources\allLetters\G.png" />
+    <None Include="resources\allLetters\F.png" />
+    <None Include="resources\allLetters\E.png" />
+    <None Include="resources\allLetters\D.png" />
+    <None Include="resources\allLetters\C.png" />
+    <None Include="resources\allLetters\B.png" />
+    <None Include="resources\allLetters\A.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

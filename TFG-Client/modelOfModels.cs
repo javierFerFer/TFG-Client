@@ -33,6 +33,65 @@ namespace TFG_Client {
             labelAuthor.Text += autorOfModel;
             labelNameOfModel.Text = nameOfModel;
             labelDescriptionOfPanel.Text = descriptionOfModel;
+            setImage();
+        }
+
+        private void setImage() {
+            if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "a") {
+                imageLetterOfNameCreator.Image = Properties.Resources.A;
+            } else if(autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "b") {
+                imageLetterOfNameCreator.Image = Properties.Resources.B;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "c") {
+                imageLetterOfNameCreator.Image = Properties.Resources.C;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "d") {
+                imageLetterOfNameCreator.Image = Properties.Resources.D;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "e") {
+                imageLetterOfNameCreator.Image = Properties.Resources.E;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "f") {
+                imageLetterOfNameCreator.Image = Properties.Resources.F;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "g") {
+                imageLetterOfNameCreator.Image = Properties.Resources.G;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "h") {
+                imageLetterOfNameCreator.Image = Properties.Resources.H;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "i") {
+                imageLetterOfNameCreator.Image = Properties.Resources.I;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "j") {
+                imageLetterOfNameCreator.Image = Properties.Resources.J;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "k") {
+                imageLetterOfNameCreator.Image = Properties.Resources.K;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "l") {
+                imageLetterOfNameCreator.Image = Properties.Resources.L;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "m") {
+                imageLetterOfNameCreator.Image = Properties.Resources.M;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "n") {
+                imageLetterOfNameCreator.Image = Properties.Resources.N;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "ñ") {
+                imageLetterOfNameCreator.Image = Properties.Resources.Ñ;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "o") {
+                imageLetterOfNameCreator.Image = Properties.Resources.O;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "p") {
+                imageLetterOfNameCreator.Image = Properties.Resources.P;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "q") {
+                imageLetterOfNameCreator.Image = Properties.Resources.Q;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "r") {
+                imageLetterOfNameCreator.Image = Properties.Resources.R;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "s") {
+                imageLetterOfNameCreator.Image = Properties.Resources.S;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "t") {
+                imageLetterOfNameCreator.Image = Properties.Resources.T;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "u") {
+                imageLetterOfNameCreator.Image = Properties.Resources.U;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "v") {
+                imageLetterOfNameCreator.Image = Properties.Resources.V;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "w") {
+                imageLetterOfNameCreator.Image = Properties.Resources.W;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "x") {
+                imageLetterOfNameCreator.Image = Properties.Resources.X;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "y") {
+                imageLetterOfNameCreator.Image = Properties.Resources.Y;
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "z") {
+                imageLetterOfNameCreator.Image = Properties.Resources.Z;
+            }
         }
 
         public GraphicsPath GetRoundPath(RectangleF Rect, int radius) {
