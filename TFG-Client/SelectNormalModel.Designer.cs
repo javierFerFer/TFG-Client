@@ -24,13 +24,15 @@
         /// </summary>
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
-            this.buttonBack = new System.Windows.Forms.Button();
+            this.flowLayoutPanelAllModels = new System.Windows.Forms.FlowLayoutPanel();
             this.labelWaitData = new System.Windows.Forms.Label();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.typeOfDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // typeOfDataPanel
             // 
+            this.typeOfDataPanel.Controls.Add(this.flowLayoutPanelAllModels);
             this.typeOfDataPanel.Controls.Add(this.labelWaitData);
             this.typeOfDataPanel.Controls.Add(this.buttonBack);
             this.typeOfDataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -39,20 +41,14 @@
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
             // 
-            // buttonBack
+            // flowLayoutPanelAllModels
             // 
-            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.buttonBack.FlatAppearance.BorderSize = 0;
-            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(108, 37);
-            this.buttonBack.TabIndex = 6;
-            this.buttonBack.Text = "Volver";
-            this.buttonBack.UseVisualStyleBackColor = false;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            this.flowLayoutPanelAllModels.AutoScroll = true;
+            this.flowLayoutPanelAllModels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.flowLayoutPanelAllModels.Location = new System.Drawing.Point(80, 25);
+            this.flowLayoutPanelAllModels.Name = "flowLayoutPanelAllModels";
+            this.flowLayoutPanelAllModels.Size = new System.Drawing.Size(812, 578);
+            this.flowLayoutPanelAllModels.TabIndex = 11;
             // 
             // labelWaitData
             // 
@@ -64,6 +60,21 @@
             this.labelWaitData.Size = new System.Drawing.Size(347, 29);
             this.labelWaitData.TabIndex = 10;
             this.labelWaitData.Text = "Esperando datos del servidor...";
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.buttonBack.FlatAppearance.BorderSize = 0;
+            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.ForeColor = System.Drawing.Color.White;
+            this.buttonBack.Location = new System.Drawing.Point(80, 609);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(108, 37);
+            this.buttonBack.TabIndex = 6;
+            this.buttonBack.Text = "Volver";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // SelectNormalModel
             // 
@@ -86,5 +97,6 @@
         private System.Windows.Forms.Panel typeOfDataPanel;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label labelWaitData;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAllModels;
     }
 }

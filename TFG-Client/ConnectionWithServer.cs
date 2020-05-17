@@ -69,7 +69,7 @@ namespace TFG_Client {
         public static void run(MainFormProgram loginFormParam) {
 
             LoginForm = loginFormParam;
-             
+
             // Reseteo de variable en caso de login fallido
             readServerData = true;
 
@@ -462,6 +462,17 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("TestExamCreatedSucces")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateTestExamObject1.testExamGenerateSuccess(); }));
+                            } else if (json.First.ToString().Contains("allNormalDataModels")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] alldataNormalModels = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    if (alldataNormalModels.Length == 0) {
+                                        loginForm.SelectNormalModelObject.showNothingMessage();
+                                    } else {
+                                        loginForm.SelectNormalModelObject.createAndShowModels(alldataNormalModels);
+                                    }
+                                }));
                             }
                         }
                     }
@@ -534,7 +545,7 @@ namespace TFG_Client {
                         loginForm.FormNewTestModification.Dispose();
                     }
                 }));
-            } catch (Exception ex) {}
+            } catch (Exception ex) { }
         }
 
 
