@@ -520,13 +520,21 @@ namespace TFG_Client {
             
         }
 
-        public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam) {
+        public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam, bool optionParam) {
+            // optionParam = true -> normal, optionParam = false -> test
             FormNormalModelToUse formNormalModelToUseObject = new FormNormalModelToUse(allQuestionsData, dataPanelParam, rightPanelParam, subjectParam);
             formNormalModelToUseObject.StartPosition = FormStartPosition.CenterParent;
             if (ConnectionWithServer.LoginForm != null) {
                 ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
                     ConnectionWithServer.LoginForm.FormNormalModelToUse = formNormalModelToUseObject;
-                    formNormalModelToUseObject.fillQuestions();
+                    if (optionParam) {
+                        formNormalModelToUseObject.fillQuestions();
+                        formNormalModelToUseObject.dataGridViewTestData.Visible = false;
+                    } else {
+                        formNormalModelToUseObject.fillQuestionsTest();
+                        formNormalModelToUseObject.dataGridViewAllNormalData.Visible = false;
+                    }
+                    
                     formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
                 }));
             } else {
@@ -544,6 +552,19 @@ namespace TFG_Client {
                 }));
             } else {
                 formNewNormalModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+        }
+
+        public static void createNewTestModificationForModel(string idParam, string questionParam, string answer_A , string answer_B, string answer_C, string answer_D, string answer_Correct, DataGridViewRow tempRow, DataGridView allQuestionsParam) {
+            FormNewTestModificationForModel formNewTestModificationForModel = new FormNewTestModificationForModel(idParam, questionParam, answer_A, answer_B, answer_C, answer_D, answer_Correct ,tempRow, allQuestionsParam);
+            formNewTestModificationForModel.StartPosition = FormStartPosition.CenterParent;
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewTestModificationForModel = formNewTestModificationForModel;
+                    formNewTestModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewTestModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
 

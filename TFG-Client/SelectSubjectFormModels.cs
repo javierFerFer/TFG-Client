@@ -68,8 +68,7 @@ namespace TFG_Client {
                 if (typeOfExam.Equals("normal")) {
                     Utilities.openForm(new SelectNormalModel(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this), dataPanel, rightPanel);
                 } else {
-                    // Creación de examen tipo test
-                    //Utilities.openForm(new CreateTestExam(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this, true), dataPanel, rightPanel);
+                    Utilities.openForm(new SelectNormalModel(typeOfExam, comboBoxOfThemes.SelectedItem.ToString(), dataPanel, rightPanel, this), dataPanel, rightPanel);
                 }
             }
         }

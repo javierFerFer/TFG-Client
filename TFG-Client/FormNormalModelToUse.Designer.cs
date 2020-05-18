@@ -24,6 +24,8 @@
         private void InitializeComponent() {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.infoNormalModelQuestions = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.panelDown = new System.Windows.Forms.Panel();
@@ -34,8 +36,17 @@
             this.dataGridViewAllNormalData = new System.Windows.Forms.DataGridView();
             this.IDNormalQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTestData = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.answer_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.asnwer_B = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.answer_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.asnwer_D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.correct_answer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestData)).BeginInit();
             this.SuspendLayout();
             // 
             // infoNormalModelQuestions
@@ -86,9 +97,9 @@
             this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title.Location = new System.Drawing.Point(3, 4);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(132, 33);
+            this.title.Size = new System.Drawing.Size(286, 33);
             this.title.TabIndex = 6;
-            this.title.Text = "titleLabel";
+            this.title.Text = "Listado de preguntas";
             // 
             // flowLayoutTitle
             // 
@@ -175,11 +186,112 @@
             this.question.Name = "question";
             this.question.ReadOnly = true;
             // 
+            // dataGridViewTestData
+            // 
+            this.dataGridViewTestData.AllowUserToAddRows = false;
+            this.dataGridViewTestData.AllowUserToDeleteRows = false;
+            this.dataGridViewTestData.AllowUserToResizeColumns = false;
+            this.dataGridViewTestData.AllowUserToResizeRows = false;
+            this.dataGridViewTestData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewTestData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewTestData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            this.dataGridViewTestData.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewTestData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridViewTestData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTestData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTestData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTestData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.answer_A,
+            this.asnwer_B,
+            this.answer_C,
+            this.asnwer_D,
+            this.correct_answer});
+            this.dataGridViewTestData.EnableHeadersVisualStyles = false;
+            this.dataGridViewTestData.GridColor = System.Drawing.Color.White;
+            this.dataGridViewTestData.Location = new System.Drawing.Point(7, 98);
+            this.dataGridViewTestData.MultiSelect = false;
+            this.dataGridViewTestData.Name = "dataGridViewTestData";
+            this.dataGridViewTestData.ReadOnly = true;
+            this.dataGridViewTestData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridViewTestData.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(86)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTestData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTestData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTestData.Size = new System.Drawing.Size(881, 297);
+            this.dataGridViewTestData.TabIndex = 21;
+            this.dataGridViewTestData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellDoubleClick);
+            this.dataGridViewTestData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestData_CellMouseEnter);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Pregunta";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // answer_A
+            // 
+            this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.answer_A.HeaderText = "Respuesta A";
+            this.answer_A.Name = "answer_A";
+            this.answer_A.ReadOnly = true;
+            // 
+            // asnwer_B
+            // 
+            this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.asnwer_B.HeaderText = "Respuesta B";
+            this.asnwer_B.Name = "asnwer_B";
+            this.asnwer_B.ReadOnly = true;
+            // 
+            // answer_C
+            // 
+            this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.answer_C.HeaderText = "Respuesta C";
+            this.answer_C.Name = "answer_C";
+            this.answer_C.ReadOnly = true;
+            // 
+            // asnwer_D
+            // 
+            this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.asnwer_D.HeaderText = "Respuesta D";
+            this.asnwer_D.Name = "asnwer_D";
+            this.asnwer_D.ReadOnly = true;
+            // 
+            // correct_answer
+            // 
+            this.correct_answer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.correct_answer.HeaderText = "Correcta";
+            this.correct_answer.Name = "correct_answer";
+            this.correct_answer.ReadOnly = true;
+            // 
             // FormNormalModelToUse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 487);
+            this.Controls.Add(this.dataGridViewTestData);
             this.Controls.Add(this.dataGridViewAllNormalData);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.flowLayoutTitle);
@@ -201,6 +313,7 @@
             this.flowLayoutTitle.ResumeLayout(false);
             this.flowLayoutTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,8 +327,16 @@
         public System.Windows.Forms.Label title;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutTitle;
         private System.Windows.Forms.Button buttonSend;
-        private System.Windows.Forms.DataGridView dataGridViewAllNormalData;
+        public System.Windows.Forms.DataGridView dataGridViewAllNormalData;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDNormalQuestion;
         private System.Windows.Forms.DataGridViewTextBoxColumn question;
+        public System.Windows.Forms.DataGridView dataGridViewTestData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn answer_A;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_B;
+        private System.Windows.Forms.DataGridViewTextBoxColumn answer_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_D;
+        private System.Windows.Forms.DataGridViewTextBoxColumn correct_answer;
     }
 }

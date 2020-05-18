@@ -76,7 +76,7 @@ namespace TFG_Client {
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
                 if (dataGridView.Rows.Count == 5) {
-                    Utilities.customErrorInfoModificationNormal("Deben existir al menor 5 preguntas en el modelo para poder usarlo");
+                    Utilities.customErrorInfoModificationNormal("Deben existir al menos 5 preguntas en el modelo para poder usarlo");
 
                 } else {
                     // Enviar petición de guardado de la modificación

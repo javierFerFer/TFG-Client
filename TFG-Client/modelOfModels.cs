@@ -18,12 +18,17 @@ namespace TFG_Client {
         private string descriptionOfModel;
         private string autorOfModel;
         private Color borderColor = Color.FromArgb(247, 134, 5);
-        public ModelOfModels(string idParam, string nameOfModelParam, string descriptionOfModelParam, string autorOfModelParam) {
+
+        // true = normal, false = test
+        private bool mode;
+
+        public ModelOfModels(string idParam, string nameOfModelParam, string descriptionOfModelParam, string autorOfModelParam, bool modeParam) {
             InitializeComponent();
             id = idParam;
             nameOfModel = nameOfModelParam;
             descriptionOfModel = descriptionOfModelParam;
             autorOfModel = autorOfModelParam;
+            mode = modeParam;
             panelRight.Height -= 5;
             panelLeft.Height -= 5;
             setElementsOfModel();
@@ -137,11 +142,20 @@ namespace TFG_Client {
         }
 
         private void pictureBoxTextImage_Click(object sender, EventArgs e) {
-            string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("getAllNormalQuestionsOfSpecificNormalModel", id);
-            byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-            // Envio de datos mediante flush
-            ConnectionWithServer.ServerStream.Flush();
+            if (mode) {
+                string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("getAllNormalQuestionsOfSpecificNormalModel", id);
+                byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
+            } else {
+                string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("getAllTestQuestionsOfSpecificTestModel", id);
+                byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
+            }
+            
         }
 
 

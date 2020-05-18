@@ -462,10 +462,24 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("normalModelExamCreated")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.FormNormalModelToUse.normalExamGenerateSuccess(); }));
+                            } else if (json.First.ToString().Contains("testModelExamCreated")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.FormNormalModelToUse.testExamGenerateSuccess(); }));
                             } else if (json.First.ToString().Contains("TestExamCreatedSucces")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.CreateTestExamObject1.testExamGenerateSuccess(); }));
                             } else if (json.First.ToString().Contains("allNormalDataModels")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] alldataNormalModels = complexAnswer.B_Content;
+                                Thread.Sleep(2000);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    if (alldataNormalModels.Length == 0) {
+                                        loginForm.SelectNormalModelObject.showNothingMessage();
+                                    } else {
+                                        loginForm.SelectNormalModelObject.createAndShowModels(alldataNormalModels);
+                                    }
+                                }));
+                            } else if (json.First.ToString().Contains("allTestDataModels")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] alldataNormalModels = complexAnswer.B_Content;
                                 Thread.Sleep(2000);
@@ -481,6 +495,12 @@ namespace TFG_Client {
                                 string[] alldataNormalQuestionsOfModel = complexAnswer.B_Content;
                                 loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
                                     loginForm.SelectNormalModelObject.createPopUpMessage(alldataNormalQuestionsOfModel);
+                                }));
+                            } else if (json.First.ToString().Contains("allTestModelQuestionsList")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] alldataTestQuestionsOfModel = complexAnswer.B_Content;
+                                loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
+                                    loginForm.SelectNormalModelObject.createPopUpMessage(alldataTestQuestionsOfModel);
                                 }));
                             }
                         }

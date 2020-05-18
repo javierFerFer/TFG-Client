@@ -111,6 +111,14 @@ namespace TFG_Client {
 
             if (tempLabel.Name.ToString().Equals(asignatura111.Name.ToString())) {
                 Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura111.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura222.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura222.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura333.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura333.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura444.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura444.Text.ToString()), dataPanel, rightDock);
+            } else if (tempLabel.Name.ToString().Equals(asignatura555.Name.ToString())) {
+                Utilities.openForm(new AskTypeDataModel(dataPanel, rightDock, tempEmptyForm, asignatura555.Text.ToString()), dataPanel, rightDock);
             }
         }
 
