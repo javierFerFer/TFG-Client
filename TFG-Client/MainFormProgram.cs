@@ -72,6 +72,7 @@ namespace TFG_Client {
         private static ModelWindowsMessageWithBroderWarning modelWindowsMessageWithBroderWarning;
         private static FormNewNormalModificationForModel formNewNormalModificationForModel;
         private static FormNewTestModificationForModel formNewTestModificationForModel;
+        private static AskTypeDataChanges AskTypeDataChangesObject;
 
         /// <summary>
         /// 
@@ -711,5 +712,6 @@ namespace TFG_Client {
         public FormNormalModelToUse FormNormalModelToUse { get => formNormalModelToUse; set => formNormalModelToUse = value; }
         public FormNewNormalModificationForModel FormNewNormalModificationForModel { get => formNewNormalModificationForModel; set => formNewNormalModificationForModel = value; }
         public FormNewTestModificationForModel FormNewTestModificationForModel { get => formNewTestModificationForModel; set => formNewTestModificationForModel = value; }
+        public AskTypeDataChanges AskTypeDataChangesObject1 { get => AskTypeDataChangesObject; set => AskTypeDataChangesObject = value; }
     }
 }

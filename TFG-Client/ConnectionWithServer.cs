@@ -128,6 +128,7 @@ namespace TFG_Client {
 
                         string serverMessageDesencrypt = Utilities.Decrypt(serverMessage, IvString, EncryptKey);
 
+                        //MessageBox.Show(serverMessageDesencrypt);
 
                         if (serverMessageDesencrypt == "") {
                             // Conexión con el servidor perdida, cierre de app y vuelta a login
@@ -502,6 +503,16 @@ namespace TFG_Client {
                                 loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
                                     loginForm.SelectNormalModelObject.createPopUpMessage(alldataTestQuestionsOfModel);
                                 }));
+                            } else if (json.First.ToString().Contains("statusPermissionsOfChanges")) {
+                                JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
+                                string singleAnswerContent = singleAnswer.B_Content;
+                                if (singleAnswerContent.Equals("withOutPermissions")) {
+                                    Thread.Sleep(3000);
+                                    loginForm.AskTypeDataChangesObject1.Invoke(new MethodInvoker(delegate {
+                                        LoginForm.UserControlPanelObject.labelChanges.Click += new EventHandler(LoginForm.UserControlPanelObject.labelChanges_Click);
+                                        loginForm.AskTypeDataChangesObject1.createErrorCredentials();
+                                    }));
+                                }
                             }
                         }
                     }

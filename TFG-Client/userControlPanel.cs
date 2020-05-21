@@ -423,6 +423,12 @@ namespace TFG_Client {
         }
 
         public void fillAllSubjects(string [] allSubjectsParam) {
+
+            subjectPicture.Click += new EventHandler(subjectPicture_Click);
+            createExamPicture.Click += new EventHandler(createExamPicture_Click);
+            modelsPicture.Click += new EventHandler(modelsPicture_Click);
+            changesPicture.Click += new EventHandler(changesPicture_Click);
+
             Label temLabel;
             showHideLeftPanel();
             for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
@@ -457,6 +463,12 @@ namespace TFG_Client {
         
 
         private void getAllSubjects() {
+
+            subjectPicture.Click -= new EventHandler(subjectPicture_Click);
+            createExamPicture.Click -= new EventHandler(createExamPicture_Click);
+            modelsPicture.Click -= new EventHandler(modelsPicture_Click);
+            changesPicture.Click -= new EventHandler(changesPicture_Click);
+            
             string jsonString = Utilities.generateSingleDataRequest("getAllSubjects", emailUser);
 
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
@@ -475,5 +487,11 @@ namespace TFG_Client {
                 return cp;
             }
         }
+
+        public void labelChanges_Click(object sender, EventArgs e) {
+            labelChanges.Click -= new EventHandler(labelChanges_Click);
+            Utilities.openForm(new AskTypeDataChanges(dataPanel, rightDock, this, emailUser), dataPanel, rightDock);
+        }
+
     }
 }
