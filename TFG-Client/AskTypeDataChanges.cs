@@ -39,10 +39,11 @@ namespace TFG_Client {
         }
 
         public void createErrorCredentials() {
-            Utilities.openForm(new EmptyDataForm("Usted no tiene permisos para revisar cambios"), dataPanel, rightPanel);
+            labelWaitVerification.Text = "Usted no tiene los credenciales necesarios \n" +
+                                         "para acceder a esta sección";
         }
 
-        private void showHideElements(bool option) {
+        public void showHideElements(bool option) {
             labelAskTypeOfOperation.Visible = option;
             checkBoxTest.Visible = option;
             checkBoxNormal.Visible = option;
@@ -55,20 +56,20 @@ namespace TFG_Client {
 
         private void buttonBack_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
-            Utilities.openForm(beforeForm, dataPanel, rightPanel);
+            Utilities.openForm(new EmptyDataForm(), dataPanel, rightPanel);
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
             // true = add selected, false = modify
             typeOfDataPanel.Focus();
-            AskOperation tempForm = (AskOperation)beforeForm;
 
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                     if (checkBoxNormal.Checked) {
-                        // Crear un menu para guardar una pregunta en base a la asignatura seleccionada
-                        Utilities.openForm(new AddNewQuestion("normal", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
+                    // Crear un menu para guardar una pregunta en base a la asignatura seleccionada
+                    Utilities.openForm(new ListAllNormalQuestionsModifications(dataPanel, rightPanel, this), dataPanel, rightPanel);
+
                     } else {
-                        Utilities.openForm(new AddNewQuestionTypeTest("test", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
+                        //Utilities.openForm(new AddNewQuestionTypeTest("test", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
                     }
                 } else {
                     Utilities.customErrorInfo("No ha seleccionado ninguna opción");

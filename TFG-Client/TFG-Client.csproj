@@ -107,6 +107,12 @@
     <Compile Include="FormNormalModelToUse.Designer.cs">
       <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListAllNormalQuestionsModifications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListAllNormalQuestionsModifications.Designer.cs">
+      <DependentUpon>ListAllNormalQuestionsModifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelOfModels.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNormalModelToUse.resx">
       <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListAllNormalQuestionsModifications.resx">
+      <DependentUpon>ListAllNormalQuestionsModifications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelOfModels.resx">
       <DependentUpon>ModelOfModels.cs</DependentUpon>

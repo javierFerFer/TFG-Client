@@ -37,6 +37,7 @@
             this.exitImage = new System.Windows.Forms.PictureBox();
             this.exitLabel = new System.Windows.Forms.Label();
             this.layoutPanelUserAndImage = new System.Windows.Forms.FlowLayoutPanel();
+            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.labelChanges = new System.Windows.Forms.Label();
@@ -60,11 +61,10 @@
             this.createExamPicture = new System.Windows.Forms.PictureBox();
             this.subjectPicture = new System.Windows.Forms.PictureBox();
             this.flowLayoutUp = new System.Windows.Forms.FlowLayoutPanel();
+            this.iconApp = new TFG_Client.MyOwnCircleComponent();
             this.dataPanel = new System.Windows.Forms.Panel();
             this.rightDock = new System.Windows.Forms.Panel();
             this.layoutOptions = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconApp = new TFG_Client.MyOwnCircleComponent();
-            this.iconUser = new TFG_Client.MyOwnCircleComponent();
             this.layoutSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supportIcon)).BeginInit();
             this.layoutAbout.SuspendLayout();
@@ -74,16 +74,16 @@
             this.layoutExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).BeginInit();
             this.layoutPanelUserAndImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.leftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).BeginInit();
             this.flowLayoutUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
             this.rightDock.SuspendLayout();
             this.layoutOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutSupport
@@ -234,6 +234,18 @@
             this.layoutPanelUserAndImage.Name = "layoutPanelUserAndImage";
             this.layoutPanelUserAndImage.Size = new System.Drawing.Size(1306, 52);
             this.layoutPanelUserAndImage.TabIndex = 3;
+            // 
+            // iconUser
+            // 
+            this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
+            this.iconUser.Location = new System.Drawing.Point(1254, 3);
+            this.iconUser.Name = "iconUser";
+            this.iconUser.Size = new System.Drawing.Size(49, 46);
+            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconUser.TabIndex = 1;
+            this.iconUser.TabStop = false;
+            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // userNameLabel
             // 
@@ -527,6 +539,16 @@
             this.flowLayoutUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseMove);
             this.flowLayoutUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.flowLayoutUp_MouseUp);
             // 
+            // iconApp
+            // 
+            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
+            this.iconApp.Location = new System.Drawing.Point(3, 3);
+            this.iconApp.Name = "iconApp";
+            this.iconApp.Size = new System.Drawing.Size(51, 46);
+            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconApp.TabIndex = 1;
+            this.iconApp.TabStop = false;
+            // 
             // dataPanel
             // 
             this.dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -557,28 +579,6 @@
             this.layoutOptions.Name = "layoutOptions";
             this.layoutOptions.Size = new System.Drawing.Size(177, 197);
             this.layoutOptions.TabIndex = 13;
-            // 
-            // iconApp
-            // 
-            this.iconApp.Image = ((System.Drawing.Image)(resources.GetObject("iconApp.Image")));
-            this.iconApp.Location = new System.Drawing.Point(3, 3);
-            this.iconApp.Name = "iconApp";
-            this.iconApp.Size = new System.Drawing.Size(51, 46);
-            this.iconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconApp.TabIndex = 1;
-            this.iconApp.TabStop = false;
-            // 
-            // iconUser
-            // 
-            this.iconUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconUser.Image = ((System.Drawing.Image)(resources.GetObject("iconUser.Image")));
-            this.iconUser.Location = new System.Drawing.Point(1254, 3);
-            this.iconUser.Name = "iconUser";
-            this.iconUser.Size = new System.Drawing.Size(49, 46);
-            this.iconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconUser.TabIndex = 1;
-            this.iconUser.TabStop = false;
-            this.iconUser.Click += new System.EventHandler(this.userImageCircle_Click);
             // 
             // UserControlPanel
             // 
@@ -612,16 +612,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitImage)).EndInit();
             this.layoutPanelUserAndImage.ResumeLayout(false);
             this.layoutPanelUserAndImage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.leftPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.changesPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createExamPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subjectPicture)).EndInit();
             this.flowLayoutUp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
             this.rightDock.ResumeLayout(false);
             this.layoutOptions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconApp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

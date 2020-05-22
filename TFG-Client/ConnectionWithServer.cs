@@ -506,11 +506,17 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("statusPermissionsOfChanges")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);
                                 string singleAnswerContent = singleAnswer.B_Content;
+                                Thread.Sleep(3000);
+
                                 if (singleAnswerContent.Equals("withOutPermissions")) {
-                                    Thread.Sleep(3000);
                                     loginForm.AskTypeDataChangesObject1.Invoke(new MethodInvoker(delegate {
                                         LoginForm.UserControlPanelObject.labelChanges.Click += new EventHandler(LoginForm.UserControlPanelObject.labelChanges_Click);
                                         loginForm.AskTypeDataChangesObject1.createErrorCredentials();
+                                    }));
+                                } else {
+                                    loginForm.AskTypeDataChangesObject1.Invoke(new MethodInvoker(delegate {
+                                        LoginForm.UserControlPanelObject.labelChanges.Click += new EventHandler(LoginForm.UserControlPanelObject.labelChanges_Click);
+                                        loginForm.AskTypeDataChangesObject1.showHideElements(true);
                                     }));
                                 }
                             }

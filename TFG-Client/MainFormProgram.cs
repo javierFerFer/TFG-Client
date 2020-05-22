@@ -73,6 +73,7 @@ namespace TFG_Client {
         private static FormNewNormalModificationForModel formNewNormalModificationForModel;
         private static FormNewTestModificationForModel formNewTestModificationForModel;
         private static AskTypeDataChanges AskTypeDataChangesObject;
+        private static ListAllNormalQuestionsModifications listAllNormalQuestionsModificationsObject;
 
         /// <summary>
         /// 
@@ -713,5 +714,6 @@ namespace TFG_Client {
         public FormNewNormalModificationForModel FormNewNormalModificationForModel { get => formNewNormalModificationForModel; set => formNewNormalModificationForModel = value; }
         public FormNewTestModificationForModel FormNewTestModificationForModel { get => formNewTestModificationForModel; set => formNewTestModificationForModel = value; }
         public AskTypeDataChanges AskTypeDataChangesObject1 { get => AskTypeDataChangesObject; set => AskTypeDataChangesObject = value; }
+        public ListAllNormalQuestionsModifications ListAllNormalQuestionsModificationsObject { get => listAllNormalQuestionsModificationsObject; set => listAllNormalQuestionsModificationsObject = value; }
     }
 }
