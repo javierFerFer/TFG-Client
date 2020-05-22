@@ -320,6 +320,15 @@ namespace TFG_Client {
                             } else if (json.First.ToString().Contains("normalQuestionsNotFound")) {
                                 // No se han encontrado preguntas normales de las asignatura
                                 LoginForm.Invoke(new MethodInvoker(delegate { loginForm.ListAllNormalQuestions.hide_show_dataGridView(false); }));
+                            } else if (json.First.ToString().Contains("normalForModificationQuestionsNotFound")) {
+                                LoginForm.Invoke(new MethodInvoker(delegate { loginForm.ListAllNormalQuestionsModificationsObject.hide_show_dataGridView(false); }));
+                            } else if (json.First.ToString().Contains("allNormalForModificationQuestions")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.ListAllNormalQuestionsModificationsObject.hide_show_dataGridView(true);
+                                    string[] allQuestions = complexAnswer.B_Content;
+                                    loginForm.ListAllNormalQuestionsModificationsObject.fillDataGridView(allQuestions);
+                                }));
                             } else if (json.First.ToString().Contains("allNormalQuestionsSpecificSubject")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allQuestions = complexAnswer.B_Content;

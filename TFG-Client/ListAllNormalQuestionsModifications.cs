@@ -37,7 +37,8 @@ namespace TFG_Client {
         }
 
         public void hide_show_dataGridView(bool option) {
-            Thread.Sleep(2000);
+            errorNoQuestionsFound.Text = "Esperando respuesta del servidor, espere...";
+            Thread.Sleep(3000);
             pictureBoxSearchQuestion.Visible = option;
             dataGridViewAllNormalData.Visible = option;
             textBoxFindQuestion.Visible = option;
@@ -47,14 +48,14 @@ namespace TFG_Client {
                 errorNoQuestionsFound.Visible = false;
                 buttonBack.Visible = true;
             } else {
-                errorNoQuestionsFound.Text = "No se han encontrado preguntas normales asociadas a la asignatura";
+                errorNoQuestionsFound.Text = "No se han encontrado modificaciones pendientes";
                 errorNoQuestionsFound.Visible = true;
                 buttonBack.Visible = true;
             }
         }
 
         public void openSuccessAddModificationNormalQuest() {
-            Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la petición de modificación al sistema"), dataPanel, rightPanel);
+            Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la modificación al sistema"), dataPanel, rightPanel);
         }
 
         private void getAllNormalQuestions() {
@@ -67,26 +68,24 @@ namespace TFG_Client {
 
         public void fillDataGridView(string [] allDataParam) {
             allDataOnView = allDataParam;
-            for (int questionCounter = 0; questionCounter < allDataParam.Length; questionCounter++) {
-                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1] };
+            for (int questionCounter = 0; questionCounter < allDataParam.Length; questionCounter+=3) {
+                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1] , allDataParam[questionCounter + 2] };
                 dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
             }
         }
 
         public void fillDataGridView(ArrayList allDataParamObjects) {
             for (int questionCounter = 0; questionCounter < allDataParamObjects.Count; questionCounter++) {
                 DataGridViewRow tempRow = (DataGridViewRow)allDataParamObjects[questionCounter];
-                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() };
+                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString() };
                 dataGridViewAllNormalData.Rows.Add(row);
             }
         }
 
         private void fillDataGridView() {
-            for (int questionCounter = 0; questionCounter < allDataOnView.Length; questionCounter++) {
-                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1] };
+            for (int questionCounter = 0; questionCounter < allDataOnView.Length; questionCounter+=3) {
+                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1] , allDataOnView[questionCounter + 2] };
                 dataGridViewAllNormalData.Rows.Add(row);
-                questionCounter++;
             }
         }
 
@@ -114,7 +113,6 @@ namespace TFG_Client {
             resetButton.PerformClick();
             if (textBoxFindQuestion.Text != searchBanner) {
                 foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
-                    //MessageBox.Show(row.Cells[1].Value.ToString().ToLower());
                     if (row.Cells[1].Value.ToString().ToLower().Contains(textBoxFindQuestion.Text.ToLower())) {
                         DataGridViewRow tempRow = row;
                         removedRows.Add(tempRow);
@@ -156,7 +154,7 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" +  tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString();
+                cell.ToolTipText = "- ID: \r\n" +  tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Modificación completa: \r\n" + tempRow.Cells[2].Value.ToString();
 
             } catch (Exception) {}
         }
