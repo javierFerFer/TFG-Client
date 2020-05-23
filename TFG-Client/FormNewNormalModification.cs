@@ -76,7 +76,7 @@ namespace TFG_Client {
                 ConnectionWithServer.ServerStream.Flush();
                 Dispose();
             } else {
-                if (textBoxNewQuest.Text.Trim().Length != 0 && textBoxNewQuest.Text.Trim().Length >= 5) {
+                if (textBoxNewQuest.Text.Trim().Length != 0 && textBoxNewQuest.Text.Trim().Length >= 5 && textBoxNewQuest.Text.Trim() != "Borrar") {
                     // Enviar petición de guardado de la modificación
                     string jsonMessageAddNewNormalModification = Utilities.generateJsonObjectArrayString("addNewNormalModification", new string[] { id, textBoxNewQuest.Text });
                     byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
@@ -85,8 +85,13 @@ namespace TFG_Client {
                     ConnectionWithServer.ServerStream.Flush();
                     Dispose();
                 } else {
-                    Utilities.customErrorInfoModificationNormal("Valor para la modificación inválido, recuerde que la longitud máxima es 90 \n" +
-                                                                "y que la mínima es de 5 caracteres");
+                    if (textBoxNewQuest.Text.Trim() == "Borrar") {
+                        Utilities.customErrorInfoModificationNormal("Valor no permitido como modificación");
+                    } else {
+                        Utilities.customErrorInfoModificationNormal("Valor para la modificación inválido, recuerde que la longitud máxima es 90 \n" +
+                                                                   "y que la mínima es de 5 caracteres");
+                    }
+                   
                 }
             }
             

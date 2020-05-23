@@ -66,6 +66,83 @@ namespace TFG_Client {
             }
         }
 
+        public static bool createWarningForm(string messageParam) {
+            try {
+
+                resetWarningAnserValue();
+
+                ModelWindowsMessageWithBroderWarning customWarningMessage = new ModelWindowsMessageWithBroderWarning();
+                customWarningMessage.StartPosition = FormStartPosition.CenterScreen;
+                customWarningMessage.title.Text = "Advertencia";
+                customWarningMessage.messageLabel.Text = messageParam + "\n" +
+                                                       "¿Desea continuar?";
+
+                if (customWarningMessage.Width < customWarningMessage.messageLabel.Width) {
+                    customWarningMessage.Width = customWarningMessage.messageLabel.Width + 50;
+
+                    customWarningMessage.flowLayoutTitle.Width = customWarningMessage.messageLabel.Width + 60;
+                    customWarningMessage.panelDown.Width = customWarningMessage.Width + 10;
+                    customWarningMessage.panelUp.Width = customWarningMessage.Width + 10;
+                }
+
+                // Se establece propietario del formulario de error para evitar perdida del foco
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessageWithBroderWarning = customWarningMessage;
+                        customWarningMessage.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    customWarningMessage.ShowDialog();
+                }
+                if (warningAnser) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+                return false;
+            }
+        }
+
+        public static bool createWarningForm(string titleParam, string messageParam) {
+            try {
+
+                resetWarningAnserValue();
+
+                ModelWindowsMessageWithBroderWarning customWarningMessage = new ModelWindowsMessageWithBroderWarning(4000);
+                customWarningMessage.StartPosition = FormStartPosition.CenterScreen;
+                customWarningMessage.title.Text = titleParam;
+                customWarningMessage.messageLabel.Text = messageParam;
+
+                if (customWarningMessage.Width < customWarningMessage.messageLabel.Width) {
+                    customWarningMessage.Width = customWarningMessage.messageLabel.Width + 50;
+
+                    customWarningMessage.flowLayoutTitle.Width = customWarningMessage.messageLabel.Width + 60;
+                    customWarningMessage.panelDown.Width = customWarningMessage.Width + 10;
+                    customWarningMessage.panelUp.Width = customWarningMessage.Width + 10;
+                }
+
+                // Se establece propietario del formulario de error para evitar perdida del foco
+                if (ConnectionWithServer.LoginForm != null) {
+                    ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                        ConnectionWithServer.LoginForm.ModelWindowsMessageWithBroderWarning = customWarningMessage;
+                        customWarningMessage.ShowDialog(ConnectionWithServer.LoginForm);
+                    }));
+                } else {
+                    customWarningMessage.ShowDialog();
+                }
+                if (warningAnser) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+                return false;
+            }
+        }
+
         public static string generateSingleDataRequest(string titleMessageParam) {
             try {
                 JSonSingleData singleDataObject = new JSonSingleData();
@@ -518,6 +595,29 @@ namespace TFG_Client {
                 formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
             }
             
+        }
+
+        public static void createFormNewNormalModificationAddOrDelete(string titleParam, string id, string question, string modification) {
+            FormNewNormalModificationAddOrDelete formNewNormalObject = new FormNewNormalModificationAddOrDelete(id);
+            formNewNormalObject.StartPosition = FormStartPosition.CenterParent;
+            formNewNormalObject.title.Text = titleParam;
+            formNewNormalObject.labelQuestionInfo.Text = question;
+            formNewNormalObject.labelModification.Text = modification;
+            if (modification.Equals("Borrar")) {
+                formNewNormalObject.buttonSend.Visible = false;
+                formNewNormalObject.buttonDontAccept.Visible = false;
+            } else {
+                formNewNormalObject.buttonDelete.Visible = false;
+            }
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewNormalModificationAddOrDelete1 = formNewNormalObject;
+                    formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+
         }
 
         public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam, bool optionParam) {

@@ -37,6 +37,17 @@ namespace TFG_Client {
             panelDown.Height -= 9;
         }
 
+        public ModelWindowsMessageWithBroderWarning(int time) {
+            InitializeComponent();
+            timerToClose.Interval = time;
+            timerToClose.Tick += new EventHandler(timerToClose_Tick);
+            timerToClose.Start();
+            buttonContinue.Visible = false;
+            closeButton.Visible = false;
+            panelUp.Height -= 9;
+            panelDown.Height -= 9;
+        }
+
         /// <summary>
         /// Evento de cierre del boton 'cerrar' de la ventana
         /// 
@@ -52,6 +63,10 @@ namespace TFG_Client {
         private void buttonContinue_Click(object sender, EventArgs e) {
             Utilities.warningAnser = true;
             Dispose();
+        }
+
+        private void timerToClose_Tick(object sender, EventArgs e) {
+            this.Close();
         }
     }
 }

@@ -22,6 +22,7 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.messageLabel = new System.Windows.Forms.Label();
             this.panelDown = new System.Windows.Forms.Panel();
             this.panelUp = new System.Windows.Forms.Panel();
@@ -30,6 +31,7 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.panelBorder = new System.Windows.Forms.Panel();
             this.buttonContinue = new System.Windows.Forms.Button();
+            this.timerToClose = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutTitle.SuspendLayout();
             this.panelBorder.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +127,10 @@
             this.buttonContinue.UseVisualStyleBackColor = false;
             this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
+            // timerToClose
+            // 
+            this.timerToClose.Tick += new System.EventHandler(this.timerToClose_Tick);
+            // 
             // ModelWindowsMessageWithBroderWarning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,5 +164,6 @@
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Panel panelBorder;
         private System.Windows.Forms.Button buttonContinue;
+        private System.Windows.Forms.Timer timerToClose;
     }
 }

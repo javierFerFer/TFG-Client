@@ -16,6 +16,7 @@ namespace TFG_Client {
         Panel rightPanel;
         Form beforeForm;
         string[] allDataOnView;
+        string tempDeleteStatus = "Borrar";
         private const string searchBanner = "Nombre de la pregunta a buscar...";
 
         public ListAllNormalQuestionsModifications(Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
@@ -69,23 +70,55 @@ namespace TFG_Client {
         public void fillDataGridView(string [] allDataParam) {
             allDataOnView = allDataParam;
             for (int questionCounter = 0; questionCounter < allDataParam.Length; questionCounter+=3) {
-                object[] row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1] , allDataParam[questionCounter + 2] };
+                object[] row;
+                if (!allDataParam[questionCounter + 2].Equals("null")) {
+                    row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1], allDataParam[questionCounter + 2] };
+                } else {
+                    row = new object[] { allDataParam[questionCounter], allDataParam[questionCounter + 1], tempDeleteStatus };
+                }
                 dataGridViewAllNormalData.Rows.Add(row);
+                
+                if (allDataParam[questionCounter + 2].Equals("null")) {
+                    int index = dataGridViewAllNormalData.Rows.Count - 1;
+                    dataGridViewAllNormalData.Rows[index].Cells[2].Style.BackColor = Color.Red;
+                }
             }
         }
 
         public void fillDataGridView(ArrayList allDataParamObjects) {
             for (int questionCounter = 0; questionCounter < allDataParamObjects.Count; questionCounter++) {
                 DataGridViewRow tempRow = (DataGridViewRow)allDataParamObjects[questionCounter];
-                object[] row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString() };
+                object[] row;
+
+                if (!tempRow.Cells[2].Value.ToString().Equals("null")) {
+                    row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString() };
+                } else {
+                    row = new object[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempDeleteStatus };
+                }
+                
                 dataGridViewAllNormalData.Rows.Add(row);
+
+                if (tempRow.Cells[2].Value.ToString().Equals("Borrar")) {
+                    int index = dataGridViewAllNormalData.Rows.Count - 1;
+                    dataGridViewAllNormalData.Rows[index].Cells[2].Style.BackColor = Color.Red;
+                }
             }
         }
 
         private void fillDataGridView() {
             for (int questionCounter = 0; questionCounter < allDataOnView.Length; questionCounter+=3) {
-                object[] row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1] , allDataOnView[questionCounter + 2] };
+                object[] row;
+                if (!allDataOnView[questionCounter + 2].Equals("null")) {
+                    row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1], allDataOnView[questionCounter + 2] };
+                } else {
+                    row = new object[] { allDataOnView[questionCounter], allDataOnView[questionCounter + 1], tempDeleteStatus };
+                }
                 dataGridViewAllNormalData.Rows.Add(row);
+
+                if (allDataOnView[questionCounter + 2].Equals("null")) {
+                    int index = dataGridViewAllNormalData.Rows.Count - 1;
+                    dataGridViewAllNormalData.Rows[index].Cells[2].Style.BackColor = Color.Red;
+                }
             }
         }
 
@@ -104,7 +137,7 @@ namespace TFG_Client {
         private void dataGridViewAllNormalData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
             DataGridViewSelectedRowCollection selectedRow = dataGridViewAllNormalData.SelectedRows;
                 DataGridViewRow rowSelectedByUser = selectedRow[0];
-                Utilities.createFormNewNormalModification("Petición de modificación", rowSelectedByUser.Cells[0].Value.ToString(), rowSelectedByUser.Cells[1].Value.ToString());
+                Utilities.createFormNewNormalModificationAddOrDelete("Petición de modificación", rowSelectedByUser.Cells[0].Value.ToString(), rowSelectedByUser.Cells[1].Value.ToString(), rowSelectedByUser.Cells[2].Value.ToString());
         }
 
         private void searchButton_Click(object sender, EventArgs e) {
@@ -154,7 +187,11 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" +  tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Modificación completa: \r\n" + tempRow.Cells[2].Value.ToString();
+                if (!tempRow.Cells[2].Value.ToString().Equals("null")) {
+                    cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Modificación completa: \r\n" + tempRow.Cells[2].Value.ToString();
+                } else {
+                    cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Modificación completa: \r\n" + tempDeleteStatus;
+                }
 
             } catch (Exception) {}
         }

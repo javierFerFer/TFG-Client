@@ -150,7 +150,7 @@
         public System.Windows.Forms.CheckBox checkBoxTest;
         public System.Windows.Forms.CheckBox checkBoxNormal;
         private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Button nextButton;
+        public System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label labelWaitVerification;
     }
 }

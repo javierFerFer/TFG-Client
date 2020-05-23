@@ -89,6 +89,12 @@
     <Compile Include="CreateNormalExam.Designer.cs">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNewNormalModificationAddOrDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewNormalModificationAddOrDelete.Designer.cs">
+      <DependentUpon>FormNewNormalModificationAddOrDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNewNormalModificationForModel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNormalExam.resx">
       <DependentUpon>CreateNormalExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewNormalModificationAddOrDelete.resx">
+      <DependentUpon>FormNewNormalModificationAddOrDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewNormalModificationForModel.resx">
       <DependentUpon>FormNewNormalModificationForModel.cs</DependentUpon>
