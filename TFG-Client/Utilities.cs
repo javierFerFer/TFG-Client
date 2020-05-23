@@ -605,7 +605,6 @@ namespace TFG_Client {
             formNewNormalObject.labelModification.Text = modification;
             if (modification.Equals("Borrar")) {
                 formNewNormalObject.buttonSend.Visible = false;
-                formNewNormalObject.buttonDontAccept.Visible = false;
             } else {
                 formNewNormalObject.buttonDelete.Visible = false;
             }

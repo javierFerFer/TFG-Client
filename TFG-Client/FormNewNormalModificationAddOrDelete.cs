@@ -68,7 +68,14 @@ namespace TFG_Client {
             bool userOption = Utilities.createWarningForm("Los cambios que va a realizar son irreversibles ");
             if (userOption) {
                 // Envio de petición de borrado de la susodicha modificación de la pregunta
+                string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("deleteNormalModification", idModification);
+                byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
                 Dispose();
+                Utilities.createWarningForm("Espere, por favor", "Se esta procesando su solicitud,\n espere...");
+                ConnectionWithServer.LoginForm.AskTypeDataChangesObject1.nextButton.PerformClick();
             }
         }
 
@@ -76,7 +83,14 @@ namespace TFG_Client {
             bool userOption = Utilities.createWarningForm("Los cambios que va a realizar son irreversibles ");
             if (userOption) {
                 // Envio de borrado de la pregunta, de todas las modificaciones de la misma y comprobación de modelos, en caso de existir modelo sin preguntas, borrar modelo
+                string jsonMessageAddNewNormalModification = Utilities.generateSingleDataRequest("deleteNormalQuestion", idModification);
+                byte[] jSonObjectBytes = System.Text.Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageAddNewNormalModification, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
+                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
+                // Envio de datos mediante flush
+                ConnectionWithServer.ServerStream.Flush();
                 Dispose();
+                Utilities.createWarningForm("Espere, por favor", "Se esta procesando su solicitud,\n espere...");
+                ConnectionWithServer.LoginForm.AskTypeDataChangesObject1.nextButton.PerformClick();
             }
         }
     }

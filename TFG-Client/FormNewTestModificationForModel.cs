@@ -97,8 +97,8 @@ namespace TFG_Client {
             if (checkBoxDelete.Checked) {
                 // Borrado
 
-                if (datagridViewObject.Rows.Count == 4) {
-                    Utilities.customErrorInfoModificationNormal("Deben existir al menos 4 preguntas en el modelo para poder usarlo");
+                if (datagridViewObject.Rows.Count <= 4) {
+                    Utilities.customErrorInfoModificationNormal("El modelo tiene 4 o menos preguntas asociadas,\n no se pueden borrar más preguntas");
 
                 } else {
                     // Enviar petición de guardado de la modificación

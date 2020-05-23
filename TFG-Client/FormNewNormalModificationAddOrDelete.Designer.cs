@@ -186,7 +186,7 @@
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(726, 433);
+            this.buttonDelete.Location = new System.Drawing.Point(768, 433);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(80, 29);
             this.buttonDelete.TabIndex = 20;
