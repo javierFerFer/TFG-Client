@@ -16,6 +16,7 @@ namespace TFG_Client {
         Panel rightPanel;
         Form beforeForm;
         string[] allDataOnView;
+        public string[] allDataSelectedQuestion;
         string selectedQuestion;
         string tempDeleteStatus = "Borrar";
         private const string searchBanner = "Nombre de la pregunta a buscar...";
@@ -56,10 +57,8 @@ namespace TFG_Client {
             }
         }
 
-        public void openPopUpWithModifications(string [] allDataOfModifications) {
-            for (int i = 0; i < allDataOfModifications.Length; i++) {
-                MessageBox.Show(allDataOfModifications[i]);
-            }
+        public async void openPopUpWithModifications(string [] allDataOfModifications) {
+            await Task.Run(() => { Utilities.createPopUpWithAllQuestionsTest(allDataOfModifications, dataPanel, rightPanel); });
         }
 
         public void openSuccessAddModificationNormalQuest() {
@@ -172,6 +171,8 @@ namespace TFG_Client {
 
             DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
             selectedQuestion = tempRow.Cells[1].Value.ToString();
+
+            allDataSelectedQuestion = new string[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() , tempRow.Cells[2].Value.ToString() , tempRow.Cells[3].Value.ToString() , tempRow.Cells[4].Value.ToString() , tempRow.Cells[5].Value.ToString() , tempRow.Cells[6].Value.ToString() };
 
             string jsonMessageGetThemes = Utilities.generateSingleDataRequest("getAllTestModifications", tempRow.Cells[0].Value.ToString());
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));

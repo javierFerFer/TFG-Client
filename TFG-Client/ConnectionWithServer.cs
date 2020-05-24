@@ -600,7 +600,7 @@ namespace TFG_Client {
             loginForm.SelectNormalModelObject = selectNormalModelObject;
         }
 
-        private static void closeAllPopUps() {
+        public static void closeAllPopUps() {
             try {
                 loginForm.Invoke(new MethodInvoker(delegate {
                     if (loginForm.FormNewNormalModification != null) {
@@ -623,6 +623,12 @@ namespace TFG_Client {
                     }
                     if (LoginForm.FormNewNormalModificationForModel != null) {
                         loginForm.FormNewNormalModificationForModel.Dispose();
+                    }
+                    if (LoginForm.FormTestModifications != null) {
+                        loginForm.FormTestModifications.Dispose();
+                    }
+                    if (LoginForm.FormNewTestModificationAddOrDelete != null) {
+                        loginForm.FormNewTestModificationAddOrDelete.Dispose();
                     }
                 }));
             } catch (Exception ex) { }

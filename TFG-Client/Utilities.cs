@@ -619,6 +619,56 @@ namespace TFG_Client {
 
         }
 
+        public static void createFormNewTestModificationAddOrDelete(string titleParam, string idQuestion, string [] dataOfQuestion, string [] dataOfMod, bool option) {
+            // true -> delete option, false -> update option
+            FormNewTestModificationAddOrDelete formNewTestModificationAddOrDelete = new FormNewTestModificationAddOrDelete(idQuestion);
+            formNewTestModificationAddOrDelete.StartPosition = FormStartPosition.CenterParent;
+            formNewTestModificationAddOrDelete.title.Text = titleParam;
+            formNewTestModificationAddOrDelete.labelQuestion.Text += dataOfQuestion[1];
+            formNewTestModificationAddOrDelete.labelAnswerA.Text += dataOfQuestion[2];
+            formNewTestModificationAddOrDelete.labelAnswerB.Text += dataOfQuestion[3];
+            formNewTestModificationAddOrDelete.labelAnswerC.Text += dataOfQuestion[4];
+            formNewTestModificationAddOrDelete.labelAnswerD.Text += dataOfQuestion[5];
+            formNewTestModificationAddOrDelete.labelAnswerCorrect.Text += dataOfQuestion[6];
+            if (!option) {
+                formNewTestModificationAddOrDelete.labelNewQuest.Text += dataOfMod[1];
+                formNewTestModificationAddOrDelete.labelNewAnserA.Text += dataOfMod[2];
+                formNewTestModificationAddOrDelete.labelNewAnserB.Text += dataOfMod[3];
+                formNewTestModificationAddOrDelete.labelNewAnserC.Text += dataOfMod[4];
+                formNewTestModificationAddOrDelete.labelNewAnserD.Text += dataOfMod[5];
+                formNewTestModificationAddOrDelete.labelNewAnserCorrect.Text += dataOfMod[6];
+                formNewTestModificationAddOrDelete.buttonDelete.Visible = false;
+            } else {
+                formNewTestModificationAddOrDelete.labelNewQuest.Visible = false;
+                formNewTestModificationAddOrDelete.labelNewAnserA.Visible = false;
+                formNewTestModificationAddOrDelete.labelNewAnserB.Visible = false;
+                formNewTestModificationAddOrDelete.labelNewAnserC.Visible = false;
+                formNewTestModificationAddOrDelete.labelNewAnserD.Visible = false;
+                formNewTestModificationAddOrDelete.labelNewAnserCorrect.Visible = false;
+                formNewTestModificationAddOrDelete.labelInfoModifications.Visible = false;
+                formNewTestModificationAddOrDelete.buttonSend.Visible = false;
+                formNewTestModificationAddOrDelete.buttonDelete.Location = new Point(600, formNewTestModificationAddOrDelete.buttonDelete.Location.Y);
+                formNewTestModificationAddOrDelete.buttonDeny.Location = new Point(500, formNewTestModificationAddOrDelete.buttonDelete.Location.Y);
+                formNewTestModificationAddOrDelete.Size = new Size(690, formNewTestModificationAddOrDelete.Size.Height);
+            }
+            
+            //formNewTestModificationAddOrDelete.labelModification.Text = modification;
+            //if (modification.Equals("Borrar")) {
+            //    formNewTestModificationAddOrDelete.buttonSend.Visible = false;
+            //} else {
+            //    formNewTestModificationAddOrDelete.buttonDelete.Visible = false;
+            //}
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormNewTestModificationAddOrDelete = formNewTestModificationAddOrDelete;
+                    formNewTestModificationAddOrDelete.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formNewTestModificationAddOrDelete.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+
+        }
+
         public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam, bool optionParam) {
             // optionParam = true -> normal, optionParam = false -> test
             FormNormalModelToUse formNormalModelToUseObject = new FormNormalModelToUse(allQuestionsData, dataPanelParam, rightPanelParam, subjectParam);
@@ -638,6 +688,22 @@ namespace TFG_Client {
                 }));
             } else {
                 formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
+            }
+        }
+
+        public static void createPopUpWithAllQuestionsTest(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam) {
+
+            FormTestModifications formTestModificationsObject = new FormTestModifications(allQuestionsData, dataPanelParam, rightPanelParam);
+            formTestModificationsObject.StartPosition = FormStartPosition.CenterParent;
+            if (ConnectionWithServer.LoginForm != null) {
+                ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
+                    ConnectionWithServer.LoginForm.FormTestModifications = formTestModificationsObject;
+                        formTestModificationsObject.fillQuestionsTest();
+
+                    formTestModificationsObject.ShowDialog(ConnectionWithServer.LoginForm);
+                }));
+            } else {
+                formTestModificationsObject.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
 

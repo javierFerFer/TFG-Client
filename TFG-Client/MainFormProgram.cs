@@ -76,6 +76,8 @@ namespace TFG_Client {
         private static ListAllNormalQuestionsModifications listAllNormalQuestionsModificationsObject;
         private static ListAllTestQuestionsModifications listAllTestQuestionsModificationsObject;
         private static FormNewNormalModificationAddOrDelete FormNewNormalModificationAddOrDelete;
+        private static FormTestModifications formTestModifications;
+        private static FormNewTestModificationAddOrDelete formNewTestModificationAddOrDelete;
 
         /// <summary>
         /// 
@@ -719,5 +721,7 @@ namespace TFG_Client {
         public ListAllNormalQuestionsModifications ListAllNormalQuestionsModificationsObject { get => listAllNormalQuestionsModificationsObject; set => listAllNormalQuestionsModificationsObject = value; }
         public FormNewNormalModificationAddOrDelete FormNewNormalModificationAddOrDelete1 { get => FormNewNormalModificationAddOrDelete; set => FormNewNormalModificationAddOrDelete = value; }
         public ListAllTestQuestionsModifications ListAllTestQuestionsModificationsObject { get => listAllTestQuestionsModificationsObject; set => listAllTestQuestionsModificationsObject = value; }
+        public FormTestModifications FormTestModifications { get => formTestModifications; set => formTestModifications = value; }
+        public FormNewTestModificationAddOrDelete FormNewTestModificationAddOrDelete { get => formNewTestModificationAddOrDelete; set => formNewTestModificationAddOrDelete = value; }
     }
 }

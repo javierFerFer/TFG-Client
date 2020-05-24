@@ -32,16 +32,14 @@ namespace TFG_Client {
         private string[] allQuestions;
         private Panel dataPanel;
         private Panel rightPanel;
-        private string subject;
 
-        public FormTestModifications(string[] allQuestionsParam, Panel dataPanelParam, Panel rightPanelParam , string subjecParam) {
+        public FormTestModifications(string[] allQuestionsParam, Panel dataPanelParam, Panel rightPanelParam) {
             InitializeComponent();
             panelUp.Height -= 9;
             panelDown.Height -= 9;
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
             allQuestions = allQuestionsParam;
-            subject = subjecParam;
         }
 
         /// <summary>
@@ -52,10 +50,7 @@ namespace TFG_Client {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void closeButton_Click(object sender, EventArgs e) {
-            bool userOption = Utilities.createWarningForm();
-            if (userOption) {
-                Dispose();
-            }
+            Dispose();
         }
 
         public void normalExamGenerateSuccess() {
@@ -78,87 +73,50 @@ namespace TFG_Client {
             ConnectionWithServer.ServerStream.Flush();
         }
 
-        private void buttonSend_Click(object sender, EventArgs e) {
-            // Enviar datos aqui
-            ArrayList allDataOfModel = new ArrayList();
-
-            if (!dataGridViewTestData.Visible) {
-                
-                foreach (DataGridViewRow row in dataGridViewAllNormalData.Rows) {
-                    allDataOfModel.Add(row.Cells[0].Value.ToString());
-                    allDataOfModel.Add(row.Cells[1].Value.ToString());
-                }
-
-                allDataOfModel.Add(subject);
-                string[] tempArray = (string[])allDataOfModel.ToArray(typeof(string));
-
-                string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("SelectedNormalModelcreateNormalExamFiles", tempArray);
-                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-                // Envio de datos mediante flush
-                ConnectionWithServer.ServerStream.Flush();
-
-            } else {
-
-                foreach (DataGridViewRow row in dataGridViewTestData.Rows) {
-                    allDataOfModel.Add(row.Cells[0].Value.ToString());
-                    allDataOfModel.Add(row.Cells[1].Value.ToString());
-                    allDataOfModel.Add(row.Cells[2].Value.ToString());
-                    allDataOfModel.Add(row.Cells[3].Value.ToString());
-                    allDataOfModel.Add(row.Cells[4].Value.ToString());
-                    allDataOfModel.Add(row.Cells[5].Value.ToString());
-                    allDataOfModel.Add(row.Cells[6].Value.ToString());
-                }
-
-                allDataOfModel.Add(subject);
-                string[] tempArray = (string[])allDataOfModel.ToArray(typeof(string));
-
-                string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("SelectedTestModelcreateTestExamFiles", tempArray);
-                byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-                ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-                // Envio de datos mediante flush
-                ConnectionWithServer.ServerStream.Flush();
-            }
-
-            Dispose();
-        }
-
-        internal void fillQuestions() {
-                for (int questionCounter = 0; questionCounter < allQuestions.Length; questionCounter++) {
-                    object[] row = new object[] { allQuestions[questionCounter], allQuestions[questionCounter + 1] };
-                    dataGridViewAllNormalData.Rows.Add(row);
-                    questionCounter++;
-                }
-        }
-
         internal void fillQuestionsTest() {
-            for (int questionCounter = 0; questionCounter < allQuestions.Length; questionCounter+=7) {
-                object[] row = new object[] { allQuestions[questionCounter], allQuestions[questionCounter + 1], allQuestions[questionCounter + 2], allQuestions[questionCounter + 3], allQuestions[questionCounter + 4], allQuestions[questionCounter + 5], allQuestions[questionCounter + 6] };
+            
+            for (int questionCounter = 0; questionCounter < allQuestions.Length; questionCounter+=8) {
+                bool checkIfDeleteMod = false;
+                object[] row;
+                if (allQuestions[questionCounter + 2].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+                if (allQuestions[questionCounter + 3].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+                if (allQuestions[questionCounter + 4].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+                if (allQuestions[questionCounter + 5].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+                if (allQuestions[questionCounter + 6].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+                if (allQuestions[questionCounter + 7].Equals("null")) {
+                    checkIfDeleteMod = true;
+                }
+
+                if (!checkIfDeleteMod) {
+                    row = new object[] { allQuestions[questionCounter], allQuestions[questionCounter + 2], allQuestions[questionCounter + 3], allQuestions[questionCounter + 4], allQuestions[questionCounter + 5], allQuestions[questionCounter + 6], allQuestions[questionCounter + 7] , "NO"};
+                } else {
+                    row = new object[] { allQuestions[questionCounter], " ", " ", " ", " ", " ", " ", "SI"};
+                }
+
                 dataGridViewTestData.Rows.Add(row);
+
+                if (checkIfDeleteMod) {
+                    int index = dataGridViewTestData.Rows.Count - 1;
+                    dataGridViewTestData.Rows[index].Cells[0].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[1].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[2].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[3].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[4].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[5].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[6].Style.BackColor = Color.Red;
+                    dataGridViewTestData.Rows[index].Cells[7].Style.BackColor = Color.Red;
+                }
             }
-        }
-
-        private void dataGridViewAllNormalData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
-            try {
-                DataGridView tempView = (DataGridView)sender;
-                tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
-
-                DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
-
-                DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta completa: \r\n" + tempRow.Cells[1].Value.ToString();
-
-            } catch (Exception) { }
-        }
-
-        private void dataGridViewAllNormalData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            DataGridView tempView = (DataGridView)sender;
-            tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
-
-            DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
-
-
-            Utilities.createNewNormalModificationForModel(tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow, tempView);
         }
 
         private void dataGridViewTestData_CellMouseEnter(object sender, DataGridViewCellEventArgs e) {
@@ -169,20 +127,31 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
+                if (!tempRow.Cells[7].Value.ToString().Equals("SI")) {
+                    cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
                     + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
+                }
 
             } catch (Exception) { }
         }
 
-        private void dataGridViewTestData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+        private async void dataGridViewTestData_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
             DataGridView tempView = (DataGridView)sender;
             tempView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
 
             DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
+            string[] dataOfMod = new string[] { tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString() , tempRow.Cells[2].Value.ToString() , tempRow.Cells[3].Value.ToString() , tempRow.Cells[4].Value.ToString() , tempRow.Cells[5].Value.ToString() , tempRow.Cells[6].Value.ToString() };
 
-            Utilities.createNewTestModificationForModel(tempRow.Cells[0].Value.ToString(), tempRow.Cells[1].Value.ToString(), tempRow.Cells[2].Value.ToString(), tempRow.Cells[3].Value.ToString(), tempRow.Cells[4].Value.ToString(), tempRow.Cells[5].Value.ToString(), tempRow.Cells[6].Value.ToString(), tempRow, tempView);
+            string idReference = tempRow.Cells[0].Value.ToString();
+
+                if (tempRow.Cells[7].Value.ToString().Equals("SI")) {
+                // Petición de borrado
+                await Task.Run(() => { Utilities.createFormNewTestModificationAddOrDelete("Datos de la modificación", idReference, ConnectionWithServer.LoginForm.ListAllTestQuestionsModificationsObject.allDataSelectedQuestion, dataOfMod, true); });
+            } else {
+                // Petición de modificación
+                await Task.Run(() => { Utilities.createFormNewTestModificationAddOrDelete("Datos de la modificación", idReference, ConnectionWithServer.LoginForm.ListAllTestQuestionsModificationsObject.allDataSelectedQuestion, dataOfMod, false); });
+            }
         }
     }
 }

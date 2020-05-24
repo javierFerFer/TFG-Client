@@ -101,6 +101,12 @@
     <Compile Include="FormNewNormalModificationForModel.Designer.cs">
       <DependentUpon>FormNewNormalModificationForModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNewTestModificationAddOrDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewTestModificationAddOrDelete.Designer.cs">
+      <DependentUpon>FormNewTestModificationAddOrDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNewTestModificationForModel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewNormalModificationForModel.resx">
       <DependentUpon>FormNewNormalModificationForModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewTestModificationAddOrDelete.resx">
+      <DependentUpon>FormNewTestModificationAddOrDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewTestModificationForModel.resx">
       <DependentUpon>FormNewTestModificationForModel.cs</DependentUpon>
