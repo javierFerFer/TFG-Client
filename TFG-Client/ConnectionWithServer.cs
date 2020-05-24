@@ -329,6 +329,15 @@ namespace TFG_Client {
                                     string[] allQuestions = complexAnswer.B_Content;
                                     loginForm.ListAllNormalQuestionsModificationsObject.fillDataGridView(allQuestions);
                                 }));
+                            } else if (json.First.ToString().Contains("TestForModificationQuestionsNotFound")) {
+                                LoginForm.Invoke(new MethodInvoker(delegate { loginForm.ListAllTestQuestionsModificationsObject.hide_show_dataGridView(false); }));
+                            } else if (json.First.ToString().Contains("allTestForModificationQuestions")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                LoginForm.Invoke(new MethodInvoker(delegate {
+                                    loginForm.ListAllTestQuestionsModificationsObject.hide_show_dataGridView(true);
+                                    string[] allQuestions = complexAnswer.B_Content;
+                                    loginForm.ListAllTestQuestionsModificationsObject.fillDataGridView(allQuestions);
+                                }));
                             } else if (json.First.ToString().Contains("allNormalQuestionsSpecificSubject")) {
                                 JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
                                 string[] allQuestions = complexAnswer.B_Content;
@@ -511,6 +520,12 @@ namespace TFG_Client {
                                 string[] alldataTestQuestionsOfModel = complexAnswer.B_Content;
                                 loginForm.SelectNormalModelObject.Invoke(new MethodInvoker(delegate {
                                     loginForm.SelectNormalModelObject.createPopUpMessage(alldataTestQuestionsOfModel);
+                                }));
+                            } else if (json.First.ToString().Contains("allTestModifications")) {
+                                JSonObjectArray complexAnswer = JsonConvert.DeserializeObject<JSonObjectArray>(serverMessageDesencrypt);
+                                string[] alldataTestQuestionsOfModifications = complexAnswer.B_Content;
+                                loginForm.ListAllTestQuestionsModificationsObject.Invoke(new MethodInvoker(delegate {
+                                    loginForm.ListAllTestQuestionsModificationsObject.openPopUpWithModifications(alldataTestQuestionsOfModifications);
                                 }));
                             } else if (json.First.ToString().Contains("statusPermissionsOfChanges")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);

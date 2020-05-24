@@ -123,9 +123,9 @@ namespace TFG_Client {
 
         private void buttonSend_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
-            if (dataGridViewMyQuestions.Rows.Count < 4) {
+            if (dataGridViewMyQuestions.Rows.Count < 1) {
                 // Error, al menos el examen debe poseer 5 preguntas
-                Utilities.customErrorInfo("Debe seleccionar al menos 4 preguntas para poder continuar");
+                Utilities.customErrorInfo("Debe seleccionar al menos 1 pregunta para poder continuar");
             } else if (dataGridViewMyQuestions.Rows.Count > 100) {
                 // Error, el examen no puede de tipo normal no puede tener más de 30 preguntas
                 Utilities.customErrorInfo("No puede seleccionar más de 100 preguntas para un examen");
@@ -274,10 +274,6 @@ namespace TFG_Client {
 
                 dataGridViewMyQuestions.Rows.Add(tempRow);
 
-                //for (int i = 0; i < allDataOnView.Length; i++) {
-                
-                //MessageBox.Show(allDataOnView[i]);
-                //}
             } catch (Exception) { }
         }
 

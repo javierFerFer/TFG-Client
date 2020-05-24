@@ -65,12 +65,13 @@ namespace TFG_Client {
 
                 if (checkBoxNormal.Checked || checkBoxTest.Checked) {
                     if (checkBoxNormal.Checked) {
-                    // Crear un menu para guardar una pregunta en base a la asignatura seleccionada
+                    // Listado de preguntas de tipo normal con su correspondiente modificación pendiente
                     Utilities.openForm(new ListAllNormalQuestionsModifications(dataPanel, rightPanel, this), dataPanel, rightPanel);
 
                     } else {
-                        //Utilities.openForm(new AddNewQuestionTypeTest("test", tempForm.subjectSelected.Text, dataPanel, rightPanel, this), dataPanel, rightPanel);
-                    }
+                    // Listado de preguntas de tipo test con su correspondiente modificación pendiente
+                    Utilities.openForm(new ListAllTestQuestionsModifications(dataPanel, rightPanel, this), dataPanel, rightPanel);
+                }
                 } else {
                     Utilities.customErrorInfo("No ha seleccionado ninguna opción");
                 }

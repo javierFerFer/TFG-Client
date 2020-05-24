@@ -107,11 +107,23 @@
     <Compile Include="FormNewTestModificationForModel.Designer.cs">
       <DependentUpon>FormNewTestModificationForModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTestModifications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestModifications.Designer.cs">
+      <DependentUpon>FormTestModifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNormalModelToUse.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormNormalModelToUse.Designer.cs">
       <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListAllTestQuestionsModifications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListAllTestQuestionsModifications.Designer.cs">
+      <DependentUpon>ListAllTestQuestionsModifications.cs</DependentUpon>
     </Compile>
     <Compile Include="ListAllNormalQuestionsModifications.cs">
       <SubType>Form</SubType>
@@ -272,8 +284,14 @@
     <EmbeddedResource Include="FormNewTestModificationForModel.resx">
       <DependentUpon>FormNewTestModificationForModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTestModifications.resx">
+      <DependentUpon>FormTestModifications.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNormalModelToUse.resx">
       <DependentUpon>FormNormalModelToUse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListAllTestQuestionsModifications.resx">
+      <DependentUpon>ListAllTestQuestionsModifications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListAllNormalQuestionsModifications.resx">
       <DependentUpon>ListAllNormalQuestionsModifications.cs</DependentUpon>
