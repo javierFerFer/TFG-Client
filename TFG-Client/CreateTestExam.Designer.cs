@@ -328,28 +328,28 @@
             // answer_A
             // 
             this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_A.HeaderText = "Respuesta A";
+            this.answer_A.HeaderText = "Respt. A";
             this.answer_A.Name = "answer_A";
             this.answer_A.ReadOnly = true;
             // 
             // asnwer_B
             // 
             this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_B.HeaderText = "Respuesta B";
+            this.asnwer_B.HeaderText = "Respt. B";
             this.asnwer_B.Name = "asnwer_B";
             this.asnwer_B.ReadOnly = true;
             // 
             // answer_C
             // 
             this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_C.HeaderText = "Respuesta C";
+            this.answer_C.HeaderText = "Respt. C";
             this.answer_C.Name = "answer_C";
             this.answer_C.ReadOnly = true;
             // 
             // asnwer_D
             // 
             this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_D.HeaderText = "Respuesta D";
+            this.asnwer_D.HeaderText = "Respt. D";
             this.asnwer_D.Name = "asnwer_D";
             this.asnwer_D.ReadOnly = true;
             // 
@@ -377,28 +377,28 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Respuesta A";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Respt. A";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Respuesta B";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Respt. B";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn7.HeaderText = "Respuesta C";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Respt. C";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn8.HeaderText = "Respuesta D";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Respt. D";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
@@ -443,13 +443,6 @@
         private System.Windows.Forms.Label labelWaitQuestions;
         private System.Windows.Forms.DataGridView dataGridViewMyQuestions;
         private System.Windows.Forms.DataGridView dataGridViewTestData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDNormalQuestion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn question;
-        private System.Windows.Forms.DataGridViewTextBoxColumn answer_A;
-        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_B;
-        private System.Windows.Forms.DataGridViewTextBoxColumn answer_C;
-        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_D;
-        private System.Windows.Forms.DataGridViewTextBoxColumn correct_answer;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
@@ -457,5 +450,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDNormalQuestion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn question;
+        private System.Windows.Forms.DataGridViewTextBoxColumn answer_A;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_B;
+        private System.Windows.Forms.DataGridViewTextBoxColumn answer_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asnwer_D;
+        private System.Windows.Forms.DataGridViewTextBoxColumn correct_answer;
     }
 }

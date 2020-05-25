@@ -171,7 +171,7 @@
             this.buttonSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSend.ForeColor = System.Drawing.Color.White;
-            this.buttonSend.Location = new System.Drawing.Point(804, 598);
+            this.buttonSend.Location = new System.Drawing.Point(804, 610);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(89, 37);
             this.buttonSend.TabIndex = 15;
@@ -310,7 +310,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(12, 598);
+            this.buttonBack.Location = new System.Drawing.Point(12, 610);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;

@@ -33,11 +33,11 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.errorNoQuestionsFound = new System.Windows.Forms.Label();
             this.dataGridViewAllNormalData = new System.Windows.Forms.DataGridView();
-            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
-            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.IDNormalQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.question = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxFindQuestion = new System.Windows.Forms.TextBox();
+            this.pictureBoxSearchQuestion = new System.Windows.Forms.PictureBox();
             this.panelInternal.SuspendLayout();
             this.panelAllData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllNormalData)).BeginInit();
@@ -75,7 +75,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(804, 602);
+            this.buttonBack.Location = new System.Drawing.Point(804, 610);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(89, 37);
             this.buttonBack.TabIndex = 8;
@@ -171,6 +171,27 @@
             this.dataGridViewAllNormalData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellDoubleClick);
             this.dataGridViewAllNormalData.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllNormalData_CellMouseEnter);
             // 
+            // IDNormalQuestion
+            // 
+            this.IDNormalQuestion.HeaderText = "ID";
+            this.IDNormalQuestion.Name = "IDNormalQuestion";
+            this.IDNormalQuestion.ReadOnly = true;
+            this.IDNormalQuestion.Width = 50;
+            // 
+            // question
+            // 
+            this.question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.question.HeaderText = "Pregunta";
+            this.question.Name = "question";
+            this.question.ReadOnly = true;
+            // 
+            // Modificacion
+            // 
+            this.Modificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Modificacion.HeaderText = "Modificación";
+            this.Modificacion.Name = "Modificacion";
+            this.Modificacion.ReadOnly = true;
+            // 
             // textBoxFindQuestion
             // 
             this.textBoxFindQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
@@ -195,27 +216,6 @@
             this.pictureBoxSearchQuestion.Size = new System.Drawing.Size(674, 39);
             this.pictureBoxSearchQuestion.TabIndex = 0;
             this.pictureBoxSearchQuestion.TabStop = false;
-            // 
-            // IDNormalQuestion
-            // 
-            this.IDNormalQuestion.HeaderText = "ID";
-            this.IDNormalQuestion.Name = "IDNormalQuestion";
-            this.IDNormalQuestion.ReadOnly = true;
-            this.IDNormalQuestion.Width = 50;
-            // 
-            // question
-            // 
-            this.question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.question.HeaderText = "Pregunta";
-            this.question.Name = "question";
-            this.question.ReadOnly = true;
-            // 
-            // Modificacion
-            // 
-            this.Modificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Modificacion.HeaderText = "Modificación";
-            this.Modificacion.Name = "Modificacion";
-            this.Modificacion.ReadOnly = true;
             // 
             // ListAllNormalQuestionsModifications
             // 

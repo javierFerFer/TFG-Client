@@ -174,28 +174,28 @@
             // answer_A
             // 
             this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_A.HeaderText = "Respuesta A";
+            this.answer_A.HeaderText = "Respt. A";
             this.answer_A.Name = "answer_A";
             this.answer_A.ReadOnly = true;
             // 
             // asnwer_B
             // 
             this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_B.HeaderText = "Respuesta B";
+            this.asnwer_B.HeaderText = "Respt. B";
             this.asnwer_B.Name = "asnwer_B";
             this.asnwer_B.ReadOnly = true;
             // 
             // answer_C
             // 
             this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_C.HeaderText = "Respuesta C";
+            this.answer_C.HeaderText = "Respt. C";
             this.answer_C.Name = "answer_C";
             this.answer_C.ReadOnly = true;
             // 
             // asnwer_D
             // 
             this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_D.HeaderText = "Respuesta D";
+            this.asnwer_D.HeaderText = "Respt. D";
             this.asnwer_D.Name = "asnwer_D";
             this.asnwer_D.ReadOnly = true;
             // 

@@ -52,7 +52,7 @@
             this.subjectSelected.AutoSize = true;
             this.subjectSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subjectSelected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.subjectSelected.Location = new System.Drawing.Point(193, 252);
+            this.subjectSelected.Location = new System.Drawing.Point(170, 245);
             this.subjectSelected.Name = "subjectSelected";
             this.subjectSelected.Size = new System.Drawing.Size(198, 39);
             this.subjectSelected.TabIndex = 7;
@@ -66,7 +66,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
+            this.buttonBack.Location = new System.Drawing.Point(177, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -94,7 +94,7 @@
             this.checkBoxAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxAdd.Location = new System.Drawing.Point(520, 364);
+            this.checkBoxAdd.Location = new System.Drawing.Point(590, 364);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(198, 51);
             this.checkBoxAdd.TabIndex = 4;

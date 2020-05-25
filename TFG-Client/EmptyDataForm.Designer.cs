@@ -38,7 +38,7 @@
             this.emptyMessage.Name = "emptyMessage";
             this.emptyMessage.Size = new System.Drawing.Size(1252, 673);
             this.emptyMessage.TabIndex = 0;
-            this.emptyMessage.Text = "Seleccione una opción del menú de la derecha";
+            this.emptyMessage.Text = "Seleccione una opción del menú de la izquierda";
             this.emptyMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1

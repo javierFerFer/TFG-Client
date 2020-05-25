@@ -117,7 +117,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
+            this.buttonBack.Location = new System.Drawing.Point(177, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -151,7 +151,7 @@
             this.labelRequestNewNormalModel.TabIndex = 2;
             this.labelRequestNewNormalModel.Text = "Datos del modelo a guardar";
             // 
-            // AllDataNormalModel
+            // AllDataTestModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,7 +160,7 @@
             this.Controls.Add(this.typeOfDataPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1252, 673);
-            this.Name = "AllDataNormalModel";
+            this.Name = "AllDataTestModel";
             this.Text = "AskTypeOfData";
             this.typeOfDataPanel.ResumeLayout(false);
             this.typeOfDataPanel.PerformLayout();

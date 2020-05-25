@@ -52,7 +52,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
+            this.buttonBack.Location = new System.Drawing.Point(177, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -80,7 +80,7 @@
             this.checkBoxNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxNormal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxNormal.Location = new System.Drawing.Point(520, 364);
+            this.checkBoxNormal.Location = new System.Drawing.Point(611, 364);
             this.checkBoxNormal.Name = "checkBoxNormal";
             this.checkBoxNormal.Size = new System.Drawing.Size(198, 51);
             this.checkBoxNormal.TabIndex = 4;

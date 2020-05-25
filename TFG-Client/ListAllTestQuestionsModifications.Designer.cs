@@ -140,28 +140,28 @@
             // answer_A
             // 
             this.answer_A.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_A.HeaderText = "Respuesta A";
+            this.answer_A.HeaderText = "Respt. A";
             this.answer_A.Name = "answer_A";
             this.answer_A.ReadOnly = true;
             // 
             // asnwer_B
             // 
             this.asnwer_B.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_B.HeaderText = "Respuesta B";
+            this.asnwer_B.HeaderText = "Respt. B";
             this.asnwer_B.Name = "asnwer_B";
             this.asnwer_B.ReadOnly = true;
             // 
             // answer_C
             // 
             this.answer_C.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.answer_C.HeaderText = "Respuesta C";
+            this.answer_C.HeaderText = "Respt. C";
             this.answer_C.Name = "answer_C";
             this.answer_C.ReadOnly = true;
             // 
             // asnwer_D
             // 
             this.asnwer_D.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.asnwer_D.HeaderText = "Respuesta D";
+            this.asnwer_D.HeaderText = "Respt. D";
             this.asnwer_D.Name = "asnwer_D";
             this.asnwer_D.ReadOnly = true;
             // 
@@ -179,7 +179,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(804, 602);
+            this.buttonBack.Location = new System.Drawing.Point(804, 610);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(89, 37);
             this.buttonBack.TabIndex = 8;

@@ -681,16 +681,7 @@ namespace TFG_Client {
             Utilities.createSupportForm();
         }
 
-        private void sendData_Click(object sender, EventArgs e) {
 
-            string jsonString = Utilities.generateSingleDataRequest("test", "");
-
-            byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
-
-            ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
-            // Envio de datos mediante flush
-            ConnectionWithServer.ServerStream.Flush();
-        }
 
         public void createUserPanel(string nameOfUserParam, string emailUserParam) {
             UserControlPanelObject = new UserControlPanel(nameOfUserParam, emailUserParam, userImage);

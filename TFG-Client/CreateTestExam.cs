@@ -90,10 +90,6 @@ namespace TFG_Client {
             buttonBack.Visible = option;
         }
 
-        private void nextButton_Click(object sender, EventArgs e) {
-
-        }
-
         private void searchButton_Click(object sender, EventArgs e) {
             ArrayList removedRows = new ArrayList();
 
@@ -222,8 +218,8 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
-                    + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
+                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
+                    + "\r\n" + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
 
             } catch (Exception) { }
         }
@@ -236,8 +232,8 @@ namespace TFG_Client {
                 DataGridViewRow tempRow = tempView.Rows[e.RowIndex];
 
                 DataGridViewCell cell = tempView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
-                   + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
+                cell.ToolTipText = "- ID: \r\n" + tempRow.Cells[0].Value.ToString() + "\r\n" + "\r\n" + "- Pregunta: \r\n" + tempRow.Cells[1].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta A: \r\n" + tempRow.Cells[2].Value.ToString()
+                   + "\r\n" + "\r\n" + "- Respuesta B: \r\n" + tempRow.Cells[3].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta C: \r\n" + tempRow.Cells[4].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta D: \r\n" + tempRow.Cells[5].Value.ToString() + "\r\n" + "\r\n" + "- Respuesta correcta: \r\n" + tempRow.Cells[6].Value.ToString();
 
             } catch (Exception) { }
         }

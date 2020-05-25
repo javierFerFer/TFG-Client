@@ -75,8 +75,8 @@ namespace TFG_Client {
 
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
-                if (dataGridView.Rows.Count <= 5) {
-                    Utilities.customErrorInfoModificationNormal("El modelo tiene 5 o menos preguntas asociadas,\n no se pueden borrar más preguntas");
+                if (dataGridView.Rows.Count == 1) {
+                    Utilities.customErrorInfoModificationNormal("El modelo debe tener al menos 1 pregunta asociada,\n no se pueden borrar más preguntas");
 
                 } else {
                     // Enviar petición de guardado de la modificación

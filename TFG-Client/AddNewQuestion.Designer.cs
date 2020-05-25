@@ -60,11 +60,11 @@
             // labelInfoQuestion
             // 
             this.labelInfoQuestion.AutoSize = true;
-            this.labelInfoQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfoQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfoQuestion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
             this.labelInfoQuestion.Location = new System.Drawing.Point(174, 212);
             this.labelInfoQuestion.Name = "labelInfoQuestion";
-            this.labelInfoQuestion.Size = new System.Drawing.Size(291, 18);
+            this.labelInfoQuestion.Size = new System.Drawing.Size(318, 20);
             this.labelInfoQuestion.TabIndex = 14;
             this.labelInfoQuestion.Text = "Escriba la pregunta que desea agregar aqui";
             // 
@@ -73,7 +73,7 @@
             this.textBoxNameOfTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.textBoxNameOfTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNameOfTheme.ForeColor = System.Drawing.Color.White;
-            this.textBoxNameOfTheme.Location = new System.Drawing.Point(206, 411);
+            this.textBoxNameOfTheme.Location = new System.Drawing.Point(178, 410);
             this.textBoxNameOfTheme.Name = "textBoxNameOfTheme";
             this.textBoxNameOfTheme.Size = new System.Drawing.Size(340, 26);
             this.textBoxNameOfTheme.TabIndex = 13;
@@ -111,11 +111,11 @@
             // labelAskNewTheme
             // 
             this.labelAskNewTheme.AutoSize = true;
-            this.labelAskNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAskNewTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAskNewTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelAskNewTheme.Location = new System.Drawing.Point(201, 363);
+            this.labelAskNewTheme.Location = new System.Drawing.Point(174, 364);
             this.labelAskNewTheme.Name = "labelAskNewTheme";
-            this.labelAskNewTheme.Size = new System.Drawing.Size(354, 18);
+            this.labelAskNewTheme.Size = new System.Drawing.Size(382, 20);
             this.labelAskNewTheme.TabIndex = 10;
             this.labelAskNewTheme.Text = "¿Desea agregarlo a un tema o crear un tema nuevo?";
             // 
@@ -127,7 +127,7 @@
             this.comboBoxOfThemes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxOfThemes.ForeColor = System.Drawing.Color.White;
             this.comboBoxOfThemes.FormattingEnabled = true;
-            this.comboBoxOfThemes.Location = new System.Drawing.Point(207, 410);
+            this.comboBoxOfThemes.Location = new System.Drawing.Point(179, 409);
             this.comboBoxOfThemes.Name = "comboBoxOfThemes";
             this.comboBoxOfThemes.Size = new System.Drawing.Size(337, 28);
             this.comboBoxOfThemes.TabIndex = 9;
@@ -163,7 +163,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
+            this.buttonBack.Location = new System.Drawing.Point(177, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;

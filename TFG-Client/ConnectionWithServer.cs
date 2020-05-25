@@ -413,7 +413,7 @@ namespace TFG_Client {
                                     loginForm.CreateTestExamObject1.showHideElements(true);
                                     loginForm.CreateTestExamObject1.showHideLabelWait(false);
                                     loginForm.CreateTestExamObject1.showHideErrorMessage(false);
-                                    loginForm.CreateTestExamObject1.showHideErrorMessage(true);
+                                    loginForm.CreateTestExamObject1.showHideBackButton(true);
                                 }));
                             } else if (json.First.ToString().Contains("checkNormalNameModelExist")) {
                                 JSonSingleData singleAnswer = JsonConvert.DeserializeObject<JSonSingleData>(serverMessageDesencrypt);

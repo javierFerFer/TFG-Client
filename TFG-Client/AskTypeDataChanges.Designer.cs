@@ -24,12 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             this.typeOfDataPanel = new System.Windows.Forms.Panel();
+            this.labelWaitVerification = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.checkBoxNormal = new System.Windows.Forms.CheckBox();
             this.checkBoxTest = new System.Windows.Forms.CheckBox();
             this.labelAskTypeOfOperation = new System.Windows.Forms.Label();
-            this.labelWaitVerification = new System.Windows.Forms.Label();
             this.typeOfDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,17 @@
             this.typeOfDataPanel.Size = new System.Drawing.Size(1252, 673);
             this.typeOfDataPanel.TabIndex = 2;
             // 
+            // labelWaitVerification
+            // 
+            this.labelWaitVerification.AutoSize = true;
+            this.labelWaitVerification.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWaitVerification.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
+            this.labelWaitVerification.Location = new System.Drawing.Point(170, 313);
+            this.labelWaitVerification.Name = "labelWaitVerification";
+            this.labelWaitVerification.Size = new System.Drawing.Size(461, 39);
+            this.labelWaitVerification.TabIndex = 7;
+            this.labelWaitVerification.Text = "Comprobando credenciales...";
+            // 
             // buttonBack
             // 
             this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
@@ -54,7 +65,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(80, 520);
+            this.buttonBack.Location = new System.Drawing.Point(177, 520);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(108, 37);
             this.buttonBack.TabIndex = 6;
@@ -82,7 +93,7 @@
             this.checkBoxNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxNormal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.checkBoxNormal.Location = new System.Drawing.Point(520, 364);
+            this.checkBoxNormal.Location = new System.Drawing.Point(611, 364);
             this.checkBoxNormal.Name = "checkBoxNormal";
             this.checkBoxNormal.Size = new System.Drawing.Size(198, 51);
             this.checkBoxNormal.TabIndex = 4;
@@ -115,17 +126,6 @@
             this.labelAskTypeOfOperation.Size = new System.Drawing.Size(639, 39);
             this.labelAskTypeOfOperation.TabIndex = 2;
             this.labelAskTypeOfOperation.Text = "¿Quiere ver de tipo normal o de tipo test?";
-            // 
-            // labelWaitVerification
-            // 
-            this.labelWaitVerification.AutoSize = true;
-            this.labelWaitVerification.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWaitVerification.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(134)))), ((int)(((byte)(5)))));
-            this.labelWaitVerification.Location = new System.Drawing.Point(109, 331);
-            this.labelWaitVerification.Name = "labelWaitVerification";
-            this.labelWaitVerification.Size = new System.Drawing.Size(461, 39);
-            this.labelWaitVerification.TabIndex = 7;
-            this.labelWaitVerification.Text = "Comprobando credenciales...";
             // 
             // AskTypeDataChanges
             // 
