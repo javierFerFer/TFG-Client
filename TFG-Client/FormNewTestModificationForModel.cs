@@ -1,20 +1,14 @@
-﻿//============================================================================
-// Name        : ModelWindowsMessage.cs
-// Author      : Javier Fernández Fernández
-// Version     : 0.1
-// Copyright   : Your copyright notice
-// Description : This class is a model of windows that have:
-//               - Tittle
-//               - Message
-//               - Image
-//               - Close button
-//============================================================================
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\FormNewTestModificationForModel.cs </file>
+///
+/// <copyright file="FormNewTestModificationForModel.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase FormNewTestModificationForModel.\n
+///             Implements the form new test modification for model class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Todos los using de la clase
- * 
- * All using here
-*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +20,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Permite la modificación/borrado de preguntas tipo test sobre el modelo que se va a usar para generar el examen.\n
+    ///             Allow to modify/delete type test questions of the model to generate the exam. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class FormNewTestModificationForModel : Form {
 
         private string id;
@@ -38,7 +40,31 @@ namespace TFG_Client {
         private DataGridViewRow dataGridViewRowObject;
         private DataGridView datagridViewObject;
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor de la clase.\n
+        ///             Constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+        ///
+        /// <param name="idParam">              ID de la pregunta a modificar/borrar.\n
+        ///                                     ID of the question to modify/delete </param>
+        /// <param name="questionParam">        Pregunta a modificar/borrar.\n
+        ///                                     Question to modify/delete. </param>
+        /// <param name="answer_A_param">       Respuesta A de la pregunta.\n
+        ///                                     Answer A of the question. </param>
+        /// <param name="answer_B_param">       Respuesta B de la pregunta.\n
+        ///                                     Answer B of the question. </param>
+        /// <param name="answer_C_param">       Respuesta C de la pregunta.\n
+        ///                                     Answer C of the question. </param>
+        /// <param name="answer_D_param">       Respuesta D de la pregunta.\n
+        ///                                     Answer D of the question. </param>
+        /// <param name="answer_correct_param"> Respuesta correccta de la pregunta.\n
+        ///                                     Correct answer of the question. </param>
+        /// <param name="tempRowParam">         Fila con los datos de la pregunta a modificar/borrar.\n
+        ///                                     Row with all data of the question to modify/detele. </param>
+        /// <param name="allQuestionsParam">    Lista con todas las preguntas del modelo.\n
+        ///                                     List with all questions of the model.</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public FormNewTestModificationForModel(string idParam, string questionParam, string answer_A_param, string answer_B_param, string answer_C_param, string answer_D_param, string answer_correct_param, DataGridViewRow tempRowParam, DataGridView allQuestionsParam) {
             InitializeComponent();
@@ -63,13 +89,19 @@ namespace TFG_Client {
             comboBoxCorrectAnswer.SelectedIndex = comboBoxCorrectAnswer.FindStringExact("A");
         }
 
-        /// <summary>
-        /// Evento de cierre del boton 'cerrar' de la ventana
-        /// 
-        /// Evento of close button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón cerrar del formulario, cuando este es pulsado, se advierte al usuario de la posible perdida de datos,
+        ///             si continua, este formulario es cerrado.\n
+        ///             Click event about close button, if this button is pressed, this event create and show warning form. If the user continue anyway, this form will be close. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void closeButton_Click(object sender, EventArgs e) {
             bool userOption = Utilities.createWarningForm();
             if (userOption) {
@@ -77,21 +109,17 @@ namespace TFG_Client {
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) {
-            try {
-                if (textBoxNewQuest.Text.Length > 230) {
-                    if (textBoxNewQuest.Text.Length == 231) {
-                        textBoxNewQuest.Text = textBoxNewQuest.Text.Substring(0, textBoxNewQuest.Text.Length - 1);
-                        textBoxNewQuest.Select(textBoxNewQuest.Text.Length, 0);
-                        Utilities.customErrorInfoModificationNormal("Se ha alcanzado el límite máximo de caracteres en la pregunta");
-                    } else {
-                        Utilities.customErrorInfoModificationNormal("El texto introducido supera el limite máximo de caracteres");
-                        textBoxNewQuest.Text = "";
-                    }
-                }
-            } catch (Exception) { }
-        }
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón modificar. Cuando es pulsado, se actualiza el objeto DataGridView.\n
+        ///             Click event about modify button, when user press this button, this event update the content of the DataGridView object </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
@@ -125,7 +153,7 @@ namespace TFG_Client {
                         dataGridViewRowObject.Cells[4].Value = textBoxNewAnserC.Text;
                         dataGridViewRowObject.Cells[5].Value = textBoxNewAnserD.Text;
                         dataGridViewRowObject.Cells[6].Value = comboBoxCorrectAnswer.SelectedItem.ToString();
-                        Dispose();      
+                        Dispose();
                     } else {
                         Utilities.customErrorInfoModificationNormal("la longitud de la pregunta debe ser entre 5 y 45 carateres");
                     }
@@ -134,13 +162,17 @@ namespace TFG_Client {
 
         }
 
-        private void checkBoxDelete_CheckedChanged(object sender, EventArgs e) {
-            if (checkBoxDelete.Checked) {
-                textBoxNewQuest.Visible = false;
-            } else {
-                textBoxNewQuest.Visible = true;
-            }
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de checkBox, comprueba si el mismo está marcado o no.\n
+        ///             CheckBox change event, check if itselft is check or not. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void checkBoxDelete_CheckedChanged_1(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
@@ -149,6 +181,16 @@ namespace TFG_Client {
                 showHideElements(true);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Muestra/esconde elementos de la interfaz.\n
+        ///             Show/hide elements of this form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 18/05/2020. </remarks>
+        ///
+        /// <param name="option">   True = Muestra, false = esconde.\n
+        ///                         True = show, false = hide. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void showHideElements(bool option) {
             labelInfoModifications.Visible = option;
