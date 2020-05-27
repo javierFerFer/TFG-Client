@@ -57,7 +57,6 @@
             this.subjectSelected.Size = new System.Drawing.Size(198, 39);
             this.subjectSelected.TabIndex = 7;
             this.subjectSelected.Text = "Asignatura: ";
-            this.subjectSelected.Click += new System.EventHandler(this.subjectSelected_Click);
             // 
             // buttonBack
             // 
@@ -127,7 +126,6 @@
             this.labelAskTypeOfOperation.Size = new System.Drawing.Size(618, 39);
             this.labelAskTypeOfOperation.TabIndex = 2;
             this.labelAskTypeOfOperation.Text = "¿Quiere modificar o agregar preguntas?";
-            this.labelAskTypeOfOperation.Click += new System.EventHandler(this.labelAskTypeOfOperation_Click);
             // 
             // AskOperation
             // 

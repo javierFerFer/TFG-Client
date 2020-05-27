@@ -818,7 +818,8 @@ namespace TFG_Client {
                 aboutForm.title.Text = "Acerca de...";
                 aboutForm.messageLabel.Text = "Este proyecto ha sido creado \n" +
                                               "por Javier Fernández Fernández \n" +
-                                              "como trabajo de final de grado.";
+                                              "como trabajo de final de grado.\n" +
+                                              "Fecha 26/05/2020";
                 if (ConnectionWithServer.LoginForm != null) {
                     ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
                         ConnectionWithServer.LoginForm.ModelWindowsMessage = aboutForm;

@@ -1,4 +1,15 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\AllDataTestModel.cs </file>
+///
+/// <copyright file="AllDataTestModel.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase AllDataTestModel.\n
+///             Implements all data test model class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +22,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Permite la creación de modelos de tipo test.\n
+    ///             Allow to create test models. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class AllDataTestModel : Form {
 
         private Panel dataPanel;
@@ -20,7 +39,27 @@ namespace TFG_Client {
         private string idModel;
         private ArrayList allQuestionData;
 
-        public AllDataTestModel(string typeOfExamParam, string subjectSelectedParam, ArrayList allQuestionDataParam , Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor de la clase.\n
+        ///             Constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="typeOfExamParam">      Tipo de examen.\n
+        ///                                     Type of exam. </param>
+        /// <param name="subjectSelectedParam"> Tema seleccionado.\n
+        ///                                     Selected theme. </param>
+        /// <param name="allQuestionDataParam"> Listado de preguntas asociadas al modelo.\n
+        ///                                     List of all questions of the model. </param>
+        /// <param name="dataPanelParam">       Panel donde el programa muestra los datos.\n
+        ///                                     Panel where program show all data. </param>
+        /// <param name="rightPanelParam">      Panel de la izquierda.\n
+        ///                                     Right panel. </param>
+        /// <param name="beforeFormParam">      Panel anterior.\n
+        ///                                     before panel. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public AllDataTestModel(string typeOfExamParam, string subjectSelectedParam, ArrayList allQuestionDataParam, Panel dataPanelParam, Panel rightPanelParam, Form beforeFormParam) {
             InitializeComponent();
             dataPanel = dataPanelParam;
             rightPanel = rightPanelParam;
@@ -32,6 +71,18 @@ namespace TFG_Client {
             typeOfDataPanel.Focus();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón volver. carga el beforeForm cuando es pulsado.\n
+        ///             Click event about back button. Load beforeForm.  </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void buttonBack_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
             bool userOption = Utilities.createWarningForm();
@@ -40,9 +91,17 @@ namespace TFG_Client {
             }
         }
 
-        public void openSuccessSaveNormalExamAsModel() {
-            Utilities.openForm(new EmptyDataForm("Se ha enviado correctamente la petición de agregación al sistema"), dataPanel, rightPanel);
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón eviar. Realiza una petición al sistema para comprobar que no existe ya el nombre del modelo a crear.\n
+        ///             Click event about send button. This method does a request to check if the name of new model doesn't exist </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void nextButton_Click(object sender, EventArgs e) {
             typeOfDataPanel.Focus();
@@ -63,13 +122,23 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Petición de actualización del modelo perteneciente de las preguntas de tipo test.\n
+        ///             Request to update the model of test questions.  </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="idModelParam"> ID del modelo.\n
+        ///                             ID of the model. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public void generateExamRequest(string idModelParam) {
             idModel = idModelParam;
             Utilities.openForm(new EmptyDataForm("Se ha guardado correctamente el modelo en el servidor.\n Generando examen..."), dataPanel, rightPanel);
-            
+
             // Copia del array
 
-            string[] allData = new string[allQuestionData.Count + 1 ];
+            string[] allData = new string[allQuestionData.Count + 1];
             allData[0] = idModel;
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
             tempArray.CopyTo(allData, 1);
@@ -82,7 +151,17 @@ namespace TFG_Client {
 
         }
 
-        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de cambio de texto sobre el texto de la descripción del modelo, verifica que el texto sea valido o no.\n
+        ///             Event of text change about text of description of the model, check if this text is valid or not. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBoxQuestion_TextChanged_1(object sender, EventArgs e) {
             try {
@@ -96,10 +175,21 @@ namespace TFG_Client {
                         textBoxDescription.Text = "";
                     }
                 }
-            } catch (Exception) {}
-            
+            } catch (Exception) { }
+
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de cambio de texto sobre el nombre del modelo, verifica si el nombre es válido o no.\n
+        ///             Event of change text about name of model, check if this name is valid or not. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBoxNameOfTheme_TextChanged(object sender, EventArgs e) {
             try {
@@ -114,15 +204,38 @@ namespace TFG_Client {
                     textBoxNameOfModel.Select(textBoxNameOfModel.Text.Length, 0);
                     Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en el título del modelo");
                 }
-            } catch (Exception) {}
+            } catch (Exception) { }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de key press sobre el texto del nombre del modelo, comprueba si el usuario ha pulsado la tecla ENTER.\n
+        ///             Key press event about text of the name of the model, check if user press ENTER key. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento de tecla pulsada.\n
+        ///                         Key press event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBoxNameOfTheme_KeyPress(object sender, KeyPressEventArgs e) {
             if (e.KeyChar == (char)13) {
                 sendButton.PerformClick();
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de tecla pulsada sobre el texto con el nombre del modelo, comprueba si la tecla pulsada es ENTER, en dicho caso la omite.\n
+        ///             Key press event about text of the name of the model, check if user press ENTER key, in this case, avoid. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Key event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBoxQuestion_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
@@ -134,6 +247,17 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de tecla pulsada sobre el texto con la descripción del modelo, comprueba si la tecla pulsada es ENTER, en dicho caso la omite.\n
+        ///             Key press event about text of the description of the model, check if user press ENTER key, in this case, avoid. </summary>
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Key event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void textBoxNameOfModel_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
                 e.SuppressKeyPress = true;
@@ -144,27 +268,47 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Genera un mensaje de error si no se puede generar el examen.\n
+        ///             Generates an error message. when the system cannot genetare a exam </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public void generateErrorMessage() {
             Utilities.openForm(new EmptyDataForm("Se produjo un error al intentar generar el examen, contacte con el administrador"), dataPanel, rightPanel);
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   petición de creación del modelo de tipo test.\n
+        ///             Request to create test model. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public void createTestModelRequest() {
             // Petición de creación del modelo
-            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestModel", new string[] { textBoxNameOfModel.Text, textBoxDescription.Text , subject , ConnectionWithServer.EmailUser});
+            string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestModel", new string[] { textBoxNameOfModel.Text, textBoxDescription.Text, subject, ConnectionWithServer.EmailUser });
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
             ConnectionWithServer.ServerStream.Flush();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Petición de creación del examen de tipo test.\n
+        ///             Request to create test exam. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 12/05/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public void generateFilesExam() {
             // Petición de creación del fichero examen
             allQuestionData.Add(subject);
-            
+
             string[] tempArray = (string[])allQuestionData.ToArray(typeof(string));
             string jsonMessageGetThemes = Utilities.generateJsonObjectArrayString("createTestExamFiles", tempArray);
-            MessageBox.Show(jsonMessageGetThemes);
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonMessageGetThemes, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
             ConnectionWithServer.ServerStream.Write(jSonObjectBytes, 0, jSonObjectBytes.Length);
             // Envio de datos mediante flush
