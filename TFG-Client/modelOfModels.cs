@@ -1,4 +1,15 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\modelOfModels.cs </file>
+///
+/// <copyright file="modelOfModels.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase ModelOfModel.\n
+///             Implements the model of models class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +22,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Modelo de diseño para los modelos de exámentes.\n
+    ///             Model of the exams. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class ModelOfModels : Form {
 
         private string id;
@@ -21,6 +40,23 @@ namespace TFG_Client {
 
         // true = normal, false = test
         private bool mode;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor de la clase.\n
+        ///             Constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ///
+        /// <param name="idParam">                  ID del modelo del examen.\n
+        ///                                         ID of model of the exam. </param>
+        /// <param name="nameOfModelParam">         Nombre del modelo.\n
+        ///                                         Name of the model. </param>
+        /// <param name="descriptionOfModelParam">  Descripción del modelo.\n
+        ///                                         Description of the model. </param>
+        /// <param name="autorOfModelParam">        Email del autor del modelo.\n
+        ///                                         Email of author of the model. </param>
+        /// <param name="modeParam">                True = model normal, false = test model. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public ModelOfModels(string idParam, string nameOfModelParam, string descriptionOfModelParam, string autorOfModelParam, bool modeParam) {
             InitializeComponent();
@@ -34,6 +70,13 @@ namespace TFG_Client {
             setElementsOfModel();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Establece los elementos del modelo.\n
+        ///             Set elements of the model. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void setElementsOfModel() {
             labelAuthor.Text += autorOfModel;
             labelNameOfModel.Text = nameOfModel;
@@ -41,10 +84,16 @@ namespace TFG_Client {
             setImage();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Establece la letra del creador del modelo </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void setImage() {
             if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "a") {
                 imageLetterOfNameCreator.Image = Properties.Resources.A;
-            } else if(autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "b") {
+            } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "b") {
                 imageLetterOfNameCreator.Image = Properties.Resources.B;
             } else if (autorOfModel.ToCharArray().ElementAt(0).ToString().ToLower() == "c") {
                 imageLetterOfNameCreator.Image = Properties.Resources.C;
@@ -99,6 +148,21 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Genera el redondeo de color del objeto.\n
+        ///             Generate color round of the model. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ///
+        /// <param name="Rect">     El rectángulo.\n
+        ///                         The rectangle. </param>
+        /// <param name="radius">   El radio.\n
+        ///                         The radius. </param>
+        ///
+        /// <returns>   El diseño.\n
+        ///             The round path. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public GraphicsPath GetRoundPath(RectangleF Rect, int radius) {
             float r2 = radius / 2f;
             GraphicsPath GraphPath = new GraphicsPath();
@@ -115,6 +179,18 @@ namespace TFG_Client {
             return GraphPath;
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de dibujado del modelo.\n
+        ///             Event of draw the model. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del dibujado del evento.\n
+        ///                         Paint event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void typeOfDataPanel_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
             RectangleF Rect = new RectangleF(0, 0, Width, Height);
@@ -127,7 +203,17 @@ namespace TFG_Client {
             }
         }
 
-        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de dibujado de la imagen.\n
+        ///             Event of draw the image. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del dibujado del evento.\n
+        ///                         Paint event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void pictureBoxTextImage_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
@@ -140,6 +226,18 @@ namespace TFG_Client {
                 }
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre la imagen/modelo.\n
+        ///             Click event about image/model. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 17/05/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información de evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void pictureBoxTextImage_Click(object sender, EventArgs e) {
             if (mode) {
@@ -155,7 +253,7 @@ namespace TFG_Client {
                 // Envio de datos mediante flush
                 ConnectionWithServer.ServerStream.Flush();
             }
-            
+
         }
 
 

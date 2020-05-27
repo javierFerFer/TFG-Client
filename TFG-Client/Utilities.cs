@@ -1,4 +1,15 @@
-﻿using Microsoft.Win32;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\Utilities.cs </file>
+///
+/// <copyright file="Utilities.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase utilidades.\n
+///             Implements the utilities class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,16 +27,40 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Todas las utlilidades del programa.\n
+    ///             All utilities of the program. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     static class Utilities {
 
         public static bool showDevelopMessages = true;
         public static bool warningAnser = true;
         private static string emptyString = "";
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Resetea el valor de la variable warning.\n
+        ///             Resets the warning anser value. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void resetWarningAnserValue() {
             warningAnser = true;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Permite la creación de formularios de advertencia.\n
+        ///             Allow to create warnings forms. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <returns>   True si todo va bien, false en caso contrario.\n
+        ///             True if it succeeds, false if it fails. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static bool createWarningForm() {
             try {
@@ -61,10 +96,26 @@ namespace TFG_Client {
                     return false;
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
                 return false;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Permite la creación de formularios de advertencia con mensaje.\n 
+        /// Allow to create warnings forms with message.
+        /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="messageParam"> Mensaje a mostrar.\n
+        ///                             Message to show. </param>
+        ///
+        /// <returns>
+        /// True si todo va bien, false en caso contrario.\n 
+        /// True if it succeeds, false if it fails.
+        /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static bool createWarningForm(string messageParam) {
             try {
@@ -100,10 +151,28 @@ namespace TFG_Client {
                     return false;
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
                 return false;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Permite la creación de formularios de advertencia con mensaje y título.\n 
+        /// Allow to create warnings forms with message and title.
+        /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleParam">   Título.\n
+        ///                             The title parameter. </param>
+        /// <param name="messageParam"> Mensaje a mostrar.\n 
+        ///                             Message to show. </param>
+        ///
+        /// <returns>
+        /// True si todo va bien, false en caso contrario.\n 
+        /// True if it succeeds, false if it fails.
+        /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static bool createWarningForm(string titleParam, string messageParam) {
             try {
@@ -138,10 +207,22 @@ namespace TFG_Client {
                     return false;
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
                 return false;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Genera peticiones simples.\n
+        ///             Generates a single data request. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleMessageParam">    Título del mensaje a enviar.\n
+        ///                                     Title of message to send. </param>
+        ///
+        /// <returns>   Objeto mensaje simple.\n
+        ///             Simple object message. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static string generateSingleDataRequest(string titleMessageParam) {
             try {
@@ -157,10 +238,37 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea error customizado.\n
+        ///             Create custom errror </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="letterParam">  Pregunta errónea.\n
+        ///                             Wrong question. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void createCustomErrorTestMessage(string letterParam) {
             Utilities.customErrorInfo("La longitud de la pregunta " + "'" + letterParam + "' " + "tiene una longitud incorrecta. \n" +
                                               "Debe tener al menos 5 caracteres y como máximo 45.");
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Genera peticiones simples con título y mensaje.\n 
+        ///             Generates a single data request with title and message. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleMessageParam">
+        /// Título del mensaje a enviar.\n 
+        /// Title of message to send.
+        /// </param>
+        /// <param name="contentParam">         Contenido del mensaje a enviar.\n
+        ///                                     Content of the message to send. </param>
+        ///
+        /// <returns>   Objeto mensaje simple.\n 
+        ///             Simple object message. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static string generateSingleDataRequest(string titleMessageParam, string contentParam) {
             try {
@@ -177,7 +285,24 @@ namespace TFG_Client {
             }
         }
 
-        public static string generateJsonObjectArrayString(string titleMessageParam, string [] allContentParam) {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Genera objetos complejos JSON.\n
+        ///             Generate complex JSON objects. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleMessageParam">
+        /// Título del mensaje a enviar.\n 
+        /// Title of message to send.
+        /// </param>
+        /// <param name="allContentParam">      lista de datos del mensaje.\n
+        ///                                     List with all data of the message. </param>
+        ///
+        /// <returns>   Objeto complejo JSON.\n
+        ///             The JSON object array string. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static string generateJsonObjectArrayString(string titleMessageParam, string[] allContentParam) {
             try {
                 JSonObjectArray objectArray = new JSonObjectArray();
                 objectArray.A_Title = titleMessageParam;
@@ -189,10 +314,25 @@ namespace TFG_Client {
                 createErrorMessage(ex.Message.ToString(), showDevelopMessages, 703, null);
                 return emptyString;
             }
-            
+
         }
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Desencripta el mensaje recibido del servidor.\n
+        ///             Decrypt the message of the server. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="encryptedInputBase64"> Mensaje encriptado.\n
+        ///                                     The encrypted input base 64. </param>
+        /// <param name="ivStringParam">        IV param.\n
+        ///                                     The iv string parameter. </param>
+        /// <param name="passwd">               La contraseña usada en la comunicación.\n
+        ///                                     The passwd. </param>
+        ///
+        /// <returns>   Mensaje desencriptado.\n
+        ///             Decrypted message. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static string Decrypt(string encryptedInputBase64, string ivStringParam, string passwd) {
             try {
@@ -218,6 +358,20 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Desencriptado interno.\n
+        ///             Internal decrypt. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="aesEncryptor">     Objeto que permite el desencriptado.\n
+        ///                                 The aes encryptor. </param>
+        /// <param name="encryptedData">    Array de bytes de mensaje encriptado.\n
+        ///                                 The aes encryptor. </param>
+        ///
+        /// <returns>   Mensaje desencriptado.\n
+        ///             Decrypted message. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private static string InternalDecrypt(AesCryptoServiceProvider aesEncryptor, byte[] encryptedData) {
             try {
@@ -244,6 +398,23 @@ namespace TFG_Client {
                 return emptyString;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Encripta mensajes.\n
+        ///             Encrypts messages. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="message">      Mensaje a encriptar.\n
+        ///                             Message to ecrypt. </param>
+        /// <param name="KeyString">    Key usada en la encriptación.\n
+        ///                             Encrypt key. </param>
+        /// <param name="IVString">     IV parametro.\n
+        ///                             IV param. </param>
+        ///
+        /// <returns>   Mensaje cifrado.\n
+        ///             Encrypted message. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static string Encrypt(string message, string KeyString, string IVString) {
             try {
@@ -288,18 +459,16 @@ namespace TFG_Client {
             }
         }
 
-        /// <summary>
-        /// Detecta si el usuario tiene conexión a internet.
-        /// 
-        /// Function that detect if this user has a internet connection
-        /// </summary>
-        /// <returns>
-        /// True, si el servidor al que se conecta responde (Tiene conexión)
-        /// False, si el servidor al que se conecta no responde (No tiene conexión)
-        /// 
-        /// True, If the server that you have connected to responds (Have internet connection)
-        /// False, If the server that you have connected not to responds (Don't have internet connection)
-        /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Detecta si el usuario tiene conexión a internet o no.\n
+        ///             Determines if we can check for internet connection. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <returns>   True = tiene conexión, false en caso contrario.\n
+        ///             True = connect to internet, false in the opposite case. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static bool CheckForInternetConnection() {
             try {
                 WebClient client = new WebClient();
@@ -310,11 +479,22 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
+        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de
+        /// windows y carga los datos en caso de encontrarlos en el mismo.\n
         /// 
-        /// Check windows form position, user data and user image in the windows registry. Load these datas if found in the windows registry.
+        /// 
+        /// Check windows form position, user data and user image in the windows registry. Load these
+        /// datas if found in the windows registry.
         /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="loginForm">    Formulario de login.\n
+        ///                             Login form. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void checkWindowsFormPositon(MainFormProgram loginForm) {
 
             bool checkPositionRegistryKey = OpenKey(loginForm);
@@ -363,20 +543,26 @@ namespace TFG_Client {
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Revisa si el valor recibido como parámetro se encuentra en el registro de windows
         /// 
         /// Check if parameter value exist into windows registry.
         /// </summary>
-        /// <param name="value">string, valor a buscar en el registro de windows</param>
-        /// <param name="value">string, value to find into windows registry</param>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <exception cref="Exception">    Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="loginForm">    Formulario de login.\n Login form. </param>
+        ///
         /// <returns>
-        /// True, si encuentra el valor.
-        /// False, si no lo encuentra.
+        /// True, si encuentra el valor. False, si no lo encuentra.
         /// 
-        /// True, if this valor exist.
-        /// False, if this valor don't exist.
+        /// True, if this valor exist. False, if this valor don't exist.
         /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static bool OpenKey(MainFormProgram loginForm) {
             try {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config", true);
@@ -391,11 +577,18 @@ namespace TFG_Client {
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Almacena la posición de la ventana al ser cerrada por el usuario
         /// 
-        /// Stored position of login form when user close the login screen
+        /// Stored position of login form when user close the login screen.
         /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="loginForm">    Formulario de login.\n Login form. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void saveWindowsFormPosition(MainFormProgram loginForm) {
             if (loginForm.WindowState != FormWindowState.Minimized) {
                 int positionX = loginForm.Left;
@@ -413,12 +606,21 @@ namespace TFG_Client {
             }
         }
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de windows y carga los datos en caso de encontrarlos en el mismo.
+        /// Comprueba la posición de la ventana, el usuario y la imagen del mismo en el registro de
+        /// windows y carga los datos en caso de encontrarlos en el mismo.\n
         /// 
-        /// Check windows form position, user data and user image in the windows registry. Load these datas if found in the windows registry.
+        /// 
+        /// Check windows form position, user data and user image in the windows registry. Load these
+        /// datas if found in the windows registry.
         /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="userControlPanel"> The user control panel. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void checkWindowsFormPositon(UserControlPanel userControlPanel) {
 
             bool checkPositionRegistryKey = OpenKey(userControlPanel);
@@ -443,20 +645,26 @@ namespace TFG_Client {
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Revisa si el valor recibido como parámetro se encuentra en el registro de windows
         /// 
         /// Check if parameter value exist into windows registry.
         /// </summary>
-        /// <param name="value">string, valor a buscar en el registro de windows</param>
-        /// <param name="value">string, value to find into windows registry</param>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <exception cref="Exception">    Thrown when an exception error condition occurs. </exception>
+        ///
+        /// <param name="userControlPanel"> The user control panel. </param>
+        ///
         /// <returns>
-        /// True, si encuentra el valor.
-        /// False, si no lo encuentra.
+        /// True, si encuentra el valor. False, si no lo encuentra.
         /// 
-        /// True, if this valor exist.
-        /// False, if this valor don't exist.
+        /// True, if this valor exist. False, if this valor don't exist.
         /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static bool OpenKey(UserControlPanel userControlPanel) {
             try {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\SEC\\Config_userPanel", true);
@@ -471,11 +679,18 @@ namespace TFG_Client {
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Almacena la posición de la ventana al ser cerrada por el usuario
         /// 
-        /// Stored position of login form when user close the login screen
+        /// Stored position of login form when user close the login screen.
         /// </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="userControlPanel"> The user control panel. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void saveWindowsFormPosition(UserControlPanel userControlPanel) {
             if (userControlPanel.WindowState != FormWindowState.Minimized) {
                 int positionX = userControlPanel.Left;
@@ -489,13 +704,13 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario de soporte.\n
+        ///             Creates support form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-        /// <summary>
-        /// Crea y muestra el formulario de soporte al usuario
-        /// 
-        /// Create and show support form.
-        /// </summary>
         public static void createSupportForm() {
             try {
                 ModelWindowsMessage supportForm = new ModelWindowsMessage();
@@ -517,10 +732,18 @@ namespace TFG_Client {
                     supportForm.ShowDialog(ConnectionWithServer.LoginForm);
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea mensaje de error.\n
+        ///             Create error message </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="messageParam"> Mensaje a mostrar.\n 
+        ///                             Message to show. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void customErrorInfo(string messageParam) {
             try {
@@ -548,11 +771,21 @@ namespace TFG_Client {
                 } else {
                     customErrorMessage.ShowDialog();
                 }
-                
+
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea mensaje de error.\n
+        ///             Create error message </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="messageParam"> Mensaje a mostrar.\n 
+        ///                             Message to show. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void customErrorInfoModificationNormal(string messageParam) {
             try {
                 ModelWindowsMessageWithBroder customErrorMessage = new ModelWindowsMessageWithBroder();
@@ -577,9 +810,22 @@ namespace TFG_Client {
                     customErrorMessage.ShowDialog();
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario para modificaciones de preguntas normales.\n
+        ///             Create form to modify normal questions. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleParam">   Título.\n 
+        ///                             The title parameter. </param>
+        /// <param name="id">           ID.\n
+        ///                             ID. </param>
+        /// <param name="question">     La pregunta.\n
+        ///                             The question. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createFormNewNormalModification(string titleParam, string id, string question) {
             FormNewNormalModification formNewNormalObject = new FormNewNormalModification(id);
@@ -594,8 +840,24 @@ namespace TFG_Client {
             } else {
                 formNewNormalObject.ShowDialog(ConnectionWithServer.LoginForm);
             }
-            
+
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formularios normales para agregaciones/borados.\n
+        ///             Creates form new normal modification add or delete. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleParam">   Título.\n 
+        ///                             The title parameter. </param>
+        /// <param name="id">           ID.\n 
+        ///                             ID. </param>
+        /// <param name="question">     La pregunta.\n 
+        ///                             The question. </param>
+        /// <param name="modification"> La modificación.\n
+        ///                             The modification. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createFormNewNormalModificationAddOrDelete(string titleParam, string id, string question, string modification) {
             FormNewNormalModificationAddOrDelete formNewNormalObject = new FormNewNormalModificationAddOrDelete(id);
@@ -619,7 +881,26 @@ namespace TFG_Client {
 
         }
 
-        public static void createFormNewTestModificationAddOrDelete(string titleParam, string idQuestion, string [] dataOfQuestion, string [] dataOfMod, bool option) {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario para las modificaciones de tipo test.\n
+        ///             Creates form new test modification add or delete. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleParam">       Título.\n 
+        ///                                 The title parameter. </param>
+        /// <param name="idQuestion">       ID.\n
+        ///                                 ID. </param>
+        /// <param name="dataOfQuestion">   Datos de la pregunta.\n
+        ///                                 Data of the question.
+        ///                                  </param>
+        /// <param name="dataOfMod">        Datos de la modificación.\n
+        ///                                 Data of the modification.</param>
+        /// <param name="option">            True -> Borrar pregunta, false -> actualizar pregunta.\n
+        ///                                  True -> Delete question, false -> update question. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static void createFormNewTestModificationAddOrDelete(string titleParam, string idQuestion, string[] dataOfQuestion, string[] dataOfMod, bool option) {
             // true -> delete option, false -> update option
             FormNewTestModificationAddOrDelete formNewTestModificationAddOrDelete = new FormNewTestModificationAddOrDelete(idQuestion);
             formNewTestModificationAddOrDelete.StartPosition = FormStartPosition.CenterParent;
@@ -651,13 +932,7 @@ namespace TFG_Client {
                 formNewTestModificationAddOrDelete.buttonDeny.Location = new Point(500, formNewTestModificationAddOrDelete.buttonDelete.Location.Y);
                 formNewTestModificationAddOrDelete.Size = new Size(690, formNewTestModificationAddOrDelete.Size.Height);
             }
-            
-            //formNewTestModificationAddOrDelete.labelModification.Text = modification;
-            //if (modification.Equals("Borrar")) {
-            //    formNewTestModificationAddOrDelete.buttonSend.Visible = false;
-            //} else {
-            //    formNewTestModificationAddOrDelete.buttonDelete.Visible = false;
-            //}
+
             if (ConnectionWithServer.LoginForm != null) {
                 ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
                     ConnectionWithServer.LoginForm.FormNewTestModificationAddOrDelete = formNewTestModificationAddOrDelete;
@@ -668,6 +943,23 @@ namespace TFG_Client {
             }
 
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea mensaje Pop-Up con todas las preguntas.\n
+        ///             Create Pop-up message with all questions. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="allQuestionsData"> Todos los datos de las preguntas.\n
+        ///                                 Information describing all questions. </param>
+        /// <param name="dataPanelParam">   Panel donde el programa muestra los datos.\n
+        ///                                 Panel where program show all data. </param>
+        /// <param name="rightPanelParam">  Panel derecho.\n
+        ///                                 Right panel. </param>
+        /// <param name="subjectParam">     Tema seleccionado.\n
+        ///                                 Selected subject. </param>
+        /// <param name="optionParam">      True = normal, false = test. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createPopUpWithAllQuestions(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam, string subjectParam, bool optionParam) {
             // optionParam = true -> normal, optionParam = false -> test
@@ -683,13 +975,31 @@ namespace TFG_Client {
                         formNormalModelToUseObject.fillQuestionsTest();
                         formNormalModelToUseObject.dataGridViewAllNormalData.Visible = false;
                     }
-                    
+
                     formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
                 }));
             } else {
                 formNormalModelToUseObject.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea mensajes Pop-up con todas las preguntas de tipo test.\n
+        ///             Create Pop-Up message with all test questions. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="allQuestionsData">
+        /// Todos los datos de las preguntas.\n 
+        /// Information describing all questions.
+        /// </param>
+        /// <param name="dataPanelParam">
+        /// Panel donde el programa muestra los datos.\n 
+        /// Panel where program show all data.
+        /// </param>
+        /// <param name="rightPanelParam">  Panel derecho.\n 
+        ///                                 Right panel. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createPopUpWithAllQuestionsTest(string[] allQuestionsData, Panel dataPanelParam, Panel rightPanelParam) {
 
@@ -698,7 +1008,7 @@ namespace TFG_Client {
             if (ConnectionWithServer.LoginForm != null) {
                 ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
                     ConnectionWithServer.LoginForm.FormTestModifications = formTestModificationsObject;
-                        formTestModificationsObject.fillQuestionsTest();
+                    formTestModificationsObject.fillQuestionsTest();
 
                     formTestModificationsObject.ShowDialog(ConnectionWithServer.LoginForm);
                 }));
@@ -706,6 +1016,22 @@ namespace TFG_Client {
                 formTestModificationsObject.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario para las modificaciones de modelos normales.\n
+        ///             Create form to modify normal models. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="idParam">              ID de la pregunta.\n
+        ///                                     ID of the question. </param>
+        /// <param name="questionParam">        Pregunta a modificar.\n
+        ///                                     Question to modify.</param>
+        /// <param name="tempRow">              Fila temporal.\n
+        ///                                     The temporary row. </param>
+        /// <param name="allQuestionsParam">    Lista de todas las preguntas.\n
+        ///                                     List with all questions. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createNewNormalModificationForModel(string idParam, string questionParam, DataGridViewRow tempRow, DataGridView allQuestionsParam) {
             FormNewNormalModificationForModel formNewNormalModificationForModel = new FormNewNormalModificationForModel(idParam, questionParam, tempRow, allQuestionsParam);
@@ -720,8 +1046,36 @@ namespace TFG_Client {
             }
         }
 
-        public static void createNewTestModificationForModel(string idParam, string questionParam, string answer_A , string answer_B, string answer_C, string answer_D, string answer_Correct, DataGridViewRow tempRow, DataGridView allQuestionsParam) {
-            FormNewTestModificationForModel formNewTestModificationForModel = new FormNewTestModificationForModel(idParam, questionParam, answer_A, answer_B, answer_C, answer_D, answer_Correct ,tempRow, allQuestionsParam);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario para las modificaciones de modelos test.\n
+        ///             Create form to modify test models. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="idParam">              ID de la pregunta.\n 
+        ///                                     ID of the question. </param>
+        /// <param name="questionParam">        Pregunta a modificar.\n 
+        ///                                     Question to modify. </param>
+        /// <param name="answer_A">             Respuesta A.\n
+        ///                                     The answer a. </param>
+        /// <param name="answer_B">             Respuesta B.\n
+        ///                                     The answer b. </param>
+        /// <param name="answer_C">             Respuesta C.\n
+        ///                                     The answer c. </param>
+        /// <param name="answer_D">             Respuesta D.\n
+        ///                                     The answer d. </param>
+        /// <param name="answer_Correct">       La respuesta correcta.\n
+        ///                                     The answer correct. </param>
+        /// <param name="tempRow">              Fila temporal.\n 
+        ///                                     The temporary row. </param>
+        /// <param name="allQuestionsParam">
+        /// Lista de todas las preguntas.\n 
+        /// List with all questions.
+        /// </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static void createNewTestModificationForModel(string idParam, string questionParam, string answer_A, string answer_B, string answer_C, string answer_D, string answer_Correct, DataGridViewRow tempRow, DataGridView allQuestionsParam) {
+            FormNewTestModificationForModel formNewTestModificationForModel = new FormNewTestModificationForModel(idParam, questionParam, answer_A, answer_B, answer_C, answer_D, answer_Correct, tempRow, allQuestionsParam);
             formNewTestModificationForModel.StartPosition = FormStartPosition.CenterParent;
             if (ConnectionWithServer.LoginForm != null) {
                 ConnectionWithServer.LoginForm.Invoke(new MethodInvoker(delegate {
@@ -732,6 +1086,30 @@ namespace TFG_Client {
                 formNewTestModificationForModel.ShowDialog(ConnectionWithServer.LoginForm);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea formulario para modificaciones de tipo test.\n
+        ///             Creates form new test modification. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="titleParam">       Título.\n 
+        ///                                 The title parameter. </param>
+        /// <param name="id">               ID.\n 
+        ///                                 ID. </param>
+        /// <param name="question">         La pregunta.\n 
+        ///                                 The question. </param>
+        /// <param name="answer_A">         Respuesta A.\n 
+        ///                                 The answer a. </param>
+        /// <param name="answer_B">         Respuesta B.\n 
+        ///                                 The answer b. </param>
+        /// <param name="answer_C">         Respuesta C.\n 
+        ///                                 The answer c. </param>
+        /// <param name="answer_D">         Respuesta D.\n 
+        ///                                 The answer d. </param>
+        /// <param name="answer_correct">   La respuesta correcta.\n
+        ///                                 The answer correct. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createFormNewTestModification(string titleParam, string id, string question, string answer_A, string answer_B, string answer_C, string answer_D, string answer_correct) {
             FormNewTestModification formNewTestObject = new FormNewTestModification(id, question, answer_A, answer_B, answer_C, answer_D, answer_correct);
@@ -753,6 +1131,22 @@ namespace TFG_Client {
             }
 
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea mensaje de error.\n
+        ///             The answer correct. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="message">              Mensaje a encriptar.\n 
+        ///                                     Message to ecrypt. </param>
+        /// <param name="showDevelopMessage">   True = muestra mensaje de desarrollo, false = no lo muestra.\n
+        ///                                     True to show, false to hide the develop message. </param>
+        /// <param name="codError">             Código de error.\n
+        ///                                     Error code. </param>
+        /// <param name="activeFormParam">      Formulario activo.\n
+        ///                                     The active form parameter. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void createErrorMessage(string message, bool showDevelopMessage, int codError, Form activeFormParam) {
             try {
@@ -801,16 +1195,16 @@ namespace TFG_Client {
                     }
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Crea el formulario Acerca de...\n
+        ///             Creates about form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Crea y muestra el formulario de 'Acerca de...' al usuario
-        /// 
-        /// Create and show About form.
-        /// </summary>
         public static void createAboutForm() {
             try {
                 ModelWindowsMessage aboutForm = new ModelWindowsMessage();
@@ -829,62 +1223,61 @@ namespace TFG_Client {
                     aboutForm.ShowDialog(ConnectionWithServer.LoginForm);
                 }
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message.ToString());
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Obtiene la orientación de la imagen.\n
+        ///             Get the orientation of the image </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="image">    imagen como parámetro.\n
+        ///                         Image </param>
+        ///
+        /// <returns>   La orientación.\n
+        ///             The orientation. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Permite mirar la horientación de la imagen y establecer en las propiedades de la misma
-        /// que esté recta en caso de ser necesario.
-        /// 
-        /// Check if the image are in wrong position, if this case are real, change the position of image.
-        /// </summary>
-        /// <param name="image">Image, imagen recibida como parámetro para revisar</param>
-        /// <param name="image">Image, image as paramter to check</param>
-        /// <returns>
-        /// ImageOrientation, Horientación de la imagen en vertical
-        /// ImageOrientation, Horientation of image into vertical.
-        /// </returns>
         public static ImageOrientation GetOrientation(Image image) {
             PropertyItem pi = SafeGetPropertyItem(image, 0x112);
             return ImageOrientation.Vertical;
         }
 
-        /// <summary>
-        /// Convierte el array de bytes en una imagen
-        /// 
-        /// Convert byte array into image
-        /// </summary>
-        /// <param name="byteArrayParam">byte [], Array de bytes que contiene toda la info sobre la imagen antes de ser convertida a imagen</param>
-        /// <param name="byteArrayParam">byte [], array of bytes that contain all information about image before that convert into image</param>
-        /// <returns>
-        /// El array de bytes convertido a imagen
-        /// 
-        /// Array of bytes convert into image
-        /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Convierte el array de bytes a imagen.\n
+        ///             Convert byte array into image. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="byteArrayParam">   Array de bytes.\n
+        ///                                 Bytes array. </param>
+        ///
+        /// <returns>   La imagen.\n
+        ///             An Image. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static Image byteArrayToImage(byte[] byteArrayParam) {
             using (MemoryStream ms = new MemoryStream(byteArrayParam)) {
                 return Image.FromStream(ms);
             }
         }
 
-        /// <summary>
-        /// Almacena las propiedades de la imagen trás ser modificadas para que la imagen esté en vertical.
-        /// 
-        /// Store image properties when the image has changed.
-        /// </summary>
-        /// <param name="image">Image, imagen como parámetro</param>
-        /// <param name="image">Image, imagen has parameter</param>
-        /// <param name="propid">int, Id de la imagen</param>
-        /// <param name="propid">int, Id about image</param>
-        /// <returns>
-        /// PropertyItem, Propiedades de la imagen modificadas
-        /// PropertyItem, Properties of image changed.
-        /// 
-        /// null, Si el archivo que se intentó modificar no tiene un archivo de registro EXIF.
-        /// null, If this image hasn't EXIF file (Properties file)
-        /// </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Almacena las propiedades de la imagen.\n
+        ///             Store image properties </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="image">    imagen como parámetro.\n 
+        ///                         Image. </param>
+        /// <param name="propid">   Las propiedades.\n
+        ///                         The propid. </param>
+        ///
+        /// <returns>   Las propiedades.\n
+        ///             A PropertyItem. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static PropertyItem SafeGetPropertyItem(Image image, int propid) {
             try {
                 return image.GetPropertyItem(propid);
@@ -893,21 +1286,25 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Redimensiona la imagen.\n
+        ///             Resize the image. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="image">        imagen como parámetro.\n 
+        ///                             Image. </param>
+        /// <param name="Width">        La anchura.\n
+        ///                             The width. </param>
+        /// <param name="Height">       La altura.\n
+        ///                             The height. </param>
+        /// <param name="needToFill">   Si necesita rellenar la imagen.\n
+        ///                             True to need to fill. </param>
+        ///
+        /// <returns>   La imagen.\n
+        ///             An Image. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Permite redimensionar la imagen.
-        /// 
-        /// Resize image
-        /// </summary>
-        /// <param name="image">Image, imagen como parámetro</param>
-        /// <param name="image">Image, image as param</param>
-        /// <param name="Width">int, anchura de la imagen deseada</param>
-        /// <param name="Width">int, width of image that login form need</param>
-        /// <param name="Height">int, altura de la imagen deseada</param>
-        /// <param name="Height">int, height of image that login form need</param>
-        /// <param name="needToFill">bool, indica si la imagen necesita ser llenada</param>
-        /// <param name="needToFill">bool, tell if this image needs to fill</param>
-        /// <returns></returns>
         public static Image FixedSize(Image image, int Width, int Height, bool needToFill) {
 
             int sourceWidth = image.Width;
@@ -955,17 +1352,28 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Permite abrir un formulario.\n
+        ///             Allow to open the form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="childFormParam">   Formulario hijo.\n
+        ///                                 The child form parameter. </param>
+        /// <param name="DataPanelParam">   Panel de datos donde se muestran los datos.\n
+        ///                                 The data panel parameter. </param>
+        /// <param name="rightPanelParam">  Panel derecho.\n 
+        ///                                 Right panel. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static void openForm(object childFormParam, Panel DataPanelParam, Panel rightPanelParam) {
             if (DataPanelParam.Controls.Count > 0) {
                 DataPanelParam.Controls.RemoveAt(0);
             }
 
-            // Agregar comprobante para evitar perdida de datos por parte del usuario
-            //MessageBox.Show(childFormParam.GetType().ToString());
             Form childFormObject = childFormParam as Form;
             childFormObject.TopLevel = false;
             childFormObject.Dock = DockStyle.Fill;
-            //DataPanelParam.Controls.SetChildIndex(childFormObject, 0, 0);
             DataPanelParam.Controls.Add(childFormObject);
             DataPanelParam.Tag = childFormObject;
             rightPanelParam.Dock = DockStyle.Right;

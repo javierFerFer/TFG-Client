@@ -1,31 +1,39 @@
-﻿//============================================================================
-// Name        : Program.cs
-// Author      : Javier Fernández Fernández
-// Version     : 0.1
-// Copyright   : Your copyright notice
-// Description : Start of the program
-//============================================================================
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\Program.cs </file>
+///
+/// <copyright file="Program.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase Program.\n
+///             Implements the program class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Todos los using de la clase
- * 
- * All using here
- */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TFG_Client{
-    static class Program{
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// 
-        /// Start of programgirada
-        /// </summary>
+namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Clase principal del programa </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    static class Program {
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Entrada principal del programa.\n
+        ///             Main entry-point for this application. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         [STAThread]
-        static void Main(){
+        static void Main() {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

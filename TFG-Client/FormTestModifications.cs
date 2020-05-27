@@ -24,8 +24,8 @@ using System.Windows.Forms;
 namespace TFG_Client {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// <summary>   Lista todas las preguntas de tipo test que contienen modificaciones.\n
-    ///             Show all test question that have one or more modifications. </summary>
+    /// <summary>   Lista todas las modificaciones de la pregunta.\n
+    ///             Show all test modifications about the question. </summary>
     ///
     /// <remarks>   Javier Fernández Fernández, 24/05/2020. </remarks>
     ////////////////////////////////////////////////////////////////////////////////////////////////////

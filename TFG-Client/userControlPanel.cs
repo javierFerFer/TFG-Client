@@ -1,4 +1,15 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\userControlPanel.cs </file>
+///
+/// <copyright file="userControlPanel.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase UserControlPanel.\n
+///             Implements the user control panel class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +22,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Panel de control del usuario.\n
+    ///             User control panel. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class UserControlPanel : Form {
 
         private bool clickMouse = false;
@@ -19,7 +38,21 @@ namespace TFG_Client {
         private Point startPoint = new Point(0, 0);
         private ArrayList allSubjectObjects = new ArrayList();
 
-        public UserControlPanel(string userMailParam, string emailUserParam ,MyOwnCircleComponent userImageParam) {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor de la clase.\n
+        ///             Constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="userMailParam">    Nombre del usuario.\n
+        ///                                 User name. </param>
+        /// <param name="emailUserParam">   Email del usuario.\n
+        ///                                 User email. </param>
+        /// <param name="userImageParam">   Imagen del usuario.\n
+        ///                                 User image </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public UserControlPanel(string userMailParam, string emailUserParam, MyOwnCircleComponent userImageParam) {
             try {
                 InitializeComponent();
                 emailUser = emailUserParam;
@@ -71,6 +104,13 @@ namespace TFG_Client {
             base.WndProc(ref m);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento que agrega eventos de click a las asignaturas del menú.\n
+        ///             Event that add click events to all subjects of the menu. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void addClickEventToSUbjects() {
             for (int counter = 0; counter < allSubjectObjects.Count; counter++) {
                 Label tempLabel;
@@ -79,6 +119,18 @@ namespace TFG_Client {
                 tempLabel.Click += new EventHandler(labelSubjectClick);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre la asignatura.\n
+        ///             Click event about subject. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         protected void labelSubjectClick(object sender, EventArgs e) {
             //attempt to cast the sender as a label
@@ -122,6 +174,13 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Llena todas las asignaturas en un array.\n
+        ///             Fill all subjects into array. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void fillAllSubjectsIntoArray() {
             allSubjectObjects.Clear();
             allSubjectObjects.Add(asignatura1);
@@ -157,29 +216,35 @@ namespace TFG_Client {
             addClickEventToSUbjects();
         }
 
-        /// <summary>
-        /// Evento que permite mover el formulario al hacer click sobre el y arrastrarlo
-        /// 
-        /// Event for to move this form when user click and drag
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">MouseEventArgs, evento activado</param>
-        /// <param name="e">MouseEventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento que permite mover el formulario al hacer click sobre el y arrastrarlo.\n
+        ///             Event to allow move the form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento del mouse.\n
+        ///                         Mouse event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void flowLayoutUp_MouseDown(object sender, MouseEventArgs e) {
             clickMouse = true;
             startPoint = new Point(e.X, e.Y);
         }
 
-        /// <summary>
-        /// Evento que permite mover el formulario al hacer click sobre el y arrastrarlo
-        /// 
-        /// Event for to move this form when user click and drag
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">MouseEventArgs, evento activado</param>
-        /// <param name="e">MouseEventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento que permite moverl el formulario.\n
+        ///             Event to allow move the form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento del mouse.\n
+        ///                         Mouse event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void flowLayoutUp_MouseMove(object sender, MouseEventArgs e) {
             if (clickMouse) {
                 Point newLocation = PointToScreen(e.Location);
@@ -187,188 +252,258 @@ namespace TFG_Client {
             }
         }
 
-        /// <summary>
-        /// Evento de ratón, que detecta cuando el ratón ha sido levantado
-        /// 
-        /// Event of mouse that detect when the user drop click button of mouse.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">MouseEventArgs, evento activado</param>
-        /// <param name="e">MouseEventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de ratón, detecta cuando el botón del raton es levantado.\n
+        ///             Mouse event, detect when the button of the mouse is leave. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento del mouse.\n
+        ///                         Mouse event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void flowLayoutUp_MouseUp(object sender, MouseEventArgs e) {
             clickMouse = false;
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre la imagen del usuario, muestra el menú de opciones.\n
+        ///             Click event about user image, show the menu of the options. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void userImageCircle_Click(object sender, EventArgs e) {
             showHideRightPanel();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'Support' option, show support form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de soporte.\n
+        ///             Click event, show support form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void supportLabel_Click(object sender, EventArgs e) {
             Utilities.createSupportForm();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'Support' option, show support form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de soporte.\n
+        ///             Click event, show support form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void supportIcon_Click(object sender, EventArgs e) {
             Utilities.createSupportForm();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Soporte' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'Support' option, show support form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de soporte.\n
+        ///             Click event, show support form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void layoutSupport_MouseClick(object sender, MouseEventArgs e) {
             Utilities.createSupportForm();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'About' option, show about form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de Acerca de...\n
+        ///             Click event, show about form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void aboutLabel_Click(object sender, EventArgs e) {
             Utilities.createAboutForm();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'About' option, show about form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de Acerca de...\n
+        ///             Click event, show about form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void aboutIcon_Click(object sender, EventArgs e) {
             Utilities.createAboutForm();
         }
 
-        /// <summary>
-        /// Detecta si se ha hecho click sobre la opción de 'Acerca de...' y muestra su formulario.
-        /// 
-        /// Detect if the user does click into 'About' option, show about form.
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, muestra el formulario de Acerca de...\n
+        ///             Click event, show about form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void layoutAbout_Click(object sender, EventArgs e) {
             Utilities.createAboutForm();
         }
 
-        /// <summary>
-        /// Evento de click para minimizar el formulario
-        /// 
-        /// Click event for to minimize this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, minimiza el formulario.\n
+        ///             Click event, minmize this form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void minimizeLabel_Click(object sender, EventArgs e) {
             rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 
-        /// <summary>
-        /// Evento de click para minimizar el formulario
-        /// 
-        /// Click event for to minimize this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, minimiza el formulario.\n
+        ///             Click event, minmize this form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void minimizeIcon_Click(object sender, EventArgs e) {
             rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 
-        /// <summary>
-        /// Evento de click para minimizar el formulario
-        /// 
-        /// Click event for to minimize this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, minimiza el formulario.\n
+        ///             Click event, minmize this form. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void layoutMinimize_Click(object sender, EventArgs e) {
             rightDock.Width = 0;
             WindowState = FormWindowState.Minimized;
         }
 
-        /// <summary>
-        /// Evento de click para cerrar el formulario
-        /// 
-        /// Click event for to close this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, cierra el formulario y la aplicación.\n
+        ///             Click event, close this form and close the App. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void exitLabel_Click(object sender, EventArgs e) {
             Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
-        /// <summary>
-        /// Evento de click para cerrar el formulario
-        /// 
-        /// Click event for to close this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, cierra el formulario y la aplicación.\n
+        ///             Click event, close this form and close the App. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void exitImage_Click(object sender, EventArgs e) {
             Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
 
-        /// <summary>
-        /// Evento de click para cerrar el formulario
-        /// 
-        /// Click event for to close this form
-        /// </summary>
-        /// <param name="sender">object, Objecto que avtiva el evento</param>
-        /// <param name="sender">object, Object that active this event</param>
-        /// <param name="e">EventArgs, evento activado</param>
-        /// <param name="e">EventArgs, Activated event</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click, cierra el formulario y la aplicación.\n
+        ///             Click event, close this form and close the App. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void layoutExit_Click(object sender, EventArgs e) {
             Utilities.saveWindowsFormPosition(this);
             Application.Exit();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el nombre del usuario, muestra las opciones del menú.\n
+        ///             Click event aboutname of the user, show menu options. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void userNameLabel_Click(object sender, EventArgs e) {
             showHideRightPanel();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Muestra/esconde el panel izquierdo.\n
+        ///             Shows/hide the hide left panel. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void showHideLeftPanel() {
             if (leftPanel.Width == 54) {
@@ -378,6 +513,13 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Muestra/esconde el panel derecho.\n
+        ///             Shows/hide the hide right panel. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void showHideRightPanel() {
             if (rightDock.Width == 177) {
                 rightDock.Width = 0;
@@ -385,6 +527,18 @@ namespace TFG_Client {
                 rightDock.Width = 177;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre la foto del usuario, muestra el menú de opciones.\n
+        ///             Click event about user image, show/hide menu bar. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void subjectPicture_Click(object sender, EventArgs e) {
             if (leftPanel.Width == 54) {
@@ -395,6 +549,18 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre las preguntas, muestra el menú de opciones.\n
+        ///             Click event about questions, show/hide menu bar. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void createExamPicture_Click(object sender, EventArgs e) {
             if (leftPanel.Width == 54) {
                 getAllSubjects();
@@ -403,6 +569,18 @@ namespace TFG_Client {
                 fillAllSubjectsIntoArray();
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre los modelos, muestra el menú de opciones.\n
+        ///             Click event about models, show/hide menu bar. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void modelsPicture_Click(object sender, EventArgs e) {
             if (leftPanel.Width == 54) {
@@ -413,6 +591,18 @@ namespace TFG_Client {
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre las modificaciones, muestra el menú de opciones.\n
+        ///             Click event about modify, show/hide menu bar. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void changesPicture_Click(object sender, EventArgs e) {
             if (leftPanel.Width == 54) {
                 getAllSubjects();
@@ -422,7 +612,17 @@ namespace TFG_Client {
             }
         }
 
-        public void fillAllSubjects(string [] allSubjectsParam) {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Llena todas las asignaturas.\n
+        ///             Fill all subjects. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="allSubjectsParam"> Todas las asignaturas.\n
+        ///                                 all subjects parameter. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public void fillAllSubjects(string[] allSubjectsParam) {
 
             subjectPicture.Click += new EventHandler(subjectPicture_Click);
             createExamPicture.Click += new EventHandler(createExamPicture_Click);
@@ -432,9 +632,9 @@ namespace TFG_Client {
             Label temLabel;
             showHideLeftPanel();
             for (int counter = 0; counter < allSubjectsParam.Length; counter++) {
-                 temLabel = (Label)allSubjectObjects[counter];
-                 temLabel.Text = allSubjectsParam[counter];
-                 temLabel.Visible = true;
+                temLabel = (Label)allSubjectObjects[counter];
+                temLabel.Text = allSubjectsParam[counter];
+                temLabel.Visible = true;
             }
 
 
@@ -460,7 +660,12 @@ namespace TFG_Client {
             }
         }
 
-        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Obtiene todas las asignaturas.\n
+        ///             Gets all subjects. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void getAllSubjects() {
 
@@ -468,7 +673,7 @@ namespace TFG_Client {
             createExamPicture.Click -= new EventHandler(createExamPicture_Click);
             modelsPicture.Click -= new EventHandler(modelsPicture_Click);
             changesPicture.Click -= new EventHandler(changesPicture_Click);
-            
+
             string jsonString = Utilities.generateSingleDataRequest("getAllSubjects", emailUser);
 
             byte[] jSonObjectBytes = Encoding.ASCII.GetBytes(Utilities.Encrypt(jsonString, ConnectionWithServer.EncryptKey, ConnectionWithServer.IvString));
@@ -478,7 +683,20 @@ namespace TFG_Client {
             ConnectionWithServer.ServerStream.Flush();
         }
 
-        // Prevent resize with windows + arrow keys
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Obtiene los parámetros de creación necesarios cuando se crea el identificador del control.\n
+        /// Gets the necessary create parameters when creating the handle of the control.
+        /// </summary>
+        ///
+        /// <value>
+        /// <see cref="T:System.Windows.Forms.CreateParams" /> que contiene los parámetros de creación
+        /// necesarios cuando se crea el identificador del control.\n
+        /// <see cref = "T: System.Windows.Forms.CreateParams" /> containing the creation parameters
+        /// required when creating the handle of the control.
+        /// </value>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         protected override CreateParams CreateParams {
             get {
                 const int WS_MAXIMIZEBOX = 0x00010000;
@@ -487,6 +705,18 @@ namespace TFG_Client {
                 return cp;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el label de cambios.\n
+        ///             Click event about changes label. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 22/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Objeto que activa el evento.\n 
+        ///                         Object that active the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public void labelChanges_Click(object sender, EventArgs e) {
             labelChanges.Click -= new EventHandler(labelChanges_Click);

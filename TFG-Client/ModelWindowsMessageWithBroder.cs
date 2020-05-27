@@ -1,20 +1,14 @@
-﻿//============================================================================
-// Name        : ModelWindowsMessage.cs
-// Author      : Javier Fernández Fernández
-// Version     : 0.1
-// Copyright   : Your copyright notice
-// Description : This class is a model of windows that have:
-//               - Tittle
-//               - Message
-//               - Image
-//               - Close button
-//============================================================================
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\ModelWindowsMessageWithBroder.cs </file>
+///
+/// <copyright file="ModelWindowsMessageWithBroder.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase ModelWindowsMessageWithBorder.\n
+///             Implements the model windows message with broder class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Todos los using de la clase
- * 
- * All using here
-*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,25 +19,41 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Modelo de mensaje con texto y borde.\n
+    ///             Model of message with only text and border. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class ModelWindowsMessageWithBroder : Form {
-        /// <summary>
-        /// Constructor de la clase modelo de mensajes
-        /// 
-        /// Constructor of the model message class
-        /// </summary>
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor por defecto.\n
+        ///             Default constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public ModelWindowsMessageWithBroder() {
             InitializeComponent();
             panelUp.Height -= 9;
             panelDown.Height -= 9;
         }
 
-        /// <summary>
-        /// Evento de cierre del boton 'cerrar' de la ventana
-        /// 
-        /// Evento of close button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón cerrar formulario.\n
+        ///             Click event about close button. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void closeButton_Click(object sender, EventArgs e) {
             Dispose();
         }

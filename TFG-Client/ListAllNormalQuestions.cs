@@ -322,7 +322,7 @@ namespace TFG_Client {
         /// <summary>   Evento de cambio de texto sobre el buscador de preguntas, cuando se activa, simula una pulsación sobre el botón buscar.\n
         ///             Text change event about searcher box text, when this event is activated, simulate press search button. </summary>
         ///
-        /// <remarks>   Javier Fernández Fernández, 27/05/2020. </remarks>
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
         ///
         /// <param name="sender">   Código del evento.\n Source of the event. </param>
         /// <param name="e">        Event information. </param>
@@ -338,7 +338,7 @@ namespace TFG_Client {
         /// Event of cell mouse enter, when the user active this event, this event show all data of the selected question in selected row.
         /// </summary>
         ///
-        /// <remarks>   Javier Fernández Fernández, 24/05/2020. </remarks>
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
         ///
         /// <param name="sender">   Código del evento.\n 
         ///                         Source of the event. </param>
