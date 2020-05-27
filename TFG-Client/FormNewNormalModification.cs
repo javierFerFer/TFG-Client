@@ -1,20 +1,14 @@
-﻿//============================================================================
-// Name        : ModelWindowsMessage.cs
-// Author      : Javier Fernández Fernández
-// Version     : 0.1
-// Copyright   : Your copyright notice
-// Description : This class is a model of windows that have:
-//               - Tittle
-//               - Message
-//               - Image
-//               - Close button
-//============================================================================
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////
+/// <file>  TFG-Client\FormNewNormalModification.cs </file>
+///
+/// <copyright file="FormNewNormalModification.cs" company="San José">
+/// Copyright (c) 2020 San José. All rights reserved.
+/// </copyright>
+///
+/// <summary>   Implementación de la clase FormNewNormalModification.\n
+///             Implements the form new normal modification class. </summary>
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Todos los using de la clase
- * 
- * All using here
-*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +19,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TFG_Client {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   Formulario que permite establecer los datos para la modificación de una pregunta de tipo normal.\n
+    ///             Form to change normal question. </summary>
+    ///
+    /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public partial class FormNewNormalModification : Form {
 
         private string id;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Constructor de la clase.\n
+        ///             Constructor. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="idParam">  ID de la pregunta a modificar.\n
+        ///                         The identifier parameter of the question to modify. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public FormNewNormalModification(string idParam) {
             InitializeComponent();
@@ -36,19 +48,36 @@ namespace TFG_Client {
             panelDown.Height -= 9;
         }
 
-        /// <summary>
-        /// Evento de cierre del boton 'cerrar' de la ventana
-        /// 
-        /// Evento of close button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón cancelar, cuando es pulsado, se avisa al usuario de posible perdida de datos y si acepta, se cierra este formulario.\n
+        ///             Click event about cancel button, when this button is pressed, this program show an warning message, if the user continue anyway, this form will be closed</summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void closeButton_Click(object sender, EventArgs e) {
             bool userOption = Utilities.createWarningForm();
             if (userOption) {
                 Dispose();
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de cambio de texto sobre  la caja de texto para la modificación, comprueba que el valor de la misma es válido.\n
+        ///             Change text event about modification text box, check if the value of modification is valid or not.</summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
             try {
@@ -62,9 +91,20 @@ namespace TFG_Client {
                         textBoxNewQuest.Text = "";
                     }
                 }
-            } catch (Exception) {}
+            } catch (Exception) { }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de click sobre el botón enviar, cuando se activa, se envia una petición al servidor para modificar/borrar la pregunta seleccionada.\n
+        ///             Click event about send button, when this button is pressed, the program send to request to modify/delete this question. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void buttonSend_Click(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
@@ -91,11 +131,23 @@ namespace TFG_Client {
                         Utilities.customErrorInfoModificationNormal("Valor para la modificación inválido, recuerde que la longitud máxima es 90 \n" +
                                                                    "y que la mínima es de 5 caracteres");
                     }
-                   
+
                 }
             }
-            
+
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de checkBox, comprueba si el checkBox para borrar la pregunta está marcado o no.\n
+        ///             CheckBox event, check if this checkBox for to delete the question is check or not. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Información del evento.\n
+        ///                         Event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void checkBoxDelete_CheckedChanged(object sender, EventArgs e) {
             if (checkBoxDelete.Checked) {
@@ -106,6 +158,18 @@ namespace TFG_Client {
                 labelInfoNewModification.Visible = true;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Evento de tecla presionada, comprueba si el usuario ha pulsado la tecla ENTER, en dicho caso, omite la pulsación.\n
+        ///             Key press event, if the key = ENTER, avoid this press. </summary>
+        ///
+        /// <remarks>   Javier Fernández Fernández, 30/04/2020. </remarks>
+        ///
+        /// <param name="sender">   Código del evento.\n 
+        ///                         Source of the event. </param>
+        /// <param name="e">        Evento de la tecla pulsada.\n
+        ///                         Key event information. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void textBoxNewQuest_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
