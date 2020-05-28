@@ -155,7 +155,7 @@ namespace TFG_Client {
                 if (comboBoxOfThemes.SelectedItem.ToString() != bannerComboBox && comboBoxOfThemes.SelectedItem.ToString() != nothingToShow) {
                     sendAlldataNameOfTheme(false);
                 } else {
-                    Utilities.customErrorInfo("No se ha seleccionado nigún tema de la lista");
+                    Utilities.customErrorInfo("No se ha seleccionado ningún tema de la lista");
                 }
             } else {
                 Utilities.customErrorInfo("La longitud de la pregunta que desea agregar es demasiado corta. \n" +
@@ -278,7 +278,7 @@ namespace TFG_Client {
                     textBoxQuestion.Select(textBoxQuestion.Text.Length, 0);
                     Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la pregunta");
                 } else {
-                    Utilities.customErrorInfo("El texto introducido supera el limite máximo de caracteres");
+                    Utilities.customErrorInfo("El texto introducido supera el límite máximo de caracteres");
                     textBoxQuestion.Text = "";
                 }
             }

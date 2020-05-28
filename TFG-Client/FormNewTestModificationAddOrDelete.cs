@@ -78,7 +78,7 @@ namespace TFG_Client {
                 // Envio de datos mediante flush
                 ConnectionWithServer.ServerStream.Flush();
                 Dispose();
-                Utilities.createWarningForm("Espere, por favor", "Se esta procesando su solicitud,\n espere...");
+                Utilities.createWarningForm("Espere, por favor", "Se está procesando su solicitud,\n espere...");
                 ConnectionWithServer.closeAllPopUps();
                 ConnectionWithServer.LoginForm.AskTypeDataChangesObject1.nextButton.PerformClick();
             }
@@ -106,7 +106,7 @@ namespace TFG_Client {
                 // Envio de datos mediante flush
                 ConnectionWithServer.ServerStream.Flush();
                 Dispose();
-                Utilities.createWarningForm("Espere, por favor", "Se esta procesando su solicitud,\n espere...");
+                Utilities.createWarningForm("Espere, por favor", "Se está procesando su solicitud,\n espere...");
                 ConnectionWithServer.closeAllPopUps();
                 ConnectionWithServer.LoginForm.AskTypeDataChangesObject1.nextButton.PerformClick();
             }
@@ -135,7 +135,7 @@ namespace TFG_Client {
                 // Envio de datos mediante flush
                 ConnectionWithServer.ServerStream.Flush();
                 Dispose();
-                Utilities.createWarningForm("Espere, por favor", "Se esta procesando su solicitud,\n espere...");
+                Utilities.createWarningForm("Espere, por favor", "Se está procesando su solicitud,\n espere...");
                 ConnectionWithServer.closeAllPopUps();
                 ConnectionWithServer.LoginForm.AskTypeDataChangesObject1.nextButton.PerformClick();
             }

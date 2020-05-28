@@ -171,7 +171,7 @@ namespace TFG_Client {
                         textBoxDescription.Select(textBoxDescription.Text.Length, 0);
                         Utilities.customErrorInfo("Se ha alcanzado el límite máximo de caracteres en la descripción");
                     } else {
-                        Utilities.customErrorInfo("El texto introducido supera el limite máximo de caracteres");
+                        Utilities.customErrorInfo("El texto introducido supera el límite máximo de caracteres");
                         textBoxDescription.Text = "";
                     }
                 }

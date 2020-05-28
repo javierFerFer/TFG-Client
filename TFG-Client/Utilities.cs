@@ -37,7 +37,7 @@ namespace TFG_Client {
 
     static class Utilities {
 
-        public static bool showDevelopMessages = true;
+        public static bool showDevelopMessages = false;
         public static bool warningAnser = true;
         private static string emptyString = "";
 
@@ -442,13 +442,10 @@ namespace TFG_Client {
 
                     ms.Close();
                 } catch (CryptographicException e) {
-                    Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
                     return null;
                 } catch (UnauthorizedAccessException e) {
-                    Console.WriteLine("A file error occurred: {0}", e.Message);
                     return null;
                 } catch (Exception e) {
-                    Console.WriteLine("An error occurred: {0}", e.Message);
                 } finally {
                     rj.Clear();
                 }
@@ -717,7 +714,7 @@ namespace TFG_Client {
                 supportForm.StartPosition = FormStartPosition.CenterParent;
                 supportForm.title.Text = "Soporte";
                 supportForm.messageLabel.Text = "Para cualquier problema o duda, \n" +
-                                                "envie un correo a javierferfer99@gmail.com \n" +
+                                                "envíe un correo a javierferfer99@gmail.com \n" +
                                                 "gracias por su colaboración";
 
                 Point centerLocation = new Point(supportForm.messageLabel.Location.X + 120, supportForm.messageLabel.Location.Y);
@@ -1157,8 +1154,8 @@ namespace TFG_Client {
                 if (showDevelopMessage) {
                     errorForm.messageLabel.Text = message;
                 } else {
-                    errorForm.messageLabel.Text = "Se ha producido un error interno con código: " + codError.ToString() + "\n" +
-                                                   "Pongase en contacto con el administrador";
+                    errorForm.messageLabel.Text = "Se ha producido un error, cierre el programa e intentelo más tarde.\n" +
+                                                   "Si el problema persiste, póngase en contacto con el administrador.";
                 }
 
                 if (errorForm.Width < errorForm.messageLabel.Width) {
