@@ -87,7 +87,7 @@ namespace TFG_Client {
                         textBoxNewQuest.Select(textBoxNewQuest.Text.Length, 0);
                         Utilities.customErrorInfoModificationNormal("Se ha alcanzado el límite máximo de caracteres en la pregunta");
                     } else {
-                        Utilities.customErrorInfoModificationNormal("El texto introducido supera el limite máximo de caracteres");
+                        Utilities.customErrorInfoModificationNormal("El texto introducido supera el límite máximo de caracteres");
                         textBoxNewQuest.Text = "";
                     }
                 }

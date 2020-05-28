@@ -237,9 +237,9 @@ namespace TFG_Client {
                                         // petición de agregación de nueva pregunta
                                         LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionObject.addNewQuestionRequest(); }));
                                     } else {
-                                        Utilities.customErrorInfo("El nombre de la pregunta es valido, pero  el tema \n " +
+                                        Utilities.customErrorInfo("El nombre de la pregunta es válido, pero  el tema \n " +
                                                                   "que está intentando crear ya existe, pruebe con otro nombre \n" +
-                                                                  "o contante con el andministrador");
+                                                                  "o contante con el administrador");
                                     }
                                 }
 
@@ -255,9 +255,9 @@ namespace TFG_Client {
                                         // petición de agregación de nueva pregunta
                                         LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.AddNewQuestionTypeTest.addNewQuestionRequest(); }));
                                     } else {
-                                        Utilities.customErrorInfo("El nombre de la pregunta es valido, pero  el tema \n " +
+                                        Utilities.customErrorInfo("El nombre de la pregunta es válido, pero  el tema \n " +
                                                                   "que está intentando crear ya existe, pruebe con otro nombre \n" +
-                                                                  "o contante con el andministrador");
+                                                                  "o contante con el administrador");
                                     }
                                 }
 
@@ -378,7 +378,7 @@ namespace TFG_Client {
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.ListAllNormalQuestions.openSuccessAddModificationNormalQuest(); }));
                                 } else {
                                     // Carga formulario de error de insercción de los datos
-                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modificación al sistema, contacte con el administrador");
                                 }
 
                             } else if (json.First.ToString().Contains("TestQuestionsNotFound")) {
@@ -404,7 +404,7 @@ namespace TFG_Client {
                                     LoginForm.Invoke(new MethodInvoker(delegate { LoginForm.ListAllTestQuestions.openSuccessAddModificationNormalQuest(); }));
                                 } else {
                                     // Carga formulario de error de insercción de los datos
-                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modicación al sistema, contacte con el administrador");
+                                    Utilities.customErrorInfo("Hubo un error al intentar agregar la modificación al sistema, contacte con el administrador");
                                 }
 
                             } else if (json.First.ToString().Contains("normalQuestionsCreateExamNotFound")) {
@@ -616,7 +616,7 @@ namespace TFG_Client {
                     }
                 } else {
                     resetLoadingBar();
-                    Utilities.customErrorInfo("No se pudo obtener la clave de conexión con el servidor, intentelo más tarde");
+                    Utilities.customErrorInfo("No se pudo obtener la clave de conexión con el servidor, inténtelo más tarde");
                 }
             } catch (Exception ex) {
                 resetLoadingBar();
