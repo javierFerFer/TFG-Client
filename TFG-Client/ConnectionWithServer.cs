@@ -428,7 +428,7 @@ namespace TFG_Client {
                                     loginForm.CreateNormalExamObject.showHideElements(true);
                                     loginForm.CreateNormalExamObject.showHideLabelWait(false);
                                     loginForm.CreateNormalExamObject.showHideErrorMessage(false);
-                                    loginForm.CreateNormalExamObject.showHideErrorMessage(true);
+                                    loginForm.CreateNormalExamObject.showHideBackButton(true);
                                 }));
 
                             } else if (json.First.ToString().Contains("testQuestionsCreateExamNotFound")) {
